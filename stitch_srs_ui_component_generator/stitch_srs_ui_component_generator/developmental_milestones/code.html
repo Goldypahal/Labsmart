@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Developmental Milestones | DiagConnect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#3e4850",
+                        "on-secondary-fixed": "#002113",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "inverse-surface": "#213145",
+                        "tertiary-container": "#d88a00",
+                        "primary": "#006591",
+                        "on-surface": "#0b1c30",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "surface-container-high": "#dce9ff",
+                        "secondary-fixed": "#6ffbbe",
+                        "surface-tint": "#006591",
+                        "secondary-fixed-dim": "#4edea3",
+                        "tertiary": "#855300",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-fixed": "#2a1700",
+                        "surface-container-low": "#eff4ff",
+                        "background": "#f8f9ff",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#89ceff",
+                        "surface": "#f8f9ff",
+                        "primary-fixed-dim": "#89ceff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-secondary-container": "#00714d",
+                        "on-tertiary-container": "#4a2c00",
+                        "on-primary-fixed": "#001e2f",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-primary-container": "#003751",
+                        "secondary-container": "#6cf8bb",
+                        "outline": "#6e7881",
+                        "primary-fixed": "#c9e6ff",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "primary-container": "#0ea5e9",
+                        "tertiary-fixed": "#ffddb8",
+                        "outline-variant": "#bec8d2",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#cbdbf5",
+                        "secondary": "#006c49",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "gutter": "24px",
+                        "max-width": "1440px",
+                        "base": "4px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "margin-desktop": "40px",
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .active-pill { background-color: #006591; color: white; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline">
+<div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim text-2xl" data-icon="family_restroom">family_restroom</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Leo's Milestones</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-6 mr-6">
+<span class="font-label-md text-label-md text-primary font-bold">Dashboard</span>
+<span class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors cursor-pointer">Timeline</span>
+<span class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors cursor-pointer">Members</span>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a young boy with curly hair, smiling warmly. The lighting is soft and natural, emphasizing a bright and clinical aesthetic. The background is a clean, minimalist blue gradient that aligns with the DiagConnect health platform visual style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMm8r4VW7IaDSdIZh-PPSmlPZE7nBNqCF12_p7i-woBxAjIdJNLm1B0sJXfQghmDhvkYIdannBvV8UIuzUGLxr6hhDJOnOcxhwzD-HCMMTSHhqGi8rjZASKuf7U6A1xoraNpS-B40QexylCLIs2J0a7SEpRq0vRs0RvVu09v8iJNuZOKixLagNfnqLDt_lfqFh69VC78UaRlH4ymGR8xkSi-2gn4dq3jlZnm5l79JWozFfNBw160Fq0YQNAECIvZfD_z3Qe4vKlfY"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Age Progress Section -->
+<section class="mb-xl">
+<div class="bg-surface-container-lowest rounded-xl p-lg border border-outline-variant/30 shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-md gap-4">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Age Group: 6 Years</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Current developmental stage tracking</p>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-primary font-bold">85% Complete</span>
+</div>
+</div>
+<div class="w-full bg-surface-variant h-3 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-1000 ease-out" style="width: 85%"></div>
+</div>
+<div class="flex justify-between mt-xs font-label-sm text-label-sm text-outline">
+<span>Year 5</span>
+<span>Year 6</span>
+<span>Year 7</span>
+</div>
+</div>
+</section>
+<!-- Bento Grid Milestones -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Sidebar: Categories -->
+<div class="md:col-span-3 flex flex-col gap-sm">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-xs">Categories</h3>
+<button class="flex items-center gap-3 p-md rounded-lg active-pill transition-all text-left">
+<span class="material-symbols-outlined" data-icon="directions_run">directions_run</span>
+<span class="font-label-md text-label-md">Motor Skills</span>
+</button>
+<button class="flex items-center gap-3 p-md rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-variant transition-all text-left">
+<span class="material-symbols-outlined" data-icon="forum">forum</span>
+<span class="font-label-md text-label-md">Language</span>
+</button>
+<button class="flex items-center gap-3 p-md rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-variant transition-all text-left">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-md text-label-md">Social &amp; Emotional</span>
+</button>
+<button class="flex items-center gap-3 p-md rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-variant transition-all text-left">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-label-md text-label-md">Cognitive</span>
+</button>
+</div>
+<!-- Main Content: Checklist & Cards -->
+<div class="md:col-span-9">
+<div class="flex items-center justify-between mb-md">
+<h2 class="font-headline-sm text-headline-sm">Motor Skills Checklist</h2>
+<button class="flex items-center gap-2 px-md py-sm bg-primary text-on-primary rounded-lg font-label-md hover:brightness-110 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                        Log Achievement
+                    </button>
+</div>
+<div class="space-y-4">
+<!-- Milestone Item 1: Achieved -->
+<div class="group relative bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-md flex flex-col md:flex-row gap-md hover:shadow-md transition-shadow">
+<div class="flex-shrink-0">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Stands on one foot for 10 seconds</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Demonstrates balance and core muscle coordination during physical activity.</p>
+</div>
+<span class="font-label-sm text-label-sm text-outline-variant italic">Mar 12, 2024</span>
+</div>
+<!-- Memory Photo -->
+<div class="mt-md flex gap-sm overflow-x-auto no-scrollbar pb-2">
+<div class="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 border border-outline-variant/20 shadow-sm relative group/photo">
+<img class="w-full h-full object-cover" data-alt="A vibrant outdoor shot of a 6-year-old boy balanced on one foot in a sunny park. He is wearing a blue t-shirt and athletic shoes, focused intently on his balance. The background shows lush green grass and soft afternoon sunlight, captured in a clinical yet heartwarming documentary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPifKVtAqyCHKxx7pgiFkAZeoxGnrh17MqZTdBpyoOhrbidOgk0K-8Cmpk--TrPDXqr9l32NqkbeyY6F1ddT7mzmx8LzLm1LeaqZm6k0ByiD6tXfYq1PKkRhlCnGyR-ZE2b2Ybgfg2iq_cE0Gl4KTDt7q4fz7pnelAcmBuw_52si0_S9EFqlgwkza_pERecnOpIgR4I6on5ulIE_q-Kj3kuXSXebAJRb_JkcMKi5QhmdkjgmODIlA7y4Gs3hL2pUiR6f3irngM0bw"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover/photo:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm" data-icon="visibility">visibility</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Milestone Item 2: Achieved -->
+<div class="group bg-surface-container-lowest border border-outline-variant/40 rounded-xl p-md flex flex-col md:flex-row gap-md hover:shadow-md transition-shadow">
+<div class="flex-shrink-0">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Pincer Grasp Mastery (Advanced)</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Able to use thumb and forefinger to pick up very small beads or thread a needle.</p>
+</div>
+<span class="font-label-sm text-label-sm text-outline-variant italic">Feb 28, 2024</span>
+</div>
+</div>
+</div>
+<!-- Milestone Item 3: Pending -->
+<div class="group bg-surface-container-low border border-dashed border-outline-variant rounded-xl p-md flex flex-col md:flex-row gap-md opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex-shrink-0">
+<div class="w-12 h-12 rounded-full border-2 border-outline-variant flex items-center justify-center text-outline">
+<span class="material-symbols-outlined" data-icon="radio_button_unchecked">radio_button_unchecked</span>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface-variant">Ties own shoelaces independently</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Final refinement of fine motor skills. Currently practicing with parent supervision.</p>
+</div>
+<button class="font-label-sm text-label-sm text-primary hover:underline font-bold">Mark Achieved</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Data: Stats -->
+<div class="mt-lg grid grid-cols-1 sm:grid-cols-2 gap-md">
+<div class="bg-primary/5 rounded-xl p-md border border-primary/10">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary" data-icon="insights">insights</span>
+<h5 class="font-label-md text-label-md text-primary">Percentile Tracking</h5>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Leo is in the 92nd percentile for fine motor skills for his age group.</p>
+</div>
+<div class="bg-tertiary-container/10 rounded-xl p-md border border-tertiary-container/20">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-tertiary" data-icon="lightbulb">lightbulb</span>
+<h5 class="font-label-md text-label-md text-tertiary">Recommended Activity</h5>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Encourage LEGO assembly or drawing complex shapes to refine control.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface dark:bg-inverse-surface border-t border-outline-variant dark:border-outline h-20 px-4 flex justify-around items-center shadow-lg">
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim bg-secondary-container/20 dark:bg-on-secondary-fixed-variant/30 rounded-xl px-3 py-1 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-sm text-label-sm">Timeline</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-sm text-label-sm">Members</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</div>
+</nav>
+<!-- Floating Action Button (FAB) -->
+<button class="fixed right-6 bottom-24 md:bottom-10 bg-primary-container text-on-primary-container w-14 h-14 rounded-2xl shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-2xl" data-icon="camera_alt">camera_alt</span>
+</button>
+<script>
+        // Simple Interaction logic
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if(this.classList.contains('active-pill')) return;
+                
+                // Toggle active state for sidebar buttons
+                if(this.closest('.md\\:col-span-3')) {
+                    document.querySelectorAll('.md\\:col-span-3 button').forEach(b => {
+                        b.classList.remove('active-pill');
+                        b.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+                    });
+                    this.classList.add('active-pill');
+                    this.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+                }
+            });
+        });
+    </script>
+</body></html>

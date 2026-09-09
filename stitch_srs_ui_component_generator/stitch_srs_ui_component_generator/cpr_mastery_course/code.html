@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Chest Compression Techniques | DiagConnect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .compression-pulse {
+            animation: pulse-ring 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(0.95); opacity: 1; }
+        }
+        .step-active {
+            border-left: 4px solid #006591;
+            background-color: #eff4ff;
+        }
+        .haptic-feedback {
+            transition: transform 0.1s ease-out;
+        }
+        .haptic-feedback:active {
+            transform: scale(0.92);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#006591",
+                        "tertiary": "#855300",
+                        "on-primary-fixed": "#001e2f",
+                        "primary-fixed-dim": "#89ceff",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#89ceff",
+                        "surface-variant": "#d3e4fe",
+                        "inverse-on-surface": "#eaf1ff",
+                        "background": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-container-high": "#dce9ff",
+                        "outline-variant": "#bec8d2",
+                        "on-tertiary-fixed": "#2a1700",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#213145",
+                        "on-background": "#0b1c30",
+                        "on-secondary-fixed": "#002113",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#6ffbbe",
+                        "primary-fixed": "#c9e6ff",
+                        "secondary": "#006c49",
+                        "surface-container": "#e5eeff",
+                        "surface-bright": "#f8f9ff",
+                        "surface": "#f8f9ff",
+                        "on-primary-container": "#003751",
+                        "surface-dim": "#cbdbf5",
+                        "surface-tint": "#006591",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#d88a00",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-secondary-container": "#00714d",
+                        "tertiary-fixed": "#ffddb8",
+                        "primary-container": "#0ea5e9",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#6e7881",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#3e4850",
+                        "surface-container-low": "#eff4ff",
+                        "on-tertiary-container": "#4a2c00",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "secondary-container": "#6cf8bb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "max-width": "1440px",
+                        "base": "4px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">Chest Compression Techniques</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="hidden md:block text-right">
+<p class="font-label-md text-label-md text-on-surface">Alex Responder</p>
+<p class="text-[10px] uppercase tracking-wider text-outline">Module 4 of 12</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional medical responder portrait in a clean clinical environment, soft natural lighting, high-key photography style, wearing a navy blue medical uniform with a DiagConnect logo, representing competence and trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9A4LUMNmaJkNvH8yN7DHgTx6lxBIIXXXpyqn8tOQcTi5ysTsNjXyVajSwR2BcUA-feiP0kMR0pnJkkp3xyhYrSBrIo2yoeG2FGYkx1Az77ow6si7bvTTTBvqzto2huiyE6oxmy2pOU0NdqHTJojZ-32YB_H8zMtdLkktnNS-ew5pizlSB9owvfX2hwZn79T39dG2qdTII72XM9TsTu5JuwsetLEsHiY2wsjEGSquMEIKTIT4B-51r3WfODnQBdMe406KOI6goAVA"/>
+</div>
+</div>
+</header>
+<main class="pt-20 max-w-screen-xl mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Hero Animation / Video Section -->
+<section class="mt-4 md:mt-8 grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<div class="lg:col-span-8">
+<div class="relative aspect-video rounded-xl overflow-hidden bg-surface-container-highest shadow-sm border border-outline-variant group">
+<!-- Animation Placeholder -->
+
+<div class="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-on-surface/60 to-transparent flex items-end justify-between text-white">
+<div>
+<p class="font-label-md text-label-md opacity-90">Visual Guide</p>
+<h2 class="font-headline-md text-headline-md">High-Quality CPR Simulation</h2>
+</div>
+<button class="p-3 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-full transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+</div>
+<!-- Learning Content -->
+<div class="mt-lg grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="p-lg bg-surface-container-low border border-outline-variant rounded-xl">
+<div class="flex items-center gap-2 mb-sm text-primary">
+<span class="material-symbols-outlined">straighten</span>
+<span class="font-label-md text-label-md">DEPTH</span>
+</div>
+<p class="font-body-md text-on-surface-variant">At least 2 inches (5 cm) but no more than 2.4 inches (6 cm).</p>
+</div>
+<div class="p-lg bg-surface-container-low border border-outline-variant rounded-xl">
+<div class="flex items-center gap-2 mb-sm text-secondary">
+<span class="material-symbols-outlined">timer</span>
+<span class="font-label-md text-label-md">RECOIL</span>
+</div>
+<p class="font-body-md text-on-surface-variant">Allow full chest recoil after each compression. Do not lean on the chest.</p>
+</div>
+</div>
+</div>
+<!-- Side Interactive Steps -->
+<div class="lg:col-span-4 flex flex-col gap-md">
+<div class="p-lg bg-white border border-outline-variant rounded-xl shadow-sm">
+<h3 class="font-headline-sm text-headline-sm mb-lg text-on-surface">Training Sequence</h3>
+<div class="space-y-2">
+<!-- Step 1 -->
+<div class="p-md rounded-lg step-active flex gap-md cursor-pointer transition-all">
+<span class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shrink-0 font-bold text-sm">1</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Positioning</h4>
+<p class="text-body-sm text-on-surface-variant">Heel of one hand on center of chest.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="p-md rounded-lg hover:bg-surface-container flex gap-md cursor-pointer transition-all border-l-4 border-transparent">
+<span class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center shrink-0 font-bold text-sm">2</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Interlock Hands</h4>
+<p class="text-body-sm text-on-surface-variant">Place other hand on top and interlace fingers.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="p-md rounded-lg hover:bg-surface-container flex gap-md cursor-pointer transition-all border-l-4 border-transparent">
+<span class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center shrink-0 font-bold text-sm">3</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Alignment</h4>
+<p class="text-body-sm text-on-surface-variant">Keep elbows straight and shoulders directly above.</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="p-md rounded-lg hover:bg-surface-container flex gap-md cursor-pointer transition-all border-l-4 border-transparent">
+<span class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface flex items-center justify-center shrink-0 font-bold text-sm">4</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Practice</h4>
+<p class="text-body-sm text-on-surface-variant">Begin compressions with consistent rhythm.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Practice Module Card -->
+<div class="bg-primary p-lg rounded-xl text-white shadow-lg overflow-hidden relative">
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-xs">
+<span class="material-symbols-outlined text-secondary-fixed">bolt</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed">Simulation</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-md">Ready to Practice?</h3>
+<p class="text-body-sm opacity-90 mb-lg leading-relaxed">
+                            Use the interactive module below to synchronize your rhythm to the 110 BPM gold standard.
+                        </p>
+<button class="w-full bg-white text-primary font-bold py-3 rounded-lg hover:bg-surface-container-low transition-colors active:scale-95" id="startPractice">
+                            Enter Practice Mode
+                        </button>
+</div>
+<!-- Subtle background decoration -->
+<div class="absolute -right-8 -bottom-8 opacity-20">
+<span class="material-symbols-outlined text-[160px]">favorite</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Compression Metrics -->
+<section class="mt-xl">
+<h3 class="font-headline-md text-headline-md mb-lg text-on-surface">Live Feedback Indicators</h3>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md">
+<div class="md:col-span-2 p-lg bg-surface-container-low border border-outline-variant rounded-xl flex flex-col justify-between min-h-[160px]">
+<div class="flex justify-between items-start">
+<span class="p-2 bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">speed</span>
+</span>
+<div class="text-right" id="bpmCounter">
+<p class="font-headline-xl text-headline-xl text-primary leading-none">110</p>
+<p class="text-label-sm text-outline">BPM</p>
+</div>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Target Cadence</p>
+<p class="text-body-sm text-on-surface-variant">Optimal range: 100–120 bpm</p>
+</div>
+</div>
+<div class="p-lg bg-surface-container-low border border-outline-variant rounded-xl flex flex-col gap-4">
+<span class="p-2 bg-secondary/10 rounded-lg w-fit">
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Accuracy</p>
+<p class="font-headline-md text-headline-md text-secondary">98%</p>
+</div>
+</div>
+<div class="p-lg bg-surface-container-low border border-outline-variant rounded-xl flex flex-col gap-4">
+<span class="p-2 bg-tertiary/10 rounded-lg w-fit">
+<span class="material-symbols-outlined text-tertiary">warning</span>
+</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Errors</p>
+<p class="font-headline-md text-headline-md text-tertiary">02</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Haptic Interaction Drawer (Practice Mode) -->
+<div class="fixed inset-0 z-[60] bg-on-surface/90 backdrop-blur-sm hidden flex-col items-center justify-center p-lg" id="practiceOverlay">
+<button class="absolute top-8 right-8 text-white p-2 hover:bg-white/10 rounded-full" id="closePractice">
+<span class="material-symbols-outlined text-3xl">close</span>
+</button>
+<div class="text-center text-white mb-xl">
+<h2 class="font-headline-lg text-headline-lg mb-2">Practice Rhythm</h2>
+<p class="opacity-70">Tap the pad in rhythm with the visual pulse</p>
+</div>
+<div class="relative">
+<div class="absolute inset-0 rounded-full bg-primary/30 compression-pulse hidden" id="pulseRing"></div>
+<button class="relative w-64 h-64 rounded-full bg-white shadow-2xl flex flex-col items-center justify-center haptic-feedback border-[12px] border-primary-container" id="compressionPad">
+<span class="material-symbols-outlined text-primary text-6xl mb-2" style="font-variation-settings: 'FILL' 1;">back_hand</span>
+<span class="font-headline-md text-headline-md text-on-surface">PUSH</span>
+</button>
+</div>
+<div class="mt-xl flex flex-col items-center gap-2">
+<div class="flex gap-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-white/20"></div>
+<div class="w-2 h-2 rounded-full bg-white/20"></div>
+<div class="w-2 h-2 rounded-full bg-white/20"></div>
+</div>
+<p class="text-secondary-fixed font-label-md" id="feedbackText">Keep it up! Watch the pulse.</p>
+</div>
+</div>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface border-t border-outline-variant flex justify-around items-center h-20 pb-safe">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+<span class="font-label-sm text-label-sm">Learn</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors px-5 py-1" href="#">
+<span class="material-symbols-outlined">verified</span>
+<span class="font-label-sm text-label-sm">Certify</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors px-5 py-1" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="font-label-sm text-label-sm">Badges</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors px-5 py-1" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-label-sm text-label-sm">Rank</span>
+</a>
+</nav>
+<script>
+        const startBtn = document.getElementById('startPractice');
+        const overlay = document.getElementById('practiceOverlay');
+        const closeBtn = document.getElementById('closePractice');
+        const pad = document.getElementById('compressionPad');
+        const pulse = document.getElementById('pulseRing');
+        const feedback = document.getElementById('feedbackText');
+
+        let lastTap = 0;
+        let tapTimes = [];
+
+        startBtn.addEventListener('click', () => {
+            overlay.classList.remove('hidden');
+            overlay.classList.add('flex');
+            pulse.classList.remove('hidden');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            overlay.classList.add('hidden');
+            overlay.classList.remove('flex');
+            pulse.classList.add('hidden');
+        });
+
+        pad.addEventListener('mousedown', () => {
+            const now = Date.now();
+            if (lastTap > 0) {
+                const diff = now - lastTap;
+                const bpm = Math.round(60000 / diff);
+                
+                tapTimes.push(bpm);
+                if (tapTimes.length > 5) tapTimes.shift();
+                
+                const avgBpm = Math.round(tapTimes.reduce((a, b) => a + b) / tapTimes.length);
+                
+                if (avgBpm < 100) {
+                    feedback.textContent = "Too slow! Speed up slightly.";
+                    feedback.className = "text-tertiary-fixed font-label-md";
+                } else if (avgBpm > 120) {
+                    feedback.textContent = "Too fast! Slow down slightly.";
+                    feedback.className = "text-error font-label-md";
+                } else {
+                    feedback.textContent = "Perfect rhythm! Maintain this pace.";
+                    feedback.className = "text-secondary-fixed font-label-md";
+                }
+            }
+            lastTap = now;
+            
+            // Visual feedback on the pad
+            pad.style.backgroundColor = '#eff4ff';
+            setTimeout(() => {
+                pad.style.backgroundColor = '#ffffff';
+            }, 100);
+
+            // Simulation of haptic feedback for devices that support it
+            if ("vibrate" in navigator) {
+                navigator.vibrate(30);
+            }
+        });
+
+        // Toggle Steps
+        const steps = document.querySelectorAll('.flex.gap-md.cursor-pointer');
+        steps.forEach(step => {
+            step.addEventListener('click', () => {
+                steps.forEach(s => {
+                    s.classList.remove('step-active');
+                    s.querySelector('span').classList.replace('bg-primary', 'bg-surface-container-highest');
+                    s.querySelector('span').classList.replace('text-white', 'text-on-surface');
+                });
+                step.classList.add('step-active');
+                step.querySelector('span').classList.replace('bg-surface-container-highest', 'bg-primary');
+                step.querySelector('span').classList.replace('text-on-surface', 'text-white');
+            });
+        });
+    </script>
+</body></html>

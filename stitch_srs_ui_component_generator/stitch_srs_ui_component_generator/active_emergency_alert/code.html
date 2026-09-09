@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DiagConnect SOS | Emergency Response</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "surface-dim": "#cbdbf5",
+                    "outline": "#6e7881",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#4a2c00",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "inverse-surface": "#213145",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "inverse-primary": "#89ceff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "primary": "#006591",
+                    "outline-variant": "#bec8d2",
+                    "surface-tint": "#006591",
+                    "secondary-fixed-dim": "#4edea3",
+                    "secondary-fixed": "#6ffbbe",
+                    "primary-fixed": "#c9e6ff",
+                    "background": "#f8f9ff",
+                    "surface-variant": "#d3e4fe",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "surface-container-highest": "#d3e4fe",
+                    "secondary-container": "#6cf8bb",
+                    "on-background": "#0b1c30",
+                    "on-primary-container": "#003751",
+                    "on-secondary-container": "#00714d",
+                    "surface": "#f8f9ff",
+                    "surface-container-high": "#dce9ff",
+                    "surface-container-low": "#eff4ff",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#d88a00",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#ffddb8",
+                    "primary-container": "#0ea5e9",
+                    "on-primary-fixed": "#001e2f",
+                    "on-secondary": "#ffffff",
+                    "on-surface": "#0b1c30",
+                    "on-surface-variant": "#3e4850",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#002113",
+                    "tertiary": "#855300",
+                    "primary-fixed-dim": "#89ceff",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "secondary": "#006c49"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "md": "16px",
+                    "max-width": "1440px",
+                    "base": "4px",
+                    "xl": "32px",
+                    "gutter": "24px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "margin-desktop": "40px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "headline-xl": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .emergency-pulse {
+            animation: pulse-red 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-red {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .7; transform: scale(1.05); }
+        }
+        .bento-card {
+            transition: all 0.3s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant h-16 flex justify-between items-center px-margin-mobile max-w-max-width mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="emergency">emergency</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">DiagConnect SOS</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a medical volunteer in a clean, modern studio setting. The lighting is soft and high-key, reflecting a clinical precision and trustworthy atmosphere. The volunteer wears a subtle blue diagnostic uniform, and the background is a soft, minimalist cool-gray. The image conveys calm confidence and professional readiness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmaoci9fkm9WSVBNn2fwy1P2mtI0hsP-uLFpQFsXh49opmTafAx0FEOshf3Jg4hruzE3OkEwcORkl9uMZHC95z3vtg_3s8-LZWxhQR0dMgoep-B5fxLBbKYrByuhDw68WUudPP4QVfMeoR0aJ7MJs7LeC4Q8Sp-QKNK7_TsMaZ4zvwsGXjHaKP_X0PP_3hZb4Lhy6OVLpyqa9pDDWILZf-10pmHLpxdZ2lQH4OeHgrmVI0u-EJ3JirYHn0URBJT3YdF_DDFy1W7wQ"/>
+</div>
+</header>
+<main class="pt-20 px-4 md:px-margin-desktop max-w-7xl mx-auto space-y-6">
+<!-- Emergency Alert Header -->
+<div class="bg-error-container p-6 rounded-xl border-l-4 border-error flex flex-col md:flex-row justify-between items-start md:items-center gap-4 emergency-pulse">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-error font-bold" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="text-on-error-container font-label-md text-label-md uppercase tracking-wider">Critical Priority Alert</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-error-container">Cardiac Distress Reported</h2>
+<p class="text-on-error-container/80 flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-sm" data-icon="near_me">near_me</span>
+                    0.4 miles away • Active Now
+                </p>
+</div>
+<div class="flex gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-8 py-3 bg-error text-on-error rounded-xl font-bold transition-transform active:scale-95 hover:brightness-110 shadow-lg">
+                    Respond
+                </button>
+<button class="flex-1 md:flex-none px-6 py-3 bg-surface text-on-surface-variant border border-outline-variant rounded-xl font-bold hover:bg-surface-container transition-colors">
+                    Decline
+                </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full">
+<!-- Map Section (Major Bento Piece) -->
+<div class="lg:col-span-8 rounded-xl overflow-hidden border border-outline-variant bg-surface-container relative min-h-[400px]">
+<div class="absolute top-4 left-4 z-10 bg-surface/90 backdrop-blur-md p-3 rounded-lg shadow-md border border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary/10 rounded-full">
+<span class="material-symbols-outlined text-primary" data-icon="directions_run">directions_run</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant leading-none">Est. Travel Time</p>
+<p class="font-bold text-on-surface">4 min walk</p>
+</div>
+</div>
+</div>
+<!-- Map Placeholder -->
+<div class="w-full h-full min-h-[400px] bg-slate-200" data-alt="A clean, high-contrast medical dispatch map of a urban neighborhood. The map features a minimalist light-mode aesthetic with soft blue and white tones. A pulsing red emergency icon marks the incident location, and a blue dashed line shows the shortest path from the volunteer's current position. The visual style is professional, data-centric, and clear." data-location="San Francisco" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD6cGVtHTvUnP9c5nXMstWvIktH6kdz3c89Om4WGkRsC8VB1dCi_Ip3ER-T1AKumx2PT-hLxULzWvVKHK7xOY_Y2O2o7dulGSGYRqsCWvH57Vo_R3rj69l-TfnyNEqz9UZeEXnkO9h9_AWMfpn7APan55lptf0y3msEt7CDUN9Vj-JiQFp0tleHvYGKZDo5w2U6BOUJ-u6lr6ERTWCf0DpHLqE8AdzBudmxbmr8AL2b06S0g2Zb085nNAWekuJwL4VJVuCwpdsYokI')">
+<div class="w-full h-full flex items-center justify-center bg-black/5">
+<!-- Navigation Visual Overlay -->
+<div class="relative">
+<div class="w-8 h-8 bg-primary rounded-full border-2 border-white shadow-xl animate-bounce"></div>
+<div class="absolute top-full left-1/2 -translate-x-1/2 mt-1 px-2 py-1 bg-primary text-white text-[10px] rounded font-bold whitespace-nowrap">Incident Location</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Patient Info Section (Side Bento) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Patient Identity -->
+<div class="bento-card bg-surface p-6 rounded-xl border border-outline-variant flex-1">
+<h3 class="text-label-md text-on-surface-variant uppercase tracking-widest mb-4">Patient Profile</h3>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container text-3xl" data-icon="person">person</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface">M. Thompson</p>
+<p class="text-body-sm text-on-surface-variant">Age: 64 • Male</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="p-4 bg-error/10 border border-error/20 rounded-lg">
+<div class="flex items-center gap-2 mb-1 text-error">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="emergency_home">emergency_home</span>
+<span class="font-label-md">CRITICAL ALLERGIES</span>
+</div>
+<p class="font-bold text-on-surface">Aspirin Allergy</p>
+</div>
+<div class="p-4 bg-surface-container rounded-lg border border-outline-variant/30">
+<div class="flex items-center gap-2 mb-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="history">history</span>
+<span class="font-label-md">KNOWN CONDITIONS</span>
+</div>
+<p class="text-body-md text-on-surface font-medium">History of Hypertension, Type 2 Diabetes</p>
+</div>
+</div>
+</div>
+<!-- Action Context Card -->
+<div class="bento-card bg-surface p-6 rounded-xl border border-outline-variant">
+<h3 class="text-label-md text-on-surface-variant uppercase mb-4">Immediate Protocol</h3>
+<ul class="space-y-3">
+<li class="flex gap-3 items-start">
+<span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold flex-shrink-0">1</span>
+<span class="text-body-sm">Verify scene safety and put on PPE.</span>
+</li>
+<li class="flex gap-3 items-start">
+<span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold flex-shrink-0">2</span>
+<span class="text-body-sm">Assess consciousness and breathing.</span>
+</li>
+<li class="flex gap-3 items-start">
+<span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold flex-shrink-0">3</span>
+<span class="text-body-sm">Locate nearest AED (Building 4 Lobby).</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Quick Stats / Environment info -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="p-4 bg-surface border border-outline-variant rounded-xl text-center">
+<span class="material-symbols-outlined text-primary mb-1" data-icon="device_thermostat">device_thermostat</span>
+<p class="text-label-sm text-on-surface-variant">Weather</p>
+<p class="font-bold">68°F Clear</p>
+</div>
+<div class="p-4 bg-surface border border-outline-variant rounded-xl text-center">
+<span class="material-symbols-outlined text-primary mb-1" data-icon="traffic">traffic</span>
+<p class="text-label-sm text-on-surface-variant">Traffic</p>
+<p class="font-bold">Light</p>
+</div>
+<div class="p-4 bg-surface border border-outline-variant rounded-xl text-center">
+<span class="material-symbols-outlined text-primary mb-1" data-icon="medical_services">medical_services</span>
+<p class="text-label-sm text-on-surface-variant">AED Distance</p>
+<p class="font-bold">120 ft</p>
+</div>
+<div class="p-4 bg-surface border border-outline-variant rounded-xl text-center">
+<span class="material-symbols-outlined text-primary mb-1" data-icon="group">group</span>
+<p class="text-label-sm text-on-surface-variant">Volunteers</p>
+<p class="font-bold">2 Responding</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-surface shadow-lg rounded-t-xl z-50 border-t border-outline-variant/10">
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 transition-transform scale-95 active:scale-90">
+<span class="material-symbols-outlined" data-icon="emergency_home" style="font-variation-settings: 'FILL' 1;">emergency_home</span>
+<span class="font-label-sm text-label-sm">SOS</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-transform active:scale-90">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span class="font-label-sm text-label-sm">Tracking</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-transform active:scale-90">
+<span class="material-symbols-outlined" data-icon="family_restroom">family_restroom</span>
+<span class="font-label-sm text-label-sm">Family</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high transition-transform active:scale-90">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span class="font-label-sm text-label-sm">Protocols</span>
+</button>
+</nav>
+<script>
+        // Micro-interaction for Respond button
+        const respondBtn = document.querySelector('button.bg-error');
+        respondBtn.addEventListener('click', () => {
+            respondBtn.textContent = 'Acknowledged...';
+            respondBtn.classList.remove('bg-error');
+            respondBtn.classList.add('bg-secondary', 'text-on-secondary');
+            
+            // Create a small feedback effect
+            const ripple = document.createElement('div');
+            ripple.className = 'absolute inset-0 bg-white/20 rounded-xl animate-ping';
+            respondBtn.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 1000);
+        });
+
+        // Simulate real-time distance update
+        let distance = 0.4;
+        const distanceEl = document.querySelector('.text-on-error-container\\/80');
+        setInterval(() => {
+            if (distance > 0.05) {
+                distance -= 0.01;
+                const newDist = distance.toFixed(2);
+                distanceEl.innerHTML = `<span class="material-symbols-outlined text-sm" data-icon="near_me">near_me</span> ${newDist} miles away • Active Now`;
+            }
+        }, 15000);
+    </script>
+</body></html>

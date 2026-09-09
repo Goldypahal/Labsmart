@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Approval Confirmation | DiagConnect</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-container": "#003751",
+                    "surface-container-highest": "#d3e4fe",
+                    "surface-container": "#e5eeff",
+                    "on-secondary-container": "#00714d",
+                    "on-primary-fixed": "#001e2f",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "surface-tint": "#006591",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#213145",
+                    "background": "#f8f9ff",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#6cf8bb",
+                    "primary-fixed-dim": "#89ceff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#4a2c00",
+                    "surface": "#f8f9ff",
+                    "on-surface": "#0b1c30",
+                    "surface-variant": "#d3e4fe",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#eaf1ff",
+                    "secondary": "#006c49",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#3e4850",
+                    "on-secondary-fixed-variant": "#005236",
+                    "primary-fixed": "#c9e6ff",
+                    "outline-variant": "#bec8d2",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "tertiary-fixed": "#ffddb8",
+                    "inverse-primary": "#89ceff",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#dce9ff",
+                    "primary-container": "#0ea5e9",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "surface-bright": "#f8f9ff",
+                    "surface-dim": "#cbdbf5",
+                    "tertiary-container": "#d88a00",
+                    "secondary-fixed-dim": "#4edea3",
+                    "outline": "#6e7881",
+                    "secondary-fixed": "#6ffbbe",
+                    "tertiary": "#855300",
+                    "on-background": "#0b1c30",
+                    "surface-container-low": "#eff4ff",
+                    "primary": "#006591",
+                    "on-secondary-fixed": "#002113"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "max-width": "1440px",
+                    "base": "4px",
+                    "sm": "8px",
+                    "margin-desktop": "40px",
+                    "xl": "32px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-xl": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .success-glow {
+            box-shadow: 0 0 40px -10px rgba(111, 251, 190, 0.4);
+        }
+        @keyframes scale-up {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-success {
+            animation: scale-up 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface border-b border-outline-variant docked full-width top-0 z-50 flex justify-between items-center w-full px-margin-mobile h-16 transition-colors duration-200 ease-in-out">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a medical supervisor in a clinical setting, wearing a white coat with a stethoscope around their neck, blurred high-tech medical background, soft studio lighting, high-end corporate photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG4imXIORWL-fGnQqz753gnWRYbhdSyvxLtYZgFVDF5bB8x_KVVvZmHs06SamEt78Y5sdU6KMK3hEm2J0ZRV7xbS3VtfTr2mDmUKcxHxO9C_Hta8EiQsriJSeBAcgD3a2G7se4NJjpMr8LBV4o4Xrthes6gHKTPYAiG-27MIaY3Cl8iC0_dWGwsX7a44h7Ud4LL3s0DHD0YP312Dzdq6XwLDscF3D7Dxxd_-21xb1l7ipw3GuawbEHDBwb2_ghh1qD-rdtr_byGlk"/>
+</div>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">DiagConnect Admin</span>
+</div>
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-high p-2 rounded-full transition-colors">emergency_home</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center px-margin-mobile py-lg">
+<!-- Success State Section -->
+<section class="w-full max-w-md flex flex-col items-center text-center mb-xl animate-success">
+<div class="w-24 h-24 bg-secondary-container text-on-secondary-container rounded-full flex items-center justify-center mb-md success-glow">
+<span class="material-symbols-outlined text-[48px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs">Authorization Successful</h1>
+<p class="font-body-md text-on-surface-variant">The diagnostic override has been executed successfully.</p>
+</section>
+<!-- Details Card -->
+<section class="w-full max-w-md bg-white border border-outline-variant rounded-xl p-md mb-md shadow-sm">
+<div class="flex flex-col gap-sm">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface-variant">Dispatch Item</span>
+<span class="font-label-md text-label-md text-primary font-bold">Override AMB-402</span>
+</div>
+<div class="border-t border-outline-variant pt-sm flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface-variant">Transaction ID</span>
+<code class="font-body-sm text-body-sm bg-surface-container px-2 py-0.5 rounded text-on-primary-container">AUTH-88219-X</code>
+</div>
+</div>
+</section>
+<!-- Audit Log Section -->
+<section class="w-full max-w-md bg-surface-container-low border border-outline-variant rounded-xl p-md mb-xl">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-secondary mt-0.5">history_edu</span>
+<div class="flex flex-col">
+<h2 class="font-label-md text-label-md text-on-surface mb-xs">Audit Log Entry</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                        Approved by Supervisor JD at 14:45.<br/>
+<span class="italic font-medium">Rationale: Emergency trauma response.</span>
+</p>
+</div>
+</div>
+</section>
+<!-- Image Decorative Context (Bento Style/Asymmetric) -->
+<section class="w-full max-w-md grid grid-cols-2 gap-sm mb-xl">
+<div class="h-32 rounded-xl overflow-hidden relative">
+<div class="w-full h-full bg-cover bg-center" data-alt="A close-up, high-shutter-speed shot of a modern ambulance's flashing blue emergency lights reflecting off a rain-slicked urban hospital entrance at night. The style is clinical yet dramatic, with deep shadows and vibrant blue highlights." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDco6doRFKdpU3WvC1SnekdD4haTqK-4s5sCgP2KvS4z8TNTVJwQnNrrjBVflYIB6bIipaHLzCdKi1I2EbtVcA0GRM_7SN-PuBZBNXrZn1NpbZ0e68xICKBniJZ0rnrn2sxlEZqaBYsNswODzGCXSlb5w2OzmKStx3o952KF2Cr_q4PnhSV7D9kEhBlQBHQmaMrdNyj3ufgRWRu4P2pDYXGsURQXRlaqBvWe0tDBS1wNTRTebg94b7D6OnZYGRdGBjyxMRfuxCI5tI')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-sm">
+<span class="text-white text-[10px] font-label-sm uppercase tracking-wider">Dispatch Status: Live</span>
+</div>
+</div>
+<div class="h-32 rounded-xl overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" data-alt="A macro photograph of a medical tablet screen displaying complex real-time diagnostic waveforms and patient vitals. The focus is sharp on the data points, with a cool blue and white medical interface design, creating a sense of precision and advanced technology." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3Xzw4vFIS-c5um6loNlCQHv7VZQp5RXvw-YUXEF0NTJAssTjTInN9TlAO1fhAKCyJrTqGaIw6EWZoaaEkNwNFD1YdSVdgzk-vX2A4trjGYruTMfQRR5kk4gb85TFtWprmnI2o_FeGVNb2IDGardB8prbTGFPmJjq3upq15RZm25NJZPVZAFO5ROmT-LZ5dY61zj7b0CH0_XwllramRRTfW3hpg4NDzsncy_GRncrlhXLI0UUFzXOBwzx9Za7G52qTN4Bcv4W8eQg')"></div>
+</div>
+</section>
+</main>
+<!-- Footer Action Area (Instead of BottomNav for Transactional Flow) -->
+<footer class="p-margin-mobile flex flex-col gap-sm sticky bottom-0 bg-surface shadow-[0_-4px_10px_rgba(0,0,0,0.02)] border-t border-outline-variant">
+<button class="w-full bg-primary text-white font-label-md text-label-md py-4 rounded-xl flex items-center justify-center gap-sm hover:brightness-110 active:scale-[0.98] transition-all" onclick="window.location.reload()">
+<span class="material-symbols-outlined text-[20px]">assignment_return</span>
+            Return to Queue
+        </button>
+<button class="w-full border border-primary text-primary font-label-md text-label-md py-4 rounded-xl flex items-center justify-center gap-sm hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">monitoring</span>
+            Monitor Dispatch
+        </button>
+</footer>
+<!-- Micro-interaction script for success feedback -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Simple haptic-like visual pulse on buttons
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.classList.add('opacity-80');
+                    setTimeout(() => this.classList.remove('opacity-80'), 100);
+                });
+            });
+        });
+    </script>
+</body></html>

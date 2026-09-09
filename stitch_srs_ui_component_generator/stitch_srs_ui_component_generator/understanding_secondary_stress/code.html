@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DiagConnect Wellness - Secondary Traumatic Stress</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#0b1c30",
+                    "primary-fixed": "#c9e6ff",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed": "#001e2f",
+                    "surface": "#f8f9ff",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "primary-fixed-dim": "#89ceff",
+                    "surface-container-high": "#dce9ff",
+                    "secondary-fixed-dim": "#4edea3",
+                    "primary": "#006591",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "background": "#f8f9ff",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-bright": "#f8f9ff",
+                    "on-secondary-container": "#00714d",
+                    "inverse-surface": "#213145",
+                    "tertiary-fixed": "#ffddb8",
+                    "error": "#ba1a1a",
+                    "primary-container": "#0ea5e9",
+                    "outline-variant": "#bec8d2",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "on-surface-variant": "#3e4850",
+                    "surface-container": "#e5eeff",
+                    "inverse-primary": "#89ceff",
+                    "surface-tint": "#006591",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-primary-container": "#003751",
+                    "surface-container-low": "#eff4ff",
+                    "on-secondary-fixed": "#002113",
+                    "tertiary": "#855300",
+                    "outline": "#6e7881",
+                    "secondary": "#006c49",
+                    "surface-variant": "#d3e4fe",
+                    "on-surface": "#0b1c30",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-tertiary-container": "#4a2c00",
+                    "inverse-on-surface": "#eaf1ff",
+                    "secondary-container": "#6cf8bb",
+                    "tertiary-container": "#d88a00",
+                    "surface-dim": "#cbdbf5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "max-width": "1440px",
+                    "md": "16px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "base": "4px",
+                    "gutter": "24px",
+                    "lg": "24px",
+                    "xl": "32px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #f8f9ff;
+            color: #0b1c30;
+            overflow-x: hidden;
+        }
+        .content-gradient {
+            background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(248,249,255,1) 100%);
+        }
+        .glass-header {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .article-shadow {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top AppBar (From Shared Components) -->
+<header class="fixed top-0 w-full z-50 glass-header border-b border-outline-variant dark:border-outline">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container transition-colors duration-200" onclick="history.back()">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">DiagConnect SOS</h1>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container transition-colors duration-200" id="bookmark-btn" onclick="toggleBookmark()">
+<span class="material-symbols-outlined text-on-surface-variant" id="bookmark-icon">bookmark</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border border-outline-variant article-shadow">
+<img class="w-full h-full object-cover" data-alt="A high-quality studio portrait of a healthcare professional in clinical attire, set against a soft blue gradient background. The lighting is bright and even, conveying trust, empathy, and professional expertise. The overall aesthetic is clean and modern, matching the DiagConnect corporate visual identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN1ZNg5OpIQZHf31AVk_rkKWq3Lz095eU8DMcmANEZ-3rsizuxKjM29na8MzvfxS_BTp15nUrNKrZ77P1FxVGiJ9wdm8QuMMjmC40_j0INJHnIUoOoMh7q92FHivE4zMKX8SVVR-yCL8mzs04RXqBudIczV6iJZ0FCP2MFEvFwbxAefbxoZpTDOpQd8zOjnK4SP9Z6NKBMCbyPt01flGP694Hg3qDqSr2yCSzO3xd94LgP88xe-HFSr4KN_g1KRx4Fgq41MZ-c7k0"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-16 pb-32">
+<!-- Hero Section -->
+<section class="relative w-full h-[442px] min-h-[400px] overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="A serene and calming photograph of a sun-dappled forest with soft morning light filtering through lush green leaves. The atmosphere is peaceful, tranquil, and restorative, using a palette of soft greens, warm golds, and clean whites to evoke a sense of mental clarity and calm, perfectly aligning with the DiagConnect wellness theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB44uhrzP27Lqp-DymYeP34b-uINHsnKu0KRmo2b2oLWc5ek2A1SkEX2oQCDNG1VDf6NEQS2CC9BLkkvI1oVWpTzzUkbFEZXls3t1g81moiZURL8Lkr3fwWAIRqreHgst397Rrz-mIPRLdPFkJb6ZhtJMNPbc2qHvNFQXyZSzfp-OWmydjgKmDH1eFD-EXwtpjl-IfuhWfcckVGuNTqaMGBHxZo5Rq5nWyHCr--tj1uGjYasMWnEV7_pVOinqdHz6eNWfoxGwS5boE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 h-full max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop flex flex-col justify-end pb-xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-lowest/90 backdrop-blur-sm rounded-full w-fit mb-4 article-shadow">
+<span class="material-symbols-outlined text-primary text-[18px]">schedule</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">5-minute read</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-on-background max-w-3xl leading-tight">
+                    Understanding Secondary Traumatic Stress
+                </h2>
+<div class="flex items-center gap-4 mt-6">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-on-secondary-container text-[16px]">psychology</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Clinical Resource</span>
+</div>
+<div class="h-1 w-1 rounded-full bg-outline"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">Updated Oct 24, 2023</span>
+</div>
+</div>
+</section>
+<!-- Article Content -->
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop mt-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Narrative Column -->
+<article class="lg:col-span-8 space-y-xl">
+<section class="prose prose-slate max-w-none">
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                            Secondary Traumatic Stress (STS) is the emotional duress that results when an individual hears about the firsthand traumatic experiences of another. For healthcare responders and clinicians, this is often an occupational hazard that mirrors the symptoms of Post-Traumatic Stress Disorder (PTSD).
+                        </p>
+<p class="font-body-md text-body-md text-on-surface mt-6 leading-relaxed">
+                            While burnout is often related to workplace environment and workload, STS is specifically tied to the content of the clinical work itself. Understanding the nuances between these states is the first step toward building professional resilience and maintaining the high standard of care DiagConnect users deserve.
+                        </p>
+</section>
+<!-- Key Takeaways Bento -->
+<section class="bg-surface-container-low rounded-xl p-lg border border-outline-variant">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<h3 class="font-headline-sm text-headline-sm text-on-background">Key Takeaways</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="bg-surface-container-lowest p-md rounded-lg border border-outline-variant/30 flex gap-4">
+<span class="material-symbols-outlined text-secondary mt-1">check_circle</span>
+<div>
+<h4 class="font-label-md text-label-md mb-1">Mirroring Symptoms</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Symptoms often mimic PTSD, including intrusive thoughts and hyper-vigilance.</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-md rounded-lg border border-outline-variant/30 flex gap-4">
+<span class="material-symbols-outlined text-secondary mt-1">check_circle</span>
+<div>
+<h4 class="font-label-md text-label-md mb-1">Cumulative Impact</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">STS develops over time through repeated exposure to patient trauma narratives.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Actionable Steps -->
+<section>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-6">Actionable Steps for Responders</h3>
+<div class="space-y-md">
+<!-- Step 1 -->
+<div class="flex items-start gap-gutter group">
+<div class="flex-shrink-0 w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center font-bold font-headline-sm transition-transform group-hover:scale-105">1</div>
+<div class="pt-2">
+<h4 class="font-headline-sm text-headline-sm text-primary mb-2">Establish "Micro-Transitions"</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Create a 5-minute ritual between clinical sessions or before heading home. Use this time to physically acknowledge the end of the exposure period through deep breathing or a brief walk.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex items-start gap-gutter group">
+<div class="flex-shrink-0 w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center font-bold font-headline-sm transition-transform group-hover:scale-105">2</div>
+<div class="pt-2">
+<h4 class="font-headline-sm text-headline-sm text-primary mb-2">Scheduled Peer Debriefing</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Engage in regular, structured conversations with colleagues. Sharing the emotional weight of clinical findings prevents isolation, which is a key driver of traumatic stress.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-start gap-gutter group">
+<div class="flex-shrink-0 w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center font-bold font-headline-sm transition-transform group-hover:scale-105">3</div>
+<div class="pt-2">
+<h4 class="font-headline-sm text-headline-sm text-primary mb-2">Cognitive Reframing</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">When distressing images arise, consciously pivot to the technical diagnostic success or the support provided. Focus on the 'helper' role you occupied during the event.</p>
+</div>
+</div>
+</div>
+</section>
+</article>
+<!-- Sidebar / Desktop Meta -->
+<aside class="lg:col-span-4 space-y-gutter">
+<!-- Protocol Badge -->
+<div class="bg-primary-container/20 rounded-xl p-lg border border-primary-container/30">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<span class="font-label-md text-label-md text-primary">Protocol Validated</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">
+                            "This content adheres to the DiagConnect Clinical Wellness Standard v2.4 for Emergency Medical Personnel."
+                        </p>
+</div>
+<!-- Related Resources Sidebar -->
+<div class="space-y-md">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Related Resources</h3>
+<a class="block bg-surface p-md rounded-xl border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all duration-200 group" href="#">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-secondary">EXERCISE</span>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary group-hover:translate-x-1 transition-all">chevron_right</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Grounding Techniques</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">4 min • 5-4-3-2-1 Sensory Method</p>
+</a>
+<a class="block bg-surface p-md rounded-xl border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all duration-200 group" href="#">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm text-tertiary">ARTICLE</span>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary group-hover:translate-x-1 transition-all">chevron_right</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Sleep Hygiene for Responders</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">7 min • Circadian recovery tips</p>
+</a>
+</div>
+</aside>
+</div>
+</div>
+<!-- Horizontal Related Resources (Mobile) or "Next Read" (Desktop) -->
+<section class="mt-32 pt-xl border-t border-outline-variant bg-surface-container-lowest">
+<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop mb-12">
+<h3 class="font-headline-md text-headline-md text-on-background mb-8">Continue Learning</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="group cursor-pointer">
+<div class="aspect-video rounded-xl overflow-hidden mb-4 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A macro photograph of water droplets on a vibrant green leaf, captured with extreme precision and clarity. The sunlight reflects off the droplets, creating a sparkling, refreshing effect. The image uses a cool, clinical color palette of greens and teals to promote a feeling of mental renewal and hygiene." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2CGtXMRZNaPPsmUYRpPXPbOm51sXHZJ4Ho4f-XASmkKT6I2F_XEVbXK7vAEKydVlNqa2XeUVXS0Gx5KQnAFXWJwR7ypBE7_w4JLzCizam5jrIxRGcJg9pEtPl2MpXtv-frfEqKQ2-MnnG1Ov2vyqA1f_25yWd6YcrlYrz92yAU8XSxn4GwvYza3AOGBYV-1-55HcSLI54br6rAXyO9bE7aR5A9UBnzqsQLP_vo1GYCsFH59M3NORPw3G_FP7fRMiVfV-suMhnY1U"/>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-background group-hover:text-primary transition-colors">Digital Detox Protocols</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Managing screen fatigue in diagnostics.</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-video rounded-xl overflow-hidden mb-4 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An abstract, high-key image of soft white and light blue geometric shapes floating in a clean, minimalist space. The composition is balanced and peaceful, symbolizing organizational clarity and cognitive order. The lighting is diffused and professional, aligning with a corporate medical wellness aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAZ8mT4P6w19z-bBz8Wtmkbf3JiAYaXw4jOIvSxazAF-FzV4gtlNOk0p89BNlE3aGeqhh-xgWB2QJWSYpDNm8ahAIFKA0CRSQ3TyCA5IeaZApmdRNQ38l-lIWmDqy-wAmB-0qcqMKnU_WeeaimHbH814TyLg9zExmSo5_JCk6wiqYNw_MKHqfnGFj6Q7dmGhqf0Ce3c8pMkBmE1ms7vuYEcgAvDHJckcyj5dO7mCxBBUjMcX_hz30JXNIYrvylD18-GWgkVnbDlig"/>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-background group-hover:text-primary transition-colors">Vicarious Resilience</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">The positive impact of patient recovery.</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-video rounded-xl overflow-hidden mb-4 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist photograph of a high-end, clean wooden desk featuring a single small green plant in a white ceramic pot. The workspace is illuminated by natural window light, creating a sense of organized calm and professional focus. The overall mood is clinical yet warm, reflecting DiagConnect's professional minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkE8mO9XVxVWf5b-ru_fCB8cqgTIkZkUxZybwjUudT70BYxYV6Trparej49TmTbQHP-oC9EZ6DnaX8jK4jkqm_Rpdlj2XOFNoE24_krcUbZSaceYt0YHQmrdOXI1mBpcZwBOXK1KqBAqXcxxTUcd6fr7nylEUmlg8tr1R60t-Ft2H9BARRYng_zT2_OQBOqnLtetI3r174w_1RsUSrMVlOajV6RItDyqczkyVifPeR3sn78PzJyHoMAcBjk4hModNYA2ihpYThaXo"/>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-background group-hover:text-primary transition-colors">Physical Ergonomics</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Long-shift support for diagnostic teams.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Shared Components) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-surface dark:bg-inverse-surface shadow-lg z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined mb-1">emergency_home</span>
+<span class="font-label-sm text-[10px] uppercase">SOS</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined mb-1">location_on</span>
+<span class="font-label-sm text-[10px] uppercase">Tracking</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined mb-1">family_restroom</span>
+<span class="font-label-sm text-[10px] uppercase">Family</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 transition-transform duration-150 scale-95" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+<span class="font-label-sm text-[10px] uppercase">Protocols</span>
+</a>
+</nav>
+<script>
+        let isBookmarked = false;
+        const bookmarkBtn = document.getElementById('bookmark-btn');
+        const bookmarkIcon = document.getElementById('bookmark-icon');
+
+        function toggleBookmark() {
+            isBookmarked = !isBookmarked;
+            if (isBookmarked) {
+                bookmarkIcon.style.fontVariationSettings = "'FILL' 1";
+                bookmarkIcon.classList.remove('text-on-surface-variant');
+                bookmarkIcon.classList.add('text-primary');
+                bookmarkIcon.innerText = 'bookmark';
+                // Success feedback
+                const toast = document.createElement('div');
+                toast.className = 'fixed bottom-24 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-6 py-3 rounded-full text-sm font-medium z-[100] shadow-xl animate-bounce';
+                toast.innerText = 'Resource saved to your library';
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 2500);
+            } else {
+                bookmarkIcon.style.fontVariationSettings = "'FILL' 0";
+                bookmarkIcon.classList.remove('text-primary');
+                bookmarkIcon.classList.add('text-on-surface-variant');
+            }
+        }
+
+        // Simple smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Sticky header opacity change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                header.classList.remove('shadow-md');
+                header.style.background = 'rgba(255, 255, 255, 0.8)';
+            }
+        });
+    </script>
+</body></html>

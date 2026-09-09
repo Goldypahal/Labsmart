@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Guided Reflection | DiagConnect SOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#0b1c30",
+                    "primary-fixed": "#c9e6ff",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed": "#001e2f",
+                    "surface": "#f8f9ff",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "primary-fixed-dim": "#89ceff",
+                    "surface-container-high": "#dce9ff",
+                    "secondary-fixed-dim": "#4edea3",
+                    "primary": "#006591",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "background": "#f8f9ff",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-bright": "#f8f9ff",
+                    "on-secondary-container": "#00714d",
+                    "inverse-surface": "#213145",
+                    "tertiary-fixed": "#ffddb8",
+                    "error": "#ba1a1a",
+                    "primary-container": "#0ea5e9",
+                    "outline-variant": "#bec8d2",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "on-surface-variant": "#3e4850",
+                    "surface-container": "#e5eeff",
+                    "inverse-primary": "#89ceff",
+                    "surface-tint": "#006591",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-primary-container": "#003751",
+                    "surface-container-low": "#eff4ff",
+                    "on-secondary-fixed": "#002113",
+                    "tertiary": "#855300",
+                    "outline": "#6e7881",
+                    "secondary": "#006c49",
+                    "surface-variant": "#d3e4fe",
+                    "on-surface": "#0b1c30",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-tertiary-container": "#4a2c00",
+                    "inverse-on-surface": "#eaf1ff",
+                    "secondary-container": "#6cf8bb",
+                    "tertiary-container": "#d88a00",
+                    "surface-dim": "#cbdbf5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "max-width": "1440px",
+                    "md": "16px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "base": "4px",
+                    "gutter": "24px",
+                    "lg": "24px",
+                    "xl": "32px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .breathing-circle {
+            animation: breathe 8s ease-in-out infinite;
+        }
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            40%, 60% { transform: scale(1.5); opacity: 0.8; }
+        }
+        .step-transition {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24">
+<!-- Top Navigation (Shell suppressed for focus mode, but keeping identity) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant">
+<div class="flex justify-between items-center px-margin-mobile h-16 w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-3">
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined text-primary">close</span>
+</button>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">Post-Incident Reflection</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-primary-container/20 rounded-full">
+<span class="material-symbols-outlined text-primary text-[18px]">emergency</span>
+<span class="font-label-md text-label-md text-on-primary-container">Ref: #SOS-4921</span>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-12 px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto">
+<!-- Hero Section -->
+<section class="mb-12 text-center">
+<h1 class="font-headline-lg text-headline-lg mb-4 text-on-background">Take a Moment, Alex.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                The incident is now secured. This space is for you to process what happened in a safe, private environment.
+            </p>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Content Area -->
+<div class="lg:col-span-7 space-y-gutter">
+<!-- Question 1 -->
+<div class="bg-surface-container-lowest p-xl rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+<label class="block font-label-md text-label-md mb-4 text-primary uppercase tracking-wider">Physical Check-in</label>
+<h3 class="font-headline-sm text-headline-sm mb-6">How are you feeling physically?</h3>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+<button class="flex flex-col items-center p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-primary-container/10 transition-all group">
+<span class="material-symbols-outlined text-[32px] text-on-surface-variant group-hover:text-primary mb-2">potted_plant</span>
+<span class="font-label-sm text-label-sm">Steady</span>
+</button>
+<button class="flex flex-col items-center p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-primary-container/10 transition-all group">
+<span class="material-symbols-outlined text-[32px] text-on-surface-variant group-hover:text-primary mb-2">bolt</span>
+<span class="font-label-sm text-label-sm">Adrenaline</span>
+</button>
+<button class="flex flex-col items-center p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-primary-container/10 transition-all group">
+<span class="material-symbols-outlined text-[32px] text-on-surface-variant group-hover:text-primary mb-2">air</span>
+<span class="font-label-sm text-label-sm">Breathless</span>
+</button>
+<button class="flex flex-col items-center p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-primary-container/10 transition-all group">
+<span class="material-symbols-outlined text-[32px] text-on-surface-variant group-hover:text-primary mb-2">battery_low</span>
+<span class="font-label-sm text-label-sm">Exhausted</span>
+</button>
+</div>
+<textarea class="w-full rounded-lg border border-outline-variant focus:ring-primary focus:border-primary bg-surface min-h-[100px] font-body-md" placeholder="Describe any sensations (e.g. tightness in chest, shaking hands)..."></textarea>
+</div>
+<!-- Question 2 -->
+<div class="bg-surface-container-lowest p-xl rounded-xl border border-outline-variant shadow-sm">
+<label class="block font-label-md text-label-md mb-4 text-primary uppercase tracking-wider">Mental Space</label>
+<h3 class="font-headline-sm text-headline-sm mb-4">What's on your mind right now?</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 italic">No judgment—just let the thoughts flow. This stays private.</p>
+<textarea class="w-full rounded-lg border border-outline-variant focus:ring-primary focus:border-primary bg-surface min-h-[150px] font-body-md" placeholder="I'm thinking about..."></textarea>
+</div>
+<!-- Question 3 -->
+<div class="bg-surface-container-lowest p-xl rounded-xl border border-outline-variant shadow-sm">
+<label class="block font-label-md text-label-md mb-4 text-primary uppercase tracking-wider">Positive Affirmation</label>
+<h3 class="font-headline-sm text-headline-sm mb-4">Identify one thing that went well.</h3>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">verified</span>
+<input class="w-full pl-12 pr-4 py-4 rounded-lg border border-outline-variant focus:ring-primary focus:border-primary bg-surface font-body-md" placeholder="I kept my focus during the protocol..." type="text"/>
+</div>
+</div>
+</div>
+<!-- Sidebar Widgets -->
+<aside class="lg:col-span-5 space-y-gutter">
+<!-- Breathing Exercise Widget -->
+<div class="bg-primary/5 rounded-2xl p-xl border border-primary/10 overflow-hidden relative">
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary">Regulate</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">4-4 Breathing Cycle</p>
+</div>
+<button class="p-2 bg-primary text-on-primary rounded-full hover:scale-105 transition-transform" id="toggleBreathe">
+<span class="material-symbols-outlined">play_arrow</span>
+</button>
+</div>
+<div class="flex justify-center items-center py-12">
+<div class="relative flex items-center justify-center">
+<div class="breathing-circle w-24 h-24 bg-primary-container rounded-full absolute"></div>
+<div class="w-24 h-24 bg-primary/20 rounded-full flex items-center justify-center relative z-20">
+<span class="font-label-md text-label-md text-primary font-bold" id="breatheText">START</span>
+</div>
+</div>
+</div>
+<div class="text-center mt-6">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Focus on the circle. Follow the movement with your breath.</p>
+</div>
+</div>
+<!-- Atmospheric Background -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+
+</div>
+</div>
+<!-- Action Cards -->
+<div class="space-y-4">
+<button class="w-full flex items-center justify-between p-lg bg-surface-container-lowest border border-outline-variant rounded-xl hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-secondary-container text-on-secondary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">auto_stories</span>
+</div>
+<div class="text-left">
+<span class="block font-headline-sm text-headline-sm text-[16px] group-hover:text-primary transition-colors">Save to Private Journal</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Encrypted &amp; only visible to you.</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-lg bg-surface-container-lowest border border-outline-variant rounded-xl hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-tertiary-container/20 text-tertiary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">support_agent</span>
+</div>
+<div class="text-left">
+<span class="block font-headline-sm text-headline-sm text-[16px] group-hover:text-primary transition-colors">Request a Debrief</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Speak with a supervisor within 1 hour.</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+</div>
+<!-- Emergency Help (Secondary Ghost Style) -->
+<div class="p-lg bg-error-container/10 border border-error/20 rounded-xl">
+<div class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-error">warning</span>
+<div>
+<p class="font-label-md text-label-md text-error mb-1">Immediate Support</p>
+<p class="font-body-sm text-body-sm text-on-error-container mb-4">If you are in acute distress, please contact the Volunteer Crisis Line immediately.</p>
+<button class="bg-error text-on-error px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-error/90 transition-colors">Call Support Now</button>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Footer Actions -->
+<div class="mt-16 pt-8 border-t border-outline-variant flex flex-col sm:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-label-sm text-label-sm">Draft auto-saved at 14:32 PM</span>
+</div>
+<div class="flex gap-4 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-8 py-3 rounded-lg border border-primary text-primary font-label-md hover:bg-primary/5 transition-colors">Save Draft</button>
+<button class="flex-1 sm:flex-none px-8 py-3 rounded-lg bg-primary text-on-primary font-label-md shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">Submit Reflection</button>
+</div>
+</div>
+</main>
+<!-- Success Modal (Hidden by default) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-on-background/40 backdrop-blur-sm hidden" id="successModal">
+<div class="bg-surface-container-lowest p-xl rounded-2xl max-w-sm w-full text-center shadow-2xl">
+<div class="w-16 h-16 bg-secondary-container text-on-secondary-container rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-[32px]">check_circle</span>
+</div>
+<h2 class="font-headline-md text-headline-md mb-2">Thank you, Alex.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Your reflection has been securely stored. Take the rest of your shift at your own pace.</p>
+<button class="w-full bg-primary text-on-primary py-3 rounded-xl font-label-md" onclick="document.getElementById('successModal').classList.add('hidden')">Return to Dashboard</button>
+</div>
+</div>
+<script>
+        // Breathing Animation Controller
+        const toggleBreathe = document.getElementById('toggleBreathe');
+        const breatheText = document.getElementById('breatheText');
+        const circle = document.querySelector('.breathing-circle');
+        let breathing = false;
+        let breathInterval;
+
+        function startBreathing() {
+            breathing = true;
+            toggleBreathe.innerHTML = '<span class="material-symbols-outlined">pause</span>';
+            circle.style.animationPlayState = 'running';
+            
+            let cycle = 0; // 0 inhale, 1 exhale
+            breatheText.innerText = 'INHALE';
+            
+            breathInterval = setInterval(() => {
+                cycle = 1 - cycle;
+                breatheText.innerText = cycle === 0 ? 'INHALE' : 'EXHALE';
+            }, 4000);
+        }
+
+        function stopBreathing() {
+            breathing = false;
+            toggleBreathe.innerHTML = '<span class="material-symbols-outlined">play_arrow</span>';
+            circle.style.animationPlayState = 'paused';
+            breatheText.innerText = 'START';
+            clearInterval(breathInterval);
+        }
+
+        toggleBreathe.addEventListener('click', () => {
+            if (breathing) stopBreathing();
+            else startBreathing();
+        });
+
+        // Form Submission Micro-interaction
+        document.querySelector('button.bg-primary').addEventListener('click', () => {
+            const btn = document.querySelector('button.bg-primary');
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span>';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                document.getElementById('successModal').classList.remove('hidden');
+                btn.innerHTML = 'Submit Reflection';
+                btn.disabled = false;
+            }, 1200);
+        });
+
+        // Initialize breathing state to paused
+        circle.style.animationPlayState = 'paused';
+    </script>
+</body></html>

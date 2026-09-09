@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  @apply bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100;
+}
+
+/* Custom Live Map Animations & Mock background */
+@layer utilities {
+  .map-mock {
+    background:
+      radial-gradient(ellipse at 30% 40%, rgba(59, 130, 246, 0.05) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 60%, rgba(139, 92, 246, 0.05) 0%, transparent 60%),
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(107, 114, 128, 0.1) 39px, rgba(107, 114, 128, 0.1) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(107, 114, 128, 0.1) 39px, rgba(107, 114, 128, 0.1) 40px);
+  }
+}
+
+@keyframes moveDot {
+  from {
+    left: 20%;
+  }
+
+  to {
+    left: 75%;
+  }
+}
+
+.animate-moveDot {
+  animation: moveDot 4s ease-in-out infinite alternate;
+}
+
+@keyframes bouncePin {
+
+  0%,
+  100% {
+    transform: translate(-50%, -100%);
+  }
+
+  50% {
+    transform: translate(-50%, -110%);
+  }
+}
+
+.animate-bouncePin {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .5));
+  animation: bouncePin 2s ease-in-out infinite;
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(1);
+    opacity: .6;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-pulseRing {
+  animation: pulseRing 2s ease-out infinite;
+}
+
+@keyframes pulseGreen {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, .4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+}
+
+.animate-pulseGreen {
+  animation: pulseGreen 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseBlue {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, .4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(59, 130, 246, 0);
+  }
+}
+
+.animate-pulseBlue {
+  animation: pulseBlue 1.5s ease-in-out infinite;
+}

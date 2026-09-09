@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DiagConnect | Lab Portal</title>
+<!-- Google Fonts: Inter & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#2a1700",
+                    "tertiary": "#855300",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "surface-container-lowest": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#213145",
+                    "tertiary-fixed": "#ffddb8",
+                    "background": "#f8f9ff",
+                    "secondary": "#006c49",
+                    "surface-bright": "#f8f9ff",
+                    "outline": "#6e7881",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#4edea3",
+                    "outline-variant": "#bec8d2",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-secondary-fixed": "#002113",
+                    "surface": "#f8f9ff",
+                    "primary-fixed-dim": "#89ceff",
+                    "surface-tint": "#006591",
+                    "on-primary-container": "#003751",
+                    "on-primary-fixed": "#001e2f",
+                    "inverse-primary": "#89ceff",
+                    "primary": "#006591",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-secondary-container": "#00714d",
+                    "on-surface": "#0b1c30",
+                    "surface-container-low": "#eff4ff",
+                    "on-surface-variant": "#3e4850",
+                    "on-background": "#0b1c30",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "secondary-container": "#6cf8bb",
+                    "primary-fixed": "#c9e6ff",
+                    "tertiary-container": "#d88a00",
+                    "primary-container": "#0ea5e9",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "secondary-fixed": "#6ffbbe",
+                    "surface-container-highest": "#d3e4fe",
+                    "surface-variant": "#d3e4fe",
+                    "surface-container-high": "#dce9ff",
+                    "on-tertiary-container": "#4a2c00",
+                    "surface-dim": "#cbdbf5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "lg": "24px",
+                    "max-width": "1440px",
+                    "margin-mobile": "16px",
+                    "xl": "32px",
+                    "margin-desktop": "40px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "gutter": "24px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "headline-xl": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .status-chip {
+            padding: 2px 12px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .drop-zone {
+            border: 2px dashed #bec8d2;
+            transition: all 0.2s ease;
+        }
+        .drop-zone:hover {
+            border-color: #006591;
+            background-color: #f0f7ff;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- SideNavBar (JSON Component) -->
+<aside class="hidden md:flex flex-col h-full p-md gap-sm bg-surface-container-low dark:bg-surface-container border-r border-outline-variant dark:border-outline w-64 shrink-0 overflow-y-auto">
+<div class="flex items-center gap-sm px-sm py-md mb-md">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary">science</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">DiagConnect</h2>
+<p class="text-xs text-on-surface-variant">Lab Management Portal</p>
+</div>
+</div>
+<nav class="flex flex-col gap-xs flex-1">
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-150" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Patients</span>
+</a>
+<a class="flex items-center gap-md p-md bg-secondary-container text-on-secondary-container font-bold rounded-lg transition-all duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-150" href="#">
+<span class="material-symbols-outlined">medication</span>
+<span class="font-label-md text-label-md">Prescriptions</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-150" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-xs pt-md border-t border-outline-variant">
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+<!-- TopNavBar (JSON Component) -->
+<header class="bg-surface border-b border-outline-variant dark:border-outline sticky top-0 z-30 h-16 shrink-0">
+<div class="flex justify-between items-center px-margin-desktop w-full max-w-max-width mx-auto h-full">
+<div class="flex items-center gap-lg">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Order Management</h1>
+<div class="hidden lg:flex gap-md">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 cursor-pointer active:opacity-80 transition-colors" href="#">Lab</a>
+<a class="text-on-surface-variant font-body-md hover:bg-surface-container-low px-2 rounded cursor-pointer transition-colors duration-200" href="#">Doctor</a>
+<a class="text-on-surface-variant font-body-md hover:bg-surface-container-low px-2 rounded cursor-pointer transition-colors duration-200" href="#">Admin</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-body-sm w-64 focus:ring-2 focus:ring-primary" placeholder="Search orders..." type="text"/>
+</div>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors relative">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a laboratory director in a sterile medical setting. The lighting is bright and clean, emphasizing a modern healthcare aesthetic with subtle blue and white tones. The director wears a crisp white lab coat with a DiagConnect badge." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRMoVyowxwGKgPF_qwDT0_fRD0Ka0iBB_H_W10jBxdTHly43pI5Z4rGOBz_ano7FEXRWeTOOr8sXnV7fhZzG6Hrx_k0It159aa0Ie5r4OhhOzKWUbF4ENkqK2-e7u_O2AxuLrZUyJ5Wygl1XrkUz99O-q6txxxrZs4NzAK9u4Mn4YB-miqEzKaNnQ3P6XWKjUNOUyCa7XhZf2ttKWMYy7Ck0lhTIByCxYVt_qDuqRDo2yTGg3Mx2FtJEZ_1SVKQa1wCzJkwy9KjsA"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-lg md:p-xl space-y-lg max-w-max-width mx-auto w-full">
+<!-- Filters Bar -->
+<div class="flex flex-wrap items-center gap-md mb-lg">
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md flex items-center gap-xs shadow-sm">
+                    All Orders
+                </button>
+<button class="bg-surface border border-outline-variant text-on-surface-variant px-4 py-2 rounded-lg font-label-md hover:bg-surface-container-low transition-colors">
+                    Awaiting Collection
+                </button>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-label-md flex items-center gap-xs">
+                    Sample In-Transit
+                </button>
+<button class="bg-surface border border-outline-variant text-on-surface-variant px-4 py-2 rounded-lg font-label-md hover:bg-surface-container-low transition-colors">
+                    Processing
+                </button>
+<button class="bg-secondary-container text-on-secondary-container px-4 py-2 rounded-lg font-label-md transition-colors">
+                    Ready
+                </button>
+</div>
+<!-- Dashboard Layout (Bento Style) -->
+<div class="bento-grid">
+<!-- Incoming Orders List -->
+<div class="col-span-12 lg:col-span-8 space-y-md">
+<div class="bg-surface rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-md bg-surface-container-low border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-primary">Live Order Stream</h3>
+<span class="text-body-sm text-on-surface-variant">12 Active Tasks</span>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- Featured Entry: Julianna DeWitt -->
+<div class="p-md hover:bg-surface-container-lowest transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-md border-l-4 border-primary">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div>
+<p class="font-label-md text-primary">Julianna DeWitt</p>
+<p class="text-body-sm text-on-surface-variant">Order #DC-8842 • Comprehensive Blood Panel</p>
+<p class="text-xs font-medium text-on-surface-variant mt-1">Source: <span class="text-on-surface">St. Jude Medical Center (Dr. Aris Thorne)</span></p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-on-primary-fixed-variant uppercase tracking-wider">Sample In-Transit</p>
+<p class="text-xs text-on-surface-variant">Collector: P. Zhao</p>
+</div>
+<span class="material-symbols-outlined text-primary bg-primary-container p-2 rounded-full">local_shipping</span>
+</div>
+</div>
+<!-- Other Orders -->
+<div class="p-md hover:bg-surface-container-lowest transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">person</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Markus Vane</p>
+<p class="text-body-sm text-on-surface-variant">Order #DC-8843 • Lipid Profile &amp; Thyroid</p>
+<p class="text-xs font-medium text-on-surface-variant mt-1">Source: <span class="text-on-surface">City General Lab (Dr. Sarah Chen)</span></p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-tertiary uppercase tracking-wider">Awaiting Collection</p>
+<p class="text-xs text-on-surface-variant">Pending Phlebotomist</p>
+</div>
+<button class="bg-primary text-on-primary px-3 py-1 rounded text-xs font-bold">Dispatch</button>
+</div>
+</div>
+<div class="p-md hover:bg-surface-container-lowest transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">person</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Elena Rodriguez</p>
+<p class="text-body-sm text-on-surface-variant">Order #DC-8844 • Vitamin D (25-OH)</p>
+<p class="text-xs font-medium text-on-surface-variant mt-1">Source: <span class="text-on-surface">Metro Health (Dr. James Wilson)</span></p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-secondary uppercase tracking-wider">Ready</p>
+<p class="text-xs text-on-surface-variant">Uploaded 12m ago</p>
+</div>
+<span class="material-symbols-outlined text-secondary bg-secondary-container p-2 rounded-full">check_circle</span>
+</div>
+</div>
+</div>
+<div class="p-md text-center">
+<button class="text-primary font-label-md hover:underline">View All Active Orders</button>
+</div>
+</div>
+<!-- Report Upload Zone -->
+<div class="bg-surface rounded-xl border border-outline-variant shadow-sm p-lg">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-md">Report Upload</h3>
+<div class="drop-zone flex flex-col items-center justify-center py-xl rounded-xl cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-primary text-3xl">cloud_upload</span>
+</div>
+<p class="font-label-md text-on-surface">Drag &amp; drop diagnostic results here</p>
+<p class="text-body-sm text-on-surface-variant mt-1">Supported formats: .pdf, .xlsx, .csv (Max 20MB)</p>
+<button class="mt-lg px-6 py-2 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-on-primary transition-all">
+                                Select Files
+                            </button>
+</div>
+</div>
+</div>
+<!-- Phlebotomist Dispatch & Map -->
+<div class="col-span-12 lg:col-span-4 space-y-md">
+<!-- Map Component -->
+<div class="bg-surface rounded-xl border border-outline-variant shadow-sm overflow-hidden h-[400px] flex flex-col">
+<div class="p-md bg-surface-container-low border-b border-outline-variant flex items-center justify-between">
+<h3 class="font-label-md text-on-surface">Collector Live Tracking</h3>
+<span class="flex items-center gap-xs text-xs font-bold text-secondary">
+<span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+                                Live Map
+                            </span>
+</div>
+<div class="flex-1 relative">
+<div class="absolute inset-0 bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A detailed digital map interface of a modern city center, showing streets in clean white and light gray tones. Several glowing primary blue and emerald green circular pulses indicate the live locations of phlebotomists. The style is professional and clinical, with a data-driven aesthetic." data-location="Chicago" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg4Q6cnC1X8u5DiHj2YP9yKzfaTQrXr5mGXkX1o6v9eRHHboNv-yxi165ZCz9I1zpCjGH2mlQl6ChBFCm5HcJXbrVtxqtmEa768F--Y6DcD6C-qqYP3AiT9zrRf7WXjDs6iHpEWXpi2YYS47ZSu3QA_RTtUN7eZmuNTKga4cTaGlmrnJ83kieFMdbpRd88Lp3lnVMGMZMAd4aOxB9xDap_cBJkMbEWc7aEO18kdY1iTwS4swb1wBeHLz3_cW9kfRoeiepEiVwheM0"/>
+</div>
+<!-- Floating Collector Card -->
+<div class="absolute bottom-md left-md right-md bg-surface/90 backdrop-blur-md p-md rounded-lg shadow-xl border border-white/20">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full border-2 border-primary overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A focused portrait of a medical courier phlebotomist named P. Zhao. He is wearing a modern healthcare polo shirt with the DiagConnect logo. He looks professional and reliable. Background shows a blurred modern cityscape." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiiRKF76FhCcsuGhVU6voUmF7ZdLalHXDfdG1uDGOStYC_cfrabqB2ROO811Ry5HtlSgRhxQdH96j86JaqeYQASSo6OOzO4DobGxCyNOBFv6f11s1YrUXTDUCE6r5iaKTKSum3W05YEgD6tfo95uRnODuNitJRr6OR4uD_9f6AAeB39Oupn9oML3P9iCeQBm9bqOcZhAN7W52uFKP1joD-TXz1i54DnpKXTr18UisjDJxQX5fcBInAo4nS0Fm0i1mQ8HbNZF5jU5A"/>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-on-surface">P. Zhao <span class="text-xs font-normal text-on-surface-variant">(Active)</span></p>
+<p class="text-xs text-on-surface-variant">En-route: DeWitt Sample</p>
+</div>
+<div class="text-right">
+<p class="text-xs font-bold text-primary">8 mins</p>
+<p class="text-[10px] text-on-surface-variant">To Lab</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Dispatch List -->
+<div class="bg-surface rounded-xl border border-outline-variant shadow-sm">
+<div class="p-md border-b border-outline-variant">
+<h3 class="font-label-md text-on-surface">Collector Status</h3>
+</div>
+<div class="p-md space-y-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="w-2 h-2 bg-secondary rounded-full"></div>
+<span class="text-body-sm font-medium">L. Morgan</span>
+</div>
+<span class="text-xs bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded">Collecting</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="w-2 h-2 bg-secondary rounded-full"></div>
+<span class="text-body-sm font-medium">J. Ibrahim</span>
+</div>
+<span class="text-xs bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded">At Hospital</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="w-2 h-2 bg-outline rounded-full"></div>
+<span class="text-body-sm font-medium">S. Miller</span>
+</div>
+<span class="text-xs bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded">Off-duty</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+<span class="text-body-sm font-medium">K. Tanaka</span>
+</div>
+<span class="text-xs bg-primary-container text-on-primary-container px-2 py-0.5 rounded">Returning</span>
+</div>
+</div>
+<div class="p-md border-t border-outline-variant">
+<button class="w-full py-2 bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md rounded-lg transition-all">
+                                Manage Fleet
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Navigation Shell -->
+<nav class="md:hidden bg-surface border-t border-outline-variant fixed bottom-0 left-0 right-0 h-16 flex items-center justify-around z-40">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="text-[10px] font-bold">Orders</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">location_on</span>
+<span class="text-[10px] font-medium">Fleet</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions and Lightweight Atmospheric Effects
+        document.querySelectorAll('.drop-zone').forEach(zone => {
+            zone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                zone.classList.add('bg-primary-container', 'bg-opacity-10');
+            });
+            zone.addEventListener('dragleave', () => {
+                zone.classList.remove('bg-primary-container', 'bg-opacity-10');
+            });
+            zone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                zone.classList.remove('bg-primary-container', 'bg-opacity-10');
+                alert('File upload sequence initiated. Scanning for data integrity...');
+            });
+        });
+
+        // Simulating live map updates
+        setInterval(() => {
+            const liveDot = document.querySelector('.animate-pulse');
+            if(liveDot) {
+                liveDot.style.opacity = (Math.random() * 0.5 + 0.5).toString();
+            }
+        }, 1000);
+    </script>
+</body></html>

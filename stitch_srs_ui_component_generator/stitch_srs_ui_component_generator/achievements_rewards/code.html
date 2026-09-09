@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DiagConnect - Rewards &amp; Achievements</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .gradient-border {
+            position: relative;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #006591, #0ea5e9);
+            padding: 1px;
+        }
+        .gradient-content {
+            background: #ffffff;
+            border-radius: 11px;
+        }
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .reward-pulse:hover {
+            animation: pulse-soft 2s infinite ease-in-out;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "primary": "#006591",
+                "tertiary": "#855300",
+                "on-primary-fixed": "#001e2f",
+                "primary-fixed-dim": "#89ceff",
+                "secondary-fixed-dim": "#4edea3",
+                "on-secondary": "#ffffff",
+                "on-error-container": "#93000a",
+                "inverse-primary": "#89ceff",
+                "surface-variant": "#d3e4fe",
+                "inverse-on-surface": "#eaf1ff",
+                "background": "#f8f9ff",
+                "on-surface": "#0b1c30",
+                "surface-container-highest": "#d3e4fe",
+                "surface-container-high": "#dce9ff",
+                "outline-variant": "#bec8d2",
+                "on-tertiary-fixed": "#2a1700",
+                "error-container": "#ffdad6",
+                "inverse-surface": "#213145",
+                "on-background": "#0b1c30",
+                "on-secondary-fixed": "#002113",
+                "on-error": "#ffffff",
+                "secondary-fixed": "#6ffbbe",
+                "primary-fixed": "#c9e6ff",
+                "secondary": "#006c49",
+                "surface-container": "#e5eeff",
+                "surface-bright": "#f8f9ff",
+                "surface": "#f8f9ff",
+                "on-primary-container": "#003751",
+                "surface-dim": "#cbdbf5",
+                "surface-tint": "#006591",
+                "error": "#ba1a1a",
+                "tertiary-container": "#d88a00",
+                "tertiary-fixed-dim": "#ffb95f",
+                "on-secondary-fixed-variant": "#005236",
+                "on-secondary-container": "#00714d",
+                "tertiary-fixed": "#ffddb8",
+                "primary-container": "#0ea5e9",
+                "surface-container-lowest": "#ffffff",
+                "outline": "#6e7881",
+                "on-primary": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "on-surface-variant": "#3e4850",
+                "surface-container-low": "#eff4ff",
+                "on-tertiary-container": "#4a2c00",
+                "on-tertiary-fixed-variant": "#653e00",
+                "on-primary-fixed-variant": "#004c6e",
+                "secondary-container": "#6cf8bb"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "max-width": "1440px",
+                "base": "4px",
+                "xl": "32px",
+                "xs": "4px",
+                "lg": "24px",
+                "margin-desktop": "40px",
+                "margin-mobile": "16px",
+                "sm": "8px",
+                "md": "16px",
+                "gutter": "24px"
+            },
+            "fontFamily": {
+                "label-md": ["Inter"],
+                "label-sm": ["Inter"],
+                "headline-lg": ["Plus Jakarta Sans"],
+                "headline-sm": ["Plus Jakarta Sans"],
+                "headline-md": ["Plus Jakarta Sans"],
+                "body-md": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24 md:pb-0 md:pt-16">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16">
+<div class="flex items-center gap-md">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">DiagConnect Responder</span>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden md:flex gap-lg mr-8">
+<a class="text-on-surface-variant font-label-md hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary font-bold font-label-md" href="#">Badges</a>
+<a class="text-on-surface-variant font-label-md hover:text-primary transition-colors" href="#">Leaderboard</a>
+<a class="text-on-surface-variant font-label-md hover:text-primary transition-colors" href="#">Shop</a>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors active:scale-95" data-icon="notifications">notifications</button>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white font-bold">AR</div>
+</div>
+</header>
+<main class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop pt-8 pb-12">
+<!-- Hero Stats -->
+<section class="mb-xl">
+<div class="relative overflow-hidden rounded-xl bg-primary h-48 md:h-64 flex items-center px-lg md:px-xl">
+
+<div class="relative z-10 text-white">
+<h1 class="font-headline-lg text-headline-lg mb-2">Welcome Back, Alex</h1>
+<p class="text-body-md opacity-90 mb-4">You're in the top 5% of responders this month.</p>
+<div class="flex gap-md">
+<div class="bg-white/20 backdrop-blur-md px-4 py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-bold">3,450 XP</span>
+</div>
+<div class="bg-white/20 backdrop-blur-md px-4 py-2 rounded-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" data-icon="military_tech" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<span class="font-bold">12 Badges</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="flex flex-col lg:grid lg:grid-cols-12 gap-gutter">
+<!-- LEFT COLUMN: Achievements & Shop -->
+<div class="lg:col-span-8 flex flex-col gap-xl">
+<!-- Earned Badges Section -->
+<section>
+<div class="flex justify-between items-end mb-md">
+<h2 class="font-headline-md text-headline-md">Earned Badges</h2>
+<button class="text-primary font-label-md hover:underline">View All</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-md">
+<!-- Badge 1 -->
+<div class="bg-white border border-outline-variant p-md rounded-xl flex flex-col items-center text-center transition-transform hover:scale-[1.02] hover:shadow-lg">
+<div class="w-16 h-16 rounded-full bg-primary-container/20 flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="medical_services" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+</div>
+<h3 class="font-label-md text-on-surface">Life Saver</h3>
+<p class="text-xs text-on-surface-variant mt-1">First cardiac arrest response</p>
+<div class="mt-3 px-3 py-1 bg-primary-container text-on-primary-container text-[10px] font-bold rounded-full uppercase tracking-wider">Legendary</div>
+</div>
+<!-- Badge 2 -->
+<div class="bg-white border border-outline-variant p-md rounded-xl flex flex-col items-center text-center transition-transform hover:scale-[1.02] hover:shadow-lg">
+<div class="w-16 h-16 rounded-full bg-secondary-container/20 flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-secondary text-4xl" data-icon="nights_stay" style="font-variation-settings: 'FILL' 1;">nights_stay</span>
+</div>
+<h3 class="font-label-md text-on-surface">Night Owl</h3>
+<p class="text-xs text-on-surface-variant mt-1">10 successful night missions</p>
+<div class="mt-3 px-3 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded-full uppercase tracking-wider">Epic</div>
+</div>
+<!-- Badge 3 -->
+<div class="bg-white border border-outline-variant p-md rounded-xl flex flex-col items-center text-center transition-transform hover:scale-[1.02] hover:shadow-lg">
+<div class="w-16 h-16 rounded-full bg-tertiary-fixed/20 flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-tertiary text-4xl" data-icon="workspace_premium" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<h3 class="font-label-md text-on-surface">First Responder Gold</h3>
+<p class="text-xs text-on-surface-variant mt-1">100 total incidents handled</p>
+<div class="mt-3 px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold rounded-full uppercase tracking-wider">Rare</div>
+</div>
+</div>
+</section>
+<!-- Rewards Shop -->
+<section>
+<div class="flex justify-between items-end mb-md">
+<div>
+<h2 class="font-headline-md text-headline-md">Rewards Shop</h2>
+<p class="text-body-sm text-on-surface-variant">Redeem your XP for professional gear</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Product 1 -->
+<div class="flex flex-col bg-white border border-outline-variant rounded-xl overflow-hidden reward-pulse cursor-pointer">
+<div class="h-48 w-full bg-surface-container-high relative">
+<img class="w-full h-full object-cover" data-alt="A professional-grade trauma kit in a durable, bright orange waterproof case with the DiagConnect logo. The kit is shown in a crisp, high-key medical studio setting with soft shadows and clinical precision lighting. The aesthetic is clean, trustworthy, and high-quality, fitting a modern corporate medical brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpV_sX5pGrc3prN4ilH4MmCwiA9D3Q-h1GoUijk-KiqcLD7_aUBQVr8ExOL-bVcz8-Ea-rgDC-iFoPyizeL8nj_Q049Fb_lAV7du8uWzoY48KBUBf5X7dJB2ZW4QJc9kWU4Ngh-af5Wiv7Ri07zy14jVuvZ0iU7-vmEDASlntjJykmfizBVdsTbe8rKrDbHqvBM5TV7QpullvCkcv7HCFG7ggT8IdMlq6WRWjnpMICQUVirevCUlz_Zixbto1bbYKA322YQU7J-MU"/>
+<div class="absolute top-2 right-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded">HOT ITEM</div>
+</div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-sm text-sm">Pro Trauma Kit V2</h3>
+<span class="text-primary font-bold">2,500 XP</span>
+</div>
+<p class="text-body-sm text-on-surface-variant mb-4">Complete field surgical and diagnostic emergency kit.</p>
+<button class="w-full bg-primary text-white py-2 rounded-lg font-label-md active:scale-95 transition-transform">Redeem Gear</button>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="flex flex-col bg-white border border-outline-variant rounded-xl overflow-hidden reward-pulse cursor-pointer">
+<div class="h-48 w-full bg-surface-container-high relative">
+<img class="w-full h-full object-cover" data-alt="A high-visibility safety vest in fluorescent neon yellow with high-intensity reflective silver strips. A subtle DiagConnect insignia is printed on the left chest. The vest is displayed on a minimalist mannequin in a bright, modern studio. The lighting is even and professional, emphasizing the safety-critical nature of the garment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA1BpxwlAKQug33UyhiPV8IMk-Y6oEI6qtpNMNt1qRC7OKyhbXmll5POBGR1Lp4JfdJvhWV7zevg62iogqpM1hwO4KypVhF5euTWY5o27DI-liIFKzkUg8o7555TSXKbMtKgTlXCbfzfyxT00LWKEDqGCWkq-rHlxtCaDKmFdSAwNONYAYfQEUb2UpY-d0O6NnmeraP-19nuez4YHknWAWOUJX0E8ETtfd9cr2cpSdXqlBwCVB0LkVQlqd8euTwmuRffVpLPXpoHU"/>
+</div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-sm text-sm">High-Vis Command Vest</h3>
+<span class="text-primary font-bold">1,200 XP</span>
+</div>
+<p class="text-body-sm text-on-surface-variant mb-4">ANSI Level 3 certified responder vest with radio clips.</p>
+<button class="w-full bg-primary text-white py-2 rounded-lg font-label-md active:scale-95 transition-transform">Redeem Gear</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- RIGHT COLUMN: Leaderboard -->
+<aside class="lg:col-span-4">
+<div class="bg-white border border-outline-variant rounded-xl p-lg sticky top-24">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-headline-sm text-headline-sm">Global Rank</h2>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="leaderboard">leaderboard</span>
+</div>
+<div class="flex flex-col gap-md">
+<!-- Top 3 Visualization -->
+<div class="flex items-end justify-center gap-4 py-8 bg-surface-container-low rounded-xl mb-4">
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 rounded-full border-4 border-[#C0C0C0] overflow-hidden mb-2">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of a professional female medical responder in a clean clinic environment. Professional, high-key lighting, bright colors, medical style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbe1pf-EGXk5cn1YrozLJ1dI2QkUc3szQe-6MtNf57hP0V--1xoVELhSlY5C8twS8aSpM8PHvTL0AORgvUm79f7HrzqHfUU29VrGX6dd2-IE0mRKBJdOVjHGq-Yk4uug2vIYPRLGXNwHBljpna1u_ScG4pP2J50X8_Q7lvRrCm-sRSLQGHagUvtYdPGwY2-h8pKCMgd7sUvEhzyjaxqkdVDI8I55jC2bnO4rpBnngNVWiDIelJVUft8Jp9gzWLQtsEiULPHKqi8Hs"/>
+</div>
+<div class="h-16 w-8 bg-outline-variant rounded-t-md flex items-center justify-center text-white font-bold">2</div>
+<span class="text-[10px] mt-1 font-bold">Sarah K.</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-tertiary-container animate-bounce" data-icon="workspace_premium" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<div class="w-16 h-16 rounded-full border-4 border-tertiary-container overflow-hidden mb-2">
+<img class="w-full h-full object-cover" data-alt="Portrait of a focused male volunteer emergency responder in uniform. Modern corporate medical aesthetic, bright lighting, high-quality resolution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUxbn0arLbNYCjCwoJhPIUGA3exjDzoqvfUPHwtKPF8IfIS1lZeefhabk7IPO918m7zW4mCSCXzns52P_sTzmbpuvbtogWJKCuJmZ7DSvNJDRK2Cm2JY6U8j9bOj9SvztpubV3BEZ1w8fry4zgo7x7ikMhNRnkq2BfMK2HQEIZXfmNo6j-91rAP7r5ZmneN3TPf-4sTtrKCkYLB2Xwrf2pLLhtiiJofRrS1pK7YEpq2LJGWDyCdHUDke5NoFAlQci_s-irPYjcrn4"/>
+</div>
+<div class="h-24 w-10 bg-primary rounded-t-md flex items-center justify-center text-white font-bold">1</div>
+<span class="text-[10px] mt-1 font-bold">Marcus J.</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-12 h-12 rounded-full border-4 border-[#CD7F32] overflow-hidden mb-2">
+<img class="w-full h-full object-cover" data-alt="Portrait of an older female professional responder with a calm confident expression. Bright lighting, medical background, modern UI style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDT-s-MUrJ2pv9DFLFi2umBQM2fGsFC8RDjUJFkVq8jms2vmMYNJYLYkXyfqBYCAB8_Yz9o8sSozbIB1Mxj5FOADCzZE_KWJMbQZCEDuJ0oQ78ngWvMMqKKBVh31jXp0j1FCHLC-gP2EBmP9_CUFbc9OzOJWFoVZzFjn4L5ST44nWe_0XIHyF7Z-q2HlXPeOMcj0GTbGC76PHSwBdQqDh4azS7fq5XjWCSMdRaDOwRlUv5Y9t3lh04Szop5_E0aBl9DUmqLhK3yuPM"/>
+</div>
+<div class="h-12 w-8 bg-outline-variant/60 rounded-t-md flex items-center justify-center text-white font-bold">3</div>
+<span class="text-[10px] mt-1 font-bold">Linda W.</span>
+</div>
+</div>
+<!-- User's List Rank -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<span class="text-label-md text-on-surface-variant w-4">4</span>
+<div class="w-8 h-8 rounded-full bg-slate-200"></div>
+<span class="text-label-md font-semibold">David P.</span>
+</div>
+<span class="text-label-sm font-bold">4,100 XP</span>
+</div>
+<!-- YOU -->
+<div class="flex items-center justify-between p-3 rounded-lg bg-primary-container/10 border border-primary-container/30">
+<div class="flex items-center gap-3">
+<span class="text-label-md text-primary font-bold w-4">5</span>
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-[10px] font-bold">YOU</div>
+<span class="text-label-md font-bold text-primary">Alex Responder</span>
+</div>
+<span class="text-label-sm font-bold text-primary">3,450 XP</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<span class="text-label-md text-on-surface-variant w-4">6</span>
+<div class="w-8 h-8 rounded-full bg-slate-200"></div>
+<span class="text-label-md font-semibold">Elena R.</span>
+</div>
+<span class="text-label-sm font-bold">3,220 XP</span>
+</div>
+</div>
+<button class="w-full mt-4 border border-outline text-on-surface-variant py-3 rounded-lg font-label-md hover:bg-surface-container-low transition-colors">View Neighborhood List</button>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface border-t border-outline-variant flex justify-around items-center h-20 pb-safe">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+<span class="text-label-sm font-label-sm">Learn</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1">
+<span class="material-symbols-outlined" data-icon="military_tech" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<span class="text-label-sm font-label-sm">Badges</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="text-label-sm font-label-sm">Rank</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="text-label-sm font-label-sm">Shop</span>
+</button>
+</nav>
+<script>
+        // Simple micro-interaction for XP animation on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const xpDisplay = document.querySelector('.stars-count');
+            if (xpDisplay) {
+                let count = 0;
+                const target = 3450;
+                const duration = 1000;
+                const increment = Math.ceil(target / (duration / 16));
+                
+                const timer = setInterval(() => {
+                    count += increment;
+                    if (count >= target) {
+                        count = target;
+                        clearInterval(timer);
+                    }
+                    xpDisplay.innerText = count.toLocaleString() + ' XP';
+                }, 16);
+            }
+        });
+
+        // Toggle active nav on mobile
+        const navButtons = document.querySelectorAll('nav button');
+        navButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                navButtons.forEach(b => {
+                    b.classList.remove('bg-primary-container', 'text-on-primary-container', 'rounded-full');
+                    b.classList.add('text-on-surface-variant');
+                });
+                btn.classList.add('bg-primary-container', 'text-on-primary-container', 'rounded-full');
+                btn.classList.remove('text-on-surface-variant');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FFIRE | Incident Detail & Coordination</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-secondary-fixed-variant": "#005236",
+                    "secondary-fixed-dim": "#4edea3",
+                    "on-secondary-container": "#00714d",
+                    "surface-dim": "#cbdbf5",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-secondary-fixed": "#002113",
+                    "on-primary-container": "#003751",
+                    "surface-container-high": "#dce9ff",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#89ceff",
+                    "surface-container": "#e5eeff",
+                    "outline": "#6e7881",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#006c49",
+                    "tertiary": "#855300",
+                    "tertiary-fixed": "#ffddb8",
+                    "error-container": "#ffdad6",
+                    "on-surface-variant": "#3e4850",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "surface-container-highest": "#d3e4fe",
+                    "secondary-container": "#6cf8bb",
+                    "on-surface": "#0b1c30",
+                    "on-primary-fixed": "#001e2f",
+                    "primary-fixed": "#c9e6ff",
+                    "tertiary-container": "#d88a00",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#eff4ff",
+                    "background": "#f8f9ff",
+                    "surface-variant": "#d3e4fe",
+                    "surface-bright": "#f8f9ff",
+                    "outline-variant": "#bec8d2",
+                    "on-primary": "#ffffff",
+                    "on-background": "#0b1c30",
+                    "on-tertiary-container": "#4a2c00",
+                    "inverse-surface": "#213145",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#89ceff",
+                    "surface-tint": "#006591",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "primary-container": "#0ea5e9",
+                    "primary": "#006591",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f8f9ff",
+                    "investigation-gold": "#d88a00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "max-width": "1440px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "xl": "32px",
+                    "gutter": "24px",
+                    "base": "4px",
+                    "margin-desktop": "40px",
+                    "lg": "24px",
+                    "margin-mobile": "16px",
+                    "xs": "4px",
+                    "stack-md": "16px",
+                    "margin": "40px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-xl": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #bec8d2;
+        border-radius: 10px;
+      }
+      @keyframes pulse-ring {
+        0% { transform: scale(0.33); opacity: 1; }
+        80%, 100% { opacity: 0; }
+      }
+      .pulse-dot::before {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 300%;
+        height: 300%;
+        box-sizing: border-box;
+        margin-left: -100%;
+        margin-top: -100%;
+        border-radius: 45px;
+        background-color: #0ea5e9;
+        animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+      }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface border-b border-outline-variant fixed top-0 w-full z-50 h-16 flex justify-between items-center px-margin">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-investigation-gold">FFIRE</span>
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-primary border-b-2 border-primary font-bold px-1 py-4 font-body-md text-body-md cursor-pointer active:opacity-80" href="#">Dashboard</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors px-1 py-4 font-body-md text-body-md cursor-pointer active:opacity-80" href="#">Investigation Queue</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors px-1 py-4 font-body-md text-body-md cursor-pointer active:opacity-80" href="#">Audit Logs</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors px-1 py-4 font-body-md text-body-md cursor-pointer active:opacity-80" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant ml-2">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a female emergency dispatcher in a modern, clean command center. She is wearing a headset and looks focused yet calm. Soft lighting from blue-toned monitors illuminates her face, reflecting a high-tech, clinical, and secure diagnostic environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO8ZKBT2Ov1scTXSm-sZqAym4pwGZVthpx46yNQkWd_40VWBfzmoVfqnDAWngm9SKJX8tHgK4tX7aY5mEpFK4K8WqsQi9Mf8VV2wj3mAy3akepEJLIqchZ2pltLAugVIBl7-dUycBGmpKeabaPXtMCtun6t3ql0b8JhqmwvqBugnuNXEiodWYKJNmxad666Z_q4ykPOFiniqbeVf1mTW3MODbZcJqrzi5Kre3oFoc-DaBC2PLA2oZN6Rx8etzqpeTpN1lXtXlc5Ic"/>
+</div>
+</div>
+</header>
+<div class="flex pt-16 flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-full w-64 bg-surface-container-lowest dark:bg-surface-container-lowest border-r border-outline-variant py-stack-md fixed left-0">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 mb-1">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-on-surface font-headline-md text-headline-md">FFIRE Engine</span>
+</div>
+<span class="text-on-surface-variant font-label-md text-label-md">V2.4 Active</span>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-4 px-6 py-3 bg-primary-container text-primary border-r-4 border-primary font-label-md text-label-md cursor-pointer active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span>Cases</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container-low font-label-md text-label-md cursor-pointer active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span>Reasoning Graph</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container-low font-label-md text-label-md cursor-pointer active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined">folder_shared</span>
+<span>Evidence Vault</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container-low font-label-md text-label-md cursor-pointer active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined">history</span>
+<span>Historical Patterns</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-on-surface-variant hover:bg-surface-container-low font-label-md text-label-md cursor-pointer active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>System Health</span>
+</a>
+</nav>
+<div class="px-6 mt-4">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded-lg hover:brightness-110 active:scale-95 transition-all shadow-sm">
+                    NEW INVESTIGATION
+                </button>
+</div>
+<footer class="mt-auto px-6 space-y-1">
+<a class="flex items-center gap-4 py-2 text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+<span>Documentation</span>
+</a>
+<a class="flex items-center gap-4 py-2 text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span>Support</span>
+</a>
+</footer>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-0 md:ml-64 flex-1 p-6 md:p-8 overflow-y-auto">
+<!-- Breadcrumbs & Urgent Status -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="font-label-md text-label-md">CASES</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="font-label-md text-label-md text-on-surface">INCIDENT #7294-B</span>
+</div>
+<div class="flex items-center gap-3 bg-error-container text-on-error-container px-4 py-2 rounded-full border border-error/20">
+<span class="material-symbols-outlined fill animate-pulse" style="font-variation-settings: 'FILL' 1;">emergency</span>
+<span class="font-label-md text-label-md">CRITICAL: ACTIVE RESPONDER DISPATCHED</span>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Patient Medical ID (Bento Item 1) -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<div class="bg-white border border-outline-variant rounded-xl p-6 shadow-sm relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-error"></div>
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Digital Medical ID</h2>
+<span class="material-symbols-outlined text-primary">contact_emergency</span>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-16 h-16 rounded-lg bg-surface-container-low flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-3xl text-primary">person</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface">David Miller</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">DOB: 12/04/1985 (38y)</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="p-3 bg-surface-container rounded-lg">
+<p class="text-on-surface-variant font-label-sm text-label-sm mb-1">BLOOD TYPE</p>
+<p class="text-on-surface font-headline-sm text-headline-sm font-bold">O Positive (O+)</p>
+</div>
+<div class="p-3 bg-error-container/30 border border-error/10 rounded-lg">
+<p class="text-error font-label-sm text-label-sm mb-1">ALLERGIES</p>
+<p class="text-on-surface font-body-md text-body-md font-semibold">Penicillin, Peanuts, Latex</p>
+</div>
+<div class="p-3 bg-surface-container rounded-lg">
+<p class="text-on-surface-variant font-label-sm text-label-sm mb-1">CHRONIC CONDITIONS</p>
+<p class="text-on-surface font-body-md text-body-md">Type 1 Diabetes, Exercise-induced Asthma</p>
+</div>
+</div>
+<button class="w-full mt-6 flex items-center justify-center gap-2 py-3 border border-primary text-primary font-label-md text-label-md rounded-lg hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-sm">history_edu</span>
+                            FULL MEDICAL HISTORY
+                        </button>
+</div>
+<!-- Timeline (Bento Item 2) -->
+<div class="bg-white border border-outline-variant rounded-xl p-6 shadow-sm flex-1">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-6">Incident Timeline</h2>
+<div class="relative space-y-6 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant">
+<!-- SOS Trigger -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-error border-4 border-white flex items-center justify-center z-10 shadow-sm"></div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">SOS Triggered</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">User activated wearable SOS at 14:32:01</p>
+<p class="text-[10px] text-outline font-bold mt-1">14:32:01</p>
+</div>
+</div>
+<!-- Automated Analysis -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-secondary border-4 border-white flex items-center justify-center z-10 shadow-sm"></div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">AI Triage Complete</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Vitals show elevated heart rate (142bpm)</p>
+<p class="text-[10px] text-outline font-bold mt-1">14:32:15</p>
+</div>
+</div>
+<!-- Dispatch -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-primary border-4 border-white flex items-center justify-center z-10 shadow-sm"></div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Responder Dispatched</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Unit 412 (Advanced Life Support) en route</p>
+<p class="text-[10px] text-outline font-bold mt-1">14:34:40</p>
+</div>
+</div>
+<!-- Current Status -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-surface-container-high border-4 border-primary flex items-center justify-center z-10 shadow-sm">
+<div class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></div>
+</div>
+<div>
+<p class="font-label-md text-label-md text-primary font-bold">In-Transit</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Estimated arrival in 3 min 12 sec</p>
+<p class="text-[10px] text-outline font-bold mt-1">CURRENT</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Tracking Map (Bento Item 3) -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-6">
+<div class="bg-white border border-outline-variant rounded-xl shadow-sm relative overflow-hidden h-[450px]">
+<!-- Map Placeholder -->
+<div class="absolute inset-0 z-0 bg-[#e5e7eb]" data-alt="A detailed digital navigation map of a metropolitan downtown area like San Francisco. The map has a clean, high-contrast UI style with light gray streets and soft blue water areas. A bright blue pulse icon indicates the patient's stationary location, and a distinct ambulance icon with a glowing directional path shows the live movement of an emergency responder unit. Professional and precise data-driven aesthetic." data-location="San Francisco" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCd791S7aJSW59mhdutO8x0__tTQGErQY25pqjI6b_mPFO23ysiCr-K4juG5f18YmtPkSonaN1MB9p1GaC0A4nrYjk_6yATIGFLWm_lxUACSH2jZZ9WkVx8LOCgGrhbRsDZ8Fz_fNYDuPaKea52nrMmn-YYBKO7lXOR7CEwpduG3NiqFd0dCPL6Wk4vjJi2VM6-XWM_FduHTpW6Ppb_ZeYv7526pDRo0U-UTHQmb3PlEpimMUILdEcnhNyP5BqOoB71X2UTjsV8mUg')"></div>
+<!-- Map Overlays -->
+<div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+<div class="glass-card px-4 py-2 rounded-lg border border-white/50 flex items-center gap-3 shadow-lg">
+<div class="w-3 h-3 rounded-full bg-error pulse-dot relative"></div>
+<span class="font-label-md text-label-md text-on-surface">Patient Location: Sector 7G</span>
+</div>
+<div class="glass-card px-4 py-2 rounded-lg border border-white/50 flex items-center gap-3 shadow-lg">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="font-label-md text-label-md text-on-surface">Unit 412: 0.8 miles away</span>
+</div>
+</div>
+<div class="absolute bottom-4 right-4 z-10 flex gap-2">
+<button class="glass-card w-10 h-10 rounded-lg flex items-center justify-center border border-white/50 text-on-surface shadow-md hover:bg-white transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="glass-card w-10 h-10 rounded-lg flex items-center justify-center border border-white/50 text-on-surface shadow-md hover:bg-white transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="glass-card w-10 h-10 rounded-lg flex items-center justify-center border border-white/50 text-on-surface shadow-md hover:bg-white transition-colors">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+</div>
+<!-- Secure Communication (Bento Item 4) -->
+<div class="bg-white border border-outline-variant rounded-xl shadow-sm flex flex-col h-[400px]">
+<div class="flex items-center justify-between px-6 py-4 border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">support_agent</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface">Dispatcher Comms</h3>
+<p class="text-[10px] text-secondary font-bold uppercase tracking-wider">Secure Channel 04</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">videocam</span>
+</button>
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">phone_in_talk</span>
+</button>
+<span class="w-[1px] h-4 bg-outline-variant"></span>
+<button class="text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-xl">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Chat Area -->
+<div class="flex-1 overflow-y-auto p-6 space-y-4 bg-surface-container-low/30">
+<!-- Inbound -->
+<div class="flex gap-3 max-w-[80%]">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container text-xs">local_shipping</span>
+</div>
+<div class="bg-white border border-outline-variant p-3 rounded-tr-xl rounded-br-xl rounded-bl-xl shadow-sm">
+<p class="font-label-sm text-label-sm text-secondary mb-1">Unit 412 (Sarah)</p>
+<p class="text-on-surface text-body-sm">Traffic is clear on Market St. ETA 3 minutes. Confirming patient history for asthma?</p>
+<p class="text-[10px] text-outline-variant text-right mt-1">14:38</p>
+</div>
+</div>
+<!-- Outbound -->
+<div class="flex flex-row-reverse gap-3 max-w-[80%] ml-auto">
+<div class="w-8 h-8 rounded-full bg-primary-container flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xs">person</span>
+</div>
+<div class="bg-primary text-on-primary p-3 rounded-tl-xl rounded-br-xl rounded-bl-xl shadow-sm">
+<p class="text-body-sm">Confirmed. Patient has exercise-induced asthma. They have a rescue inhaler in their backpack. Heart rate stabilizing but still high at 138.</p>
+<p class="text-[10px] opacity-70 text-right mt-1">14:39</p>
+</div>
+</div>
+<!-- System Alert -->
+<div class="flex justify-center">
+<span class="bg-surface-container-high text-on-surface-variant px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border border-outline-variant">
+                                    Patient vitals transmitted to Unit 412
+                                </span>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-4 bg-white border-t border-outline-variant flex gap-3 items-center">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-lg">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+<div class="flex-1 relative">
+<input class="w-full bg-surface-container-low border-none rounded-lg py-2 px-4 focus:ring-2 focus:ring-primary text-body-sm" placeholder="Send secure message to field team..." type="text"/>
+</div>
+<button class="w-10 h-10 bg-primary text-on-primary rounded-lg flex items-center justify-center shadow-md hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatContainer = document.querySelector('.flex-1.overflow-y-auto');
+            if (chatContainer) {
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+
+            // Simple pulse animation for critical status
+            const statusBadge = document.querySelector('.bg-error-container');
+            setInterval(() => {
+                statusBadge.classList.toggle('brightness-105');
+            }, 1000);
+        });
+    </script>
+</body></html>

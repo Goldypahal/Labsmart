@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Medication Profile - DiagConnect</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#d3e4fe",
+                    "secondary": "#006c49",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "secondary-fixed-dim": "#4edea3",
+                    "on-background": "#0b1c30",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#c9e6ff",
+                    "on-surface": "#0b1c30",
+                    "surface-container": "#e5eeff",
+                    "on-primary-container": "#003751",
+                    "surface-container-high": "#dce9ff",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#d3e4fe",
+                    "primary-fixed-dim": "#89ceff",
+                    "inverse-primary": "#89ceff",
+                    "outline-variant": "#bec8d2",
+                    "on-tertiary-fixed": "#2a1700",
+                    "surface": "#f8f9ff",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#001e2f",
+                    "surface-bright": "#f8f9ff",
+                    "tertiary": "#855300",
+                    "on-tertiary-container": "#4a2c00",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#6cf8bb",
+                    "secondary-fixed": "#6ffbbe",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#00714d",
+                    "surface-container-low": "#eff4ff",
+                    "inverse-surface": "#213145",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "outline": "#6e7881",
+                    "on-surface-variant": "#3e4850",
+                    "background": "#f8f9ff",
+                    "on-secondary-fixed": "#002113",
+                    "surface-tint": "#006591",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "primary": "#006591",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "tertiary-container": "#d88a00",
+                    "tertiary-fixed": "#ffddb8",
+                    "primary-container": "#0ea5e9",
+                    "surface-dim": "#cbdbf5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "md": "16px",
+                    "margin-mobile": "16px",
+                    "base": "4px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "gutter": "24px",
+                    "xs": "4px",
+                    "max-width": "1440px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            background-color: #f8f9ff;
+            font-family: 'Inter', sans-serif;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+        .clinical-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .clinical-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+        .status-chip {
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-surface border-b border-outline-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full h-16 sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<button class="cursor-pointer active:opacity-80 p-2 hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">DiagConnect</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer active:opacity-80 p-2 hover:bg-surface-container-low rounded-full">notifications</span>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A professional medical profile avatar of a young woman with a friendly expression, set against a clean clinical laboratory background. The lighting is bright and even, reinforcing a trustworthy and modern healthcare aesthetic. High-quality portrait photography with a shallow depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbUIsBqdWGT7GNwkHVkPyD7WsoxAfVQAN9fLuZJd092owBXL_RQPSK8KkYFY2jq2aY7TlAYdlQM4iHRtIJ0Et58XTWQ7OP3neZUCdGS5mkh4yUMEj0cpAMXXN4CLeVF7qiOm--ppXmK_UYJbnL7SEH8CDwdNMpun_Xb_S-9GUt0Rg_sv7xeG2UIsU7adqSGM_QOG6638BW1bcF8rdOikzs9VkQn2BDPmTC61W2Zf26s1PRMut-ZSUphPxdIHu0mtvrcZgMbJ0j7rI"/>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-lg pb-32">
+<!-- Hero Section: Medication Identity -->
+<section class="mb-lg">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<nav class="flex items-center gap-2 text-on-surface-variant mb-2">
+<span class="font-label-sm text-label-sm">Prescriptions</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-label-sm text-label-sm text-primary">Antibiotics</span>
+</nav>
+<h2 class="font-headline-xl text-headline-xl text-on-background">Amoxicillin <span class="font-normal text-on-surface-variant">500mg</span></h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Commonly used for bacterial infections like pneumonia and strep throat.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-6 py-3 bg-primary text-on-primary rounded-xl font-label-md text-label-md hover:bg-primary/90 transition-all active:scale-95">
+<span class="material-symbols-outlined">autorenew</span>
+                        Request Refill
+                    </button>
+</div>
+</div>
+</section>
+<!-- Bento Layout for Content -->
+<div class="bento-grid">
+<!-- Dosage & Schedule Card -->
+<div class="col-span-12 md:col-span-8 clinical-card flex flex-col gap-6">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="p-3 bg-primary-container/30 rounded-lg text-primary">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm">Dosage &amp; Schedule</h3>
+</div>
+<span class="status-chip bg-secondary/10 text-secondary">ACTIVE REGIMEN</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+<div class="p-4 bg-surface-container-lowest border border-outline-variant rounded-xl">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Frequency</p>
+<p class="font-headline-md text-headline-md text-on-background">3x Daily</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Every 8 hours</p>
+</div>
+<div class="p-4 bg-surface-container-lowest border border-outline-variant rounded-xl">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Single Dose</p>
+<p class="font-headline-md text-headline-md text-on-background">1 Capsule</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Take with water</p>
+</div>
+<div class="p-4 bg-surface-container-lowest border border-outline-variant rounded-xl">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Duration</p>
+<p class="font-headline-md text-headline-md text-on-background">10 Days</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Complete full course</p>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-md text-label-md text-on-surface-variant">Instruction Highlights</h4>
+<ul class="space-y-3">
+<li class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary mt-0.5">check_circle</span>
+<span class="font-body-md text-body-md">Take with food or a large glass of water to reduce stomach upset.</span>
+</li>
+<li class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary mt-0.5">check_circle</span>
+<span class="font-body-md text-body-md">Avoid alcohol for the duration of the course as it may increase side effects.</span>
+</li>
+<li class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-error mt-0.5">warning</span>
+<span class="font-body-md text-body-md text-error">If you develop a rash or difficulty breathing, contact your doctor immediately.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Supply & Refill Card -->
+<div class="col-span-12 md:col-span-4 clinical-card flex flex-col gap-6">
+<div class="flex items-center gap-3">
+<div class="p-3 bg-tertiary-container/30 rounded-lg text-tertiary">
+<span class="material-symbols-outlined">inventory_2</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm">Supply Tracker</h3>
+</div>
+<div class="relative h-4 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="absolute left-0 top-0 h-full bg-primary rounded-full transition-all duration-1000" style="width: 40%;"></div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="font-headline-md text-headline-md">12 / 30</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Capsules remaining</p>
+</div>
+<div class="text-right">
+<p class="font-headline-sm text-headline-sm text-tertiary">2</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Refills left</p>
+</div>
+</div>
+<hr class="border-outline-variant"/>
+<div class="space-y-4">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Prescribing Doctor</p>
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A portrait of a male doctor in a white lab coat, radiating clinical precision and professionalism. The setting is a clean, modern medical office with high-key lighting. The doctor has a calm, confident expression, symbolizing trust and expertise in the DiagConnect platform aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnDJ7r1SkrAfM07Z_iZ2KcOYnGXtX9vDFvA2cBR84CRyi80rw3-vxxbbpVOI52Nhv-xr3DWN-KYUfY5uE7I-FN6QtjDc3dO5AoksFOps4myKhpZ6UwZGlzzIZHp6WQnBO7-bIeQHSKsAGpNPE8-qTMeXKVgN6EzlhLLhAPBEqs_zeCZiHGSfLVhbtudww_MH-yH18pM36ywLi36dGDodup591RpIO6jtSOWdfLC777Tg1xEeR0Noepyh67fhwbWUT8Xh6TMq8MPDk"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-background">Dr. Sarah Jenkins</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Internal Medicine</p>
+</div>
+</div>
+<button class="w-full py-2 text-primary font-label-md text-label-md border border-primary rounded-lg hover:bg-primary/5 transition-colors">
+                        Message Doctor
+                    </button>
+</div>
+</div>
+<!-- Recent Activity / Dose Log -->
+<div class="col-span-12 clinical-card">
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center gap-3">
+<div class="p-3 bg-secondary-container/30 rounded-lg text-secondary">
+<span class="material-symbols-outlined">history</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm">Dose History</h3>
+</div>
+<button class="text-primary font-label-md text-label-md hover:underline">View All Log</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead>
+<tr class="text-left border-b border-outline-variant">
+<th class="pb-3 font-label-md text-label-md text-on-surface-variant">Date</th>
+<th class="pb-3 font-label-md text-label-md text-on-surface-variant">Time</th>
+<th class="pb-3 font-label-md text-label-md text-on-surface-variant">Status</th>
+<th class="pb-3 font-label-md text-label-md text-on-surface-variant">Dose Taken</th>
+<th class="pb-3 font-label-md text-label-md text-on-surface-variant text-right">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-surface-container-low hover:bg-surface transition-colors">
+<td class="py-4 font-body-md text-body-md">Today, Oct 24</td>
+<td class="py-4 font-body-md text-body-md">08:15 AM</td>
+<td class="py-4">
+<span class="status-chip bg-secondary/10 text-secondary">COMPLETED</span>
+</td>
+<td class="py-4 font-body-md text-body-md">500mg</td>
+<td class="py-4 text-right">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">edit</span>
+</td>
+</tr>
+<tr class="border-b border-surface-container-low hover:bg-surface transition-colors">
+<td class="py-4 font-body-md text-body-md">Yesterday, Oct 23</td>
+<td class="py-4 font-body-md text-body-md">08:30 PM</td>
+<td class="py-4">
+<span class="status-chip bg-secondary/10 text-secondary">COMPLETED</span>
+</td>
+<td class="py-4 font-body-md text-body-md">500mg</td>
+<td class="py-4 text-right">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">edit</span>
+</td>
+</tr>
+<tr class="border-b border-surface-container-low hover:bg-surface transition-colors">
+<td class="py-4 font-body-md text-body-md">Yesterday, Oct 23</td>
+<td class="py-4 font-body-md text-body-md">12:45 PM</td>
+<td class="py-4">
+<span class="status-chip bg-error/10 text-error">MISSED</span>
+</td>
+<td class="py-4 font-body-md text-body-md">0mg</td>
+<td class="py-4 text-right">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">edit</span>
+</td>
+</tr>
+<tr class="border-b border-surface-container-low hover:bg-surface transition-colors">
+<td class="py-4 font-body-md text-body-md">Yesterday, Oct 23</td>
+<td class="py-4 font-body-md text-body-md">08:00 AM</td>
+<td class="py-4">
+<span class="status-chip bg-secondary/10 text-secondary">COMPLETED</span>
+</td>
+<td class="py-4 font-body-md text-body-md">500mg</td>
+<td class="py-4 text-right">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">edit</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Side Effects Info (Asymmetric Content) -->
+<div class="col-span-12 md:col-span-6 clinical-card flex flex-col gap-4">
+<h3 class="font-headline-sm text-headline-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">info</span>
+                    Potential Side Effects
+                </h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container rounded-lg text-on-surface font-body-sm text-body-sm">Nausea</span>
+<span class="px-3 py-1 bg-surface-container rounded-lg text-on-surface font-body-sm text-body-sm">Vomiting</span>
+<span class="px-3 py-1 bg-surface-container rounded-lg text-on-surface font-body-sm text-body-sm">Diarrhea</span>
+<span class="px-3 py-1 bg-surface-container rounded-lg text-on-surface font-body-sm text-body-sm">Mild Skin Rash</span>
+<span class="px-3 py-1 bg-surface-container rounded-lg text-on-surface font-body-sm text-body-sm">Dizziness</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                    While most side effects are mild and temporary, please log any unusual symptoms. DiagConnect will automatically alert your clinical team if severe patterns are detected.
+                </p>
+</div>
+<!-- Pharmacy Information -->
+<div class="col-span-12 md:col-span-6 clinical-card flex flex-col gap-4">
+<h3 class="font-headline-sm text-headline-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">local_pharmacy</span>
+                    Your Pharmacy
+                </h3>
+<div class="flex items-start gap-4">
+<div class="flex-1">
+<p class="font-label-md text-label-md">City Central Health Pharmacy</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">124 Medical Way, San Francisco, CA</p>
+<p class="font-body-sm text-body-sm text-primary mt-1">(415) 555-0198</p>
+</div>
+<div class="w-24 h-24 rounded-lg bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A stylized minimalist map showing the location of a pharmacy in San Francisco. The map uses a clean, light-mode palette with primary blue accents to highlight the destination. The design is modern, professional, and clear, fitting the DiagConnect clinical aesthetic." data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRDROEDXKx0QpCfw1szvscUAXBDf-ai7RnVNF6u9olboYkbceQXCw_0GXjMuz3RQee1kRwlA1WsK3U2KaKEPnfLKxuGXNxEvrUjUb6fzGK5pUDngYUMI2eLN2KvonDztUv3IIDrIjl2ivdLzSLyWYue1LI0ZJJ02R0cT3LZI32rTl-wz9MxMvUeFFmavIIdWxk2hjw9dvwdzw9Z3MuRLeWcmb9nzp8uEyTcx1cX9yvZNPspm0bTxHlxFgfrtpEPO1aTsDHASUccsE"/>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface-container-lowest border-t border-outline-variant shadow-sm md:hidden">
+<div class="flex flex-col items-center justify-center text-on-surface-variant py-1 hover:bg-surface-container-high transition-all active:scale-95 duration-150 cursor-pointer">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 hover:bg-surface-container-high transition-all active:scale-95 duration-150 cursor-pointer">
+<span class="material-symbols-outlined">medication</span>
+<span class="font-label-sm text-label-sm">Prescriptions</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant py-1 hover:bg-surface-container-high transition-all active:scale-95 duration-150 cursor-pointer">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant py-1 hover:bg-surface-container-high transition-all active:scale-95 duration-150 cursor-pointer">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-sm text-label-sm">Add</span>
+</div>
+</nav>
+<!-- Desktop Sidebar/Nav (Bonus) -->
+<aside class="fixed left-0 top-16 bottom-0 w-20 hidden md:flex flex-col items-center py-8 gap-8 bg-surface border-r border-outline-variant">
+<div class="p-3 text-on-surface-variant hover:bg-surface-container-low rounded-xl transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[28px]">dashboard</span>
+</div>
+<div class="p-3 bg-primary-container text-on-primary-container rounded-xl transition-colors cursor-pointer shadow-md">
+<span class="material-symbols-outlined text-[28px]">medication</span>
+</div>
+<div class="p-3 text-on-surface-variant hover:bg-surface-container-low rounded-xl transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[28px]">history</span>
+</div>
+<div class="p-3 text-on-surface-variant hover:bg-surface-container-low rounded-xl transition-colors cursor-pointer mt-auto">
+<span class="material-symbols-outlined text-[28px]">settings</span>
+</div>
+</aside>
+<script>
+        // Simple Micro-interaction for the "Taken" buttons
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('click', () => {
+                console.log('Row details clicked');
+            });
+        });
+
+        // Refill button feedback
+        const refillBtn = document.querySelector('button:contains("Request Refill")');
+        if (refillBtn) {
+            refillBtn.addEventListener('click', () => {
+                refillBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">autorenew</span> Requesting...';
+                setTimeout(() => {
+                    refillBtn.innerHTML = '<span class="material-symbols-outlined">check</span> Requested';
+                    refillBtn.classList.replace('bg-primary', 'bg-secondary');
+                }, 1500);
+            });
+        }
+    </script>
+</body></html>

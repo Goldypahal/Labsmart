@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Proactive Health Actions | Family Health</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#00714d",
+                        "secondary": "#006c49",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "secondary-container": "#6cf8bb",
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "primary-fixed-dim": "#89ceff",
+                        "inverse-surface": "#213145",
+                        "tertiary-container": "#d88a00",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed": "#6ffbbe",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#89ceff",
+                        "outline": "#6e7881",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "primary": "#006591",
+                        "on-secondary-fixed-variant": "#005236",
+                        "tertiary": "#855300",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-primary-container": "#003751",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffddb8",
+                        "surface-bright": "#f8f9ff",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-low": "#eff4ff",
+                        "on-background": "#0b1c30",
+                        "on-surface-variant": "#3e4850",
+                        "background": "#f8f9ff",
+                        "surface-tint": "#006591",
+                        "primary-fixed": "#c9e6ff",
+                        "primary-container": "#0ea5e9",
+                        "outline-variant": "#bec8d2",
+                        "on-primary-fixed": "#001e2f",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "on-secondary-fixed": "#002113",
+                        "surface": "#f8f9ff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#0b1c30",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-tertiary-container": "#4a2c00",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#cbdbf5",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "max-width": "1440px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md antialiased mb-24 md:mb-0 md:pl-80">
+<!-- Navigation Drawer (Desktop Anchor) -->
+<aside class="hidden md:flex h-full w-80 fixed left-0 top-0 z-[60] border-r border-outline-variant bg-surface flex-col py-6 space-y-2">
+<div class="px-6 mb-8 flex flex-col items-start">
+<div class="w-12 h-12 rounded-full overflow-hidden mb-4 bg-primary-container/20 border-2 border-primary">
+<img class="w-full h-full object-cover" data-alt="A professional, close-up studio portrait of a friendly medical administrator named Alex Johnson. He has a warm smile and is wearing professional clinical attire. The background is a soft, out-of-focus modern medical clinic with clinical blue and white tones, reflecting a trustworthy and professional healthcare atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-XUIX0wOnjp0VmoEXRX-2rGYBW9chIwPvN98GA1rrOYZ4Cxsi4tvAPrR_tUzHWaV9WrkBMG5I_QfoNy5aOoaQrCf56tueHJAm0NcaSas0dBZnjmpYjDlI4bM4iB_YS2gSd_rNc_msXyOIMlTrQ5rjDTiIhALKM_MLc2crtJMhuKEfUcO6pfKqjwCi1Kf_bI3ghOVIp-ANFedk7a6v21nBTo8DU1JlKpzYxascnTPMw4NVg2Nnh0VLHOzHlRuyNrhvSWeHfsGZsv0"/>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Alex Johnson</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Family Admin</p>
+<span class="mt-1 px-2 py-0.5 bg-surface-container-high rounded text-[10px] font-bold text-primary-container">4 Members</span>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 flex items-center gap-3 transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-body-md text-body-md">Home</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 flex items-center gap-3 transition-colors" href="#">
+<span class="material-symbols-outlined">diversity_1</span>
+<span class="font-body-md text-body-md">Family Dashboard</span>
+</a>
+<!-- Active Tab: Proactive Actions maps to Health Records or Timeline intent -->
+<a class="bg-primary-container text-on-primary-container font-semibold rounded-full mx-2 px-4 py-3 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-body-md text-body-md">Health Records</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 flex items-center gap-3 transition-colors" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-body-md text-body-md">Shared Timeline</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 flex items-center gap-3 transition-colors" href="#">
+<span class="material-symbols-outlined">person_add</span>
+<span class="font-body-md text-body-md">Invitations</span>
+</a>
+</nav>
+</aside>
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant h-16 flex items-center justify-between px-margin-mobile md:px-margin-desktop md:left-80 md:w-[calc(100%-320px)]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl">family_restroom</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Family Health</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-xs">
+                AJ
+            </div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="mt-16 p-margin-mobile md:p-margin-desktop max-w-max-width mx-auto">
+<!-- Header Section -->
+<section class="mb-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Proactive Health Actions</h2>
+<p class="text-on-surface-variant font-body-md mt-1">Based on the latest diagnostics and growth data for your family.</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-surface-container-high text-primary px-4 py-2 rounded-lg font-label-md hover:bg-primary-container/20 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span> Filter
+                    </button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md shadow-sm hover:opacity-90 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">refresh</span> Update Recommendations
+                    </button>
+</div>
+</div>
+</section>
+<!-- Insights / Summary Chips -->
+<section class="flex flex-wrap gap-4 mb-10">
+<div class="glass-card px-4 py-3 rounded-xl flex items-center gap-3">
+<div class="w-10 h-10 bg-error/10 text-error rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">priority_high</span>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Critical Actions</p>
+<p class="font-headline-sm text-on-surface">02</p>
+</div>
+</div>
+<div class="glass-card px-4 py-3 rounded-xl flex items-center gap-3">
+<div class="w-10 h-10 bg-secondary-container/30 text-secondary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Completed</p>
+<p class="font-headline-sm text-on-surface">14</p>
+</div>
+</div>
+<div class="glass-card px-4 py-3 rounded-xl flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container/20 text-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Health Score</p>
+<p class="font-headline-sm text-on-surface">92%</p>
+</div>
+</div>
+</section>
+<!-- Recommendations Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- High Priority: Mike's Vision -->
+<div class="bg-white border-l-4 border-error rounded-xl shadow-sm border border-outline-variant p-6 flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional digital portrait of a young man named Mike, with a friendly expression. He is wearing glasses, emphasizing the context of a vision check recommendation. The artistic style is clean and clinical, with a soft-focus medical office background in tones of light blue and white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxkfIb8vLMQRPyftZiJ90mtYJQstudQK0paNaH385E2okeYv32PfihEpsE8wH8DLGlOr3_u5Vr6dSBFk06RtNWywPG0IRxwSeiXkgJ1Qp3vE22lwT3KyV8wqleXEr1St0fQo6hRCacd-xc5SBAlLkR2WLJU51Ei8OdNiJ8ewn5JnDxIMKuchpio4aS2N3DdOVUZHgpDnPbYHtnKlaOHoUdv8cdgcT8u_P-umYMm6pwJXwNrcPY4VLMYNytrACeWLpE99zKyI2hrAg"/>
+</div>
+<p class="font-label-md text-on-surface">Mike</p>
+</div>
+<span class="bg-error/10 text-error px-2 py-1 rounded text-[10px] font-bold uppercase tracking-tight">High Priority</span>
+</div>
+<h3 class="font-headline-sm text-on-surface mb-2">Schedule Vision Check</h3>
+<p class="text-on-surface-variant font-body-sm leading-relaxed mb-4">
+                        Based on the last physical exam, Mike's screen time has increased by 40%. A proactive vision screen is recommended to check for myopia progression.
+                    </p>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary py-2 rounded-lg font-label-md hover:brightness-110 transition-all">Book Now</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant text-on-surface-variant rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">calendar_add_on</span>
+</button>
+</div>
+</div>
+<!-- Normal Priority: Leo's Vitamin D -->
+<div class="bg-white rounded-xl shadow-sm border border-outline-variant p-6 flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A charming digital illustration of a young toddler named Leo, looking healthy and energetic. The style is bright and airy with warm sunshine motifs, reflecting the Vitamin D recommendation. The color palette consists of soft yellows, whites, and clinical blues, designed for a modern healthcare application interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBozlC2pcXWZH69_ymxeybFVzt_qOHZC1-RhVfKT46SQJrpOtps7B_hV3xCbGTdrZxiHHrF3kKPTJ2R759t4NKyM9RHOR9WYk5TaM9NAyQgE-No9FLcirtKSpMJurv2CtxPL8AdolTJZR8EkVFtVUjo3gbD4rQoR2BQYqFmtbtJwU-SYXQiTFpswyfsvmY5i4aqB2ITBagrXnlst9IWZsmHi4ylLuffh-kguYlGfKFoHhMC44BjqAGwi9FvDx2k4yzRsJD4nbLtehQ"/>
+</div>
+<p class="font-label-md text-on-surface">Leo</p>
+</div>
+<span class="bg-secondary-container/30 text-on-secondary-container px-2 py-1 rounded text-[10px] font-bold uppercase tracking-tight">Routine</span>
+</div>
+<h3 class="font-headline-sm text-on-surface mb-2">Increase Vitamin D</h3>
+<p class="text-on-surface-variant font-body-sm leading-relaxed mb-4">
+                        Latest growth data suggests a slight dip in mineral density markers. Supplementing with 400IU daily is advised during winter months.
+                    </p>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-highest text-primary py-2 rounded-lg font-label-md hover:bg-primary/10 transition-all">Mark as Started</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant text-on-surface-variant rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Urgent Action: Sarah's Allergy Panel -->
+<div class="bg-white border-l-4 border-error rounded-xl shadow-sm border border-outline-variant p-6 flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A clean, professional headshot of Sarah, an adult woman with a serene expression. The setting is a brightly lit, high-end medical facility with minimalist white and clinical teal accents. The photography style is high-definition and modern-corporate, instilling a sense of clinical precision and care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc604LZJ6ZEo-iL3T1xHsH8BNviO2DbPlKf2xi2OJ6vpAp05_AGMsFAAsxEGepJJIrZ_oNumdV-x7EnVi5MZDwjShLNbQ6bZEeTpWfGLxocYubLVS_RlQA2KEt8nUoU_pXCqIiUFmOICPhG4zcmjgxij4OqX8kQH1yiQGwUFevthTab1n3zJlCso6yHqjrFkMV1khaHbLQ9EB1ZuGFr4gA9u6euEZltHb1J5CG0Q53Ds3ecaIc6vv59YcH3rfy77zO-m_MyCd8H6g"/>
+</div>
+<p class="font-label-md text-on-surface">Sarah</p>
+</div>
+<span class="bg-error/10 text-error px-2 py-1 rounded text-[10px] font-bold uppercase tracking-tight">Immediate Action</span>
+</div>
+<h3 class="font-headline-sm text-on-surface mb-2">Renew Allergy Panel</h3>
+<p class="text-on-surface-variant font-body-sm leading-relaxed mb-4">
+                        Sarah's current epinephrine prescription expires in 12 days. A brief consult is required to renew the prescription and update the allergy panel.
+                    </p>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary py-2 rounded-lg font-label-md hover:brightness-110 transition-all">Consult GP</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant text-on-surface-variant rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">alarm</span>
+</button>
+</div>
+</div>
+<!-- Routine Action: Dental Cleaning -->
+<div class="bg-white rounded-xl shadow-sm border border-outline-variant p-6 flex flex-col justify-between hover:shadow-md transition-shadow lg:col-span-2">
+<div class="flex flex-col md:flex-row gap-6">
+<div class="flex-1">
+<div class="flex justify-between items-start mb-4">
+<div class="flex -space-x-2">
+<div class="w-10 h-10 rounded-full border-2 border-white bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of Mike for a dental health context. Clean, bright lighting, clinical white background with a soft blue tint." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUpW4i2QTw0hyaFfdYwJlNHJ6Lb_Av_-pAr8XS0tWcfXQfV7J3HFoPlcLP-aFYulCPv9_LORY_6W9kgzOvequoIMZOo-9e3Xj18h44Xq__CiEm307GRd5JTVJD7pN3AZkXCDKR1SoAnFbycIZwy6aveNwg_stXd1jsfEvBM-egQvtYcNJYBd8AA5hFbg1Sw8fu6ThIWSmfpW_ZUkvKTDg3ZC9QFWUyifQXMazzx6_4njgYDsbp7TPk6cT5A9wmZZPGr4GymmZvcMw"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-white bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of Alex for a dental health context. Professional, high-key lighting, modern healthcare aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxtLt8akJR75TWxCKylX3RP1Z1beUqcmcQdAB5Jgc2DaqFAl6xj-3aWwS64P1ysVG-PxN9S-WoPyBQCCURDVyuZFPMv4pqINnKwL3kqzN_AzJOZhicB1NCE9w1aRVK2HpQj9XDXsNnojdn08TnDNK4plw8kWCrOcvph3p5qudyWEgy5HreYm6p-8fSO7vtWhOxtDep7C7VnoUN7YTt_215Yc5U2OKYpEThwSUTdWbLXso_c5uyCZmTKr5OIJ_XAC_fPEn2N2tC6z0"/>
+</div>
+</div>
+<span class="bg-outline-variant/30 text-on-surface-variant px-2 py-1 rounded text-[10px] font-bold uppercase tracking-tight">Family Task</span>
+</div>
+<h3 class="font-headline-sm text-on-surface mb-2">Annual Dental Cleanings</h3>
+<p class="text-on-surface-variant font-body-sm leading-relaxed mb-6">
+                            It has been 11 months since the last comprehensive family dental checkup. Booking a group appointment can save 15% on clinic service fees this month.
+                        </p>
+<div class="flex gap-2">
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md hover:brightness-110 transition-all">Book Family Slot</button>
+<button class="px-4 py-2 border border-outline-variant text-on-surface-variant rounded-lg font-label-md hover:bg-surface-container-low transition-colors">Dismiss</button>
+</div>
+</div>
+<div class="hidden md:block w-48 h-40 rounded-xl overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist photograph of a high-tech modern dental office. The image features sleek equipment in white and brushed steel against a backdrop of soft clinical blue walls. Natural light floods the space, creating an inviting and sterile environment that communicates professional healthcare excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3_Ep5cOh5Rvn4C_aSyi7ky482lgBGAZ4PpPe3lFzOTCkCtAe6Wzu7lRUogsmpNtuGPOkGkxAf1pqIvubG8EkridJkSzwAf30aqNwVSc2e9moUOlpInFRWIAcVxa84xwsXizC3JXeesdmCL096zShibJu3iHKRQ8EBawePg8F0w_HfABr8KFOsPwR2bA3sVGV6OT7o-PBOR5Z8SY6NY42hJbOUjAugcCYqTyytP1QSnUw0t-1utgRvvpHJACaK9VRWOE9FN4wBeYk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+</div>
+</div>
+</div>
+<!-- Educational Insert -->
+<div class="bg-primary-container/10 border-2 border-dashed border-primary-container rounded-xl p-6 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-3">lightbulb</span>
+<h4 class="font-headline-sm text-on-primary-container mb-2">Smart Insights</h4>
+<p class="text-on-surface-variant font-body-sm mb-4">
+                    Connecting your fitness wearables can provide 23% more accurate activity-based health recommendations.
+                </p>
+<button class="text-primary font-label-md flex items-center gap-2 hover:underline">
+                    Connect Devices <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Progress Timeline Mini Section -->
+<section class="mt-16 mb-10">
+<h3 class="font-headline-sm text-on-surface mb-6">Recent Improvements</h3>
+<div class="bg-surface-container-low rounded-2xl p-6 border border-outline-variant/50">
+<div class="flex flex-col md:flex-row items-center gap-8">
+<div class="relative w-32 h-32">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-outline-variant/20" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-secondary transition-all duration-1000" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-dasharray="364.4" stroke-dashoffset="109.3" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline-md text-on-surface">70%</span>
+<span class="text-[10px] font-bold text-secondary uppercase">Target</span>
+</div>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-sm text-on-surface">Family Activity Level</h4>
+<p class="text-on-surface-variant font-body-md mt-1">
+                            Your family's collective steps have increased by <span class="text-secondary font-bold">12%</span> this week since Leo started his new sports program.
+                        </p>
+<div class="mt-4 flex gap-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-on-surface-variant">Active Days: 5/7</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-label-sm text-on-surface-variant">Sleep Quality: High</span>
+</div>
+</div>
+</div>
+<button class="bg-white border border-outline-variant px-6 py-3 rounded-xl font-label-md hover:bg-surface-container-high transition-colors">
+                        View Detailed Report
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Mobile Anchor) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 border-t border-outline-variant bg-surface h-20 px-4 flex justify-around items-center">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-sm text-label-sm mt-1">Timeline</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary bg-secondary-container/20 rounded-xl px-3 py-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-label-sm text-label-sm mt-1">Records</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm mt-1">Settings</span>
+</a>
+</nav>
+<!-- Floating Action Button (Task Focused) -->
+<button class="fixed bottom-24 right-6 md:bottom-10 md:right-10 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-2xl">add_task</span>
+</button>
+<script>
+        // Micro-interaction for hover effects on cards
+        document.querySelectorAll('.bg-white.rounded-xl').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+                card.style.transition = 'transform 0.2s ease-out';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

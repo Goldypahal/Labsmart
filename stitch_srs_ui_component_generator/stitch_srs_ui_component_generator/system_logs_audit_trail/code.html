@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>System Logs | DiagConnect Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#e5eeff",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "tertiary-container": "#d88a00",
+                    "on-primary-container": "#003751",
+                    "inverse-primary": "#89ceff",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#d3e4fe",
+                    "surface-bright": "#f8f9ff",
+                    "secondary-fixed-dim": "#4edea3",
+                    "outline-variant": "#bec8d2",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-background": "#0b1c30",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#0ea5e9",
+                    "inverse-surface": "#213145",
+                    "surface-container-low": "#eff4ff",
+                    "on-tertiary-container": "#4a2c00",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-secondary-container": "#00714d",
+                    "on-surface": "#0b1c30",
+                    "on-surface-variant": "#3e4850",
+                    "background": "#f8f9ff",
+                    "primary": "#006591",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#855300",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-container-highest": "#d3e4fe",
+                    "secondary": "#006c49",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#89ceff",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#c9e6ff",
+                    "outline": "#6e7881",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-dim": "#cbdbf5",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#2a1700",
+                    "surface-tint": "#006591",
+                    "secondary-container": "#6cf8bb",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "surface-container-high": "#dce9ff",
+                    "surface": "#f8f9ff",
+                    "on-secondary-fixed": "#002113",
+                    "on-primary-fixed": "#001e2f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "margin-desktop": "40px",
+                    "xl": "32px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "xs": "4px",
+                    "max-width": "1440px",
+                    "base": "4px",
+                    "sm": "8px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"],
+                    "headline-xl": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f8f9ff;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-container-low border-b border-outline-variant dark:border-outline flex justify-between items-center px-margin-mobile h-16">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional medical administrative supervisor portrait. A woman in her 40s wearing a crisp white clinical coat and a stethoscope around her neck, smiling confidently. The background is a blurred high-tech medical laboratory with cool blue tones and glass partitions, emphasizing a sterile and precise clinical environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX5ae1ksEoUzSzJRpCqcXKGTh1vVnwxfUKU5T0fIFoZzRk_BnLYpbvvNXtb8yqmhZim4j_JLaLG_IjN7SdWF9LXDj4usZebh2YaAlVdUIbS7jEEsaIx31LAt_joo8skzlRg33hcKQEVZC-9Y7YItz4B9pem9eKTZO-j17iCClCv5cPlDg2IWBDl9mRMilD1mtWKBjPSuhGV6N644WGXfQx4hsVeGqpg3OwcQxG0EhZVHS1nk7K1DNxP4uIoBoFE87L1WmQ_AaumZA"/>
+</div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary">DiagConnect Admin</h1>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-primary">emergency_home</span>
+</button>
+</header>
+<main class="pt-20 pb-24 px-margin-mobile">
+<!-- Header Actions -->
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">System Logs</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Regional Audit Trail</p>
+</div>
+<button class="flex items-center gap-xs bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md transition-all hover:opacity-90 active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">ios_share</span>
+<span>Export Logs</span>
+</button>
+</div>
+<!-- Search & Quick Filters -->
+<div class="space-y-md mb-lg">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl font-body-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Search events, users, or IDs..." type="text"/>
+</div>
+<div class="flex gap-sm overflow-x-auto custom-scrollbar pb-2 no-scrollbar">
+<button class="flex-shrink-0 flex items-center gap-xs px-4 py-1.5 rounded-full border border-primary bg-primary-fixed text-on-primary-fixed-variant font-label-sm">
+<span>Severity: All</span>
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+<button class="flex-shrink-0 flex items-center gap-xs px-4 py-1.5 rounded-full border border-outline-variant bg-surface-container-lowest text-on-surface-variant font-label-sm">
+<span>Category</span>
+<span class="material-symbols-outlined text-[16px]">filter_list</span>
+</button>
+<button class="flex-shrink-0 flex items-center gap-xs px-4 py-1.5 rounded-full border border-outline-variant bg-surface-container-lowest text-on-surface-variant font-label-sm">
+<span>Date Range</span>
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+</button>
+</div>
+</div>
+<!-- Log List -->
+<div class="space-y-md">
+<!-- Critical Entry -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden relative group hover:border-error transition-all duration-200">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-error"></div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-sm">
+<div class="flex items-center gap-sm">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-error-container text-on-error-container uppercase tracking-wider">Critical</span>
+<span class="font-label-sm text-label-sm text-outline">14:22:10 · Security</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface mb-xs">Unauthorized Credential Access</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Multiple failed attempts detected for Vault ID: DC-99021. Source IP flagged.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-[12px] font-bold text-primary">SY</div>
+<span class="font-label-sm text-label-sm text-on-surface">System Watchdog</span>
+</div>
+<button class="text-primary font-label-sm">Review Details</button>
+</div>
+</div>
+</div>
+<!-- Warning Entry -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden relative group hover:border-tertiary transition-all duration-200">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-tertiary"></div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-sm">
+<div class="flex items-center gap-sm">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-tertiary-fixed text-on-tertiary-fixed-variant uppercase tracking-wider">Warning</span>
+<span class="font-label-sm text-label-sm text-outline">13:45:02 · Resource</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface mb-xs">Resource Override Approved</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Supervisor JD approved manual override for MRI Unit B scheduled maintenance bypass.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-[12px] font-bold text-primary">JD</div>
+<span class="font-label-sm text-label-sm text-on-surface">Supervisor JD</span>
+</div>
+<button class="text-primary font-label-sm">View Log</button>
+</div>
+</div>
+</div>
+<!-- Info Entry -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden relative group hover:border-primary transition-all duration-200">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-primary"></div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-sm">
+<div class="flex items-center gap-sm">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-surface-container text-on-primary-container uppercase tracking-wider">Info</span>
+<span class="font-label-sm text-label-sm text-outline">12:10:55 · Credential</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface mb-xs">Credential Extension Denied</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Temporary badge access extension for Dr. Aris denied due to expired certification.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-[12px] font-bold text-primary">AU</div>
+<span class="font-label-sm text-label-sm text-on-surface">AutoCompliance</span>
+</div>
+<button class="text-primary font-label-sm">View Log</button>
+</div>
+</div>
+</div>
+<!-- Info Entry 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden relative group hover:border-primary transition-all duration-200">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-primary"></div>
+<div class="p-md">
+<div class="flex justify-between items-start mb-sm">
+<div class="flex items-center gap-sm">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-surface-container text-on-primary-container uppercase tracking-wider">Info</span>
+<span class="font-label-sm text-label-sm text-outline">11:30:12 · Security</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</div>
+<h3 class="font-label-md text-label-md text-on-surface mb-xs">System Health Check Passed</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Routine automated security scan completed successfully across all nodes.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-[12px] font-bold text-primary">RO</div>
+<span class="font-label-sm text-label-sm text-on-surface">Root Admin</span>
+</div>
+<button class="text-primary font-label-sm">View Log</button>
+</div>
+</div>
+</div>
+<!-- Pagination/Load More -->
+<button class="w-full py-md flex items-center justify-center gap-sm text-on-surface-variant font-label-md hover:bg-surface-container-low rounded-xl transition-colors">
+<span class="material-symbols-outlined">refresh</span>
+<span>Load Earlier Entries</span>
+</button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full flex justify-around items-center bg-surface dark:bg-surface-container-low py-sm border-t border-outline-variant dark:border-outline z-50">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container dark:hover:bg-surface-container-high transition-transform duration-150 scale-95 cursor-pointer">
+<span class="material-symbols-outlined">fact_check</span>
+<span class="font-label-sm text-label-sm">Approvals</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container dark:hover:bg-surface-container-high transition-transform duration-150 scale-95 cursor-pointer">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-sm text-label-sm">Regional Map</span>
+</div>
+<!-- Active Navigation Item -->
+<div class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-4 py-1 scale-95 transition-transform duration-150 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">terminal</span>
+<span class="font-label-sm text-label-sm">System Logs</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container dark:hover:bg-surface-container-high transition-transform duration-150 scale-95 cursor-pointer">
+<span class="material-symbols-outlined">badge</span>
+<span class="font-label-sm text-label-sm">Staff</span>
+</div>
+</nav>
+<!-- Subtle Floating Aura for Clinical Aesthetic -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 opacity-40">
+<div class="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary-fixed-dim rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-surface-container rounded-full blur-[100px]"></div>
+</div>
+<script>
+        // Simple micro-interaction for log cards
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('touchend', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

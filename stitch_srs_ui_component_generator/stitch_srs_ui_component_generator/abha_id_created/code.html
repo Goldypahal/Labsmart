@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ABHA Registration Success - DiagConnect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#001e2f",
+                        "surface-container-high": "#dce9ff",
+                        "outline": "#6e7881",
+                        "surface-container": "#e5eeff",
+                        "surface-dim": "#cbdbf5",
+                        "on-tertiary-fixed": "#2a1700",
+                        "surface": "#f8f9ff",
+                        "on-background": "#0b1c30",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#eff4ff",
+                        "primary": "#006591",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#4a2c00",
+                        "on-secondary": "#ffffff",
+                        "background": "#f8f9ff",
+                        "surface-variant": "#d3e4fe",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "on-primary-container": "#003751",
+                        "surface-bright": "#f8f9ff",
+                        "primary-fixed-dim": "#89ceff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-surface": "#0b1c30",
+                        "inverse-primary": "#89ceff",
+                        "outline-variant": "#bec8d2",
+                        "on-secondary-fixed": "#002113",
+                        "primary-fixed": "#c9e6ff",
+                        "on-surface-variant": "#3e4850",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#006591",
+                        "secondary-container": "#6cf8bb",
+                        "tertiary": "#855300",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#00714d",
+                        "tertiary-container": "#d88a00",
+                        "primary-container": "#0ea5e9",
+                        "inverse-surface": "#213145",
+                        "secondary": "#006c49",
+                        "secondary-fixed-dim": "#4edea3",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-primary-fixed-variant": "#004c6e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "lg": "24px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "base": "4px",
+                        "xl": "32px",
+                        "max-width": "1440px",
+                        "xs": "4px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 40;
+        }
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-x-hidden">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center px-margin-mobile h-16 bg-surface border-b border-outline-variant transition-colors duration-200">
+<div class="flex items-center gap-4 w-full max-w-7xl mx-auto">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-low p-2 rounded-full transition-colors active:opacity-70">arrow_back</button>
+<h1 class="font-headline-sm text-headline-sm text-primary">ABHA Registration</h1>
+</div>
+</header>
+<!-- Confetti Overlay -->
+<canvas class="confetti-canvas" id="confetti"></canvas>
+<main class="pt-24 pb-32 px-margin-mobile flex flex-col items-center justify-center min-h-screen relative overflow-hidden">
+<!-- Background Atmospheric Element -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-20 pointer-events-none">
+<div class="w-full h-full bg-primary-container rounded-full blur-[120px]"></div>
+</div>
+<!-- Success Message Header -->
+<div class="text-center mb-12 relative z-10 animate-fade-in-up">
+<div class="inline-flex items-center justify-center w-20 h-20 bg-secondary-container text-on-secondary-container rounded-full mb-6 shadow-lg shadow-secondary-container/20">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'wght' 700;">check_circle</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg mb-2 text-on-surface">Registration Successful!</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Your unique health identity has been generated successfully.</p>
+</div>
+<!-- Bento Grid Layout for Card & Info -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 w-full max-w-5xl relative z-10">
+<!-- Main ABHA Card Section (Asymmetric Span) -->
+<div class="md:col-span-7 flex flex-col items-center">
+<div class="group relative w-full aspect-[1.58/1] max-w-[480px] perspective-1000">
+<!-- Digital ABHA Card -->
+<div class="relative w-full h-full bg-gradient-to-br from-primary to-on-primary-fixed-variant rounded-xl p-8 text-on-primary shadow-xl transition-transform duration-500 hover:scale-[1.02] overflow-hidden">
+<!-- Abstract Micro-pattern Background -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="40" id="grid" patternunits="userSpaceOnUse" width="40">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5"></path>
+</pattern>
+</defs>
+<rect fill="url(#grid)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<!-- Card Content -->
+<div class="relative z-10 h-full flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md tracking-tight opacity-90">ABHA CARD</span>
+<span class="font-label-sm text-label-sm tracking-[0.2em] opacity-70">DIAGCONNECT HEALTH</span>
+</div>
+<div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">health_metrics</span>
+</div>
+</div>
+<div class="mt-4 flex gap-6 items-end">
+<!-- QR Code Placeholder -->
+<div class="w-24 h-24 bg-white p-2 rounded-lg shadow-inner shrink-0">
+<img class="w-full h-full object-contain" data-alt="A clean, minimalist high-resolution QR code rendered in professional dark blue on a pristine white background. The styling is clinical and technological, with rounded corners on the data modules. It represents a secure digital identification link for a modern medical healthcare platform. The lighting is flat and even for maximum legibility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaBeMIqvc89f47yMgztKTPuSQibkf8PcOyb0WAUDLLuR7VS3QrlHi_WSEWAt-5LXEFAxs3GLHCQW5dXOpyb5vA2IxjdUa1b3NWlo4hU4AZqsXyPhZ_qcLEHdg2oHPW94AMboEKcS8U5LZuWOetIGveoRNe1SZge5eM0tcF9FuiIdhdoCJTdZcMeLVodMqhF9xVeZ0FrxwTxxBYTDb36_r4lax2INs5O1Vv86ZLK8OUxOChv-0aZbk7f4u1ivMpm3dDZejrBjhmnf4"/>
+</div>
+<div class="flex flex-col gap-1">
+<p class="font-label-sm text-label-sm opacity-70 uppercase tracking-wider">Beneficiary Name</p>
+<p class="font-headline-sm text-headline-sm font-bold">Rohan S. Malhotra</p>
+<div class="mt-2">
+<p class="font-label-sm text-label-sm opacity-70 uppercase tracking-wider">ABHA Number</p>
+<p class="font-headline-md text-headline-md font-mono tracking-widest text-primary-fixed">91-2834-5509-1204</p>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-end mt-4">
+<div class="flex gap-4">
+<div>
+<p class="font-label-sm text-label-sm opacity-60">DOB</p>
+<p class="font-label-md text-label-md">14/05/1992</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm opacity-60">Gender</p>
+<p class="font-label-md text-label-md">Male</p>
+</div>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full backdrop-blur-md">
+<span class="w-2 h-2 bg-secondary-fixed rounded-full animate-pulse"></span>
+<span class="font-label-sm text-label-sm">Active Identity</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Download Action -->
+<button class="mt-8 group flex items-center gap-3 bg-primary text-on-primary px-10 py-4 rounded-xl font-label-md transition-all hover:shadow-lg hover:shadow-primary/30 active:scale-95">
+<span class="material-symbols-outlined">download</span>
+                    Download ABHA Card (PDF)
+                </button>
+</div>
+<!-- Side Bento Column -->
+<div class="md:col-span-5 flex flex-col gap-6">
+<!-- Info Card 1: Benefits -->
+<div class="bg-surface p-6 rounded-xl border border-outline-variant shadow-sm hover:border-primary/30 transition-colors">
+<h3 class="font-label-md text-label-md text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">info</span>
+                        WHAT'S NEXT?
+                    </h3>
+<ul class="space-y-4">
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-secondary shrink-0">verified</span>
+<p class="text-body-sm text-on-surface-variant">Your ABHA ID is now linked to your DiagConnect health profile.</p>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-secondary shrink-0">verified</span>
+<p class="text-body-sm text-on-surface-variant">Use this number to access longitudinal health records across India.</p>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-secondary shrink-0">verified</span>
+<p class="text-body-sm text-on-surface-variant">Manage consents for sharing data with doctors via the portal.</p>
+</li>
+</ul>
+</div>
+<!-- Info Card 2: Security -->
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/50">
+<div class="flex items-start gap-4">
+<div class="p-3 bg-white rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary">security</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Data Privacy</h4>
+<p class="text-body-sm text-on-surface-variant mt-1">Your identity is encrypted and compliant with ABDM standards. Access requires OTP verification.</p>
+</div>
+</div>
+</div>
+<!-- Dashboard Action -->
+<button class="mt-auto w-full py-4 border-2 border-primary text-primary font-label-md rounded-xl hover:bg-primary/5 transition-colors active:scale-[0.98]">
+                    Back to Dashboard
+                </button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Navigation (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface border-t border-outline-variant py-2 px-margin-mobile md:hidden">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1">
+<span class="material-symbols-outlined">qr_code_2</span>
+<span class="font-label-sm text-label-sm mt-1">Health Records</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">badge</span>
+<span class="font-label-sm text-label-sm mt-1">ABHA ID</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</div>
+</nav>
+<script>
+        // Simple Confetti Animation for Success State
+        const canvas = document.getElementById('confetti');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        const colors = ['#006591', '#0ea5e9', '#6cf8bb', '#006c49', '#c9e6ff'];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 8 + 4;
+                this.speed = Math.random() * 3 + 2;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 5 - 2.5;
+            }
+
+            update() {
+                this.y += this.speed;
+                this.rotation += this.rotationSpeed;
+                if (this.y > canvas.height) {
+                    this.y = -20;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.fillStyle = this.color;
+                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                ctx.restore();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < 100; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        // Delay confetti slightly for dramatic effect
+        setTimeout(() => {
+            init();
+            animate();
+            // Stop confetti after 5 seconds to remain "clinical"
+            setTimeout(() => {
+                particles = [];
+            }, 5000);
+        }, 300);
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body></html>

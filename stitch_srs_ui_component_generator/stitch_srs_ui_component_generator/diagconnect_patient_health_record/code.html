@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DiagConnect | Digital Health Record</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#2a1700",
+                    "tertiary": "#855300",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "surface-container-lowest": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#213145",
+                    "tertiary-fixed": "#ffddb8",
+                    "background": "#f8f9ff",
+                    "secondary": "#006c49",
+                    "surface-bright": "#f8f9ff",
+                    "outline": "#6e7881",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#4edea3",
+                    "outline-variant": "#bec8d2",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-secondary-fixed": "#002113",
+                    "surface": "#f8f9ff",
+                    "primary-fixed-dim": "#89ceff",
+                    "surface-tint": "#006591",
+                    "on-primary-container": "#003751",
+                    "on-primary-fixed": "#001e2f",
+                    "inverse-primary": "#89ceff",
+                    "primary": "#006591",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-secondary-container": "#00714d",
+                    "on-surface": "#0b1c30",
+                    "surface-container-low": "#eff4ff",
+                    "on-surface-variant": "#3e4850",
+                    "on-background": "#0b1c30",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "secondary-container": "#6cf8bb",
+                    "primary-fixed": "#c9e6ff",
+                    "tertiary-container": "#d88a00",
+                    "primary-container": "#0ea5e9",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "secondary-fixed": "#6ffbbe",
+                    "surface-container-highest": "#d3e4fe",
+                    "surface-variant": "#d3e4fe",
+                    "surface-container-high": "#dce9ff",
+                    "on-tertiary-container": "#4a2c00",
+                    "surface-dim": "#cbdbf5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "lg": "24px",
+                    "max-width": "1440px",
+                    "margin-mobile": "16px",
+                    "xl": "32px",
+                    "margin-desktop": "40px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "gutter": "24px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "headline-xl": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f8fafc;
+            color: #0b1c30;
+        }
+        .clinical-shadow {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        @keyframes subtle-pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        .animate-pulse-slow {
+            animation: subtle-pulse 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<div class="flex min-h-screen">
+<!-- Side Navigation (Predicted Component) -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 bg-surface-container-low border-r border-outline-variant p-md gap-sm z-50">
+<div class="flex flex-col gap-xs mb-lg">
+<div class="flex items-center gap-sm px-2">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">DiagConnect</h1>
+</div>
+<div class="mt-4 px-2 py-3 rounded-xl bg-white border border-outline-variant/30 flex items-center gap-md">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A professional hospital logo featuring a minimalist blue shield and cross icon, centered in a clean, high-contrast white environment, reflecting modern clinical precision and healthcare trust for a medical diagnostic platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBllwfQHQVx5lRyk5b1Lv5g75toivwDdjwnznzJjmmDYQTnPiVHkoHGqzCqJBGXywUpzbU6knq2NwJAw5sbxDtBWoqHxNaH_GpfoDhuSEIykAtlDdLBuKLwN3-HyZXH4RdJMpXOSy0m_QCOl4Xb1iG1Le_jXGG4D_FuHGc5eHzygjIIfKZMIM50uS0qBitUAncfIlW0R8bqo7YjOJGnTbusllp8c1YSPJQiHWIEER3ynqeTVhqmetVklDERR3Epxd9h4lVMxisyOgQ"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">City General</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold">Diagnostic Wing</span>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-150" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Patients</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm bg-secondary-container text-on-secondary-container font-bold rounded-lg scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-150" href="#">
+<span class="material-symbols-outlined">medication</span>
+<span class="font-label-md text-label-md">Prescriptions</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-150" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-md space-y-1">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-64 bg-background transition-all">
+<!-- Top App Bar (Predicted Component Mapping) -->
+<header class="sticky top-0 z-40 bg-white border-b border-outline-variant px-md md:px-margin-desktop h-16 flex justify-between items-center w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-lg">
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="hidden md:flex items-center bg-surface-container-low px-md py-1.5 rounded-full border border-outline-variant/30">
+<span class="material-symbols-outlined text-outline mr-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm w-48" placeholder="Search patient IDs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden sm:flex flex-col items-end mr-sm">
+<span class="font-label-md text-label-md text-on-surface">Dr. Smith</span>
+<span class="text-[10px] text-primary font-bold uppercase">Cardiologist</span>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full border-2 border-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a professional healthcare provider with a warm, confident expression, set against a soft-focus clinical background with blue and white tones, reflecting medical expertise and empathetic care for a high-end digital health application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbs6gaCs43ky8izVYhnfbrrLe8V0FdaO4bx_dhpfzjMG_mO6UysOWJreVKHC2Cy1o8Tr8_NV-VFd34_Xu5a2Er04EVr_SlCui2fslaZmF7GUCuKNwfyhrCWCsz-sazYhgZjlJ3pzryiBe56GKyha9T9M3uP_pAsHd3xC9lDC2Oz9dePIhRH8VoSzsNyTpy_S5XAc9OtseF96N-IWu8RAVA36IGEQZfY2zep1vKONFSKA--WvpBosK2TfKSKkpUub6cOXu65iI9g9o"/>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="p-md md:p-xl max-w-7xl mx-auto space-y-lg">
+<!-- Digital Health Passport Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div class="space-y-sm">
+<div class="flex items-center gap-sm">
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-tighter">Digital Health Passport</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">ID: ABHA-33-8921-1104</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Julianna DeWitt</h2>
+<div class="flex flex-wrap gap-md text-on-surface-variant text-body-sm">
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-base">cake</span> 32 years, Female</span>
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-base">bloodtype</span> O Positive</span>
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-base">location_on</span> Seattle, WA</span>
+</div>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-sm border border-primary text-primary px-lg py-sm rounded-lg font-label-md hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined">share</span> Share with Doctor
+                        </button>
+<button class="flex items-center gap-sm bg-primary text-white px-lg py-sm rounded-lg font-label-md hover:shadow-lg transition-all active:scale-95">
+<span class="material-symbols-outlined">calendar_today</span> Book Follow-up
+                        </button>
+</div>
+</div>
+<!-- Bento Grid Layout for Results -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Main Report Table (Lipid Profile) -->
+<div class="lg:col-span-2 space-y-md">
+<div class="bg-white rounded-xl clinical-shadow border border-outline-variant overflow-hidden">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">science</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Lipid Profile</h3>
+<p class="text-body-sm text-on-surface-variant">Collected on 14 Oct 2023, 08:30 AM</p>
+</div>
+</div>
+<span class="bg-secondary/10 text-secondary font-label-sm text-label-sm px-3 py-1 rounded-full border border-secondary/20">Final Report</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Test Name</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant text-center">Result</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Ref. Range</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<tr class="hover:bg-background transition-colors">
+<td class="px-lg py-md font-body-md text-on-surface">Total Cholesterol</td>
+<td class="px-lg py-md font-body-md text-on-surface text-center">185 mg/dL</td>
+<td class="px-lg py-md font-body-sm text-on-surface-variant">125 - 200 mg/dL</td>
+<td class="px-lg py-md text-right">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-md bg-secondary/10 text-secondary text-xs font-bold">
+<span class="material-symbols-outlined text-sm">check_circle</span> Normal
+                                                </span>
+</td>
+</tr>
+<tr class="bg-error-container/5 hover:bg-error-container/10 transition-colors">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<div class="w-1 h-6 bg-error rounded-full"></div>
+<span class="font-body-md font-bold text-on-surface">LDL Cholesterol</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-error font-bold text-center">134 mg/dL</td>
+<td class="px-lg py-md font-body-sm text-on-surface-variant">&lt; 100 mg/dL</td>
+<td class="px-lg py-md text-right">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-md bg-error/10 text-error text-xs font-bold animate-pulse-slow">
+<span class="material-symbols-outlined text-sm">warning</span> Slightly High
+                                                </span>
+</td>
+</tr>
+<tr class="hover:bg-background transition-colors">
+<td class="px-lg py-md font-body-md text-on-surface">HDL Cholesterol</td>
+<td class="px-lg py-md font-body-md text-on-surface text-center">58 mg/dL</td>
+<td class="px-lg py-md font-body-sm text-on-surface-variant">&gt; 40 mg/dL</td>
+<td class="px-lg py-md text-right">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-md bg-secondary/10 text-secondary text-xs font-bold">
+<span class="material-symbols-outlined text-sm">check_circle</span> Normal
+                                                </span>
+</td>
+</tr>
+<tr class="hover:bg-background transition-colors">
+<td class="px-lg py-md font-body-md text-on-surface">Triglycerides</td>
+<td class="px-lg py-md font-body-md text-on-surface text-center">142 mg/dL</td>
+<td class="px-lg py-md font-body-sm text-on-surface-variant">&lt; 150 mg/dL</td>
+<td class="px-lg py-md text-right">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-md bg-secondary/10 text-secondary text-xs font-bold">
+<span class="material-symbols-outlined text-sm">check_circle</span> Normal
+                                                </span>
+</td>
+</tr>
+<tr class="hover:bg-background transition-colors">
+<td class="px-lg py-md font-body-md text-on-surface">VLDL Cholesterol</td>
+<td class="px-lg py-md font-body-md text-on-surface text-center">28 mg/dL</td>
+<td class="px-lg py-md font-body-sm text-on-surface-variant">5 - 40 mg/dL</td>
+<td class="px-lg py-md text-right">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-md bg-secondary/10 text-secondary text-xs font-bold">
+<span class="material-symbols-outlined text-sm">check_circle</span> Normal
+                                                </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-md bg-surface-container-low text-body-sm text-on-surface-variant italic">
+<span class="font-bold">Clinical Note:</span> LDL levels are above the optimal range. Dietary modification and increased physical activity are recommended. Consult with your physician for a personalized management plan.
+                            </div>
+</div>
+</div>
+<!-- Side Widgets -->
+<div class="space-y-lg">
+<!-- Trend Analysis Card -->
+<div class="bg-white rounded-xl clinical-shadow border border-outline-variant p-lg space-y-md relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-9xl">trending_up</span>
+</div>
+<div class="flex items-center justify-between">
+<h3 class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider">Trend Analysis</h3>
+<div class="flex items-center gap-xs text-[10px] text-on-surface-variant uppercase font-bold">
+                                    Last 6 Months
+                                </div>
+</div>
+<div class="space-y-sm">
+<p class="font-body-sm text-on-surface-variant">LDL Cholesterol Level (mg/dL)</p>
+<!-- Mock Chart Implementation -->
+<div class="h-48 w-full flex items-end justify-between px-2 pt-4 group">
+<div class="flex flex-col items-center gap-xs group-hover:opacity-70 transition-opacity">
+<div class="w-8 bg-primary/20 rounded-t-sm h-32 relative"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">MAY</span>
+</div>
+<div class="flex flex-col items-center gap-xs group-hover:opacity-70 transition-opacity">
+<div class="w-8 bg-primary/20 rounded-t-sm h-36 relative"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">JUN</span>
+</div>
+<div class="flex flex-col items-center gap-xs group-hover:opacity-70 transition-opacity">
+<div class="w-8 bg-primary/30 rounded-t-sm h-40 relative"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">JUL</span>
+</div>
+<div class="flex flex-col items-center gap-xs group-hover:opacity-70 transition-opacity">
+<div class="w-8 bg-primary/40 rounded-t-sm h-38 relative"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">AUG</span>
+</div>
+<div class="flex flex-col items-center gap-xs group-hover:opacity-70 transition-opacity">
+<div class="w-8 bg-primary/60 rounded-t-sm h-42 relative"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">SEP</span>
+</div>
+<div class="flex flex-col items-center gap-xs">
+<div class="w-8 bg-error rounded-t-sm h-[44px] relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-error text-white text-[10px] px-1.5 py-0.5 rounded shadow-lg font-bold">134</div>
+</div>
+<span class="text-[10px] font-bold text-error">OCT</span>
+</div>
+</div>
+<div class="pt-md border-t border-outline-variant/30 mt-md">
+<div class="flex items-center gap-sm text-error">
+<span class="material-symbols-outlined text-base">north_east</span>
+<span class="text-body-sm font-bold">8.2% increase from last test</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Physician Summary -->
+<div class="bg-surface-container rounded-xl p-lg border border-primary/10 space-y-md">
+<h3 class="font-label-md text-label-md text-primary font-bold uppercase">Health Summary</h3>
+<div class="space-y-sm">
+<div class="flex items-start gap-md">
+<div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-sm">monitor_heart</span>
+</div>
+<p class="text-body-sm text-on-surface leading-snug">Overall cardiovascular health is <span class="font-bold">stable</span>, but the lipid trend requires immediate lifestyle intervention.</p>
+</div>
+<div class="flex items-start gap-md">
+<div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-sm">restaurant</span>
+</div>
+<p class="text-body-sm text-on-surface leading-snug">Recommendation: Reduce saturated fat intake and follow the <span class="text-primary font-bold cursor-pointer hover:underline">Mediterranean Diet plan</span>.</p>
+</div>
+</div>
+<button class="w-full py-2 bg-white text-primary font-label-md rounded-lg border border-primary/20 hover:bg-primary-container/20 transition-colors">
+                                View Full History
+                            </button>
+</div>
+<!-- Medical Imaging Placeholder (As requested for Bento-style variety) -->
+<div class="rounded-xl overflow-hidden relative h-40 group cursor-pointer border border-outline-variant shadow-sm">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="A high-definition medical ultrasound image of a heart and arteries, rendered with clinical blue and grayscale tones, showing sharp anatomical details. The image is framed by a sleek, modern UI with medical metadata, evoking a sense of high-end diagnostic precision and advanced medical technology." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB13n8GNN16FDn8bRM8HUO0rFR4TJFc2i4ky7QrpWEVFHI-fAFJTOMTN7v7G8A7SXpElimTH9ViUc-9KIsF6r8YqR6SRgW0tTvtBzKxFOD8rABZACCqWMktqAZgfykty89dKsMVePv8ihYDJH7nSCr1q5lOYM2Keci5IpPz79a-qlVMviY07vDWD28ycDBdkRnLQymp2XRhCtrvfLDNb2BMYEdY_RmNYWYipzWOhTL9sIoshHmqyvHraAsqV8RsFSLA3YXfqag7Ewo')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-md text-white">
+<span class="text-[10px] font-bold uppercase opacity-80">Reference Scan</span>
+<p class="font-label-md text-label-md">ECG Visualization - Aug 2023</p>
+</div>
+<div class="absolute top-2 right-2 bg-white/20 backdrop-blur-md rounded-full p-1.5 text-white">
+<span class="material-symbols-outlined text-sm">fullscreen</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Quick Links -->
+<footer class="grid grid-cols-2 md:grid-cols-4 gap-md pt-lg border-t border-outline-variant">
+<div class="flex flex-col gap-xs">
+<span class="text-[10px] text-on-surface-variant font-bold uppercase">Reporting Lab</span>
+<p class="font-label-md text-label-md text-on-surface">City Gen Labs (ISO 9001)</p>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="text-[10px] text-on-surface-variant font-bold uppercase">Verifying MD</span>
+<p class="font-label-md text-label-md text-on-surface">Dr. Robert Chen</p>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="text-[10px] text-on-surface-variant font-bold uppercase">Report ID</span>
+<p class="font-label-md text-label-md text-on-surface">CGL-OCT-2023-091</p>
+</div>
+<div class="flex flex-col gap-xs items-end">
+<button class="text-primary font-label-md flex items-center gap-xs hover:underline transition-all">
+<span class="material-symbols-outlined text-base">download</span> Download PDF
+                        </button>
+</div>
+</footer>
+</div>
+</main>
+</div>
+<!-- Mobile Bottom Navigation (Predicted Component Mapping) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-outline-variant flex justify-around items-center h-16 z-50 px-md">
+<button class="flex flex-col items-center gap-0.5 text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-0.5 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="text-[10px] font-bold">Reports</span>
+</button>
+<div class="relative -top-4">
+<button class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<button class="flex flex-col items-center gap-0.5 text-on-surface-variant">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[10px] font-bold">Booking</span>
+</button>
+<button class="flex flex-col items-center gap-0.5 text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</button>
+</nav>
+<script>
+        // Simple micro-interaction for the report rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('click', () => {
+                row.classList.add('scale-[0.98]');
+                setTimeout(() => row.classList.remove('scale-[0.98]'), 100);
+            });
+        });
+
+        // Add active classes to sidebar links dynamically
+        const navLinks = document.querySelectorAll('aside nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                navLinks.forEach(l => {
+                    l.classList.remove('bg-secondary-container', 'text-on-secondary-container', 'font-bold', 'scale-95');
+                    l.classList.add('text-on-surface-variant', 'hover:bg-surface-container-highest');
+                });
+                link.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-highest');
+                link.classList.add('bg-secondary-container', 'text-on-secondary-container', 'font-bold', 'scale-95');
+            });
+        });
+    </script>
+</body></html>

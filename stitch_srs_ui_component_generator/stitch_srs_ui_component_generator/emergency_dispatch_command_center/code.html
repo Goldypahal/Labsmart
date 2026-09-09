@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FFIRE | Emergency Dispatch Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-tertiary-fixed-variant": "#653e00",
+                      "on-secondary-fixed-variant": "#005236",
+                      "secondary-fixed-dim": "#4edea3",
+                      "on-secondary-container": "#00714d",
+                      "surface-dim": "#0b141d",
+                      "surface-container-lowest": "#060e14",
+                      "on-tertiary-fixed": "#2a1700",
+                      "on-secondary-fixed": "#002113",
+                      "on-primary-container": "#003751",
+                      "surface-container-high": "#1a2530",
+                      "on-error-container": "#93000a",
+                      "inverse-primary": "#89ceff",
+                      "surface-container": "#111d29",
+                      "outline": "#6e7881",
+                      "on-secondary": "#ffffff",
+                      "secondary": "#006c49",
+                      "tertiary": "#855300",
+                      "tertiary-fixed": "#ffddb8",
+                      "error-container": "#ffdad6",
+                      "on-surface-variant": "#bec8d2",
+                      "on-primary-fixed-variant": "#004c6e",
+                      "surface-container-highest": "#243242",
+                      "secondary-container": "#005236",
+                      "on-surface": "#e1e2e9",
+                      "on-primary-fixed": "#001e2f",
+                      "primary-fixed": "#c9e6ff",
+                      "tertiary-container": "#d88a00",
+                      "secondary-fixed": "#6ffbbe",
+                      "on-error": "#ffffff",
+                      "surface-container-low": "#0d1924",
+                      "background": "#060e14",
+                      "surface-variant": "#3e4850",
+                      "surface-bright": "#1a2530",
+                      "outline-variant": "#3e4850",
+                      "on-primary": "#ffffff",
+                      "on-background": "#e1e2e9",
+                      "on-tertiary-container": "#4a2c00",
+                      "inverse-surface": "#e1e2e9",
+                      "error": "#ffb4ab",
+                      "primary-fixed-dim": "#89ceff",
+                      "surface-tint": "#006591",
+                      "tertiary-fixed-dim": "#ffb95f",
+                      "primary-container": "#0ea5e9",
+                      "primary": "#89ceff",
+                      "on-tertiary": "#ffffff",
+                      "surface": "#0b141d",
+                      "investigation-gold": "#ffd700"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "max-width": "1440px",
+                      "sm": "8px",
+                      "md": "16px",
+                      "xl": "32px",
+                      "gutter": "24px",
+                      "base": "4px",
+                      "margin-desktop": "40px",
+                      "lg": "24px",
+                      "margin-mobile": "16px",
+                      "xs": "4px",
+                      "stack-md": "16px",
+                      "px-margin": "40px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "headline-xl": ["Plus Jakarta Sans"],
+                      "label-sm": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "headline-sm": ["Plus Jakarta Sans"],
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-md": ["Plus Jakarta Sans"]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: #060e14;
+            color: #e1e2e9;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3e4850;
+            border-radius: 10px;
+        }
+        .pulse-red {
+            box-shadow: 0 0 0 0 rgba(255, 180, 171, 0.7);
+            animation: pulse-red 2s infinite;
+        }
+        @keyframes pulse-red {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 180, 171, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 180, 171, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 180, 171, 0); }
+        }
+        .map-gradient {
+            background: radial-gradient(circle at center, transparent 0%, #060e14 100%);
+        }
+    </style>
+</head>
+<body class="flex h-screen w-full overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="hidden md:flex flex-col h-full py-stack-md bg-surface-container-lowest border-r border-outline-variant w-64 shrink-0">
+<div class="px-md mb-xl">
+<h1 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">emergency</span>
+                FFIRE Engine
+            </h1>
+<p class="font-label-sm text-label-sm text-outline">V2.4 Active</p>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="px-sm">
+<div class="bg-primary-container text-primary border-r-4 border-primary flex items-center px-md py-md cursor-pointer transition-all">
+<span class="material-symbols-outlined mr-md">assignment</span>
+<span class="font-label-md text-label-md">Cases</span>
+</div>
+<div class="text-on-surface-variant hover:bg-surface-container-low flex items-center px-md py-md cursor-pointer transition-all">
+<span class="material-symbols-outlined mr-md">account_tree</span>
+<span class="font-label-md text-label-md">Reasoning Graph</span>
+</div>
+<div class="text-on-surface-variant hover:bg-surface-container-low flex items-center px-md py-md cursor-pointer transition-all">
+<span class="material-symbols-outlined mr-md">folder_shared</span>
+<span class="font-label-md text-label-md">Evidence Vault</span>
+</div>
+<div class="text-on-surface-variant hover:bg-surface-container-low flex items-center px-md py-md cursor-pointer transition-all">
+<span class="material-symbols-outlined mr-md">history</span>
+<span class="font-label-md text-label-md">Historical Patterns</span>
+</div>
+<div class="text-on-surface-variant hover:bg-surface-container-low flex items-center px-md py-md cursor-pointer transition-all">
+<span class="material-symbols-outlined mr-md">analytics</span>
+<span class="font-label-md text-label-md">System Health</span>
+</div>
+</div>
+</nav>
+<div class="px-md mt-auto space-y-4">
+<button class="w-full bg-primary text-on-primary font-label-md py-md rounded-lg active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                NEW INVESTIGATION
+            </button>
+<div class="pt-md border-t border-outline-variant space-y-2">
+<div class="text-on-surface-variant hover:bg-surface-container-low flex items-center px-md py-sm cursor-pointer rounded transition-all">
+<span class="material-symbols-outlined mr-md">help</span>
+<span class="font-label-md text-label-md">Documentation</span>
+</div>
+<div class="text-on-surface-variant hover:bg-surface-container-low flex items-center px-md py-sm cursor-pointer rounded transition-all">
+<span class="material-symbols-outlined mr-md">contact_support</span>
+<span class="font-label-md text-label-md">Support</span>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col min-w-0 bg-background overflow-hidden relative">
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center h-16 w-full px-px-margin bg-surface border-b border-outline-variant z-20">
+<div class="flex items-center gap-xl">
+<div class="md:hidden font-headline-md text-headline-md font-bold text-investigation-gold">FFIRE</div>
+<div class="hidden lg:flex items-center gap-md">
+<span class="text-primary border-b-2 border-primary font-bold font-body-md text-body-md px-md h-16 flex items-center">Dashboard</span>
+<span class="text-on-surface-variant hover:text-on-surface cursor-pointer transition-colors font-body-md text-body-md px-md h-16 flex items-center">Investigation Queue</span>
+<span class="text-on-surface-variant hover:text-on-surface cursor-pointer transition-colors font-body-md text-body-md px-md h-16 flex items-center">Audit Logs</span>
+<span class="text-on-surface-variant hover:text-on-surface cursor-pointer transition-colors font-body-md text-body-md px-md h-16 flex items-center">Reports</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="bg-surface-container border border-outline-variant rounded-full pl-10 pr-md py-1.5 text-body-sm w-64 focus:ring-1 focus:ring-primary outline-none" placeholder="Global Case Search..." type="text"/>
+</div>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full border border-primary p-0.5 ml-2">
+<img class="w-full h-full rounded-full object-cover" data-alt="A professional medical investigator headshot, middle-aged with short hair, wearing a clean laboratory coat and a subtle hospital ID badge. The lighting is focused and clinical, reflecting a high-stakes medical command center environment. Minimalist dark blue background with professional studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg3uWXWk5kQ_bSjOzpg1-i8C4gIAnPT_7aP1g5EauTjTAjKQzOp_A-KVuGfwyypaUVYld_psBhG5qrIIMzeSss1CHv4f1WB3PR29YSbiWwY0HKx4qKS_FIN4iKKbfqL1nOBWQKrVHqYQY2VPsFTjhVIVOWp2XXYefVmGpL_E1TlTAS5JlleUn2jTU3zsuKXyOgfZjPtsFb_L00VN7kj8qAnYOJ1xP9Z7hO9KR4xdcazmmxt8gEq9D4fo7IbOxN3K0ngM0RdjFUNzQ"/>
+</div>
+</div>
+</header>
+<!-- Main Dashboard Content -->
+<div class="flex-1 flex flex-col md:flex-row overflow-hidden p-md gap-md">
+<!-- Left Column: Active Alerts & Triage -->
+<div class="w-full md:w-96 flex flex-col gap-md z-10 shrink-0 h-full">
+<div class="bg-surface-container rounded-xl border border-outline-variant flex flex-col flex-1 overflow-hidden">
+<div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h2 class="font-headline-sm text-headline-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-error">priority_high</span>
+                            Active SOS Alerts
+                        </h2>
+<span class="bg-error text-on-error font-label-sm px-sm py-0.5 rounded-full">12 Live</span>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-sm space-y-sm">
+<!-- Critical Alert Card -->
+<div class="bg-surface-container-highest border-l-4 border-error p-md rounded-lg hover:brightness-110 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-md text-error flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">emergency_home</span>
+                                    CRITICAL · TRIAGE 1
+                                </span>
+<span class="text-on-surface-variant font-label-sm">2m ago</span>
+</div>
+<h3 class="font-headline-sm text-[16px] text-on-surface mb-xs">Cardiac Arrest - Zone 4</h3>
+<p class="text-on-surface-variant text-body-sm mb-md">45yo Male, Unconscious. Responder #A24 en route.</p>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-highest bg-primary-fixed text-on-primary-fixed flex items-center justify-center text-[10px] font-bold">A24</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-highest bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center text-[10px] font-bold">EMT</div>
+</div>
+<button class="text-primary font-label-md flex items-center gap-1 hover:underline">
+                                    Track
+                                    <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- High Priority Alert Card -->
+<div class="bg-surface-container-high border-l-4 border-tertiary-container p-md rounded-lg hover:brightness-110 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-md text-tertiary-container flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+                                    HIGH · TRIAGE 2
+                                </span>
+<span class="text-on-surface-variant font-label-sm">5m ago</span>
+</div>
+<h3 class="font-headline-sm text-[16px] text-on-surface mb-xs">Traffic Collision - I-95</h3>
+<p class="text-on-surface-variant text-body-sm mb-md">Multiple injuries reported. Unit #B12 dispatched.</p>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-highest bg-primary-fixed text-on-primary-fixed flex items-center justify-center text-[10px] font-bold">B12</div>
+</div>
+<button class="text-primary font-label-md flex items-center gap-1 hover:underline">
+                                    Track
+                                    <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Repeated Alerts -->
+<div class="bg-surface-container-low border-l-4 border-outline p-md rounded-lg opacity-80 hover:opacity-100 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-md text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">info</span>
+                                    NORMAL · TRIAGE 4
+                                </span>
+<span class="text-on-surface-variant font-label-sm">12m ago</span>
+</div>
+<h3 class="font-headline-sm text-[16px] text-on-surface mb-xs">Fall Recovery - Elder Care</h3>
+<p class="text-on-surface-variant text-body-sm">Patient stable, monitoring requested. Social worker assigned.</p>
+</div>
+<div class="bg-surface-container-low border-l-4 border-outline p-md rounded-lg opacity-80 hover:opacity-100 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-sm">
+<span class="font-label-md text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">info</span>
+                                    NORMAL · TRIAGE 4
+                                </span>
+<span class="text-on-surface-variant font-label-sm">18m ago</span>
+</div>
+<h3 class="font-headline-sm text-[16px] text-on-surface mb-xs">Medical Transport Hub</h3>
+<p class="text-on-surface-variant text-body-sm">Scheduled inter-facility transfer #T90 confirmed.</p>
+</div>
+</div>
+</div>
+<!-- Hospital Capacity Widgets -->
+<div class="grid grid-cols-2 gap-md">
+<div class="bg-surface-container rounded-xl border border-outline-variant p-md">
+<div class="flex items-center gap-2 mb-md">
+<span class="material-symbols-outlined text-primary text-[20px]">bed</span>
+<span class="font-label-md">Bed Avail.</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-headline-md font-bold text-on-surface">14</span>
+<span class="text-on-surface-variant font-body-sm">/ 240</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full mt-sm overflow-hidden">
+<div class="bg-error h-full" style="width: 94%;"></div>
+</div>
+<p class="text-[10px] text-error mt-1 font-bold">CRITICAL CAPACITY</p>
+</div>
+<div class="bg-surface-container rounded-xl border border-outline-variant p-md">
+<div class="flex items-center gap-2 mb-md">
+<span class="material-symbols-outlined text-primary text-[20px]">timer</span>
+<span class="font-label-md">ER Wait</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-headline-md font-bold text-on-surface">42</span>
+<span class="text-on-surface-variant font-body-sm">min</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full mt-sm overflow-hidden">
+<div class="bg-secondary h-full" style="width: 45%;"></div>
+</div>
+<p class="text-[10px] text-secondary mt-1 font-bold">STABLE LOAD</p>
+</div>
+</div>
+</div>
+<!-- Center/Right Area: Live Map -->
+<div class="flex-1 relative rounded-xl overflow-hidden border border-outline-variant group">
+<!-- Map Background Layer -->
+<div class="absolute inset-0 bg-surface-dim z-0">
+<div class="w-full h-full opacity-40 mix-blend-screen" data-alt="A highly detailed dark-themed satellite map of a major metropolitan area with high-contrast streets and infrastructure highlights. The aesthetic is futuristic and clinical, with blue and charcoal tones. Glowing data points represent emergency services, ambulances, and incidents. Professional cartography style for a high-trust command center dashboard." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCOWtUCSM5J2dWWWEfjNki7-b7YROhiWj5IGPTR0o_X2053WqPmdU8-JUkCjvq4_N4ddHUXwOpDTWfUO4zq08oUTTvtiSk0TiinVAHcUZTAKJCVyHoxAcp30_7UaGl-JjcgeGTcZAL-uJ6NVlkQ3CTIiBh8GP7NZ_xChLZhejpa0_Sp3eIcFHI40Lid4EHSTHVAabNaS5Uc-zky7ylSxlXpvIBZkT8qRg0EsdyYLYK0YSKULHu8HAmFEMOsmEXaXwCNifYG6pHmrBc')"></div>
+<div class="absolute inset-0 map-gradient"></div>
+</div>
+<!-- WebGL Atmospheric Overlay -->
+
+<!-- Map UI Elements -->
+<div class="absolute inset-0 z-10 pointer-events-none">
+<!-- Responder Markers -->
+<div class="absolute top-1/4 left-1/3 pointer-events-auto">
+<div class="w-6 h-6 bg-primary rounded-full pulse-red flex items-center justify-center cursor-pointer shadow-lg">
+<span class="material-symbols-outlined text-on-primary text-[14px]" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+</div>
+<div class="mt-2 bg-surface-container border border-primary px-sm py-xs rounded text-[10px] font-bold text-on-surface">AMB_A24 (Moving)</div>
+</div>
+<div class="absolute bottom-1/3 right-1/4 pointer-events-auto">
+<div class="w-6 h-6 bg-error rounded-full pulse-red flex items-center justify-center cursor-pointer shadow-lg">
+<span class="material-symbols-outlined text-on-error text-[14px]">emergency</span>
+</div>
+<div class="mt-2 bg-surface-container border border-error px-sm py-xs rounded text-[10px] font-bold text-on-surface">INCIDENT_311 (Cardiac)</div>
+</div>
+<div class="absolute top-1/2 right-1/2 pointer-events-auto">
+<div class="w-6 h-6 bg-secondary rounded-full flex items-center justify-center cursor-pointer shadow-lg">
+<span class="material-symbols-outlined text-on-secondary text-[14px]" style="font-variation-settings: 'FILL' 1;">local_hospital</span>
+</div>
+<div class="mt-2 bg-surface-container border border-secondary px-sm py-xs rounded text-[10px] font-bold text-on-surface">ST. JUDE HUB</div>
+</div>
+</div>
+<!-- Map Controls -->
+<div class="absolute top-md right-md flex flex-col gap-sm z-20">
+<button class="w-10 h-10 bg-surface-container border border-outline-variant rounded flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-10 h-10 bg-surface-container border border-outline-variant rounded flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="w-10 h-10 bg-surface-container border border-outline-variant rounded flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+<!-- Bottom Floating Legend -->
+<div class="absolute bottom-md left-md bg-surface-container/80 backdrop-blur-md border border-outline-variant rounded-lg p-md z-20 flex gap-xl shadow-2xl">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="font-label-sm text-on-surface">Ambulance</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-error"></div>
+<span class="font-label-sm text-on-surface">Active SOS</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<span class="font-label-sm text-on-surface">Hospital</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-outline"></div>
+<span class="font-label-sm text-on-surface">Standby</span>
+</div>
+</div>
+<!-- Weather/Signal Overlay -->
+<div class="absolute top-md left-md bg-surface-container/60 backdrop-blur-sm border border-outline-variant rounded-lg px-md py-sm z-20 flex items-center gap-md">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">cloud</span>
+<span class="font-label-sm">18°C · Rain</span>
+</div>
+<div class="h-4 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">signal_cellular_alt</span>
+<span class="font-label-sm">NET: OPTIMAL</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB Suppression Rule Met (Dashboard Screen) -->
+<button class="fixed bottom-xl right-xl w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-[28px]">broadcast_on_home</span>
+</button>
+<script>
+        // Micro-interactions for live feeling
+        document.addEventListener('DOMContentLoaded', () => {
+            const alerts = document.querySelectorAll('.bg-surface-container-highest, .bg-surface-container-high');
+            alerts.forEach(alert => {
+                alert.addEventListener('mouseenter', () => {
+                    alert.style.transform = 'translateX(4px)';
+                });
+                alert.addEventListener('mouseleave', () => {
+                    alert.style.transform = 'translateX(0px)';
+                });
+            });
+
+            // Simulate live data updates
+            setInterval(() => {
+                const waitTimeElement = document.querySelector('.text-headline-md.font-bold.text-on-surface + .text-on-surface-variant');
+                if (waitTimeElement && waitTimeElement.textContent === 'min') {
+                    const numberSpan = waitTimeElement.previousElementSibling;
+                    const currentVal = parseInt(numberSpan.textContent);
+                    const change = Math.random() > 0.5 ? 1 : -1;
+                    numberSpan.textContent = Math.max(20, Math.min(60, currentVal + change));
+                }
+            }, 5000);
+        });
+    </script>
+</body></html>

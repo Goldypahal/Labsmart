@@ -1,0 +1,1001 @@
+[
+  {
+    "id": "aadhaar_verification",
+    "name": "Aadhaar Verification",
+    "title": "ABHA Registration - Aadhaar Verification",
+    "folder": "aadhaar_verification",
+    "category": "ABHA & Identity Verification",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/aadhaar_verification/code.html"
+  },
+  {
+    "id": "abha_id_created",
+    "name": "Abha Id Created",
+    "title": "ABHA Registration Success - DiagConnect",
+    "folder": "abha_id_created",
+    "category": "ABHA & Identity Verification",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/abha_id_created/code.html"
+  },
+  {
+    "id": "abha_registration_intro",
+    "name": "Abha Registration Intro",
+    "title": "ABHA Registration - DiagConnect",
+    "folder": "abha_registration_intro",
+    "category": "ABHA & Identity Verification",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/abha_registration_intro/code.html"
+  },
+  {
+    "id": "achievements_rewards",
+    "name": "Achievements Rewards",
+    "title": "DiagConnect - Rewards &amp; Achievements",
+    "folder": "achievements_rewards",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/achievements_rewards/code.html"
+  },
+  {
+    "id": "active_drill_simulation",
+    "name": "Active Drill Simulation",
+    "title": "Active Drill Interface | DiagConnect SOS",
+    "folder": "active_drill_simulation",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/active_drill_simulation/code.html"
+  },
+  {
+    "id": "active_emergency_alert",
+    "name": "Active Emergency Alert",
+    "title": "DiagConnect SOS | Emergency Response",
+    "folder": "active_emergency_alert",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/active_emergency_alert/code.html"
+  },
+  {
+    "id": "active_sos_tracking",
+    "name": "Active Sos Tracking",
+    "title": "Active SOS Tracking | DiagConnect SOS",
+    "folder": "active_sos_tracking",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/active_sos_tracking/code.html"
+  },
+  {
+    "id": "add_family_member",
+    "name": "Add Family Member",
+    "title": "Add Family Member | DiagConnect",
+    "folder": "add_family_member",
+    "category": "Patient & Family Portal",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/add_family_member/code.html"
+  },
+  {
+    "id": "add_growth_entry",
+    "name": "Add Growth Entry",
+    "title": "Add Growth Entry - Family Health",
+    "folder": "add_growth_entry",
+    "category": "Pediatric & Immunization",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/add_growth_entry/code.html"
+  },
+  {
+    "id": "add_new_prescription",
+    "name": "Add New Prescription",
+    "title": "Add Prescription | DiagConnect",
+    "folder": "add_new_prescription",
+    "category": "Doctor & EMR System",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/add_new_prescription/code.html"
+  },
+  {
+    "id": "annual_lab_comparison_report",
+    "name": "Annual Lab Comparison Report",
+    "title": "Annual Lab Comparison | Family Health",
+    "folder": "annual_lab_comparison_report",
+    "category": "Lab & Field Operations",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/annual_lab_comparison_report/code.html"
+  },
+  {
+    "id": "approval_confirmation",
+    "name": "Approval Confirmation",
+    "title": "Approval Confirmation | DiagConnect",
+    "folder": "approval_confirmation",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/approval_confirmation/code.html"
+  },
+  {
+    "id": "booking_confirmation",
+    "name": "Booking Confirmation",
+    "title": "Booking Confirmation | DiagConnect Responder",
+    "folder": "booking_confirmation",
+    "category": "Patient & Family Portal",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/booking_confirmation/code.html"
+  },
+  {
+    "id": "certification_audit_log",
+    "name": "Certification Audit Log",
+    "title": "Certification Audit Log - DiagConnect",
+    "folder": "certification_audit_log",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/certification_audit_log/code.html"
+  },
+  {
+    "id": "claim_status_detail",
+    "name": "Claim Status Detail",
+    "title": "Claim Details | DiagConnect",
+    "folder": "claim_status_detail",
+    "category": "Pharmacy & Insurance",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/claim_status_detail/code.html"
+  },
+  {
+    "id": "clinical_precision_system",
+    "name": "Clinical Precision System",
+    "title": "Clinical Precision System",
+    "folder": "clinical_precision_system",
+    "category": "Doctor & EMR System",
+    "hasHtml": false,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/clinical_precision_system/code.html"
+  },
+  {
+    "id": "collection_detail_barcode_scan",
+    "name": "Collection Detail Barcode Scan",
+    "title": "Task Details | DiagConnect",
+    "folder": "collection_detail_barcode_scan",
+    "category": "Lab & Field Operations",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/collection_detail_barcode_scan/code.html"
+  },
+  {
+    "id": "collection_route_map",
+    "name": "Collection Route Map",
+    "title": "DiagConnect - Route Mapping",
+    "folder": "collection_route_map",
+    "category": "Lab & Field Operations",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/collection_route_map/code.html"
+  },
+  {
+    "id": "community_impact_report",
+    "name": "Community Impact Report",
+    "title": "Community Impact Report | DiagConnect",
+    "folder": "community_impact_report",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/community_impact_report/code.html"
+  },
+  {
+    "id": "confirm_refill_order",
+    "name": "Confirm Refill Order",
+    "title": "Refill Request - DiagConnect",
+    "folder": "confirm_refill_order",
+    "category": "Pharmacy & Insurance",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/confirm_refill_order/code.html"
+  },
+  {
+    "id": "cpr_mastery_course",
+    "name": "Cpr Mastery Course",
+    "title": "Chest Compression Techniques | DiagConnect",
+    "folder": "cpr_mastery_course",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/cpr_mastery_course/code.html"
+  },
+  {
+    "id": "detailed_health_trends",
+    "name": "Detailed Health Trends",
+    "title": "Family Health | Diagnostic Trends",
+    "folder": "detailed_health_trends",
+    "category": "Patient & Family Portal",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/detailed_health_trends/code.html"
+  },
+  {
+    "id": "detailed_lab_report",
+    "name": "Detailed Lab Report",
+    "title": "DiagConnect - Lab Report Detail",
+    "folder": "detailed_lab_report",
+    "category": "Lab & Field Operations",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/detailed_lab_report/code.html"
+  },
+  {
+    "id": "developmental_milestones",
+    "name": "Developmental Milestones",
+    "title": "Developmental Milestones | DiagConnect",
+    "folder": "developmental_milestones",
+    "category": "Pediatric & Immunization",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/developmental_milestones/code.html"
+  },
+  {
+    "id": "diagconnect_abha_verification",
+    "name": "Diagconnect Abha Verification",
+    "title": "ABHA Identity Verification | DiagConnect",
+    "folder": "diagconnect_abha_verification",
+    "category": "ABHA & Identity Verification",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/diagconnect_abha_verification/code.html"
+  },
+  {
+    "id": "diagconnect_admin_console",
+    "name": "Diagconnect Admin Console",
+    "title": "DiagConnect Admin Console | System Health &amp; Compliance",
+    "folder": "diagconnect_admin_console",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/diagconnect_admin_console/code.html"
+  },
+  {
+    "id": "diagconnect_billing_payments_portal",
+    "name": "Diagconnect Billing Payments Portal",
+    "title": "Billing &amp; Payments | DiagConnect",
+    "folder": "diagconnect_billing_payments_portal",
+    "category": "Lab & Field Operations",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/diagconnect_billing_payments_portal/code.html"
+  },
+  {
+    "id": "diagconnect_book_appointment",
+    "name": "Diagconnect Book Appointment",
+    "title": "DiagConnect - Book Appointment",
+    "folder": "diagconnect_book_appointment",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/diagconnect_book_appointment/code.html"
+  },
+  {
+    "id": "diagconnect_collector_management",
+    "name": "Diagconnect Collector Management",
+    "title": "Phlebotomist Management | DiagConnect",
+    "folder": "diagconnect_collector_management",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/diagconnect_collector_management/code.html"
+  },
+  {
+    "id": "diagconnect_consultation_chat",
+    "name": "Diagconnect Consultation Chat",
+    "title": "DiagConnect | Real-time Consultation",
+    "folder": "diagconnect_consultation_chat",
+    "category": "Doctor & EMR System",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/diagconnect_consultation_chat/code.html"
+  },
+  {
+    "id": "diagconnect_doctor_dashboard",
+    "name": "Diagconnect Doctor Dashboard",
+    "title": "Doctor Dashboard - DiagConnect",
+    "folder": "diagconnect_doctor_dashboard",
+    "category": "Doctor & EMR System",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/diagconnect_doctor_dashboard/code.html"
+  },
+  {
+    "id": "diagconnect_emergency_admin_alert",
+    "name": "Diagconnect Emergency Admin Alert",
+    "title": "DiagConnect | Emergency Administration",
+    "folder": "diagconnect_emergency_admin_alert",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/diagconnect_emergency_admin_alert/code.html"
+  },
+  {
+    "id": "diagconnect_emergency_admin_console",
+    "name": "Diagconnect Emergency Admin Console",
+    "title": "Emergency Admin Console | DiagConnect",
+    "folder": "diagconnect_emergency_admin_console",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/diagconnect_emergency_admin_console/code.html"
+  },
+  {
+    "id": "diagconnect_lab_portal",
+    "name": "Diagconnect Lab Portal",
+    "title": "DiagConnect | Lab Portal",
+    "folder": "diagconnect_lab_portal",
+    "category": "Lab & Field Operations",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/diagconnect_lab_portal/code.html"
+  },
+  {
+    "id": "diagconnect_network_configuration",
+    "name": "Diagconnect Network Configuration",
+    "title": "Hospital Network Settings | DiagConnect",
+    "folder": "diagconnect_network_configuration",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/diagconnect_network_configuration/code.html"
+  },
+  {
+    "id": "diagconnect_patient_directory",
+    "name": "Diagconnect Patient Directory",
+    "title": "Patient List | DiagConnect Doctor Dashboard",
+    "folder": "diagconnect_patient_directory",
+    "category": "Doctor & EMR System",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/diagconnect_patient_directory/code.html"
+  },
+  {
+    "id": "diagconnect_patient_health_record",
+    "name": "Diagconnect Patient Health Record",
+    "title": "DiagConnect | Digital Health Record",
+    "folder": "diagconnect_patient_health_record",
+    "category": "Doctor & EMR System",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/diagconnect_patient_health_record/code.html"
+  },
+  {
+    "id": "diagconnect_patient_notification_center",
+    "name": "Diagconnect Patient Notification Center",
+    "title": "DiagConnect | Notification Center",
+    "folder": "diagconnect_patient_notification_center",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/diagconnect_patient_notification_center/code.html"
+  },
+  {
+    "id": "diagconnect_prescription_update",
+    "name": "Diagconnect Prescription Update",
+    "title": "Update Prescription | DiagConnect",
+    "folder": "diagconnect_prescription_update",
+    "category": "Doctor & EMR System",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/diagconnect_prescription_update/code.html"
+  },
+  {
+    "id": "diagconnect_telemedicine_call",
+    "name": "Diagconnect Telemedicine Call",
+    "title": "DiagConnect - Telemedicine Consultation",
+    "folder": "diagconnect_telemedicine_call",
+    "category": "Doctor & EMR System",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/diagconnect_telemedicine_call/code.html"
+  },
+  {
+    "id": "digital_certification_detail",
+    "name": "Digital Certification Detail",
+    "title": "Digital Certificate | DiagConnect",
+    "folder": "digital_certification_detail",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/digital_certification_detail/code.html"
+  },
+  {
+    "id": "drill_performance_report",
+    "name": "Drill Performance Report",
+    "title": "Post-Drill Performance Review | DiagConnect SOS",
+    "folder": "drill_performance_report",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/drill_performance_report/code.html"
+  },
+  {
+    "id": "emergency_digital_medical_id",
+    "name": "Emergency Digital Medical Id",
+    "title": "Emergency Medical ID - DiagConnect",
+    "folder": "emergency_digital_medical_id",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/emergency_digital_medical_id/code.html"
+  },
+  {
+    "id": "emergency_dispatch_command_center",
+    "name": "Emergency Dispatch Command Center",
+    "title": "FFIRE | Emergency Dispatch Command Center",
+    "folder": "emergency_dispatch_command_center",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/emergency_dispatch_command_center/code.html"
+  },
+  {
+    "id": "emergency_protocols_contacts",
+    "name": "Emergency Protocols Contacts",
+    "title": "Emergency Protocols &amp; Contacts | DiagConnect SOS",
+    "folder": "emergency_protocols_contacts",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/emergency_protocols_contacts/code.html"
+  },
+  {
+    "id": "emergency_travel_preparation",
+    "name": "Emergency Travel Preparation",
+    "title": "Travel Prep & Offline Access | DiagConnect",
+    "folder": "emergency_travel_preparation",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/emergency_travel_preparation/code.html"
+  },
+  {
+    "id": "emily_s_vaccination_dashboard",
+    "name": "Emily S Vaccination Dashboard",
+    "title": "Vaccination Manager - Emily's Records",
+    "folder": "emily_s_vaccination_dashboard",
+    "category": "Pediatric & Immunization",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/emily_s_vaccination_dashboard/code.html"
+  },
+  {
+    "id": "family_dashboard",
+    "name": "Family Dashboard",
+    "title": "Family Dashboard | DiagConnect",
+    "folder": "family_dashboard",
+    "category": "Patient & Family Portal",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/family_dashboard/code.html"
+  },
+  {
+    "id": "family_health_summary_report",
+    "name": "Family Health Summary Report",
+    "title": "Family Health Summary | DiagConnect",
+    "folder": "family_health_summary_report",
+    "category": "Patient & Family Portal",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/family_health_summary_report/code.html"
+  },
+  {
+    "id": "family_insurance_cards",
+    "name": "Family Insurance Cards",
+    "title": "Digital Insurance Cards | DiagConnect",
+    "folder": "family_insurance_cards",
+    "category": "Pharmacy & Insurance",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/family_insurance_cards/code.html"
+  },
+  {
+    "id": "family_prescriptions_dashboard",
+    "name": "Family Prescriptions Dashboard",
+    "title": "DiagConnect - Family Prescriptions",
+    "folder": "family_prescriptions_dashboard",
+    "category": "Doctor & EMR System",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/family_prescriptions_dashboard/code.html"
+  },
+  {
+    "id": "family_safety_dashboard",
+    "name": "Family Safety Dashboard",
+    "title": "Family Safety Dashboard - DiagConnect SOS",
+    "folder": "family_safety_dashboard",
+    "category": "Patient & Family Portal",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/family_safety_dashboard/code.html"
+  },
+  {
+    "id": "family_safety_guide",
+    "name": "Family Safety Guide",
+    "title": "Family SOS Guide - DiagConnect",
+    "folder": "family_safety_guide",
+    "category": "Patient & Family Portal",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/family_safety_guide/code.html"
+  },
+  {
+    "id": "ffire_evidence_vault",
+    "name": "Ffire Evidence Vault",
+    "title": "FFIRE Evidence Vault",
+    "folder": "ffire_evidence_vault",
+    "category": "FFIRE Fraud Engine",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/ffire_evidence_vault/code.html"
+  },
+  {
+    "id": "ffire_investigation_dashboard",
+    "name": "Ffire Investigation Dashboard",
+    "title": "FFIRE | Investigation Case INV-20260630-0091",
+    "folder": "ffire_investigation_dashboard",
+    "category": "FFIRE Fraud Engine",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/ffire_investigation_dashboard/code.html"
+  },
+  {
+    "id": "ffire_investigation_queue",
+    "name": "Ffire Investigation Queue",
+    "title": "FFIRE Investigation Queue",
+    "folder": "ffire_investigation_queue",
+    "category": "FFIRE Fraud Engine",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/ffire_investigation_queue/code.html"
+  },
+  {
+    "id": "ffire_landing_page",
+    "name": "Ffire Landing Page",
+    "title": "FFIRE | Financial Fraud Investigation Reasoning Engine",
+    "folder": "ffire_landing_page",
+    "category": "FFIRE Fraud Engine",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/ffire_landing_page/code.html"
+  },
+  {
+    "id": "ffire_login",
+    "name": "Ffire Login",
+    "title": "FFIRE | Secure Authentication",
+    "folder": "ffire_login",
+    "category": "FFIRE Fraud Engine",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/ffire_login/code.html"
+  },
+  {
+    "id": "ffire_precision_ledger",
+    "name": "Ffire Precision Ledger",
+    "title": "Ffire Precision Ledger",
+    "folder": "ffire_precision_ledger",
+    "category": "FFIRE Fraud Engine",
+    "hasHtml": false,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/ffire_precision_ledger/code.html"
+  },
+  {
+    "id": "ffire_pricing",
+    "name": "Ffire Pricing",
+    "title": "FFIRE Pricing | Enterprise Fintech Intelligence",
+    "folder": "ffire_pricing",
+    "category": "FFIRE Fraud Engine",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/ffire_pricing/code.html"
+  },
+  {
+    "id": "find_nearest_emergency_care",
+    "name": "Find Nearest Emergency Care",
+    "title": "DiagConnect | Emergency Care Finder",
+    "folder": "find_nearest_emergency_care",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/find_nearest_emergency_care/code.html"
+  },
+  {
+    "id": "find_pharmacy_pickup",
+    "name": "Find Pharmacy Pickup",
+    "title": "Find Pharmacy Pickup",
+    "folder": "find_pharmacy_pickup",
+    "category": "Pharmacy & Insurance",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/find_pharmacy_pickup/code.html"
+  },
+  {
+    "id": "find_training_center",
+    "name": "Find Training Center",
+    "title": "Find Training Center - DiagConnect Responder",
+    "folder": "find_training_center",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/find_training_center/code.html"
+  },
+  {
+    "id": "growth_insights_tips",
+    "name": "Growth Insights Tips",
+    "title": "Growth Insights - Family Health",
+    "folder": "growth_insights_tips",
+    "category": "Pediatric & Immunization",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/growth_insights_tips/code.html"
+  },
+  {
+    "id": "guided_reflection_processing",
+    "name": "Guided Reflection Processing",
+    "title": "Guided Reflection | DiagConnect SOS",
+    "folder": "guided_reflection_processing",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/guided_reflection_processing/code.html"
+  },
+  {
+    "id": "health_wellness_trends",
+    "name": "Health Wellness Trends",
+    "title": "DiagConnect - Health Trends",
+    "folder": "health_wellness_trends",
+    "category": "Patient & Family Portal",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/health_wellness_trends/code.html"
+  },
+  {
+    "id": "image.png",
+    "name": "Image.Png",
+    "title": "Image.Png",
+    "folder": "image.png",
+    "category": "System & Admin Console",
+    "hasHtml": false,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/image.png/code.html"
+  },
+  {
+    "id": "incident_analytics_report",
+    "name": "Incident Analytics Report",
+    "title": "Incident Analytics Report - DiagConnect",
+    "folder": "incident_analytics_report",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/incident_analytics_report/code.html"
+  },
+  {
+    "id": "incident_detail_coordination",
+    "name": "Incident Detail Coordination",
+    "title": "FFIRE | Incident Detail & Coordination",
+    "folder": "incident_detail_coordination",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/incident_detail_coordination/code.html"
+  },
+  {
+    "id": "insurance_coverage_claims",
+    "name": "Insurance Coverage Claims",
+    "title": "DiagConnect | Insurance &amp; Claims Dashboard",
+    "folder": "insurance_coverage_claims",
+    "category": "Pharmacy & Insurance",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/insurance_coverage_claims/code.html"
+  },
+  {
+    "id": "learner_dashboard",
+    "name": "Learner Dashboard",
+    "title": "DiagConnect Responder - Dashboard",
+    "folder": "learner_dashboard",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/learner_dashboard/code.html"
+  },
+  {
+    "id": "life_saver_badge_detail",
+    "name": "Life Saver Badge Detail",
+    "title": "Life Saver Badge Detail | DiagConnect",
+    "folder": "life_saver_badge_detail",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/life_saver_badge_detail/code.html"
+  },
+  {
+    "id": "medical_cost_estimator",
+    "name": "Medical Cost Estimator",
+    "title": "Cost Estimator - DiagConnect",
+    "folder": "medical_cost_estimator",
+    "category": "Pharmacy & Insurance",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/medical_cost_estimator/code.html"
+  },
+  {
+    "id": "medication_profile_detail",
+    "name": "Medication Profile Detail",
+    "title": "Medication Profile - DiagConnect",
+    "folder": "medication_profile_detail",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/medication_profile_detail/code.html"
+  },
+  {
+    "id": "medication_schedule_adherence",
+    "name": "Medication Schedule Adherence",
+    "title": "Schedule &amp; Adherence - DiagConnect",
+    "folder": "medication_schedule_adherence",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/medication_schedule_adherence/code.html"
+  },
+  {
+    "id": "member_health_record",
+    "name": "Member Health Record",
+    "title": "Member Health Record - Emily Johnson",
+    "folder": "member_health_record",
+    "category": "Patient & Family Portal",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/member_health_record/code.html"
+  },
+  {
+    "id": "my_certifications",
+    "name": "My Certifications",
+    "title": "Certification Management | DiagConnect Responder",
+    "folder": "my_certifications",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/my_certifications/code.html"
+  },
+  {
+    "id": "my_lab_results_dashboard",
+    "name": "My Lab Results Dashboard",
+    "title": "DiagConnect - Patient Portal",
+    "folder": "my_lab_results_dashboard",
+    "category": "Lab & Field Operations",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/my_lab_results_dashboard/code.html"
+  },
+  {
+    "id": "navigation_to_incident",
+    "name": "Navigation To Incident",
+    "title": "Volunteer Navigation - DiagConnect SOS",
+    "folder": "navigation_to_incident",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/navigation_to_incident/code.html"
+  },
+  {
+    "id": "network_capacity_resources",
+    "name": "Network Capacity Resources",
+    "title": "FFIRE Engine | Hospital Network Capacity",
+    "folder": "network_capacity_resources",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/network_capacity_resources/code.html"
+  },
+  {
+    "id": "official_medical_reports",
+    "name": "Official Medical Reports",
+    "title": "Archived Reports - DiagConnect",
+    "folder": "official_medical_reports",
+    "category": "Doctor & EMR System",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/official_medical_reports/code.html"
+  },
+  {
+    "id": "otp_verification",
+    "name": "Otp Verification",
+    "title": "ABHA Registration - OTP Verification",
+    "folder": "otp_verification",
+    "category": "ABHA & Identity Verification",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/otp_verification/code.html"
+  },
+  {
+    "id": "override_detail_authorization",
+    "name": "Override Detail Authorization",
+    "title": "Authorization Detail | DiagConnect",
+    "folder": "override_detail_authorization",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/override_detail_authorization/code.html"
+  },
+  {
+    "id": "pediatric_growth_charts",
+    "name": "Pediatric Growth Charts",
+    "title": "Pediatric Growth Charts | DiagConnect",
+    "folder": "pediatric_growth_charts",
+    "category": "Pediatric & Immunization",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/pediatric_growth_charts/code.html"
+  },
+  {
+    "id": "peer_support_community",
+    "name": "Peer Support Community",
+    "title": "Community Support | DiagConnect SOS",
+    "folder": "peer_support_community",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/peer_support_community/code.html"
+  },
+  {
+    "id": "personalized_health_action_plan",
+    "name": "Personalized Health Action Plan",
+    "title": "Proactive Health Actions | Family Health",
+    "folder": "personalized_health_action_plan",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/personalized_health_action_plan/code.html"
+  },
+  {
+    "id": "pharmacy_profile_management",
+    "name": "Pharmacy Profile Management",
+    "title": "Manage Pharmacy - DiagConnect",
+    "folder": "pharmacy_profile_management",
+    "category": "Pharmacy & Insurance",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/pharmacy_profile_management/code.html"
+  },
+  {
+    "id": "phlebotomist_profile_inventory",
+    "name": "Phlebotomist Profile Inventory",
+    "title": "DiagConnect - Phlebotomist Profile & Inventory",
+    "folder": "phlebotomist_profile_inventory",
+    "category": "Lab & Field Operations",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/phlebotomist_profile_inventory/code.html"
+  },
+  {
+    "id": "phlebotomist_tasks_today",
+    "name": "Phlebotomist Tasks Today",
+    "title": "DiagConnect Phlebotomist Dashboard",
+    "folder": "phlebotomist_tasks_today",
+    "category": "Lab & Field Operations",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/phlebotomist_tasks_today/code.html"
+  },
+  {
+    "id": "post_incident_log_handoff",
+    "name": "Post Incident Log Handoff",
+    "title": "Post-Incident Report | DiagConnect SOS",
+    "folder": "post_incident_log_handoff",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/post_incident_log_handoff/code.html"
+  },
+  {
+    "id": "regional_fleet_management",
+    "name": "Regional Fleet Management",
+    "title": "DiagConnect Admin - Regional Fleet Management",
+    "folder": "regional_fleet_management",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/regional_fleet_management/code.html"
+  },
+  {
+    "id": "regional_resource_allocation_dashboard",
+    "name": "Regional Resource Allocation Dashboard",
+    "title": "DiagConnect | Regional Resource Allocation",
+    "folder": "regional_resource_allocation_dashboard",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/regional_resource_allocation_dashboard/code.html"
+  },
+  {
+    "id": "regional_resource_tracking_map",
+    "name": "Regional Resource Tracking Map",
+    "title": "Regional Map - DiagConnect",
+    "folder": "regional_resource_tracking_map",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/regional_resource_tracking_map/code.html"
+  },
+  {
+    "id": "responder_profile_detail",
+    "name": "Responder Profile Detail",
+    "title": "Responder Profile | DiagConnect",
+    "folder": "responder_profile_detail",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/responder_profile_detail/code.html"
+  },
+  {
+    "id": "responder_wellness_hub",
+    "name": "Responder Wellness Hub",
+    "title": "Wellness Hub | DiagConnect SOS",
+    "folder": "responder_wellness_hub",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/responder_wellness_hub/code.html"
+  },
+  {
+    "id": "safety_drill_setup",
+    "name": "Safety Drill Setup",
+    "title": "Safety Drill Configuration | DiagConnect SOS",
+    "folder": "safety_drill_setup",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/safety_drill_setup/code.html"
+  },
+  {
+    "id": "schedule_evaluation",
+    "name": "Schedule Evaluation",
+    "title": "Schedule Evaluation | DiagConnect Responder",
+    "folder": "schedule_evaluation",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/schedule_evaluation/code.html"
+  },
+  {
+    "id": "schedule_vaccination_visit",
+    "name": "Schedule Vaccination Visit",
+    "title": "Schedule Vaccination - Vaccination Manager",
+    "folder": "schedule_vaccination_visit",
+    "category": "Pediatric & Immunization",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/schedule_vaccination_visit/code.html"
+  },
+  {
+    "id": "shared_family_timeline",
+    "name": "Shared Family Timeline",
+    "title": "Shared Health Timeline - DiagConnect",
+    "folder": "shared_family_timeline",
+    "category": "Patient & Family Portal",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/shared_family_timeline/code.html"
+  },
+  {
+    "id": "skills_check_in_qr",
+    "name": "Skills Check In Qr",
+    "title": "Skills Check-In | DiagConnect",
+    "folder": "skills_check_in_qr",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/skills_check_in_qr/code.html"
+  },
+  {
+    "id": "staff_directory_directory",
+    "name": "Staff Directory Directory",
+    "title": "DiagConnect - Staff Directory",
+    "folder": "staff_directory_directory",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/staff_directory_directory/code.html"
+  },
+  {
+    "id": "staff_exception_review",
+    "name": "Staff Exception Review",
+    "title": "Staff Exception Review - DiagConnect",
+    "folder": "staff_exception_review",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/staff_exception_review/code.html"
+  },
+  {
+    "id": "supervisor_approval_queue",
+    "name": "Supervisor Approval Queue",
+    "title": "Supervisor Approval Queue | DiagConnect",
+    "folder": "supervisor_approval_queue",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/supervisor_approval_queue/code.html"
+  },
+  {
+    "id": "system_logs_audit_trail",
+    "name": "System Logs Audit Trail",
+    "title": "System Logs | DiagConnect Admin",
+    "folder": "system_logs_audit_trail",
+    "category": "System & Admin Console",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/system_logs_audit_trail/code.html"
+  },
+  {
+    "id": "track_meds_delivery",
+    "name": "Track Meds Delivery",
+    "title": "DiagConnect | Medication Tracking",
+    "folder": "track_meds_delivery",
+    "category": "Pharmacy & Insurance",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/track_meds_delivery/code.html"
+  },
+  {
+    "id": "trigger_emergency_sos",
+    "name": "Trigger Emergency Sos",
+    "title": "SOS Trigger | DiagConnect",
+    "folder": "trigger_emergency_sos",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/trigger_emergency_sos/code.html"
+  },
+  {
+    "id": "understanding_secondary_stress",
+    "name": "Understanding Secondary Stress",
+    "title": "DiagConnect Wellness - Secondary Traumatic Stress",
+    "folder": "understanding_secondary_stress",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/understanding_secondary_stress/code.html"
+  },
+  {
+    "id": "vaccination_certificates",
+    "name": "Vaccination Certificates",
+    "title": "Vaccination Manager - Verified Records",
+    "folder": "vaccination_certificates",
+    "category": "Pediatric & Immunization",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/vaccination_certificates/code.html"
+  },
+  {
+    "id": "vaccine_dose_detail",
+    "name": "Vaccine Dose Detail",
+    "title": "Vaccine Details | DiagConnect",
+    "folder": "vaccine_dose_detail",
+    "category": "Pediatric & Immunization",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/vaccine_dose_detail/code.html"
+  },
+  {
+    "id": "volunteer_certification_status",
+    "name": "Volunteer Certification Status",
+    "title": "Responder Portal | DiagConnect SOS",
+    "folder": "volunteer_certification_status",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/volunteer_certification_status/code.html"
+  },
+  {
+    "id": "volunteer_leaderboard",
+    "name": "Volunteer Leaderboard",
+    "title": "Volunteer Leaderboard | DiagConnect",
+    "folder": "volunteer_leaderboard",
+    "category": "Emergency & First Responder Hub",
+    "hasHtml": true,
+    "relPath": "/stitch_srs_ui_component_generator/stitch_srs_ui_component_generator/volunteer_leaderboard/code.html"
+  }
+]

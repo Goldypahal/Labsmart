@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Digital Insurance Cards | DiagConnect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .card-perspective {
+            perspective: 1000px;
+        }
+        .card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+        .card-inner.is-flipped {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#d3e4fe",
+                        "primary": "#006591",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#0b1c30",
+                        "on-primary-fixed": "#001e2f",
+                        "inverse-surface": "#213145",
+                        "on-background": "#0b1c30",
+                        "secondary-container": "#6cf8bb",
+                        "outline": "#6e7881",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "surface-variant": "#d3e4fe",
+                        "background": "#f8f9ff",
+                        "primary-container": "#0ea5e9",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-low": "#eff4ff",
+                        "on-surface-variant": "#3e4850",
+                        "tertiary": "#855300",
+                        "surface-dim": "#cbdbf5",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#c9e6ff",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed-variant": "#005236",
+                        "primary-fixed-dim": "#89ceff",
+                        "on-tertiary-fixed": "#2a1700",
+                        "inverse-primary": "#89ceff",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "surface": "#f8f9ff",
+                        "surface-tint": "#006591",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "outline-variant": "#bec8d2",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#f8f9ff",
+                        "surface-container": "#e5eeff",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#d88a00",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#003751",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "secondary": "#006c49",
+                        "on-tertiary-container": "#4a2c00",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-secondary-container": "#00714d",
+                        "on-secondary-fixed": "#002113"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "base": "4px",
+                        "sm": "8px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "margin-desktop": "40px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "max-width": "1440px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full bg-surface dark:bg-surface-dim border-b border-outline-variant z-50 flex items-center justify-between px-margin-desktop h-16 w-full">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md text-primary font-bold">DiagConnect</span>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-8">
+<a class="text-on-surface-variant hover:bg-surface-container-low transition-colors px-3 py-1 rounded-lg font-label-md text-label-md" href="#">Overview</a>
+<a class="text-primary font-bold font-label-md text-label-md" href="#">Cards</a>
+<a class="text-on-surface-variant hover:bg-surface-container-low transition-colors px-3 py-1 rounded-lg font-label-md text-label-md" href="#">Family</a>
+</nav>
+<div class="flex items-center gap-3 cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">notifications</span>
+<div class="w-8 h-8 rounded-full bg-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a woman in her late 30s with a kind expression, wearing clinical business attire. The lighting is soft and even, typical of a modern corporate medical profile. The background is a clean, out-of-focus medical office with light blue and white tones to match the DiagConnect aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvxfvxy6Csryz1UyDTuE4TPXleYEHc1AY15HPkdpMlOnmjDh-rxiNVyAp5Vq8w-bcbNizLLWGH0y0Ixl4CCQf4NlClkU43dP2laOgFrW3UocHkZuiTI9PU1-RakYZkhoB2m9iV0GP4chMQ_HHCqYf_Ifpsz-gC_I4DT2z_t2raOBMqNQjwJpQRF9Rx_Foabvuq569Sict2sMyKhseHvLT0AL2x9h1ffzRqOxIL46mbhHvlulAAuAH1tsjKev2J6SitWJ_k2nhnHZU"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Sidebar (Desktop) -->
+<aside class="hidden md:flex fixed left-0 top-0 bottom-0 flex flex-col pt-20 h-full w-72 bg-surface-container-lowest dark:bg-inverse-surface border-r border-outline-variant z-40">
+<div class="px-6 mb-8">
+<h2 class="text-primary font-headline-sm text-headline-sm">Health Dashboard</h2>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-high mx-2 rounded-full transition-all duration-200" href="#">
+<span class="material-symbols-outlined">shield</span>
+<span class="font-label-md text-label-md">Coverage Overview</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-high mx-2 rounded-full transition-all duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md text-label-md">Claims History</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-high mx-2 rounded-full transition-all duration-200" href="#">
+<span class="material-symbols-outlined">calculate</span>
+<span class="font-label-md text-label-md">Cost Estimator</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 bg-secondary-container text-on-secondary-container font-semibold rounded-full mx-2 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">contactless</span>
+<span class="font-label-md text-label-md">Digital Cards</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container-high mx-2 rounded-full transition-all duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Family Members</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="md:ml-72 pt-24 pb-32 px-margin-mobile md:px-margin-desktop">
+<!-- Header & Filter -->
+<div class="max-w-6xl mx-auto mb-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Digital Insurance Cards</h1>
+<p class="text-on-surface-variant font-body-md max-w-xl">Access and manage healthcare credentials for your entire family. Tap a card to flip it and see provider details.</p>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto hide-scrollbar pb-2">
+<button class="bg-primary text-on-primary px-4 py-2 rounded-full font-label-md whitespace-nowrap shadow-sm">All Members</button>
+<button class="bg-surface-container text-on-surface-variant px-4 py-2 rounded-full font-label-md whitespace-nowrap hover:bg-surface-container-high transition-colors">Alex</button>
+<button class="bg-surface-container text-on-surface-variant px-4 py-2 rounded-full font-label-md whitespace-nowrap hover:bg-surface-container-high transition-colors">Sarah</button>
+<button class="bg-surface-container text-on-surface-variant px-4 py-2 rounded-full font-label-md whitespace-nowrap hover:bg-surface-container-high transition-colors">Leo</button>
+<button class="bg-surface-container text-on-surface-variant px-4 py-2 rounded-full font-label-md whitespace-nowrap hover:bg-surface-container-high transition-colors">Maya</button>
+</div>
+</div>
+</div>
+<!-- Bento Grid for Cards -->
+<div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<!-- Alex's Card Section -->
+<div class="flex flex-col gap-6">
+<div class="card-perspective w-full h-64">
+<div class="card-inner relative w-full h-full shadow-lg rounded-xl overflow-hidden" onclick="this.classList.toggle('is-flipped')">
+<!-- Front -->
+<div class="card-front absolute inset-0 bg-gradient-to-br from-primary to-primary-container p-6 text-white flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-1">DiagConnect <span class="font-normal opacity-80">Health</span></h3>
+<p class="font-label-sm uppercase tracking-wider opacity-90">Preferred Provider Organization</p>
+</div>
+<span class="material-symbols-outlined text-4xl opacity-50">contactless</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md mb-4">Alex Johnson</h4>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="font-label-sm opacity-70 uppercase">Member ID</p>
+<p class="font-body-md font-bold tracking-widest">DC-8842-1920</p>
+</div>
+<div>
+<p class="font-label-sm opacity-70 uppercase">Group No</p>
+<p class="font-body-md font-bold tracking-widest">99201-A</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Back -->
+<div class="card-back absolute inset-0 bg-white border border-outline-variant p-6 text-on-surface flex flex-col justify-between">
+<div class="grid grid-cols-2 gap-y-4">
+<div>
+<p class="font-label-sm text-on-surface-variant">Office Visit</p>
+<p class="font-body-md font-bold text-primary">$20 Copay</p>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant">Specialist</p>
+<p class="font-body-md font-bold text-primary">$40 Copay</p>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant">Pharmacy (Rx)</p>
+<p class="font-body-md font-bold text-primary">Bin: 012234</p>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant">Urgent Care</p>
+<p class="font-body-md font-bold text-primary">$50 Copay</p>
+</div>
+</div>
+<div class="border-t border-outline-variant pt-4">
+<p class="text-[10px] text-on-surface-variant leading-tight">Providers: Send claims to DiagConnect P.O. Box 4022. Customer Service: 1-800-DIAG-CON.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-3">
+<button class="flex-1 bg-surface border border-outline-variant text-primary font-label-md py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-container-low transition-colors active:scale-95" onclick="copyPolicy('DC-8842-1920')">
+<span class="material-symbols-outlined text-[20px]">content_copy</span> Copy ID
+                    </button>
+<button class="flex-1 bg-surface border border-outline-variant text-primary font-label-md py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-container-low transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[20px]">mail</span> Share
+                    </button>
+<button class="flex-[2] bg-on-surface text-white font-label-md py-3 rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity active:scale-95">
+<span class="material-symbols-outlined text-[20px]">wallet</span> Add to Apple Wallet
+                    </button>
+</div>
+</div>
+<!-- Sarah's Card Section -->
+<div class="flex flex-col gap-6">
+<div class="card-perspective w-full h-64">
+<div class="card-inner relative w-full h-full shadow-lg rounded-xl overflow-hidden" onclick="this.classList.toggle('is-flipped')">
+<!-- Front -->
+<div class="card-front absolute inset-0 bg-gradient-to-br from-secondary to-secondary-container p-6 text-on-secondary-container flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-1">DiagConnect <span class="font-normal opacity-80">Health</span></h3>
+<p class="font-label-sm uppercase tracking-wider opacity-90">HMO Plan (Silver)</p>
+</div>
+<span class="material-symbols-outlined text-4xl opacity-50">contactless</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md mb-4">Sarah Johnson</h4>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="font-label-sm opacity-70 uppercase">Member ID</p>
+<p class="font-body-md font-bold tracking-widest">DC-8842-1921</p>
+</div>
+<div>
+<p class="font-label-sm opacity-70 uppercase">Group No</p>
+<p class="font-body-md font-bold tracking-widest">99201-A</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Back -->
+<div class="card-back absolute inset-0 bg-white border border-outline-variant p-6 text-on-surface flex flex-col justify-between">
+<div class="grid grid-cols-2 gap-y-4">
+<div>
+<p class="font-label-sm text-on-surface-variant">PCP Visit</p>
+<p class="font-body-md font-bold text-secondary">$10 Copay</p>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant">Specialist</p>
+<p class="font-body-md font-bold text-secondary">Referral Req.</p>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant">Emergency</p>
+<p class="font-body-md font-bold text-secondary">$150 Copay</p>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant">Plan Type</p>
+<p class="font-body-md font-bold text-secondary">HMO Silver</p>
+</div>
+</div>
+<div class="border-t border-outline-variant pt-4">
+<p class="text-[10px] text-on-surface-variant leading-tight">Member must select a Primary Care Physician. Authorizations required for all outpatient procedures.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-3">
+<button class="flex-1 bg-surface border border-outline-variant text-primary font-label-md py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-container-low transition-colors active:scale-95" onclick="copyPolicy('DC-8842-1921')">
+<span class="material-symbols-outlined text-[20px]">content_copy</span> Copy ID
+                    </button>
+<button class="flex-1 bg-surface border border-outline-variant text-primary font-label-md py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-container-low transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[20px]">mail</span> Share
+                    </button>
+<button class="flex-[2] bg-on-surface text-white font-label-md py-3 rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity active:scale-95">
+<span class="material-symbols-outlined text-[20px]">wallet</span> Add to Apple Wallet
+                    </button>
+</div>
+</div>
+<!-- Leo's Card Section (Compact/Bento Style) -->
+<div class="lg:col-span-1 glass-effect rounded-2xl p-6 flex flex-col justify-between border-l-4 border-l-tertiary">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container font-bold text-lg">L</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Leo Johnson</h4>
+<p class="font-label-sm text-on-surface-variant">Child • PPO Dependent</p>
+</div>
+</div>
+<button class="text-primary material-symbols-outlined">more_vert</button>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between border-b border-outline-variant pb-2">
+<span class="font-label-sm text-on-surface-variant">Member ID</span>
+<span class="font-body-sm font-bold">DC-8842-1922</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant pb-2">
+<span class="font-label-sm text-on-surface-variant">Group Number</span>
+<span class="font-body-sm font-bold">99201-A</span>
+</div>
+<div class="flex justify-between">
+<span class="font-label-sm text-on-surface-variant">Status</span>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">Active</span>
+</div>
+</div>
+<div class="mt-8 flex gap-2">
+<button class="bg-surface-container-high text-on-surface py-2 px-4 rounded-lg text-sm font-semibold flex-1 active:scale-95 transition-transform">View Full Card</button>
+<button class="bg-primary text-on-primary py-2 px-4 rounded-lg text-sm font-semibold flex-1 active:scale-95 transition-transform">Add to Wallet</button>
+</div>
+</div>
+<!-- Maya's Card Section (Compact/Bento Style) -->
+<div class="lg:col-span-1 glass-effect rounded-2xl p-6 flex flex-col justify-between border-l-4 border-l-primary">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-lg">M</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Maya Johnson</h4>
+<p class="font-label-sm text-on-surface-variant">Child • PPO Dependent</p>
+</div>
+</div>
+<button class="text-primary material-symbols-outlined">more_vert</button>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between border-b border-outline-variant pb-2">
+<span class="font-label-sm text-on-surface-variant">Member ID</span>
+<span class="font-body-sm font-bold">DC-8842-1923</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant pb-2">
+<span class="font-label-sm text-on-surface-variant">Group Number</span>
+<span class="font-body-sm font-bold">99201-A</span>
+</div>
+<div class="flex justify-between">
+<span class="font-label-sm text-on-surface-variant">Status</span>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">Active</span>
+</div>
+</div>
+<div class="mt-8 flex gap-2">
+<button class="bg-surface-container-high text-on-surface py-2 px-4 rounded-lg text-sm font-semibold flex-1 active:scale-95 transition-transform">View Full Card</button>
+<button class="bg-primary text-on-primary py-2 px-4 rounded-lg text-sm font-semibold flex-1 active:scale-95 transition-transform">Add to Wallet</button>
+</div>
+</div>
+</div>
+<!-- Wallet Info Banner -->
+<div class="max-w-6xl mx-auto mt-gutter p-8 rounded-3xl bg-surface-container-high relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 border border-outline-variant">
+<div class="relative z-10 text-center md:text-left">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Secure your cards offline</h3>
+<p class="text-on-surface-variant font-body-md">Enable Apple or Google Wallet integration to access your insurance information even without an internet connection at the provider's office.</p>
+<div class="mt-6 flex flex-wrap justify-center md:justify-start gap-4">
+<div class="flex items-center gap-2 bg-white/50 px-4 py-2 rounded-xl border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary">security</span>
+<span class="text-label-sm">Biometric Protection</span>
+</div>
+<div class="flex items-center gap-2 bg-white/50 px-4 py-2 rounded-xl border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary">cloud_off</span>
+<span class="text-label-sm">Offline Access</span>
+</div>
+</div>
+</div>
+<div class="relative z-10 w-full md:w-auto">
+<div class="bg-on-surface p-6 rounded-2xl shadow-2xl flex flex-col items-center gap-4 min-w-[240px]">
+<div class="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-4xl" style="font-variation-settings: 'FILL' 1;">wallet</span>
+</div>
+<span class="text-white font-headline-sm">Universal Wallet</span>
+<button class="w-full bg-white text-on-surface font-bold py-3 rounded-lg hover:bg-gray-100 transition-colors">Sync All Cards</button>
+</div>
+</div>
+<!-- Decorative circle -->
+<div class="absolute -right-20 -bottom-20 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface dark:bg-surface-dim border-t border-outline-variant shadow-md rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-sm text-label-sm">Claims</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-sm text-label-sm">Estimator</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-2xl px-4 py-1" href="#">
+<span class="material-symbols-outlined">wallet</span>
+<span class="font-label-sm text-label-sm">Cards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<!-- Toast Notification for Copy -->
+<div class="fixed bottom-24 left-1/2 -translate-x-1/2 bg-on-surface text-white px-6 py-3 rounded-full font-label-md shadow-xl opacity-0 translate-y-4 transition-all duration-300 pointer-events-none z-[100]" id="toast">
+        Copied to clipboard
+    </div>
+<script>
+        function copyPolicy(id) {
+            navigator.clipboard.writeText(id).then(() => {
+                const toast = document.getElementById('toast');
+                toast.innerText = `Copied ID: ${id}`;
+                toast.classList.remove('opacity-0', 'translate-y-4');
+                toast.classList.add('opacity-100', 'translate-y-0');
+                
+                setTimeout(() => {
+                    toast.classList.add('opacity-0', 'translate-y-4');
+                    toast.classList.remove('opacity-100', 'translate-y-0');
+                }, 2000);
+            });
+        }
+
+        // Perspective Hover Effect
+        document.querySelectorAll('.card-inner').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                if (card.classList.contains('is-flipped')) return;
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                if (card.classList.contains('is-flipped')) {
+                    card.style.transform = `rotateY(180deg)`;
+                } else {
+                    card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+                }
+            });
+        });
+    </script>
+</body></html>

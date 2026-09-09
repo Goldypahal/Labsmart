@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Regional Map - DiagConnect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .marker-pulse {
+            position: relative;
+        }
+        .marker-pulse::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background-color: currentColor;
+            border-radius: 50%;
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+            opacity: 0.5;
+        }
+        @keyframes pulse-ring {
+            0% { transform: translate(-50%, -50%) scale(0.33); }
+            80%, 100% { opacity: 0; }
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #bec8d2;
+            border-radius: 10px;
+        }
+        .map-gradient-overlay {
+            background: linear-gradient(to top, rgba(248, 249, 255, 1) 0%, rgba(248, 249, 255, 0) 150px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#855300",
+                        "outline-variant": "#bec8d2",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#001e2f",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary-container": "#d88a00",
+                        "surface-container": "#e5eeff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "primary-fixed-dim": "#89ceff",
+                        "primary": "#006591",
+                        "on-tertiary-container": "#4a2c00",
+                        "primary-fixed": "#c9e6ff",
+                        "outline": "#6e7881",
+                        "on-primary-container": "#003751",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "primary-container": "#0ea5e9",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-background": "#0b1c30",
+                        "secondary": "#006c49",
+                        "inverse-surface": "#213145",
+                        "inverse-primary": "#89ceff",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-surface-variant": "#3e4850",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#006591",
+                        "on-secondary-container": "#00714d",
+                        "background": "#f8f9ff",
+                        "surface-container-high": "#dce9ff",
+                        "surface": "#f8f9ff",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#6cf8bb",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffddb8",
+                        "surface-bright": "#f8f9ff",
+                        "surface-container-low": "#eff4ff",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#002113",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "on-surface": "#0b1c30",
+                        "surface-variant": "#d3e4fe",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "xl": "32px",
+                        "max-width": "1440px",
+                        "margin-desktop": "40px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center h-16 px-margin-mobile md:px-margin-desktop bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white cursor-pointer active:opacity-70 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">DiagConnect</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:opacity-70">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Map Canvas -->
+<main class="flex-1 relative pt-16 pb-20">
+<!-- Map Background -->
+<div class="absolute inset-0 z-0 bg-surface-dim" data-location="New York City" style="">
+<div class="w-full h-full bg-cover bg-center opacity-80 mix-blend-multiply" data-alt="A highly detailed cartographic map of a sprawling modern metropolis with a clinical blue and gray aesthetic. The map features high-density streets, parks, and waterways, illuminated by a soft, diffused morning light. The visual style is professional and precise, using a palette of slate grays, muted blues, and clean whites to maintain an authoritative medical infrastructure mood." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRGiwpzZRzFjMeWZM3Vg5P4fIJVWt74kUK_Ko28Qz4cT9HePKpRGcs_1vG7YTxIieTVS0XoLo2xEv99rra52gPZMaogkr1gvx5DKN1g9qM1P2ZA3MQKqRYvt9uSNmB99an_kssxmQdMkQy4UsNNIWAwnVXz17r99tfGFg3ribwulUW3vN2CpSUl-fu33xKr00kjbPokhoBYiydauk6rS63tyW8grxogfgBERGi0eFV6j86RGdECfuIa5ViZKEmwaaW-ZjPE4TqtQU')"></div>
+<!-- Map Overlay Gradients for Depth -->
+<div class="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none"></div>
+</div>
+<!-- Interactive Markers (Simulated) -->
+<div class="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+<!-- Active Incidents (Red) -->
+<div class="absolute top-1/4 left-1/3 pointer-events-auto cursor-pointer flex flex-col items-center gap-1 group">
+<div class="w-8 h-8 bg-error text-on-error rounded-full shadow-lg flex items-center justify-center border-2 border-white animate-bounce">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">emergency</span>
+</div>
+<div class="bg-white/90 backdrop-blur px-2 py-0.5 rounded-full text-[10px] font-bold text-error border border-error/20 opacity-0 group-hover:opacity-100 transition-opacity">INC-0922</div>
+</div>
+<div class="absolute top-2/3 left-3/4 pointer-events-auto cursor-pointer flex flex-col items-center gap-1 group">
+<div class="w-8 h-8 bg-error text-on-error rounded-full shadow-lg flex items-center justify-center border-2 border-white animate-bounce" style="animation-delay: 0.5s;">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+</div>
+<!-- Ambulances (Green) -->
+<div class="absolute top-1/2 left-1/2 pointer-events-auto cursor-pointer group">
+<div class="w-7 h-7 bg-secondary text-on-secondary rounded-lg shadow-md flex items-center justify-center border border-white transform rotate-45 transition-transform hover:scale-110">
+<span class="material-symbols-outlined text-sm -rotate-45" style="font-variation-settings: 'FILL' 1;">ambulance</span>
+</div>
+</div>
+<div class="absolute top-1/3 left-2/3 pointer-events-auto cursor-pointer group">
+<div class="w-7 h-7 bg-secondary text-on-secondary rounded-lg shadow-md flex items-center justify-center border border-white transform -rotate-12 transition-transform hover:scale-110">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">ambulance</span>
+</div>
+</div>
+<!-- Responders (Blue Pulsing) -->
+<div class="absolute top-1/4 left-1/2 pointer-events-auto cursor-pointer">
+<div class="marker-pulse text-primary w-4 h-4 bg-primary rounded-full border-2 border-white shadow-sm"></div>
+</div>
+<div class="absolute top-2/3 left-1/4 pointer-events-auto cursor-pointer">
+<div class="marker-pulse text-primary w-4 h-4 bg-primary rounded-full border-2 border-white shadow-sm"></div>
+</div>
+<div class="absolute top-1/2 left-1/4 pointer-events-auto cursor-pointer">
+<div class="marker-pulse text-primary w-4 h-4 bg-primary rounded-full border-2 border-white shadow-sm"></div>
+</div>
+<div class="absolute bottom-1/4 left-1/2 pointer-events-auto cursor-pointer">
+<div class="marker-pulse text-primary w-4 h-4 bg-primary rounded-full border-2 border-white shadow-sm"></div>
+</div>
+</div>
+<!-- Floating UI Overlays -->
+<div class="absolute top-6 right-6 z-20 flex flex-col gap-4">
+<div class="flex flex-col gap-2">
+<button class="w-12 h-12 bg-surface text-primary rounded-xl shadow-lg border border-outline-variant flex items-center justify-center hover:bg-surface-container-high active:scale-95 transition-all">
+<span class="material-symbols-outlined">layers</span>
+</button>
+<button class="w-12 h-12 bg-surface text-primary rounded-xl shadow-lg border border-outline-variant flex items-center justify-center hover:bg-surface-container-high active:scale-95 transition-all">
+<span class="material-symbols-outlined">traffic</span>
+</button>
+</div>
+<button class="w-12 h-12 bg-primary text-on-primary rounded-xl shadow-lg flex items-center justify-center hover:bg-primary-container active:scale-95 transition-all">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+<div class="absolute top-6 left-6 z-20">
+<div class="glass-panel px-4 py-3 rounded-xl shadow-md border border-outline-variant/30 flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
+<span class="font-label-md text-label-md text-on-surface">Live Data Sync: Active</span>
+</div>
+</div>
+<!-- Expandable Bottom Sheet / Stats Panel -->
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-[calc(100%-32px)] md:w-[600px] z-30 transition-all duration-300 transform translate-y-0" id="statsSheet">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-2xl shadow-2xl overflow-hidden">
+<!-- Handle -->
+<div class="w-full flex justify-center py-2 cursor-pointer hover:bg-surface-container-low transition-colors" onclick="toggleStats()">
+<div class="w-12 h-1 bg-outline-variant rounded-full"></div>
+</div>
+<div class="px-6 pb-6 pt-2">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-sm text-headline-sm text-primary flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                            Live Network Stats
+                        </h2>
+<span class="text-on-surface-variant font-label-sm text-label-sm bg-surface-container px-3 py-1 rounded-full">Updated 4s ago</span>
+</div>
+<div class="grid grid-cols-3 gap-4">
+<!-- Stat Card 1 -->
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Active Responders</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">1,284</span>
+<span class="text-secondary font-label-sm text-label-sm flex items-center">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>3%
+                                </span>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="flex flex-col gap-1 border-x border-outline-variant px-4">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Incidents</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md font-bold text-error">12</span>
+<span class="text-error font-label-sm text-label-sm flex items-center">
+<span class="material-symbols-outlined text-[14px]">priority_high</span>
+</span>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="flex flex-col gap-1 pl-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Coverage</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">98%</span>
+<div class="w-16 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[98%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Hidden Detailed Stats (Expands) -->
+<div class="max-h-0 opacity-0 overflow-hidden transition-all duration-300 mt-6" id="detailedStats">
+<div class="border-t border-outline-variant pt-6 space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant font-body-sm text-body-sm">Regional Response Time</span>
+<span class="font-label-md text-label-md text-on-surface">4.2 min avg</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant font-body-sm text-body-sm">Units in Maintenance</span>
+<span class="font-label-md text-label-md text-on-surface">14 (Critical)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant font-body-sm text-body-sm">Traffic Delay Impact</span>
+<span class="font-label-md text-label-md text-secondary">-1.5%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 h-20 bg-surface dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline flex justify-around items-center px-2 pb-safe">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all cursor-pointer active:scale-95 px-4 h-full">
+<span class="material-symbols-outlined">fact_check</span>
+<span class="font-label-sm text-label-sm">Approvals</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all cursor-pointer active:scale-95 px-4 h-full">
+<span class="material-symbols-outlined">clinical_notes</span>
+<span class="font-label-sm text-label-sm">System Logs</span>
+</div>
+<!-- Active Tab: Regional Map -->
+<div class="flex flex-col items-center justify-center text-primary dark:text-secondary-fixed-dim font-semibold hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all cursor-pointer active:scale-95 px-4 h-full relative">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">distance</span>
+<span class="font-label-sm text-label-sm">Regional Map</span>
+<div class="absolute bottom-0 w-12 h-1 bg-primary rounded-t-full"></div>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-all cursor-pointer active:scale-95 px-4 h-full">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-sm text-label-sm">Staff</span>
+</div>
+</nav>
+<script>
+        let isExpanded = false;
+        function toggleStats() {
+            const sheet = document.getElementById('detailedStats');
+            const container = document.getElementById('statsSheet');
+            if (!isExpanded) {
+                sheet.style.maxHeight = '200px';
+                sheet.style.opacity = '1';
+                isExpanded = true;
+            } else {
+                sheet.style.maxHeight = '0';
+                sheet.style.opacity = '0';
+                isExpanded = false;
+            }
+        }
+
+        // Add some random movement to "ambulances" to simulate live activity
+        const ambulances = document.querySelectorAll('.rotate-45, .-rotate-12');
+        setInterval(() => {
+            ambulances.forEach(amb => {
+                const x = (Math.random() - 0.5) * 4;
+                const y = (Math.random() - 0.5) * 4;
+                amb.style.transform = `translate(${x}px, ${y}px) rotate(${amb.classList.contains('rotate-45') ? '45deg' : '-12deg'})`;
+            });
+        }, 3000);
+    </script>
+</body></html>

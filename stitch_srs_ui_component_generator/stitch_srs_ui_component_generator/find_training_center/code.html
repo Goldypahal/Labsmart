@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Find Training Center - DiagConnect Responder</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .map-pin-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .7; transform: scale(1.1); }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#0ea5e9",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#89ceff",
+                        "error": "#ba1a1a",
+                        "on-surface": "#0b1c30",
+                        "secondary-fixed": "#6ffbbe",
+                        "surface-variant": "#d3e4fe",
+                        "tertiary": "#855300",
+                        "surface-bright": "#f8f9ff",
+                        "secondary": "#006c49",
+                        "outline-variant": "#bec8d2",
+                        "inverse-on-surface": "#eaf1ff",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#003751",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#213145",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-background": "#0b1c30",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "surface": "#f8f9ff",
+                        "primary-fixed": "#c9e6ff",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#4a2c00",
+                        "outline": "#6e7881",
+                        "on-secondary-container": "#00714d",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-primary-fixed": "#001e2f",
+                        "surface-container": "#e5eeff",
+                        "inverse-primary": "#89ceff",
+                        "primary": "#006591",
+                        "on-surface-variant": "#3e4850",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "tertiary-container": "#d88a00",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#006591",
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary-fixed": "#002113",
+                        "background": "#f8f9ff",
+                        "surface-container-high": "#dce9ff",
+                        "secondary-container": "#6cf8bb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "gutter": "24px",
+                        "max-width": "1440px",
+                        "margin-desktop": "40px",
+                        "sm": "8px",
+                        "margin-mobile": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer" onclick="history.back()">arrow_back</span>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">Find Training Center</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden md:flex items-center gap-sm bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-primary text-sm">location_on</span>
+<span class="font-label-md text-on-surface-variant">San Francisco, CA</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold overflow-hidden border-2 border-surface shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A clean, professional headshot of a medical professional responder, looking directly at the camera with a confident and friendly expression. The lighting is soft and clinical, set against a blurred high-tech medical laboratory background with soft blue and white tones. The overall aesthetic is professional, reliable, and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcpJhHmMkoU2VM1SZG25a73c-qXp2tnJaBYZiMDXvpZ8jmFqa4NioxVWR9wo13TVteC1SEwy2efX_WXbzrHZ-2QdpCRZ-XojT0QAi8p6SghyJIiF0QqsFMhM5JoKpxxGJ4AQ-otdBdPByf3_LDitP4afwbqhWhke7AXCCtgybsdhiWDaFX3nXbaIuxA0g3mGI17tRpI4OxcoESqVhKtESO2EGTzZHtHgjwVkbxtXDikqKGYeZYYWWawPkjPU0atJNMgxgLj0Z1QEg"/>
+</div>
+</div>
+</header>
+<main class="pt-16 pb-20 md:pb-0 h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- Left Column: Search and List -->
+<div class="w-full md:w-[420px] lg:w-[480px] h-full flex flex-col border-r border-outline-variant bg-surface-container-lowest z-20 overflow-hidden">
+<!-- Search Header -->
+<div class="p-lg space-y-md border-b border-outline-variant">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-xl pl-12 pr-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md" placeholder="Zip code or city..." type="text" value="94103"/>
+</div>
+<div class="flex gap-sm overflow-x-auto hide-scrollbar">
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-full font-label-sm whitespace-nowrap">All Facilities</button>
+<button class="bg-surface-container text-on-surface-variant hover:bg-surface-container-high px-4 py-1.5 rounded-full font-label-sm whitespace-nowrap transition-colors">AHA Certified</button>
+<button class="bg-surface-container text-on-surface-variant hover:bg-surface-container-high px-4 py-1.5 rounded-full font-label-sm whitespace-nowrap transition-colors">Next 24h</button>
+<button class="bg-surface-container text-on-surface-variant hover:bg-surface-container-high px-4 py-1.5 rounded-full font-label-sm whitespace-nowrap transition-colors">Free</button>
+</div>
+</div>
+<!-- Scrollable Results -->
+<div class="flex-1 overflow-y-auto p-lg space-y-lg hide-scrollbar">
+<p class="font-label-sm text-outline uppercase tracking-wider">Nearby Facilities (12)</p>
+<!-- Result Card 1 -->
+<div class="group bg-surface-container-lowest border border-outline-variant p-md rounded-xl hover:shadow-lg transition-all cursor-pointer relative overflow-hidden active:scale-[0.98]">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-container opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">City General Training</h3>
+<span class="font-label-md text-primary">0.8 miles</span>
+</div>
+<p class="font-body-sm text-on-surface-variant mb-4">1200 Market St, San Francisco, CA</p>
+<div class="flex flex-wrap gap-2 mb-lg">
+<div class="flex items-center gap-1 bg-secondary-container/30 text-on-secondary-container px-2 py-1 rounded font-label-sm">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span>Next: Tuesday</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container text-on-surface-variant px-2 py-1 rounded font-label-sm">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span>Certified</span>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-2.5 rounded-lg font-label-md hover:bg-primary-fixed-dim transition-colors shadow-sm">Select Center</button>
+</div>
+<!-- Result Card 2 (Critical Alert Style) -->
+<div class="group bg-surface-container-lowest border border-outline-variant p-md rounded-xl hover:shadow-lg transition-all cursor-pointer relative overflow-hidden active:scale-[0.98]">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error"></div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Urgent Care Skills Lab</h3>
+<span class="font-label-md text-primary">1.4 miles</span>
+</div>
+<p class="font-body-sm text-on-surface-variant mb-4">850 Bryant St, San Francisco, CA</p>
+<div class="flex flex-wrap gap-2 mb-lg">
+<div class="flex items-center gap-1 bg-error-container text-on-error-container px-2 py-1 rounded font-label-sm">
+<span class="material-symbols-outlined text-sm">bolt</span>
+<span>Last 2 Spots!</span>
+</div>
+<div class="flex items-center gap-1 bg-secondary-container/30 text-on-secondary-container px-2 py-1 rounded font-label-sm">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span>Next: Tomorrow</span>
+</div>
+</div>
+<button class="w-full border border-primary text-primary py-2.5 rounded-lg font-label-md hover:bg-primary/5 transition-colors">Select Center</button>
+</div>
+<!-- Result Card 3 -->
+<div class="group bg-surface-container-lowest border border-outline-variant p-md rounded-xl hover:shadow-lg transition-all cursor-pointer relative overflow-hidden active:scale-[0.98]">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Bay Area CPR Hub</h3>
+<span class="font-label-md text-primary">2.1 miles</span>
+</div>
+<p class="font-body-sm text-on-surface-variant mb-4">44 Montgomery St, San Francisco, CA</p>
+<div class="flex flex-wrap gap-2 mb-lg">
+<div class="flex items-center gap-1 bg-surface-container text-on-surface-variant px-2 py-1 rounded font-label-sm">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span>Next: Friday</span>
+</div>
+</div>
+<button class="w-full border border-primary text-primary py-2.5 rounded-lg font-label-md hover:bg-primary/5 transition-colors">Select Center</button>
+</div>
+<!-- Result Card 4 -->
+<div class="group bg-surface-container-lowest border border-outline-variant p-md rounded-xl hover:shadow-lg transition-all cursor-pointer relative overflow-hidden active:scale-[0.98]">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Western Med Academy</h3>
+<span class="font-label-md text-primary">3.5 miles</span>
+</div>
+<p class="font-body-sm text-on-surface-variant mb-4">1550 Evans Ave, San Francisco, CA</p>
+<div class="flex flex-wrap gap-2 mb-lg">
+<div class="flex items-center gap-1 bg-surface-container text-on-surface-variant px-2 py-1 rounded font-label-sm">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span>Next: July 12</span>
+</div>
+</div>
+<button class="w-full border border-primary text-primary py-2.5 rounded-lg font-label-md hover:bg-primary/5 transition-colors">Select Center</button>
+</div>
+</div>
+</div>
+<!-- Right Column: Interactive Map -->
+<div class="flex-1 relative bg-surface-container-low overflow-hidden">
+<!-- Simulated Map Image Background -->
+<div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-[20s] hover:scale-110" data-alt="A highly detailed aerial satellite map view of downtown San Francisco showing street grids, parks, and landmarks. The aesthetic is clean and high-contrast, with a light mode color palette of whites, light greys, and soft blues. The map style is minimalist and professional, reminiscent of clinical diagnostic interfaces, providing a clear background for interactive map pins." data-location="San Francisco" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDu-qXmlfyhJjA5aWGd0AsiF1xjgdpg-aELfXn8C7hL9GCgiEhc_k0CygCXPo-U4J9F3IzE3UhxNQIPkaLnpnZHGrPaYQjqyQaSSmYzN8GJEaZxTqAf3fNcb0hUR2vHLt7v7ke09tMSJ7u4yFc6yms63BaAD2w7q2fd6JHFuov7327QP51NlgloEKx7H5_KzY-atlyNTpaKw1VQ1uUrS9qBXfWZoXdwH4_lvOv_oEJS8C_-Cth28NUsISmMjPUkG1qMQ9-iIvkkL1Q')">
+</div>
+<!-- Map Overlays -->
+<div class="absolute inset-0 pointer-events-none">
+<!-- Pin 1 -->
+<div class="absolute top-[35%] left-[45%] pointer-events-auto">
+<div class="relative flex flex-col items-center group cursor-pointer">
+<div class="bg-white px-3 py-1.5 rounded-lg shadow-xl mb-2 opacity-0 group-hover:opacity-100 transition-opacity border border-outline-variant">
+<p class="font-label-md text-on-surface">City General</p>
+</div>
+<div class="w-8 h-8 bg-primary rounded-full border-4 border-white shadow-lg flex items-center justify-center text-white map-pin-pulse">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+</div>
+</div>
+</div>
+<!-- Pin 2 -->
+<div class="absolute top-[50%] left-[30%] pointer-events-auto">
+<div class="relative flex flex-col items-center group cursor-pointer">
+<div class="bg-white px-3 py-1.5 rounded-lg shadow-xl mb-2 opacity-0 group-hover:opacity-100 transition-opacity border border-outline-variant">
+<p class="font-label-md text-on-surface">Urgent Care Skills</p>
+</div>
+<div class="w-8 h-8 bg-error rounded-full border-4 border-white shadow-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+</div>
+</div>
+<!-- Pin 3 -->
+<div class="absolute top-[60%] left-[55%] pointer-events-auto">
+<div class="relative flex flex-col items-center group cursor-pointer">
+<div class="w-6 h-6 bg-primary/40 rounded-full border-2 border-white shadow-lg flex items-center justify-center text-white hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-[10px]" style="font-variation-settings: 'FILL' 1;">circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Map Controls (Floating) -->
+<div class="absolute bottom-md right-md flex flex-col gap-sm">
+<button class="w-12 h-12 glass-panel border border-outline-variant rounded-xl flex items-center justify-center text-primary shadow-lg hover:bg-white transition-colors active:scale-95">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+<div class="flex flex-col glass-panel border border-outline-variant rounded-xl shadow-lg">
+<button class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:text-primary border-b border-outline-variant transition-colors active:scale-95">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface border-t border-outline-variant flex justify-around items-center h-20 pb-safe">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-sm text-label-sm">Learn</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1">
+<span class="material-symbols-outlined">verified</span>
+<span class="font-label-sm text-label-sm">Certify</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="font-label-sm text-label-sm">Badges</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-label-sm text-label-sm">Rank</span>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for result cards
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Potential to highlight map pin
+            });
+        });
+
+        // Search animation simulation
+        const searchInput = document.querySelector('input');
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const results = document.querySelectorAll('.group');
+                results.forEach((el, index) => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        el.style.transition = 'all 0.4s ease';
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            }
+        });
+    </script>
+</body></html>

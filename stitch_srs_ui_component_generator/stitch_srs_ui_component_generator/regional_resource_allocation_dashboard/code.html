@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DiagConnect | Regional Resource Allocation</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#f8f9ff",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#0b1c30",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#213145",
+                    "on-surface-variant": "#3e4850",
+                    "on-secondary-fixed": "#002113",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "outline-variant": "#bec8d2",
+                    "on-secondary-fixed-variant": "#005236",
+                    "surface-container-high": "#dce9ff",
+                    "primary-fixed": "#c9e6ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#006591",
+                    "tertiary": "#855300",
+                    "inverse-primary": "#89ceff",
+                    "on-primary-container": "#003751",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "background": "#f8f9ff",
+                    "surface-variant": "#d3e4fe",
+                    "surface-dim": "#cbdbf5",
+                    "surface-container": "#e5eeff",
+                    "on-background": "#0b1c30",
+                    "tertiary-fixed": "#ffddb8",
+                    "surface": "#f8f9ff",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-primary-fixed": "#001e2f",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-tertiary-container": "#4a2c00",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#4edea3",
+                    "primary-fixed-dim": "#89ceff",
+                    "secondary": "#006c49",
+                    "primary-container": "#0ea5e9",
+                    "outline": "#6e7881",
+                    "primary": "#006591",
+                    "tertiary-container": "#d88a00",
+                    "surface-container-low": "#eff4ff",
+                    "on-secondary-container": "#00714d",
+                    "surface-container-highest": "#d3e4fe",
+                    "secondary-container": "#6cf8bb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "gutter": "24px",
+                    "base": "4px",
+                    "xl": "32px",
+                    "lg": "24px",
+                    "margin-mobile": "16px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "max-width": "1440px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"],
+                    "headline-xl": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .status-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-surface-bright text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 bg-surface-bright border-b border-outline-variant w-full">
+<div class="flex justify-between items-center px-margin-desktop h-16 w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-headline-md text-headline-md font-bold text-primary">DiagConnect</span>
+<nav class="hidden md:flex gap-lg">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Resource Hub</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1 font-bold" href="#">Lab Status</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Staffing</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Logistics</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-container-low rounded-full transition-all">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-container-low rounded-full transition-all">settings</button>
+<div class="h-8 w-px bg-outline-variant mx-2"></div>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md hover:opacity-90 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">emergency</span>
+                    Emergency Dispatch
+                </button>
+</div>
+</div>
+</header>
+<div class="flex max-w-max-width mx-auto min-h-[calc(100vh-64px)]">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col w-64 bg-surface-container-low border-r border-outline-variant p-md space-y-base h-[calc(100vh-64px)] sticky top-16">
+<div class="mb-xl px-2">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-primary font-bold">JD</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Admin Central</p>
+<p class="text-label-sm text-on-surface-variant">Regional Supervisor</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 bg-primary-container text-on-primary-container font-bold rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-md">Regional View</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">inventory_2</span>
+<span class="font-label-md">Inventory</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">group</span>
+<span class="font-label-md">Team Management</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">assessment</span>
+<span class="font-label-md">Reports</span>
+</a>
+</nav>
+<div class="pt-xl space-y-1 border-t border-outline-variant">
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-margin-desktop overflow-y-auto">
+<!-- Summary Header -->
+<div class="mb-xl flex flex-col md:flex-row md:items-end justify-between gap-lg">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Regional Resource Allocation</h1>
+<p class="font-body-md text-on-surface-variant">Real-time staging and equipment readiness for Sector Northwest</p>
+</div>
+<div class="flex gap-md">
+<button class="bg-surface-container-lowest border border-outline-variant text-on-surface px-lg py-sm rounded-lg font-label-md flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                        Export Logs
+                    </button>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md flex items-center gap-2 hover:opacity-90 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                        Deploy Resources
+                    </button>
+</div>
+</div>
+<!-- Key Metrics Bento -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg mb-xl">
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant hover:shadow-lg transition-shadow">
+<div class="flex items-center gap-sm mb-base">
+<span class="material-symbols-outlined text-primary">emergency</span>
+<span class="font-label-sm text-on-surface-variant uppercase tracking-wider">Total Vehicles</span>
+</div>
+<div class="flex items-baseline gap-sm">
+<span class="font-headline-xl text-headline-xl">42</span>
+<span class="text-secondary font-label-md">+3 today</span>
+</div>
+<p class="text-label-sm text-on-surface-variant mt-xs">28 Ambulances | 14 Rapid Response</p>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant hover:shadow-lg transition-shadow">
+<div class="flex items-center gap-sm mb-base">
+<span class="material-symbols-outlined text-tertiary">monitor_heart</span>
+<span class="font-label-sm text-on-surface-variant uppercase tracking-wider">Equipment Readiness</span>
+</div>
+<div class="flex items-baseline gap-sm">
+<span class="font-headline-xl text-headline-xl">94%</span>
+<span class="text-on-surface-variant font-label-md">Optimal</span>
+</div>
+<p class="text-label-sm text-on-surface-variant mt-xs">318 Active Defibrillators</p>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant hover:shadow-lg transition-shadow">
+<div class="flex items-center gap-sm mb-base">
+<span class="material-symbols-outlined text-secondary">inventory</span>
+<span class="font-label-sm text-on-surface-variant uppercase tracking-wider">Supply Chain</span>
+</div>
+<div class="flex items-baseline gap-sm">
+<span class="font-headline-xl text-headline-xl">Stable</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full mt-sm overflow-hidden">
+<div class="bg-secondary h-full w-[82%]"></div>
+</div>
+<p class="text-label-sm text-on-surface-variant mt-xs">82% Fulfillment Rate</p>
+</div>
+<div class="bg-error-container/40 p-lg rounded-xl border border-error/20 hover:shadow-lg transition-shadow">
+<div class="flex items-center gap-sm mb-base text-error">
+<span class="material-symbols-outlined status-pulse">warning</span>
+<span class="font-label-sm uppercase tracking-wider">Active Alerts</span>
+</div>
+<div class="flex items-baseline gap-sm">
+<span class="font-headline-xl text-headline-xl text-error">07</span>
+</div>
+<p class="text-label-sm text-error mt-xs">4 Critical Maintenance Required</p>
+</div>
+</div>
+<div class="bento-grid">
+<!-- Staging Hubs Grid -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-lg">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm">Staging Hubs Status</h2>
+<div class="flex gap-sm">
+<span class="flex items-center gap-1 text-label-sm text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-secondary"></span> Operational</span>
+<span class="flex items-center gap-1 text-label-sm text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-tertiary"></span> Critical Levels</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Hub 1 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant flex flex-col gap-md relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-label-md text-headline-sm">North Sector A</h3>
+<p class="text-label-sm text-on-surface-variant">Primary Trauma Staging</p>
+</div>
+<span class="bg-secondary/10 text-secondary px-sm py-xs rounded text-label-sm font-bold">READY</span>
+</div>
+<div class="grid grid-cols-2 gap-md py-sm border-y border-outline-variant">
+<div>
+<p class="text-label-sm text-on-surface-variant">Fleet</p>
+<p class="font-bold">12 Ambulances</p>
+<p class="text-label-sm">4 Rapid Response</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant">Critical Kits</p>
+<p class="font-bold">48 Trauma</p>
+<p class="text-label-sm">24 Defib units</p>
+</div>
+</div>
+<div class="flex items-center justify-between mt-sm">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high flex items-center justify-center text-[10px] font-bold">JD</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high flex items-center justify-center text-[10px] font-bold">MK</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-primary-container text-primary flex items-center justify-center text-[10px] font-bold">+4</div>
+</div>
+<button class="text-primary font-label-md flex items-center gap-1 group-hover:underline">
+                                    Manage Hub <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Hub 2 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant flex flex-col gap-md relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-tertiary"></div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-label-md text-headline-sm">Central Hub</h3>
+<p class="text-label-sm text-on-surface-variant">Urban Logistics Center</p>
+</div>
+<span class="bg-tertiary/10 text-tertiary px-sm py-xs rounded text-label-sm font-bold">LOW STOCK</span>
+</div>
+<div class="grid grid-cols-2 gap-md py-sm border-y border-outline-variant">
+<div>
+<p class="text-label-sm text-on-surface-variant">Fleet</p>
+<p class="font-bold">18 Ambulances</p>
+<p class="text-label-sm">6 Rapid Response</p>
+</div>
+<div>
+<p class="text-label-sm text-tertiary font-bold">Critical Kits</p>
+<p class="font-bold">12 Trauma</p>
+<p class="text-label-sm text-error font-medium">Restock Required</p>
+</div>
+</div>
+<div class="flex items-center justify-between mt-sm">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high flex items-center justify-center text-[10px] font-bold">SR</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high flex items-center justify-center text-[10px] font-bold">AL</div>
+</div>
+<button class="text-primary font-label-md flex items-center gap-1 group-hover:underline">
+                                    Manage Hub <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Hub 3 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant flex flex-col gap-md relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-label-md text-headline-sm">East Coast Terminal</h3>
+<p class="text-label-sm text-on-surface-variant">Coastal Response Unit</p>
+</div>
+<span class="bg-secondary/10 text-secondary px-sm py-xs rounded text-label-sm font-bold">READY</span>
+</div>
+<div class="grid grid-cols-2 gap-md py-sm border-y border-outline-variant">
+<div>
+<p class="text-label-sm text-on-surface-variant">Fleet</p>
+<p class="font-bold">8 Ambulances</p>
+<p class="text-label-sm">2 Rapid Response</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant">Critical Kits</p>
+<p class="font-bold">22 Trauma</p>
+<p class="text-label-sm">10 Defib units</p>
+</div>
+</div>
+<div class="flex items-center justify-between mt-sm">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high flex items-center justify-center text-[10px] font-bold">MT</div>
+</div>
+<button class="text-primary font-label-md flex items-center gap-1 group-hover:underline">
+                                    Manage Hub <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Hub 4 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant flex flex-col gap-md relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-error"></div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-label-md text-headline-sm">West Hills Substation</h3>
+<p class="text-label-sm text-on-surface-variant">Mountain Support Hub</p>
+</div>
+<span class="bg-error-container text-error px-sm py-xs rounded text-label-sm font-bold">MAINTENANCE</span>
+</div>
+<div class="grid grid-cols-2 gap-md py-sm border-y border-outline-variant">
+<div>
+<p class="text-label-sm text-on-surface-variant">Fleet</p>
+<p class="font-bold">4 Ambulances</p>
+<p class="text-label-sm text-error">2 OOS</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant">Critical Kits</p>
+<p class="font-bold">15 Trauma</p>
+<p class="text-label-sm">12 Defib units</p>
+</div>
+</div>
+<div class="flex items-center justify-between mt-sm">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high flex items-center justify-center text-[10px] font-bold">BJ</div>
+</div>
+<button class="text-primary font-label-md flex items-center gap-1 group-hover:underline">
+                                    Manage Hub <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Resource Demand Visualization -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-lg">
+<h2 class="font-headline-sm text-headline-sm">Regional Demand Map</h2>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col flex-1">
+<div class="relative h-64 bg-surface-container-high">
+<div class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-multiply" data-alt="A clean, minimalist medical-grade satellite map of a metropolitan area. The map uses a cool blue and gray color palette. Transparent red and blue heat map overlays indicate regional demand hotspots and supply clusters respectively. The lighting is bright and technical, emphasizing precision and data visualization." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBTIz77CxT5_Q5H2VR6-6E9_lo47iCUouV5ffDdHRwn6p721CuC9Bga9bbpf7lP_1zxBORWnvi-OMnYDMZW7OdiXKdy4gek1a4PENHW_cLC9m7oyzsTu_izRIpN0HhBes8B7wHARYsJBLrt_20h6HFlDG2jaxCK7XoaZBojn5AVlAuf3tof9A-l7hz3SzmCWFj06yachGnEFpewfL6J0t0DTFhqJPFNvtQbfFsqilYoxzTjnP0ie87LtaKCXXKvTGQIYNdxNwUivJo')">
+</div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-6xl opacity-20">map</span>
+</div>
+<!-- Map UI Elements -->
+<div class="absolute top-md right-md flex flex-col gap-xs">
+<button class="w-8 h-8 bg-surface-container-lowest rounded shadow-sm flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">add</span></button>
+<button class="w-8 h-8 bg-surface-container-lowest rounded shadow-sm flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">remove</span></button>
+</div>
+<div class="absolute bottom-md left-md bg-surface-container-lowest/90 backdrop-blur px-sm py-xs rounded text-label-sm shadow-sm border border-outline-variant">
+                                Live Tracking: 1,242 Units
+                            </div>
+</div>
+<div class="p-lg flex-1 overflow-y-auto max-h-[400px]">
+<h3 class="font-label-md mb-md">Supply vs Demand Delta</h3>
+<div class="space-y-lg">
+<div class="space-y-xs">
+<div class="flex justify-between text-label-sm">
+<span>North Sector</span>
+<span class="text-secondary">+12% Surplus</span>
+</div>
+<div class="h-2 bg-surface-container-high rounded-full relative overflow-hidden">
+<div class="absolute left-1/2 w-1/2 h-full bg-secondary"></div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between text-label-sm">
+<span>Central Hub</span>
+<span class="text-tertiary">-8% Deficit</span>
+</div>
+<div class="h-2 bg-surface-container-high rounded-full relative overflow-hidden">
+<div class="absolute right-1/2 w-[8%] h-full bg-tertiary"></div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between text-label-sm">
+<span>West Hills</span>
+<span class="text-error">-22% Critical</span>
+</div>
+<div class="h-2 bg-surface-container-high rounded-full relative overflow-hidden">
+<div class="absolute right-1/2 w-[22%] h-full bg-error"></div>
+</div>
+</div>
+</div>
+<div class="mt-xl pt-lg border-t border-outline-variant">
+<h3 class="font-label-md mb-md text-error flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+                                    Urgent Maintenance (4)
+                                </h3>
+<ul class="space-y-md">
+<li class="flex items-center gap-md">
+<div class="w-10 h-10 rounded bg-error-container/40 flex items-center justify-center text-error">
+<span class="material-symbols-outlined">ambulance</span>
+</div>
+<div>
+<p class="font-label-md leading-tight">Unit AMB-902</p>
+<p class="text-label-sm text-on-surface-variant">Brake System Failure</p>
+</div>
+</li>
+<li class="flex items-center gap-md">
+<div class="w-10 h-10 rounded bg-error-container/40 flex items-center justify-center text-error">
+<span class="material-symbols-outlined">electric_bolt</span>
+</div>
+<div>
+<p class="font-label-md leading-tight">Defib Station D-44</p>
+<p class="text-label-sm text-on-surface-variant">Battery Depleted</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Micro-interaction for hover states -->
+<script>
+        document.querySelectorAll('.bento-grid > div').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('shadow-md');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('shadow-md');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Post-Drill Performance Review | DiagConnect SOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#89ceff",
+                    "surface-tint": "#006591",
+                    "on-secondary-container": "#00714d",
+                    "secondary-fixed-dim": "#4edea3",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#6cf8bb",
+                    "surface-dim": "#cbdbf5",
+                    "tertiary": "#855300",
+                    "outline-variant": "#bec8d2",
+                    "surface": "#f8f9ff",
+                    "on-background": "#0b1c30",
+                    "primary": "#006591",
+                    "on-surface": "#0b1c30",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#4a2c00",
+                    "inverse-surface": "#213145",
+                    "surface-container-highest": "#d3e4fe",
+                    "primary-fixed-dim": "#89ceff",
+                    "on-error": "#ffffff",
+                    "on-primary-container": "#003751",
+                    "tertiary-container": "#d88a00",
+                    "primary-fixed": "#c9e6ff",
+                    "surface-container-high": "#dce9ff",
+                    "on-primary-fixed": "#001e2f",
+                    "surface-variant": "#d3e4fe",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#ffddb8",
+                    "secondary": "#006c49",
+                    "outline": "#6e7881",
+                    "background": "#f8f9ff",
+                    "surface-bright": "#f8f9ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "on-secondary-fixed-variant": "#005236",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#002113",
+                    "surface-container-low": "#eff4ff",
+                    "primary-container": "#0ea5e9",
+                    "on-surface-variant": "#3e4850",
+                    "on-tertiary-fixed-variant": "#653e00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "sm": "8px",
+                    "base": "4px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "lg": "24px",
+                    "margin-desktop": "40px",
+                    "max-width": "1440px",
+                    "xs": "4px",
+                    "xl": "32px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .success-accent { border-left: 4px solid #006c49; }
+        .critical-accent { border-left: 4px solid #ba1a1a; }
+        .warning-accent { border-left: 4px solid #855300; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.02); opacity: 0.9; }
+        }
+        .animate-pulse-soft { animation: pulse-soft 3s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-on-surface border-b border-outline-variant dark:border-outline">
+<div class="flex justify-between items-center px-margin-mobile h-16 w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="emergency">emergency</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">DiagConnect SOS</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional medical user profile picture, a high-detail headshot of a person in a clean clinic setting. Soft professional lighting, neutral background, modern corporate aesthetic. The image conveys trust, clinical precision, and calm confidence, aligned with the DiagConnect brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_zGpSmgvIewohw62bCWUhnNyktHYfGgDknfbIJSoWCIdMcLvSu5vG1wnIyG0D-lOX20OiSjqlvGh5PfhCuU7Z2T8CLrj-WuKucushDOsdIhqc5t8jU4uWP3CGsIsdzuGadjS_p1Klxr7VCa0C_UsWrnhpsPyvmP89hSnnEvCJ2q6N89nn-xCCpoKCHgUjVPXfE55BAq4qfcsmFRxCjj-tZ0ys1G8zZDwrVjyTZEESwPwR_Y3uR1mirp1pAu_kvBrYwlpctWt1TX4"/>
+</div>
+</div>
+</header>
+<main class="pt-24 px-margin-mobile max-w-max-width mx-auto">
+<!-- Header & Summary Section -->
+<section class="mb-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<p class="text-primary font-label-md uppercase tracking-wider mb-xs">Review Completed</p>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg">Emergency Protocol Drill</h2>
+<p class="text-on-surface-variant">Completed today at 14:30 • Primary Residence</p>
+</div>
+<div class="flex items-center gap-sm bg-secondary-container text-on-secondary-container px-md py-sm rounded-xl">
+<span class="material-symbols-outlined" data-icon="workspace_premium" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="font-label-md">Efficiency Badge Earned</span>
+</div>
+</div>
+</section>
+<!-- Bento Grid Layout for Performance Data -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Overall Score: High Impact Glass Card -->
+<div class="md:col-span-4 lg:col-span-3 glass-card rounded-xl p-lg flex flex-col items-center justify-center text-center relative overflow-hidden">
+<div class="absolute -top-12 -right-12 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+<p class="text-on-surface-variant font-label-md mb-md">Overall Drill Score</p>
+<div class="relative w-32 h-32 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90">
+<circle class="text-surface-container-highest" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-dasharray="364.4" stroke-dashoffset="29.1" stroke-width="8"></circle>
+</svg>
+<span class="absolute font-headline-xl text-headline-xl text-primary">92</span>
+</div>
+<p class="mt-md text-on-surface font-body-md font-semibold">Exceeds Readiness Goal</p>
+</div>
+<!-- Completion Time vs Goal -->
+<div class="md:col-span-8 lg:col-span-5 bg-white border border-outline-variant rounded-xl p-lg shadow-sm">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-xs">Evacuation Time</h3>
+<p class="text-on-surface-variant text-body-sm">Measured from SOS trigger to exit clear.</p>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="timer">timer</span>
+</div>
+<div class="flex items-end gap-md mb-lg">
+<div class="flex-1">
+<div class="flex justify-between mb-sm">
+<span class="font-label-sm text-on-surface-variant">0:00</span>
+<span class="font-label-sm text-primary font-bold">Goal: 05:00</span>
+</div>
+<div class="h-4 bg-surface-container rounded-full overflow-hidden flex">
+<div class="h-full bg-primary" style="width: 82%;"></div>
+</div>
+</div>
+<div class="text-right">
+<p class="text-headline-md font-headline-md text-on-surface">04:06</p>
+<p class="text-secondary font-label-sm">-54s Faster</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="p-sm bg-surface rounded-lg border border-outline-variant/30">
+<p class="text-label-sm text-on-surface-variant">Alert Response</p>
+<p class="font-body-md font-bold">12s</p>
+</div>
+<div class="p-sm bg-surface rounded-lg border border-outline-variant/30">
+<p class="text-label-sm text-on-surface-variant">Group Formed</p>
+<p class="font-body-md font-bold">1m 45s</p>
+</div>
+</div>
+</div>
+<!-- Reward/Badge Visualization -->
+<div class="md:col-span-12 lg:col-span-4 bg-primary text-on-primary rounded-xl p-lg flex flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline-sm text-headline-sm mb-sm">Drill Achievement</h3>
+<p class="text-on-primary/80 text-body-sm">You've reached 'Elite Responser' status for the Month of October.</p>
+</div>
+<div class="relative z-10 mt-md flex items-center gap-lg">
+<div class="w-24 h-24 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 animate-pulse-soft">
+<span class="material-symbols-outlined text-5xl" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div>
+<p class="font-headline-sm text-white">Platinum Life-Saver</p>
+<p class="text-on-primary/70 text-label-sm">3 Consecutive Perfect Drills</p>
+</div>
+</div>
+<!-- Abstract visual element -->
+<div class="absolute -bottom-10 -right-10 w-48 h-48 bg-white/10 rounded-full"></div>
+</div>
+<!-- Success Checklist -->
+<div class="md:col-span-7 bg-white border border-outline-variant rounded-xl p-lg">
+<h3 class="font-headline-sm text-headline-sm mb-lg">Success Checklist</h3>
+<div class="space-y-sm">
+<div class="flex items-center justify-between p-md bg-surface rounded-lg success-accent">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md font-medium">Family Check-in</span>
+</div>
+<span class="text-label-sm text-secondary font-bold uppercase">Success</span>
+</div>
+<div class="flex items-center justify-between p-md bg-surface rounded-lg success-accent">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md font-medium">Exit Clear Protocol</span>
+</div>
+<span class="text-label-sm text-secondary font-bold uppercase">Success</span>
+</div>
+<div class="flex items-center justify-between p-md bg-surface rounded-lg success-accent">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md font-medium">Safe Zone Arrival</span>
+</div>
+<span class="text-label-sm text-secondary font-bold uppercase">Success</span>
+</div>
+<div class="flex items-center justify-between p-md bg-surface rounded-lg warning-accent opacity-80">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-tertiary" data-icon="error">error</span>
+<span class="font-body-md font-medium">Medical Kit Retrieval</span>
+</div>
+<span class="text-label-sm text-tertiary font-bold uppercase">Delayed</span>
+</div>
+</div>
+</div>
+<!-- Areas for Improvement -->
+<div class="md:col-span-5 bg-white border border-outline-variant rounded-xl p-lg">
+<h3 class="font-headline-sm text-headline-sm mb-lg">Areas for Improvement</h3>
+<div class="space-y-md">
+<div class="flex gap-md p-md bg-error-container/20 rounded-lg critical-accent">
+<span class="material-symbols-outlined text-error" data-icon="priority_high">priority_high</span>
+<div>
+<p class="font-label-md text-on-surface">Slow gathering of medical kits</p>
+<p class="text-body-sm text-on-surface-variant">Response time at the kit station exceeded the 30-second target by 45 seconds.</p>
+</div>
+</div>
+<div class="flex gap-md p-md bg-surface-container rounded-lg warning-accent">
+<span class="material-symbols-outlined text-tertiary" data-icon="lightbulb">lightbulb</span>
+<div>
+<p class="font-label-md text-on-surface">Communication Path</p>
+<p class="text-body-sm text-on-surface-variant">Protocol message was sent but not acknowledged by one family member until arrival at safe zone.</p>
+</div>
+</div>
+</div>
+<button class="mt-lg w-full py-md bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md rounded-xl transition-colors">
+                    View Full Detailed Log
+                </button>
+</div>
+<!-- Schedule Next Drill -->
+<div class="md:col-span-12 bg-surface-container-low border border-outline-variant border-dashed rounded-xl p-lg">
+<div class="flex flex-col md:flex-row items-center justify-between gap-lg">
+<div class="flex items-center gap-lg">
+<div class="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-3xl" data-icon="event_repeat">event_repeat</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm">Maintain Readiness</h4>
+<p class="text-on-surface-variant text-body-md">Consistent practice ensures muscle memory during actual emergencies.</p>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-md w-full md:w-auto">
+<div class="flex flex-col gap-xs">
+<label class="text-label-sm text-on-surface-variant ml-sm">Suggested Next Date</label>
+<input class="bg-white border border-outline-variant rounded-lg px-md py-sm font-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" type="date" value="2023-11-25"/>
+</div>
+<button class="self-end px-xl h-[46px] bg-primary text-white font-label-md rounded-lg hover:bg-primary/90 transition-all shadow-md active:scale-95">
+                            Schedule Next Drill
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Navigation Bar (Bottom Mobile / Contextual Logic applied) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-surface dark:bg-inverse-surface shadow-lg z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-on-surface-variant transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="emergency_home">emergency_home</span>
+<span class="font-label-sm text-label-sm-mobile">SOS</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-on-surface-variant transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span class="font-label-sm text-label-sm-mobile">Tracking</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-on-surface-variant transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="family_restroom">family_restroom</span>
+<span class="font-label-sm text-label-sm-mobile">Family</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-4 py-1 transition-transform duration-150 scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+<span class="font-label-sm text-label-sm-mobile">Protocols</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for performance review page
+        document.querySelectorAll('.glass-card, .bg-white').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('shadow-md');
+                card.style.transition = 'all 0.3s ease';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('shadow-md');
+            });
+        });
+
+        // Simple animation trigger for the badge
+        const badge = document.querySelector('[data-icon="verified"]');
+        if (badge) {
+            setInterval(() => {
+                badge.style.transform = 'rotate(10deg)';
+                setTimeout(() => { badge.style.transform = 'rotate(0deg)'; }, 500);
+            }, 5000);
+        }
+    </script>
+</body></html>

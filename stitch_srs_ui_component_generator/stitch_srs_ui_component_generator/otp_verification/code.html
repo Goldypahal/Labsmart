@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ABHA Registration - OTP Verification</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#001e2f",
+                        "surface-container-high": "#dce9ff",
+                        "outline": "#6e7881",
+                        "surface-container": "#e5eeff",
+                        "surface-dim": "#cbdbf5",
+                        "on-tertiary-fixed": "#2a1700",
+                        "surface": "#f8f9ff",
+                        "on-background": "#0b1c30",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#eff4ff",
+                        "primary": "#006591",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#4a2c00",
+                        "on-secondary": "#ffffff",
+                        "background": "#f8f9ff",
+                        "surface-variant": "#d3e4fe",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "on-primary-container": "#003751",
+                        "surface-bright": "#f8f9ff",
+                        "primary-fixed-dim": "#89ceff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-surface": "#0b1c30",
+                        "inverse-primary": "#89ceff",
+                        "outline-variant": "#bec8d2",
+                        "on-secondary-fixed": "#002113",
+                        "primary-fixed": "#c9e6ff",
+                        "on-surface-variant": "#3e4850",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#006591",
+                        "secondary-container": "#6cf8bb",
+                        "tertiary": "#855300",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#00714d",
+                        "tertiary-container": "#d88a00",
+                        "primary-container": "#0ea5e9",
+                        "inverse-surface": "#213145",
+                        "secondary": "#006c49",
+                        "secondary-fixed-dim": "#4edea3",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-primary-fixed-variant": "#004c6e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "lg": "24px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "base": "4px",
+                        "xl": "32px",
+                        "max-width": "1440px",
+                        "xs": "4px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #f8f9ff;
+            color: #0b1c30;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .otp-input:focus {
+            outline: none;
+            border-color: #006591;
+            box-shadow: 0 0 0 2px rgba(0, 101, 145, 0.1);
+        }
+        .step-active {
+            width: 24px;
+            background-color: #006591;
+            transition: all 0.3s ease;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col">
+<!-- Top App Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center px-4 h-16 bg-surface border-b border-outline-variant">
+<button class="p-2 transition-colors duration-200 active:opacity-70 hover:bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="ml-2 font-headline-sm text-headline-sm text-primary">ABHA Registration</h1>
+</header>
+<main class="flex-grow pt-24 pb-12 px-4 flex flex-col items-center">
+<!-- Progress Indicator -->
+<div class="w-full max-w-md mb-8">
+<div class="flex items-center justify-between mb-4 px-1">
+<span class="font-label-md text-label-md text-primary">Verification</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Step 2 of 3</span>
+</div>
+<div class="flex gap-2 h-1.5 w-full">
+<div class="flex-1 bg-primary rounded-full"></div>
+<div class="flex-1 bg-primary rounded-full"></div>
+<div class="flex-1 bg-outline-variant rounded-full"></div>
+</div>
+</div>
+<!-- Content Card -->
+<div class="w-full max-w-md bg-white border border-outline-variant rounded-xl p-8 shadow-sm">
+<div class="flex flex-col items-center text-center mb-8">
+<div class="w-16 h-16 bg-surface-container-low rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">phonelink_ring</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Verify OTP</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    OTP sent to your Aadhaar-linked mobile number ending in <span class="font-semibold text-on-surface">****1234</span>
+</p>
+</div>
+<!-- 6-Digit PIN Input -->
+<form class="space-y-8" id="otp-form">
+<div class="flex justify-between gap-2" id="otp-container">
+<input class="otp-input w-12 h-14 text-center text-xl font-bold border border-outline-variant rounded-lg bg-surface transition-all focus:border-primary focus:ring-0" inputmode="numeric" maxlength="1" pattern="\d*" required="" type="text"/>
+<input class="otp-input w-12 h-14 text-center text-xl font-bold border border-outline-variant rounded-lg bg-surface transition-all focus:border-primary focus:ring-0" inputmode="numeric" maxlength="1" pattern="\d*" required="" type="text"/>
+<input class="otp-input w-12 h-14 text-center text-xl font-bold border border-outline-variant rounded-lg bg-surface transition-all focus:border-primary focus:ring-0" inputmode="numeric" maxlength="1" pattern="\d*" required="" type="text"/>
+<input class="otp-input w-12 h-14 text-center text-xl font-bold border border-outline-variant rounded-lg bg-surface transition-all focus:border-primary focus:ring-0" inputmode="numeric" maxlength="1" pattern="\d*" required="" type="text"/>
+<input class="otp-input w-12 h-14 text-center text-xl font-bold border border-outline-variant rounded-lg bg-surface transition-all focus:border-primary focus:ring-0" inputmode="numeric" maxlength="1" pattern="\d*" required="" type="text"/>
+<input class="otp-input w-12 h-14 text-center text-xl font-bold border border-outline-variant rounded-lg bg-surface transition-all focus:border-primary focus:ring-0" inputmode="numeric" maxlength="1" pattern="\d*" required="" type="text"/>
+</div>
+<!-- Timer & Resend -->
+<div class="text-center">
+<div class="font-body-sm text-body-sm text-on-surface-variant" id="timer-container">
+                        Resend OTP in <span class="font-bold text-primary" id="countdown">00:30</span>
+</div>
+<button class="hidden font-label-md text-label-md text-primary hover:underline transition-colors" id="resend-btn" type="button">
+                        Resend OTP
+                    </button>
+</div>
+<!-- Primary Action -->
+<button class="w-full h-12 bg-primary text-white font-label-md text-label-md rounded-lg shadow-md hover:bg-on-primary-fixed-variant transition-all transform active:scale-95 flex items-center justify-center gap-2" type="submit">
+                    Verify &amp; Continue
+                    <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</form>
+<div class="mt-8 pt-6 border-t border-outline-variant flex items-start gap-3">
+<span class="material-symbols-outlined text-outline text-xl">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    By clicking Verify, you consent to ABHA's terms and privacy policy for clinical data sharing and registration.
+                </p>
+</div>
+</div>
+<!-- Supportive Visual Section -->
+<div class="mt-12 w-full max-w-4xl grid md:grid-cols-3 gap-6">
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/30 flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-3">security</span>
+<h3 class="font-label-md text-label-md text-on-surface mb-1">Secure &amp; Encrypted</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Your health data is protected by government-grade encryption.</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/30 flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-3">verified_user</span>
+<h3 class="font-label-md text-label-md text-on-surface mb-1">Aadhaar Linked</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Verified directly with the Unique Identification Authority of India.</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/30 flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-3">clinical_notes</span>
+<h3 class="font-label-md text-label-md text-on-surface mb-1">Paperless Access</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Seamlessly share your records with doctors across the country.</p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Contextually Hidden on focused task like registration, but rendered as per instructions shell rule if it were a top level) -->
+<!-- Suppressed based on "The UX Goal: If the user is in a focused journey... hide the shell" -->
+<script>
+        // OTP Input Focus Management
+        const inputs = document.querySelectorAll('.otp-input');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length > 0 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        // Countdown Timer Logic
+        let timeLeft = 30;
+        const countdownEl = document.getElementById('countdown');
+        const timerContainer = document.getElementById('timer-container');
+        const resendBtn = document.getElementById('resend-btn');
+
+        const timer = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                timerContainer.classList.add('hidden');
+                resendBtn.classList.remove('hidden');
+            } else {
+                timeLeft--;
+                const seconds = timeLeft < 10 ? '0' + timeLeft : timeLeft;
+                countdownEl.textContent = `00:${seconds}`;
+            }
+        }, 1000);
+
+        resendBtn.addEventListener('click', () => {
+            // Simulated resend logic
+            timeLeft = 30;
+            resendBtn.classList.add('hidden');
+            timerContainer.classList.remove('hidden');
+            // Restart timer logic would go here
+        });
+
+        // Form Submit
+        document.getElementById('otp-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const otp = Array.from(inputs).map(i => i.value).join('');
+            if (otp.length === 6) {
+                console.log('Verifying OTP:', otp);
+                // Success feedback
+                const btn = e.target.querySelector('button[type="submit"]');
+                btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Verifying...';
+                btn.classList.add('opacity-80', 'cursor-not-allowed');
+                
+                setTimeout(() => {
+                    alert('OTP Verified Successfully! Moving to Step 3.');
+                    btn.innerHTML = 'Verify & Continue <span class="material-symbols-outlined text-[20px]">arrow_forward</span>';
+                    btn.classList.remove('opacity-80', 'cursor-not-allowed');
+                }, 1500);
+            }
+        });
+    </script>
+</body></html>

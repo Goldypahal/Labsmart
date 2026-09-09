@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DiagConnect | Real-time Consultation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-container-high": "#dce9ff",
+                "on-surface": "#0b1c30",
+                "on-secondary-fixed-variant": "#005236",
+                "secondary": "#006c49",
+                "on-tertiary-container": "#4a2c00",
+                "surface-container-low": "#eff4ff",
+                "secondary-fixed": "#6ffbbe",
+                "on-primary-container": "#003751",
+                "on-surface-variant": "#3e4850",
+                "primary-container": "#0ea5e9",
+                "surface-bright": "#f8f9ff",
+                "primary": "#006591",
+                "inverse-on-surface": "#eaf1ff",
+                "surface": "#f8f9ff",
+                "tertiary": "#855300",
+                "on-tertiary-fixed": "#2a1700",
+                "on-secondary": "#ffffff",
+                "on-error-container": "#93000a",
+                "surface-variant": "#d3e4fe",
+                "outline": "#6e7881",
+                "tertiary-fixed-dim": "#ffb95f",
+                "error": "#ba1a1a",
+                "on-primary-fixed-variant": "#004c6e",
+                "tertiary-container": "#d88a00",
+                "surface-container": "#e5eeff",
+                "secondary-container": "#6cf8bb",
+                "error-container": "#ffdad6",
+                "primary-fixed": "#c9e6ff",
+                "on-secondary-fixed": "#002113",
+                "on-primary-fixed": "#001e2f",
+                "on-primary": "#ffffff",
+                "primary-fixed-dim": "#89ceff",
+                "on-error": "#ffffff",
+                "on-tertiary-fixed-variant": "#653e00",
+                "on-tertiary": "#ffffff",
+                "surface-dim": "#cbdbf5",
+                "surface-container-lowest": "#ffffff",
+                "inverse-surface": "#213145",
+                "tertiary-fixed": "#ffddb8",
+                "secondary-fixed-dim": "#4edea3",
+                "background": "#f8f9ff",
+                "surface-container-highest": "#d3e4fe",
+                "inverse-primary": "#89ceff",
+                "surface-tint": "#006591",
+                "on-background": "#0b1c30",
+                "outline-variant": "#bec8d2",
+                "on-secondary-container": "#00714d"
+            },
+            "spacing": {
+                "xl": "32px",
+                "md": "16px",
+                "base": "4px",
+                "xs": "4px",
+                "margin-desktop": "40px",
+                "max-width": "1440px",
+                "margin-mobile": "16px",
+                "lg": "24px",
+                "gutter": "24px",
+                "sm": "8px"
+            },
+            "fontFamily": {
+                "label-md": ["Inter"],
+                "body-sm": ["Inter"],
+                "label-sm": ["Inter"],
+                "headline-md": ["Plus Jakarta Sans"],
+                "body-lg": ["Inter"],
+                "headline-lg": ["Plus Jakarta Sans"],
+                "headline-xl": ["Plus Jakarta Sans"],
+                "headline-sm": ["Plus Jakarta Sans"],
+                "body-md": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #f8fafc;
+            color: #0b1c30;
+            overflow: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 1);
+        }
+    </style>
+</head>
+<body class="flex flex-col h-screen">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline flex justify-between items-center px-margin-desktop w-full max-w-max-width mx-auto h-16 z-50">
+<div class="flex items-center gap-md">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">DiagConnect</h1>
+<div class="hidden md:flex gap-md ml-lg">
+<a class="text-on-surface-variant font-body-md hover:bg-surface-container-low transition-colors duration-200 cursor-pointer px-sm py-xs rounded">Doctor</a>
+<a class="text-on-surface-variant font-body-md hover:bg-surface-container-low transition-colors duration-200 cursor-pointer px-sm py-xs rounded">Lab</a>
+<a class="text-on-surface-variant font-body-md hover:bg-surface-container-low transition-colors duration-200 cursor-pointer px-sm py-xs rounded">Admin</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer active:opacity-80">notifications</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a female doctor in a clinical setting, wearing a white coat with a stethoscope around her neck. The background is a blurred modern hospital hallway with cool blue and white tones, emphasizing a clean and professional healthcare environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgQZfDYTkosHK0l7vKklaKCrtgIu0LrFTOtd7V7qOTNajnwLc5cb4kCwm90zRDnZJiHS2Qp4W9LuIXgjLSjs28BAl_rrgqx5mtKPBq1Uk-VyH0pUX4g_2wYgSBvr8EbtMwj56vymO5cWSWw8iWQTouJC9M4_Pw4vxWFAQ59kfZ9PwmFO3ALlq09wutInG5-IIGKAAK_fzr5bJox_kyfliRA-CNs8J7YlINqVsFQL9KAus6kGy4IIBgmQJIiEGCuxxa5xbGfYs18ro"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area: Three Column Layout -->
+<main class="flex-1 flex w-full max-w-max-width mx-auto overflow-hidden">
+<!-- Left Sidebar: Consultations & History -->
+<aside class="hidden lg:flex flex-col w-80 bg-surface-container-low border-r border-outline-variant">
+<div class="p-md space-y-md">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-white border border-outline-variant rounded-lg font-label-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Search patient history..." type="text"/>
+</div>
+<div class="flex flex-col gap-sm">
+<h3 class="font-label-md text-on-surface-variant uppercase tracking-wider text-xs px-xs">Active Consultations</h3>
+<!-- Active Item -->
+<div class="bg-secondary-container text-on-secondary-container p-md rounded-xl cursor-pointer transition-transform active:scale-95">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-white flex-shrink-0 border-2 border-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of an elderly man with kind eyes and a warm expression, representing a patient. The style is natural and realistic, set in a brightly lit room with soft morning sunlight, fitting the clinical and caring aesthetic of DiagConnect." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcbSB7nxWFcI5B4TIFmbrKT5-vah_PCn8h6XPaZl4DDpihv_yt76Qzan8tWJlKhbbr2Ok8hXB_mjfI4jv6RIWhNrW3O8loGc2lBmNxPPpO9HI7aQ22XAabEsapx2Z-WOZ78fIDLONf-sNvv6Y5MYQCE8owfOi9GBoJEuVo3JXQwIkTXUDg-LP0z7FNxCptQQuFu9IU8T9PcsO1o0KfLkbDQH66dp1hpmYktV8ljen9i00PkOHLoWzqUC7mqjVjj0HIO73SfIwWA3o"/>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="font-label-md text-label-md truncate">Arthur Morgan</p>
+<p class="font-body-sm text-label-sm opacity-80 truncate">Patient Typing...</p>
+</div>
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+</div>
+</div>
+<!-- Inactive Item -->
+<div class="hover:bg-surface-container-highest p-md rounded-xl cursor-pointer transition-all duration-150 group">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a middle-aged woman with glasses, looking calm and composed. She is a patient in a healthcare app. The lighting is soft and even, highlighting a trustworthy and approachable medical profile in a modern digital interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeyH20kA13pvqsW6pLh4lRBlUj_1luZNNpcRRAAgOq7-0YuMFDDFW4hMogBm0qhpxoHYkRKQHPV0EjnS4vl3bxqeoZpI8LDqq35wDv8GT2lMB-tb2H_qa1wV81lOwBgIVAop26OsTGdIlinH-d90kiCiNM2quKSxWntzFOZOeJ8OzjlSgftoFdybW--CebYn1juzM5Rl7Bod9yjeLcpub77rXs3IiEz2PFD1eHAWFGTkZPiuaBX_p4Xwr9rH0qCaitciKVnzhn0uY"/>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="font-label-md text-label-md text-on-surface group-hover:text-primary">Sarah Jenkins</p>
+<p class="font-body-sm text-label-sm text-on-surface-variant">Last message 1h ago</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-lg border-t border-outline-variant">
+<h3 class="font-label-md text-on-surface-variant uppercase tracking-wider text-xs px-xs mb-sm">Recent History</h3>
+<div class="space-y-sm">
+<div class="flex items-center gap-sm p-sm hover:bg-surface-container-high rounded-lg cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-outline">history</span>
+<span class="font-body-sm text-on-surface">James Wilson • Feb 12</span>
+</div>
+<div class="flex items-center gap-sm p-sm hover:bg-surface-container-high rounded-lg cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-outline">history</span>
+<span class="font-body-sm text-on-surface">Emily Davis • Feb 10</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Center Column: Chat Window -->
+<section class="flex-1 flex flex-col bg-white">
+<!-- Chat Header -->
+<div class="h-16 flex items-center justify-between px-lg border-b border-outline-variant">
+<div class="flex items-center gap-md">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of Arthur Morgan, an elderly patient, with a focus on a friendly and approachable demeanor. Soft, clinical lighting reflects a safe and professional medical consultation environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTj53YgCZ78ECM0y_gFoXHHK4EQqsFkl2Ol2Cj0FzRhGu3s9DmP6c4Xh2M8BfQQgb4INYkjNw4u8KnpFJH2I_L0PiLWP4hFrhiU2vOy2U3aw5x0Lhntys7C5QYUcUtYjzzuIXKMfJJ0MFkHn8pXzMT4obBBsoQsTTuQxkSakGPsNl0n7DpXA4ZAW1QaKT6RDahBaw0pwtgR1p-I2s0X1OcEEQx7aDUHJznKRgPtCxCaZNpdoAGznMqqRd-11RISKaE-ybnuJvN9Jk"/>
+</div>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-secondary rounded-full border-2 border-white"></div>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Arthur Morgan</h2>
+<p class="font-label-sm text-secondary">Doctor Online</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="flex items-center gap-xs px-md py-2 rounded-lg border border-error text-error font-label-md hover:bg-error-container transition-colors">
+<span class="material-symbols-outlined text-sm">call_end</span>
+                        End Consultation
+                    </button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Messages Area -->
+<div class="flex-1 overflow-y-auto p-lg custom-scrollbar space-y-lg flex flex-col">
+<!-- System Message -->
+<div class="flex justify-center">
+<span class="bg-surface-container-low px-md py-1 rounded-full font-label-sm text-on-surface-variant">Consultation started at 10:30 AM</span>
+</div>
+<!-- Doctor Message -->
+<div class="flex justify-end">
+<div class="max-w-[70%]">
+<div class="bg-primary text-white p-md rounded-2xl rounded-tr-none shadow-sm">
+<p class="font-body-md">Good morning Mr. Morgan. I've reviewed your latest lab results. How are you feeling today?</p>
+</div>
+<p class="font-label-sm text-on-surface-variant text-right mt-xs">10:32 AM • Delivered</p>
+</div>
+</div>
+<!-- Patient Message -->
+<div class="flex justify-start">
+<div class="max-w-[70%]">
+<div class="bg-surface-container-low text-on-surface p-md rounded-2xl rounded-tl-none border border-outline-variant">
+<p class="font-body-md">Morning Doctor. I've been feeling a bit lightheaded lately, especially in the mornings.</p>
+</div>
+<p class="font-label-sm text-on-surface-variant mt-xs">10:34 AM</p>
+</div>
+</div>
+<!-- File Attachment (Lab Report) -->
+<div class="flex justify-start">
+<div class="max-w-[70%]">
+<div class="bg-white border-2 border-primary-container p-md rounded-2xl rounded-tl-none shadow-sm flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">picture_as_pdf</span>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="font-label-md text-on-surface truncate">Full_Blood_Count_Feb24.pdf</p>
+<p class="font-label-sm text-on-surface-variant">2.4 MB • Lab Report</p>
+</div>
+<button class="w-10 h-10 rounded-full hover:bg-surface-container-high flex items-center justify-center text-primary transition-colors">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<p class="font-label-sm text-on-surface-variant mt-xs">10:35 AM</p>
+</div>
+</div>
+<!-- Patient Typing Indicator -->
+<div class="flex items-center gap-sm">
+<div class="flex gap-xs bg-surface-container p-sm rounded-full">
+<div class="w-2 h-2 bg-on-surface-variant rounded-full animate-bounce"></div>
+<div class="w-2 h-2 bg-on-surface-variant rounded-full animate-bounce [animation-delay:0.2s]"></div>
+<div class="w-2 h-2 bg-on-surface-variant rounded-full animate-bounce [animation-delay:0.4s]"></div>
+</div>
+<span class="font-label-sm text-on-surface-variant italic">Arthur is typing...</span>
+</div>
+</div>
+<!-- Message Input -->
+<div class="p-lg border-t border-outline-variant bg-surface-bright">
+<div class="glass-panel rounded-xl flex items-end gap-sm p-sm focus-within:border-primary transition-colors">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<textarea class="flex-1 bg-transparent border-none focus:ring-0 resize-none font-body-md py-2 min-h-[44px] max-h-32 custom-scrollbar" placeholder="Type medical advice or instructions..." rows="1"></textarea>
+<button class="bg-primary text-white w-10 h-10 rounded-lg flex items-center justify-center hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Right Sidebar: Contextual Patient Summary -->
+<aside class="hidden xl:flex flex-col w-96 bg-surface-container-low border-l border-outline-variant p-lg space-y-lg overflow-y-auto custom-scrollbar">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-md">Patient Summary</h3>
+<div class="space-y-sm">
+<div class="flex justify-between items-center py-2 border-b border-outline-variant">
+<span class="font-body-sm text-on-surface-variant">Age / Gender</span>
+<span class="font-label-md text-on-surface">68 / Male</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-outline-variant">
+<span class="font-body-sm text-on-surface-variant">Blood Group</span>
+<span class="font-label-md text-on-surface">A+ Positive</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-outline-variant">
+<span class="font-body-sm text-on-surface-variant">Allergies</span>
+<span class="font-label-md text-error">Penicillin</span>
+</div>
+</div>
+</div>
+<!-- Vital Signs -->
+<div class="space-y-md">
+<h4 class="font-label-md text-on-surface-variant uppercase tracking-wider text-xs">Latest Vitals (Today)</h4>
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-white p-md rounded-xl border border-outline-variant">
+<div class="flex items-center gap-xs text-primary mb-xs">
+<span class="material-symbols-outlined text-sm">favorite</span>
+<span class="font-label-sm">BPM</span>
+</div>
+<p class="font-headline-sm text-on-surface">72 <span class="text-label-sm font-normal text-on-surface-variant">Normal</span></p>
+</div>
+<div class="bg-white p-md rounded-xl border border-error/30 border-l-4 border-l-error">
+<div class="flex items-center gap-xs text-error mb-xs">
+<span class="material-symbols-outlined text-sm">thermostat</span>
+<span class="font-label-sm">Temp</span>
+</div>
+<p class="font-headline-sm text-on-surface">99.8°F</p>
+</div>
+</div>
+</div>
+<!-- Lab Flags -->
+<div class="space-y-md">
+<div class="flex justify-between items-center">
+<h4 class="font-label-md text-on-surface-variant uppercase tracking-wider text-xs">Lab Flags</h4>
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded text-[10px] font-bold">2 CRITICAL</span>
+</div>
+<div class="space-y-sm">
+<!-- Critical Flag -->
+<div class="bg-white p-md rounded-xl border border-outline-variant flex items-start gap-md">
+<div class="w-1 h-full bg-error rounded-full"></div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="font-label-md text-on-surface">Glucose Fasting</p>
+<span class="font-label-md text-error">142 mg/dL</span>
+</div>
+<p class="font-body-sm text-on-surface-variant text-xs mt-1">High (Ref: 70 - 100)</p>
+</div>
+</div>
+<!-- Abnormal Flag -->
+<div class="bg-white p-md rounded-xl border border-outline-variant flex items-start gap-md">
+<div class="w-1 h-full bg-tertiary rounded-full"></div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="font-label-md text-on-surface">Hemoglobin</p>
+<span class="font-label-md text-tertiary">11.8 g/dL</span>
+</div>
+<p class="font-body-sm text-on-surface-variant text-xs mt-1">Low (Ref: 13.5 - 17.5)</p>
+</div>
+</div>
+</div>
+<button class="w-full py-2 font-label-md text-primary hover:bg-surface-container-high rounded-lg transition-colors border border-primary/20 border-dashed">
+                    View Full Health Record
+                </button>
+</div>
+<!-- Quick Actions -->
+<div class="pt-md border-t border-outline-variant">
+<button class="w-full bg-primary text-white py-3 rounded-xl font-label-md flex items-center justify-center gap-sm hover:opacity-90 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">description</span>
+                    Issue Digital Prescription
+                </button>
+</div>
+</aside>
+</main>
+<!-- SideNavBar (Mobile Bottom) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-surface-container-low border-t border-outline-variant flex justify-around items-center px-md z-50">
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold">Patients</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="text-[10px]">Orders</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">medication</span>
+<span class="text-[10px]">Meds</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-[10px]">Stats</span>
+</div>
+</nav>
+<script>
+        // Simple auto-expand for textarea
+        const tx = document.getElementsByTagName("textarea");
+        for (let i = 0; i < tx.length; i++) {
+            tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+            tx[i].addEventListener("input", OnInput, false);
+        }
+
+        function OnInput() {
+            this.style.height = "auto";
+            this.style.height = (this.scrollHeight) + "px";
+            if (this.scrollHeight > 128) {
+                this.style.overflowY = "scroll";
+            } else {
+                this.style.overflowY = "hidden";
+            }
+        }
+    </script>
+</body></html>

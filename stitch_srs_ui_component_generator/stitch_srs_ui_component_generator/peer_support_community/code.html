@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Community Support | DiagConnect SOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "primary-fixed": "#c9e6ff",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#001e2f",
+                        "surface": "#f8f9ff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "primary-fixed-dim": "#89ceff",
+                        "surface-container-high": "#dce9ff",
+                        "secondary-fixed-dim": "#4edea3",
+                        "primary": "#006591",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "background": "#f8f9ff",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-container": "#00714d",
+                        "inverse-surface": "#213145",
+                        "tertiary-fixed": "#ffddb8",
+                        "error": "#ba1a1a",
+                        "primary-container": "#0ea5e9",
+                        "outline-variant": "#bec8d2",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "on-surface-variant": "#3e4850",
+                        "surface-container": "#e5eeff",
+                        "inverse-primary": "#89ceff",
+                        "surface-tint": "#006591",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-primary-container": "#003751",
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary-fixed": "#002113",
+                        "tertiary": "#855300",
+                        "outline": "#6e7881",
+                        "secondary": "#006c49",
+                        "surface-variant": "#d3e4fe",
+                        "on-surface": "#0b1c30",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-tertiary-container": "#4a2c00",
+                        "inverse-on-surface": "#eaf1ff",
+                        "secondary-container": "#6cf8bb",
+                        "tertiary-container": "#d88a00",
+                        "surface-dim": "#cbdbf5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "max-width": "1440px",
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "base": "4px",
+                        "gutter": "24px",
+                        "lg": "24px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #f8f9ff;
+            color: #0b1c30;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .clinical-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+        .clinical-card:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-on-surface border-b border-outline-variant dark:border-outline transition-colors duration-200">
+<div class="flex justify-between items-center px-margin-mobile h-16 w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" style="font-size: 28px;">emergency</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">DiagConnect SOS</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A clean, professional headshot of a medical professional in a clinical environment, wearing a white coat, with soft studio lighting and a neutral blue background to match the DiagConnect aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvMV4Ir9Nfg6wrYpgB3Tde6DgrbTTinx0wKPHsDwvsa-i9xIeBu-YmUHYbyTpwG9lzyqq9bTC9BACdU6oxIhtucNXAb5yOZur41xkC66XRCrcX9Rzb0Ub3UFwlk5e2dPFahYcCVMcWjpFyB398W0igsQ6LffhmIsW5YsyXGcQbFnjTt6CrwzAnRKlqKwPNogoisZVLUFRQi-aealBdJlKL14kFXjht75n_m9lj3-8Hd3JLDFBzWtt5B0qr0_puKLO-pDE-3so3nDs"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Sidebar Column -->
+<aside class="md:col-span-4 flex flex-col gap-lg">
+<!-- Availability Toggle Card -->
+<div class="clinical-card rounded-xl p-lg flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm">Active Status</h3>
+<div class="w-3 h-3 rounded-full bg-secondary" id="status-dot"></div>
+</div>
+<p class="text-on-surface-variant font-body-sm text-body-sm">Control your visibility for peer matching and instant chats.</p>
+<div class="flex flex-col gap-sm mt-xs">
+<button class="flex items-center justify-between w-full px-md py-3 rounded-lg border-2 border-secondary bg-secondary-container/10 text-on-secondary-container transition-all" id="toggle-available" onclick="updateStatus('available')">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-md text-label-md">Available for Peer Chat</span>
+</div>
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+</button>
+<button class="flex items-center justify-between w-full px-md py-3 rounded-lg border-2 border-transparent hover:border-outline-variant transition-all text-on-surface-variant" id="toggle-personal" onclick="updateStatus('personal')">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">do_not_disturb_on</span>
+<span class="font-label-md text-label-md">Taking Personal Time</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Community Kudos (Asymmetric layout) -->
+<div class="clinical-card rounded-xl p-lg bg-surface-container-low border-none">
+<div class="flex items-center gap-2 mb-md text-primary">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<h3 class="font-headline-sm text-headline-sm">Community Kudos</h3>
+</div>
+<div class="flex flex-col gap-md">
+<div class="p-md bg-white rounded-lg border border-outline-variant relative">
+<p class="italic text-on-surface-variant text-body-sm mb-xs">"Huge thanks to the night shift crew for the support during the Sector 4 incident. You guys are lifesavers."</p>
+<span class="text-label-sm text-primary font-bold">— Anonymous Volunteer</span>
+</div>
+<div class="p-md bg-white rounded-lg border border-outline-variant relative ml-lg">
+<p class="italic text-on-surface-variant text-body-sm mb-xs">"Shoutout to Alex for the mentor session yesterday. Really helped me clear my head."</p>
+<span class="text-label-sm text-primary font-bold">— Sector 2 Responder</span>
+</div>
+</div>
+<button class="mt-lg w-full py-2 font-label-md text-label-md text-primary hover:underline flex items-center justify-center gap-2">
+                    Send a Kudos <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Column -->
+<div class="md:col-span-8 flex flex-col gap-lg">
+<!-- Peer Match Section -->
+<section>
+<div class="flex items-end justify-between mb-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-background">Peer Match</h2>
+<p class="text-on-surface-variant">Connect with a Volunteer Mentor based on experience levels.</p>
+</div>
+<button class="bg-primary text-on-primary px-lg py-2 rounded-lg font-label-md text-label-md shadow-sm hover:opacity-90 transition-opacity">Find New Match</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md">
+<!-- Mentor Card 1 -->
+<div class="clinical-card rounded-xl p-md flex gap-md items-start">
+<div class="w-14 h-14 rounded-full flex-shrink-0 border-2 border-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a mature male medical volunteer with a warm, empathetic expression, outdoors in a soft-focus urban park setting during the late afternoon, golden hour lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHQzCeYYHELLosiCNwNdegyi6UoTeKBW2UaN9Xo0zerpvyIoXhs05cnaI-JlS149y71w_hJxzuzzUXBK214U0YA2vNnhkcduqdt1mXZqiaVoHat_YBQGiOQ825fUo8ZqC7lOJFKt7DLn0ffF2DDAJm5dr_sQLSwAMP5x85tdsXGttcCvQD9Tkz2c6MSpyksZN_NzORvnjw85qbKbDx0TDFSuVWOQU3_6hfycBNa_mo0ZD8y__4rKnE1mlCoGIxUDiflJicWbhk8eo"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-label-md text-label-md">Sarah Jenkins</h4>
+<p class="text-label-sm text-on-surface-variant">Lead Responder (8yr+)</p>
+<div class="mt-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-primary" style="font-size: 16px;">verified</span>
+<span class="text-label-sm text-primary">Certified Mentor</span>
+</div>
+<button class="mt-md text-primary font-label-md text-label-sm border border-primary px-3 py-1 rounded-full hover:bg-primary-container/20 transition-colors">Request Chat</button>
+</div>
+</div>
+<!-- Mentor Card 2 -->
+<div class="clinical-card rounded-xl p-md flex gap-md items-start">
+<div class="w-14 h-14 rounded-full flex-shrink-0 border-2 border-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a confident female paramedic volunteer in her late 30s, looking directly at the camera with a calm and helpful smile, clinical hospital background, high-key professional lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXTjVqwQxDzed2hkrrfzbhaBv5CV7IX9CALDkfd16dn92o57bnbCL8Pc8GVPOWVihAUQoavpSo2NoA9tC0aMMzaH5HYA2v-bE7fyl4tXHTugerAte1DKIYyxxTzrqiZkPegu_9K8UuT7XsRlUdTxehQAlL0Gk4RMZYGm0LYRMdleLZLCVr8AMRNgF7JjV6w7bBiax9nl3e8PesAMu3khlY9yfyuRxuMwA55aVq64cBGEKgcoTyREm65pPWQ-4jIm1aY1U6Cp8wSwc"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-label-md text-label-md">David Chen</h4>
+<p class="text-label-sm text-on-surface-variant">Field Specialist (5yr+)</p>
+<div class="mt-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-primary" style="font-size: 16px;">groups</span>
+<span class="text-label-sm text-primary">Sector 4 Captain</span>
+</div>
+<button class="mt-md text-primary font-label-md text-label-sm border border-primary px-3 py-1 rounded-full hover:bg-primary-container/20 transition-colors">Request Chat</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Upcoming Support Circles -->
+<section>
+<div class="mb-md">
+<h2 class="font-headline-md text-headline-md text-on-background">Upcoming Support Circles</h2>
+<p class="text-on-surface-variant">Scheduled group video sessions for debriefing and wellness.</p>
+</div>
+<div class="flex flex-col gap-sm">
+<!-- Session Item 1 -->
+<div class="clinical-card rounded-xl p-md flex items-center justify-between border-l-4 border-l-primary">
+<div class="flex items-center gap-lg">
+<div class="text-center w-12 flex-shrink-0">
+<span class="block font-bold text-headline-sm text-primary">14</span>
+<span class="block text-label-sm text-on-surface-variant uppercase tracking-tighter">OCT</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-label-md">Weekly Debrief: Sector 4</h4>
+<div class="flex items-center gap-4 mt-xs text-on-surface-variant text-body-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 19:00 - 20:00</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">videocam</span> Google Meet</span>
+</div>
+</div>
+</div>
+<button class="bg-surface-container-high text-primary px-md py-2 rounded-lg font-label-md text-label-sm hover:bg-primary-container transition-colors">Join Waiting Room</button>
+</div>
+<!-- Session Item 2 -->
+<div class="clinical-card rounded-xl p-md flex items-center justify-between border-l-4 border-l-secondary">
+<div class="flex items-center gap-lg">
+<div class="text-center w-12 flex-shrink-0">
+<span class="block font-bold text-headline-sm text-secondary">16</span>
+<span class="block text-label-sm text-on-surface-variant uppercase tracking-tighter">OCT</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-label-md">Stress Management Workshop</h4>
+<div class="flex items-center gap-4 mt-xs text-on-surface-variant text-body-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 14:00 - 15:30</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">videocam</span> In-App Video</span>
+</div>
+</div>
+</div>
+<button class="bg-surface-container-high text-primary px-md py-2 rounded-lg font-label-md text-label-sm hover:bg-primary-container transition-colors">Register</button>
+</div>
+<!-- Session Item 3 -->
+<div class="clinical-card rounded-xl p-md flex items-center justify-between border-l-4 border-l-tertiary">
+<div class="flex items-center gap-lg">
+<div class="text-center w-12 flex-shrink-0">
+<span class="block font-bold text-headline-sm text-tertiary">20</span>
+<span class="block text-label-sm text-on-surface-variant uppercase tracking-tighter">OCT</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-label-md">First-Time Responders Meetup</h4>
+<div class="flex items-center gap-4 mt-xs text-on-surface-variant text-body-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 10:00 - 11:00</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">groups</span> Sector 2 Lounge</span>
+</div>
+</div>
+</div>
+<button class="bg-surface-container-high text-primary px-md py-2 rounded-lg font-label-md text-label-sm hover:bg-primary-container transition-colors">Register</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-surface dark:bg-inverse-surface z-50 rounded-t-xl shadow-lg">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 scale-95 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">emergency_home</span>
+<span class="font-label-sm text-label-sm">SOS</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 scale-95 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">location_on</span>
+<span class="font-label-sm text-label-sm">Tracking</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-4 py-1 scale-95 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">family_restroom</span>
+<span class="font-label-sm text-label-sm">Family</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 scale-95 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-label-sm text-label-sm">Protocols</span>
+</a>
+</nav>
+<script>
+        function updateStatus(status) {
+            const btnAvailable = document.getElementById('toggle-available');
+            const btnPersonal = document.getElementById('toggle-personal');
+            const dot = document.getElementById('status-dot');
+
+            if (status === 'available') {
+                btnAvailable.classList.add('border-secondary', 'bg-secondary-container/10', 'text-on-secondary-container');
+                btnAvailable.classList.remove('border-transparent', 'text-on-surface-variant');
+                btnAvailable.querySelector('.material-symbols-outlined:last-child').style.display = 'block';
+
+                btnPersonal.classList.remove('border-error', 'bg-error-container/10', 'text-on-error-container');
+                btnPersonal.classList.add('border-transparent', 'text-on-surface-variant');
+                
+                dot.className = 'w-3 h-3 rounded-full bg-secondary';
+            } else {
+                btnPersonal.classList.add('border-error', 'bg-error-container/10', 'text-on-error-container');
+                btnPersonal.classList.remove('border-transparent', 'text-on-surface-variant');
+                
+                btnAvailable.classList.remove('border-secondary', 'bg-secondary-container/10', 'text-on-secondary-container');
+                btnAvailable.classList.add('border-transparent', 'text-on-surface-variant');
+                btnAvailable.querySelector('.material-symbols-outlined:last-child').style.display = 'none';
+
+                dot.className = 'w-3 h-3 rounded-full bg-error';
+            }
+        }
+
+        // Initialize display
+        document.addEventListener('DOMContentLoaded', () => {
+            // Force light mode for this design
+            document.documentElement.classList.remove('dark');
+        });
+    </script>
+</body></html>

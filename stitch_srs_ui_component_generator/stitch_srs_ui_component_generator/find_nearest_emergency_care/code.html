@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DiagConnect | Emergency Care Finder</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#001e2f",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-tertiary-container": "#4a2c00",
+                    "primary-fixed-dim": "#89ceff",
+                    "on-background": "#0b1c30",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "primary-fixed": "#c9e6ff",
+                    "primary-container": "#0ea5e9",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-secondary-fixed": "#002113",
+                    "surface-variant": "#d3e4fe",
+                    "secondary-fixed-dim": "#4edea3",
+                    "background": "#f8f9ff",
+                    "primary": "#006591",
+                    "on-tertiary-fixed": "#2a1700",
+                    "surface": "#f8f9ff",
+                    "secondary": "#006c49",
+                    "surface-container-high": "#dce9ff",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#cbdbf5",
+                    "inverse-surface": "#213145",
+                    "surface-bright": "#f8f9ff",
+                    "error": "#ba1a1a",
+                    "tertiary": "#855300",
+                    "inverse-primary": "#89ceff",
+                    "surface-container-low": "#eff4ff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "on-surface": "#0b1c30",
+                    "tertiary-container": "#d88a00",
+                    "surface-tint": "#006591",
+                    "on-surface-variant": "#3e4850",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "on-primary-container": "#003751",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#bec8d2",
+                    "on-secondary-container": "#00714d",
+                    "inverse-on-surface": "#eaf1ff",
+                    "secondary-container": "#6cf8bb",
+                    "tertiary-fixed": "#ffddb8",
+                    "surface-container-highest": "#d3e4fe",
+                    "outline": "#6e7881"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "margin-mobile": "16px",
+                    "md": "16px",
+                    "margin-desktop": "40px",
+                    "lg": "24px",
+                    "max-width": "1440px",
+                    "base": "4px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #f8f9ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .map-container { height: calc(100vh - 64px); }
+        @media (max-width: 768px) { .map-container { height: calc(100vh - 128px); } }
+        .glass-effect { backdrop-filter: blur(8px); background: rgba(255, 255, 255, 0.85); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center px-4 md:px-margin-desktop h-16 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-4 w-full max-w-max-width mx-auto">
+<span class="material-symbols-outlined text-primary cursor-pointer transition-colors duration-200 active:opacity-70 hover:bg-surface-container-low p-2 rounded-full">arrow_back</span>
+<h1 class="font-headline-sm text-headline-sm text-primary flex-grow">ABHA Registration</h1>
+<div class="hidden md:flex gap-6 items-center">
+<nav class="flex gap-4">
+<a class="text-primary font-label-md px-3 py-2 rounded-lg hover:bg-surface-container-low transition-colors" href="#">Emergency Finder</a>
+<a class="text-on-surface-variant font-label-md px-3 py-2 rounded-lg hover:bg-surface-container-low transition-colors" href="#">Records</a>
+</nav>
+</div>
+<div class="flex items-center gap-3 ml-auto">
+<div class="bg-primary-container text-on-primary-container px-3 py-1.5 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">g_translate</span>
+<span class="font-label-sm">EN → ES</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-16 pb-20 md:pb-0 h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- Sidebar / Results Panel -->
+<aside class="w-full md:w-[400px] bg-surface-container-lowest border-r border-outline-variant flex flex-col z-40 overflow-hidden shadow-lg md:shadow-none">
+<!-- Search & Filter Area -->
+<div class="p-4 border-b border-outline-variant space-y-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-3 rounded-xl border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary bg-surface outline-none font-body-md" placeholder="Search facilities near you..." type="text"/>
+</div>
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+<button class="flex-shrink-0 bg-primary text-on-primary px-4 py-1.5 rounded-full font-label-sm flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">local_hospital</span> All
+                    </button>
+<button class="flex-shrink-0 bg-surface-container text-on-surface-variant border border-outline-variant px-4 py-1.5 rounded-full font-label-sm flex items-center gap-1 hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">emergency</span> ER
+                    </button>
+<button class="flex-shrink-0 bg-surface-container text-on-surface-variant border border-outline-variant px-4 py-1.5 rounded-full font-label-sm flex items-center gap-1 hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">medical_services</span> Urgent Care
+                    </button>
+<button class="flex-shrink-0 bg-surface-container text-on-surface-variant border border-outline-variant px-4 py-1.5 rounded-full font-label-sm flex items-center gap-1 hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">home_health</span> Trauma
+                    </button>
+</div>
+</div>
+<!-- List of Results -->
+<div class="flex-grow overflow-y-auto no-scrollbar p-4 space-y-4">
+<!-- Facility Card 1 -->
+<div class="group bg-white border border-outline-variant rounded-xl p-4 hover:border-primary transition-all duration-200 cursor-pointer hover:shadow-md relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error"></div>
+<div class="flex justify-between items-start mb-2">
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase">Level 1 Trauma</span>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">distance</span>
+<span class="text-label-sm">0.8 mi</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">St. Mary's General ER</h3>
+<p class="text-body-sm text-on-surface-variant mb-4">24/7 Comprehensive Emergency Care</p>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-label-sm text-on-surface-variant">EST. WAIT</span>
+<span class="font-headline-md text-headline-md text-error">12 min</span>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md flex items-center gap-2 hover:bg-on-primary-fixed-variant transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[20px]">directions</span>
+                            Navigate Now
+                        </button>
+</div>
+</div>
+<!-- Facility Card 2 -->
+<div class="bg-white border border-outline-variant rounded-xl p-4 hover:border-primary transition-all duration-200 cursor-pointer relative">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase">Urgent Care</span>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">distance</span>
+<span class="text-label-sm">2.4 mi</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">City Health Urgent Care</h3>
+<p class="text-body-sm text-on-surface-variant mb-4">Walk-ins welcome until 10:00 PM</p>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-label-sm text-on-surface-variant">EST. WAIT</span>
+<span class="font-headline-md text-headline-md text-secondary">5 min</span>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md flex items-center gap-2 hover:bg-on-primary-fixed-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]">directions</span>
+                            Navigate Now
+                        </button>
+</div>
+</div>
+<!-- Facility Card 3 -->
+<div class="bg-white border border-outline-variant rounded-xl p-4 hover:border-primary transition-all duration-200 cursor-pointer relative">
+<div class="flex justify-between items-start mb-2">
+<span class="bg-tertiary-container/20 text-tertiary px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase">ER Center</span>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">distance</span>
+<span class="text-label-sm">5.1 mi</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Mercy Health Hospital</h3>
+<p class="text-body-sm text-on-surface-variant mb-4">Specialized Pediatric ER available</p>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-label-sm text-on-surface-variant">EST. WAIT</span>
+<span class="font-headline-md text-headline-md text-tertiary">45 min</span>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md flex items-center gap-2 hover:bg-on-primary-fixed-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]">directions</span>
+                            Navigate Now
+                        </button>
+</div>
+</div>
+</div>
+<!-- Translate for Provider Floating Tool -->
+<div class="p-4 bg-surface-container border-t border-outline-variant">
+<div class="flex items-center justify-between bg-white p-3 rounded-xl border border-primary/20 shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">translate</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Translate for Provider</p>
+<p class="text-[10px] text-on-surface-variant uppercase">Medical Summary Ready</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" id="translateToggle" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</aside>
+<!-- Map View Area -->
+<section class="flex-grow relative map-container">
+<div class="absolute inset-0 bg-surface-container">
+<!-- Map Placeholder -->
+<div class="w-full h-full grayscale-[0.5]" data-alt="A detailed digital map interface showing a modern urban layout with clean streets and highlighted medical facility icons in vibrant blue and red. The map features subtle shadows, soft lighting, and high-quality vector-style rendering to convey clinical precision and clarity. It avoids clutter, emphasizing navigation paths and real-time data overlays for a sophisticated health-tech user experience." data-location="New York City" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD7txzzCLvAIfvn-d8CEEcLY2HZr0bNxNuRfDTK-Ev2h5oRssqEB15vKohZTfePMDjl4QikXFkbMF3sNHomfymxRWCHfNVCo101WiG46mGglOyxMMRANjkXV55Ky7rIpnJrSMpF4w2G0-BdyXkAIcR66w83rRmyTKzBCIoW5f3FqxfJlXqhxrT9V3kDrl07aqe66QTMrilUN27jevsFACgzN0tgv-XrGLcC9hvYe9zY4PlhykVSWbyk_kIMbTiOW2pUT8IY3OBOW8k')">
+</div>
+<!-- Map Overlays -->
+<!-- Marker 1 (Critical) -->
+<div class="absolute top-[30%] left-[40%] flex flex-col items-center group cursor-pointer">
+<div class="bg-white px-3 py-1 rounded-lg shadow-lg border border-error mb-1 scale-0 group-hover:scale-100 transition-transform origin-bottom">
+<p class="font-label-md text-error whitespace-nowrap">St. Mary's: 12m wait</p>
+</div>
+<div class="w-10 h-10 bg-error text-white rounded-full flex items-center justify-center border-4 border-white shadow-xl animate-bounce">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">emergency</span>
+</div>
+</div>
+<!-- Marker 2 (Normal) -->
+<div class="absolute top-[55%] left-[20%] flex flex-col items-center group cursor-pointer">
+<div class="bg-white px-3 py-1 rounded-lg shadow-lg border border-secondary mb-1 scale-0 group-hover:scale-100 transition-transform origin-bottom">
+<p class="font-label-md text-secondary whitespace-nowrap">City Health: 5m wait</p>
+</div>
+<div class="w-8 h-8 bg-secondary text-white rounded-full flex items-center justify-center border-2 border-white shadow-lg">
+<span class="material-symbols-outlined text-[16px]">medical_services</span>
+</div>
+</div>
+<!-- Floating Map Controls -->
+<div class="absolute right-6 top-6 flex flex-col gap-2">
+<button class="w-12 h-12 bg-white rounded-xl shadow-lg border border-outline-variant flex items-center justify-center hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-primary">my_location</span>
+</button>
+<button class="w-12 h-12 bg-white rounded-xl shadow-lg border border-outline-variant flex items-center justify-center hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-primary">add</span>
+</button>
+<button class="w-12 h-12 bg-white rounded-xl shadow-lg border border-outline-variant flex items-center justify-center hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-primary">remove</span>
+</button>
+</div>
+<!-- Active Navigation Path Indicator -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 md:hidden">
+<div class="bg-white p-4 rounded-2xl shadow-2xl border border-primary flex items-center gap-4 animate-pulse">
+<div class="bg-primary p-2 rounded-lg text-white">
+<span class="material-symbols-outlined">navigation</span>
+</div>
+<div>
+<p class="font-label-md">Proceeding to St. Mary's</p>
+<p class="text-body-sm text-on-surface-variant">Arrive in 4 mins</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface border-t border-outline-variant py-2 px-margin-mobile">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1">
+<span class="material-symbols-outlined">qr_code_2</span>
+<span class="font-label-sm text-label-sm">Health Records</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-3 py-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emergency</span>
+<span class="font-label-sm text-label-sm">Emergency</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</div>
+</nav>
+<!-- Modal for Provider Translation (Initially Hidden) -->
+<div class="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300" id="translationOverlay">
+<div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300" id="translationContent">
+<div class="bg-primary p-6 text-white flex justify-between items-center">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[32px]">health_and_safety</span>
+<h2 class="font-headline-sm text-headline-sm">Medical Passport</h2>
+</div>
+<button class="hover:bg-white/20 p-1 rounded-full" id="closeTranslation">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-6 space-y-6">
+<div class="flex justify-between items-center bg-surface-container p-4 rounded-2xl">
+<div class="text-center">
+<p class="text-[10px] text-on-surface-variant font-bold uppercase">Original</p>
+<p class="font-label-md">English (US)</p>
+</div>
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+<div class="text-center">
+<p class="text-[10px] text-on-surface-variant font-bold uppercase">Target</p>
+<p class="font-label-md">Spanish (MX)</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="border-l-4 border-primary pl-4">
+<p class="text-label-sm text-on-surface-variant font-bold">ALLERGIES / ALERGIAS</p>
+<p class="font-body-md">Penicillin / Penicilina</p>
+<p class="font-body-md">Latex / Látex</p>
+</div>
+<div class="border-l-4 border-secondary pl-4">
+<p class="text-label-sm text-on-surface-variant font-bold">CONDITION / CONDICIÓN</p>
+<p class="font-body-md">Type 1 Diabetes / Diabetes Tipo 1</p>
+</div>
+<div class="border-l-4 border-error pl-4">
+<p class="text-label-sm text-on-surface-variant font-bold">MEDICATION / MEDICAMENTO</p>
+<p class="font-body-md">Insulin glargine / Insulina glargina</p>
+</div>
+</div>
+<div class="bg-error-container p-4 rounded-xl flex items-start gap-3">
+<span class="material-symbols-outlined text-error">warning</span>
+<p class="text-body-sm text-on-error-container">Show this screen to medical staff upon arrival.</p>
+</div>
+<button class="w-full py-4 bg-on-background text-white rounded-xl font-headline-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">qr_code_2</span>
+                    Show Emergency QR
+                </button>
+</div>
+</div>
+</div>
+<script>
+        const translateToggle = document.getElementById('translateToggle');
+        const translationOverlay = document.getElementById('translationOverlay');
+        const translationContent = document.getElementById('translationContent');
+        const closeTranslation = document.getElementById('closeTranslation');
+
+        translateToggle.addEventListener('change', function() {
+            if (this.checked) {
+                translationOverlay.classList.remove('hidden');
+                setTimeout(() => {
+                    translationOverlay.classList.remove('opacity-0');
+                    translationContent.classList.remove('scale-95');
+                    translationContent.classList.add('scale-100');
+                }, 10);
+            }
+        });
+
+        closeTranslation.addEventListener('click', () => {
+            translationOverlay.classList.add('opacity-0');
+            translationContent.classList.remove('scale-100');
+            translationContent.classList.add('scale-95');
+            setTimeout(() => {
+                translationOverlay.classList.add('hidden');
+                translateToggle.checked = false;
+            }, 300);
+        });
+
+        // Simple interaction for facility cards
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('click', () => {
+                // Focus marker simulation
+                console.log('Navigating to facility');
+            });
+        });
+    </script>
+</body></html>

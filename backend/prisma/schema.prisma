@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  email         String         @unique
+  password      String         
+  role          Role           @default(PATIENT)
+  name          String
+  createdAt     DateTime       @default(now())
+  prescriptions Prescription[] @relation("DoctorPrescriptions")
+  patientPresc  Prescription[] @relation("PatientPrescriptions")
+}
+
+model Prescription {
+  id          Int      @id @default(autoincrement())
+  doctorId    Int
+  patientId   Int
+  tests       String[]
+  status      String   @default("PENDING") // PENDING, SCHEDULED, COMPLETED
+  createdAt   DateTime @default(now())
+  
+  doctor      User     @relation("DoctorPrescriptions", fields: [doctorId], references: [id])
+  patient     User     @relation("PatientPrescriptions", fields: [patientId], references: [id])
+  testOrders  TestOrder[]
+}
+
+model TestOrder {
+  id             Int          @id @default(autoincrement())
+  prescriptionId Int
+  labId          Int
+  status         String       @default("RECEIVED") // RECEIVED, PROCESSING, UPLOADED
+  reportUrl      String?
+  createdAt      DateTime     @default(now())
+
+  prescription   Prescription @relation(fields: [prescriptionId], references: [id])
+}
+
+enum Role {
+  DOCTOR
+  PATIENT
+  LAB_ADMIN
+}

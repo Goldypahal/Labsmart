@@ -1,0 +1,658 @@
+SOFTWARE REQUIREMENTS SPECIFICATION
+Pathology Laboratory Information Management System
+(PathLab LIMS)
+─────────────────────────────────────────
+Field
+Details
+Document Version
+1.0
+Prepared By
+[Your Organization Name]
+Date
+April 2025
+Project
+PathLab LIMS — Laboratory Information Management System
+Classification
+Confidential
+Reference Software
+LabSmart (Inspiration)
+Table of Contents
+1. Introduction
+1.1 Purpose
+This Software Requirements Specification (SRS) document describes the functional and non-functional requirements for PathLab LIMS — a Pathology Laboratory Information Management System. The system is designed to streamline the complete workflow of a diagnostic pathology laboratory: from patient registration and test ordering, through sample processing and result entry, to report generation and delivery via WhatsApp, Email, or Print.
+This document is intended for developers, testers, project managers, and laboratory administrators involved in the design, development, and validation of the system.
+1.2 Scope
+PathLab LIMS covers the following functional areas:
+Patient Registration and Demographics Management
+Test Selection from a structured test catalog
+Result Entry with reference range validation
+Auto-fetched date and time with override capability
+Referred Doctor Management with intelligent search and suggestions
+Report Generation and Delivery via WhatsApp, Gmail, and Print
+Bill / Invoice Generation
+User Role Management and Access Control
+Audit Logs and Data Security
+1.3 Definitions, Acronyms, and Abbreviations
+Term
+Description
+LIMS
+Laboratory Information Management System
+LIS
+Laboratory Information System
+SRS
+Software Requirements Specification
+FR
+Functional Requirement
+NFR
+Non-Functional Requirement
+UI
+User Interface
+API
+Application Programming Interface
+HL7
+Health Level 7 (healthcare data standard)
+PDF
+Portable Document Format (for reports)
+OTP
+One Time Password
+UHID
+Unique Hospital/Lab ID assigned to each patient
+Referred Doctor
+Physician who sends the patient to the lab for tests
+Reference Range
+Normal expected value range for a test parameter
+TAT
+Turn-Around Time for test completion
+1.4 References
+IEEE Std 830-1998 — IEEE Recommended Practice for SRS
+HL7 FHIR R4 Standard — HL7.org
+LabSmart LIMS (Inspiration Product)
+Indian Council of Medical Research (ICMR) Laboratory Guidelines
+1.5 Overview of Document
+Section 2 provides the overall system description. Section 3 details all functional requirements. Section 4 covers non-functional requirements. Section 5 discusses external interface requirements. Section 6 addresses system constraints. Appendices provide supporting material including sample workflows.
+2. Overall Description
+2.1 Product Perspective
+PathLab LIMS is a standalone, desktop-first application with optional cloud synchronization capabilities. It replaces manual paper-based workflows in small to mid-size diagnostic laboratories. The system integrates with common communication platforms (WhatsApp Business API, Gmail SMTP) and standard printers. It is inspired by existing solutions such as LabSmart and is designed for Indian diagnostic lab environments, supporting common Indian test panels, referral doctor ecosystems, and local compliance needs.
+2.2 Product Functions (High-Level Summary)
+The system shall perform the following major functions:
+Patient Registration — Capture patient demographic, contact, and clinical information.
+Sample & Test Management — Select tests from a master catalog, assign sample IDs.
+Result Entry — Enter test values with auto-validation against reference ranges.
+Date/Time Management — Auto-fetch system date/time; allow manual override.
+Doctor Management — Maintain referred doctor registry with smart search and autocomplete.
+Report Generation — Generate formatted PDF reports.
+Report Delivery — Send reports via WhatsApp, Gmail, or direct print.
+Billing & Invoicing — Calculate charges, apply discounts, generate receipts.
+User & Role Management — Admin, Lab Technician, Receptionist roles.
+Audit & Compliance — Maintain logs of all critical activities.
+2.3 User Classes and Characteristics
+User Class
+Description
+Access Level
+Administrator
+Manages users, master data (tests, doctors, rates), and system config
+Full Access
+Lab Technician
+Enters test results, validates reports
+Result Entry + Reports
+Receptionist
+Registers patients, selects tests, generates bills
+Registration + Billing
+Doctor (Portal)
+Views reports of referred patients (future phase)
+Read Only
+2.4 Operating Environment
+Platform: Windows 10/11 (Primary), Web-based interface (secondary)
+Database: SQLite (offline/standalone) or PostgreSQL (networked/cloud)
+Minimum RAM: 4 GB; Recommended: 8 GB
+Minimum Storage: 20 GB free disk space
+Network: Internet required for WhatsApp/Gmail delivery; offline mode for core functions
+Printer: Any standard A4 thermal or laser printer with Windows drivers
+Browser (web version): Chrome 110+, Edge 110+, Firefox 110+
+2.5 Design and Implementation Constraints
+Reports must be exportable as PDF (ISO 32000 compliant).
+Patient data must be stored encrypted at rest (AES-256).
+WhatsApp integration shall use the WhatsApp Business API or Twilio gateway.
+Gmail integration shall use OAuth 2.0 for authentication.
+The system shall comply with data privacy norms under IT Act 2000 and DPDP Act 2023 (India).
+The system should support multi-user concurrent access in LAN mode.
+2.6 Assumptions and Dependencies
+The laboratory has a stable internet connection for WhatsApp/Gmail delivery features.
+A WhatsApp Business API account (or approved gateway like Twilio/AiSensy) is provisioned.
+Gmail SMTP credentials or OAuth 2.0 app credentials are configured by the administrator.
+Test reference ranges are pre-configured by the administrator before go-live.
+Referred doctors are onboarded with at least their name and specialization.
+3. Functional Requirements
+3.1 Patient Registration Module
+This module handles the creation and management of patient records.
+3.1.1 Patient Information Entry
+Req ID
+Requirement
+Priority
+FR-PR-001
+System shall auto-generate a unique Patient ID (UHID) for every new registration.
+High
+FR-PR-002
+System shall capture: Full Name, Age, Gender, Date of Birth, Contact Number, Email ID, Address.
+High
+FR-PR-003
+Contact number field shall be mandatory and validated for 10-digit Indian mobile number format.
+High
+FR-PR-004
+System shall allow search of existing patients by Name, UHID, or Contact Number before creating a new record to avoid duplicates.
+High
+FR-PR-005
+System shall display a 'Patient Already Exists' warning with quick-fill option if a similar record is found.
+High
+FR-PR-006
+System shall support entry of Aadhar number (optional) as additional identifier.
+Medium
+FR-PR-007
+System shall allow capture of referring source (Walk-in, Doctor Referral, Corporate Tie-up).
+Medium
+FR-PR-008
+System shall record registration timestamp (auto-fetched, non-editable).
+High
+3.2 Test Selection Module
+This module allows selection of one or more diagnostic tests for the registered patient.
+3.2.1 Test Catalog and Selection
+Req ID
+Requirement
+Priority
+FR-TS-001
+System shall maintain a Test Master Catalog with: Test Name, Short Code, Sample Type, TAT, Reference Ranges (by age/gender), and Price.
+High
+FR-TS-002
+System shall allow selection of tests via a search box supporting partial name and short code matching.
+High
+FR-TS-003
+System shall support test packages/profiles (e.g., CBC, LFT, KFT, Lipid Profile) as a single selectable bundle.
+High
+FR-TS-004
+System shall display sample type required for each selected test (Blood, Urine, Stool, etc.).
+Medium
+FR-TS-005
+System shall allow removal of tests from the selection before finalizing.
+High
+FR-TS-006
+System shall show estimated cost as tests are added, with final total on confirmation.
+High
+FR-TS-007
+System shall support department-based filtering of tests (Haematology, Biochemistry, Microbiology, etc.).
+Medium
+FR-TS-008
+System shall prevent duplicate test selection and alert the user.
+High
+3.3 Date and Time Management
+Req ID
+Requirement
+Priority
+FR-DT-001
+System shall auto-fetch the current date and time from the host computer's system clock at the time of registration.
+High
+FR-DT-002
+The auto-fetched date and time shall be displayed in a date picker field pre-populated and editable.
+High
+FR-DT-003
+System shall allow the user to manually override the date by clicking the date picker and selecting/typing a different date.
+High
+FR-DT-004
+System shall allow manual override of time in HH:MM format.
+Medium
+FR-DT-005
+System shall record both the original system date-time and any manually overridden date-time in the audit log.
+High
+FR-DT-006
+Override of date shall require a user with at least Supervisor-level privilege; a reason field shall be mandatory.
+Medium
+FR-DT-007
+Date format shall be configurable by administrator (DD/MM/YYYY or MM/DD/YYYY).
+Low
+3.4 Referred Doctor Management Module
+3.4.1 Doctor Registry
+Req ID
+Requirement
+Priority
+FR-DR-001
+System shall maintain a Referred Doctor Registry with: Doctor Name, Qualification, Specialization, Clinic/Hospital, Contact Number, Email, Address.
+High
+FR-DR-002
+Administrator shall be able to add, edit, or deactivate doctor records from a dedicated management screen.
+High
+FR-DR-003
+Doctor records shall include a commission/discount percentage field for billing purposes.
+Medium
+3.4.2 Smart Search and Autocomplete
+Req ID
+Requirement
+Priority
+FR-DR-004
+The doctor selection field in patient registration shall support real-time autocomplete as the user types (minimum 2 characters to trigger).
+High
+FR-DR-005
+Suggestions shall match on Doctor Name (first/last), Specialization, Clinic/Hospital Name, and Short Code/Alias.
+High
+FR-DR-006
+Matching characters shall be highlighted in the dropdown suggestion list.
+Medium
+FR-DR-007
+User shall be able to navigate the suggestion list using keyboard arrow keys and select with Enter.
+High
+FR-DR-008
+If the referred doctor is not in the system, user shall be able to type a free-text name and system shall prompt to add the doctor to the registry.
+Medium
+FR-DR-009
+Selection of a doctor shall auto-fill their contact details and apply any configured commission/discount.
+Medium
+FR-DR-010
+System shall show a list of recent/frequently used doctors as default suggestions before any typing begins.
+Low
+3.5 Result Entry Module
+Req ID
+Requirement
+Priority
+FR-RE-001
+System shall display a structured result entry form based on the selected tests, with one row per parameter.
+High
+FR-RE-002
+Each parameter row shall show: Parameter Name, Unit, Reference Range (applicable to patient age/gender), and an editable Value field.
+High
+FR-RE-003
+System shall auto-validate entered values against reference ranges and flag values as High (H) or Low (L) with visual color coding (red/blue).
+High
+FR-RE-004
+Tab key shall move focus to the next parameter value field for fast keyboard-only entry.
+High
+FR-RE-005
+System shall support entry of numeric values, text-based results (e.g., Positive/Negative), and descriptive/narrative results.
+High
+FR-RE-006
+System shall support calculator-derived fields (e.g., Non-HDL = Total Cholesterol - HDL).
+Medium
+FR-RE-007
+System shall allow attachment of images (e.g., microscopy photos) to a result record.
+Low
+FR-RE-008
+System shall require a second-level review/approval for report release by a Senior Technician or Pathologist.
+Medium
+FR-RE-009
+System shall maintain a result amendment log if values are changed after initial entry.
+High
+3.6 Report Generation Module
+Req ID
+Requirement
+Priority
+FR-RG-001
+System shall generate a formatted PDF report containing: Lab letterhead, Patient details, Test results with reference ranges, Abnormal value flags, Technician and Pathologist signature fields, Date of collection and reporting.
+High
+FR-RG-002
+Report layout shall be configurable (lab logo, footer disclaimer, authorized signatory).
+High
+FR-RG-003
+System shall support multiple report templates (e.g., Haematology layout vs Biochemistry layout).
+Medium
+FR-RG-004
+System shall allow preview of report before delivery.
+High
+FR-RG-005
+System shall watermark unverified/draft reports with 'DRAFT — NOT FOR CLINICAL USE'.
+High
+FR-RG-006
+Finalized reports shall be stored in the system and retrievable by Patient ID or date range.
+High
+3.7 Report Delivery Module
+3.7.1 WhatsApp Delivery
+Req ID
+Requirement
+Priority
+FR-WA-001
+System shall integrate with WhatsApp Business API (or approved gateway such as Twilio/AiSensy) to send reports as PDF attachments.
+High
+FR-WA-002
+Patient mobile number registered at the time of registration shall be pre-filled as the destination; user shall be able to change it before sending.
+High
+FR-WA-003
+System shall send a configurable message template along with the PDF attachment (e.g., 'Dear [Patient Name], your report from [Lab Name] is ready. Please find attached.').
+High
+FR-WA-004
+System shall display delivery status (Sent, Delivered, Failed) fetched from the API.
+Medium
+FR-WA-005
+System shall log every WhatsApp delivery attempt with timestamp, destination number, and status.
+High
+FR-WA-006
+In case of delivery failure, system shall show an error message with the reason and provide a Retry option.
+High
+3.7.2 Gmail / Email Delivery
+Req ID
+Requirement
+Priority
+FR-EM-001
+System shall allow sending report as PDF email attachment via Gmail using OAuth 2.0 or SMTP configuration.
+High
+FR-EM-002
+Patient email address shall be pre-filled; user shall be able to edit before sending.
+High
+FR-EM-003
+System shall use a configurable email subject and body template.
+Medium
+FR-EM-004
+CC field shall be available to optionally include the referred doctor's email.
+Medium
+FR-EM-005
+System shall log all email delivery attempts with timestamp, recipient, and status.
+High
+FR-EM-006
+System shall support bulk email sending for multiple patients in one action.
+Low
+3.7.3 Print Delivery
+Req ID
+Requirement
+Priority
+FR-PR-001
+System shall send the report PDF to a connected printer with configurable page size (A4 default).
+High
+FR-PR-002
+System shall allow selection of the target printer from all printers installed on the host system.
+High
+FR-PR-003
+System shall provide options for number of copies and print orientation (portrait/landscape).
+Medium
+FR-PR-004
+System shall support thermal receipt printer for billing slips (80mm format).
+Medium
+3.8 Billing and Invoice Module
+Req ID
+Requirement
+Priority
+FR-BL-001
+System shall auto-calculate total charges based on selected tests and configured test rates.
+High
+FR-BL-002
+System shall support discounts: flat amount, percentage, and referred-doctor-based (auto-applied).
+High
+FR-BL-003
+System shall support multiple payment modes: Cash, UPI, Card, Credit (pay later).
+High
+FR-BL-004
+System shall generate a formatted invoice/receipt as PDF.
+High
+FR-BL-005
+System shall track outstanding/pending payments and generate aging reports.
+Medium
+FR-BL-006
+System shall support partial payment with balance tracking.
+Medium
+FR-BL-007
+System shall support GST calculation and include GSTIN on invoice if configured.
+Medium
+3.9 User and Role Management
+Req ID
+Requirement
+Priority
+FR-UR-001
+System shall support user creation with username, password (hashed), and role assignment.
+High
+FR-UR-002
+System shall enforce role-based access control with at minimum: Administrator, Lab Technician, and Receptionist roles.
+High
+FR-UR-003
+Each role shall have configurable module-level permissions (View, Create, Edit, Delete, Approve).
+High
+FR-UR-004
+System shall enforce a password policy: minimum 8 characters, one uppercase, one digit.
+High
+FR-UR-005
+System shall lock account after 5 consecutive failed login attempts.
+High
+FR-UR-006
+System shall maintain a session timeout after configurable inactivity period (default: 30 minutes).
+Medium
+3.10 Audit Log and Compliance
+Req ID
+Requirement
+Priority
+FR-AL-001
+System shall record all Create, Update, and Delete operations on patient records, results, and billing.
+High
+FR-AL-002
+Audit log entries shall capture: User ID, Action Type, Entity Affected, Old Value, New Value, and Timestamp.
+High
+FR-AL-003
+Audit logs shall be read-only and not editable by any user including Administrator.
+High
+FR-AL-004
+System shall provide a searchable/filterable audit log report.
+Medium
+4. Non-Functional Requirements
+4.1 Performance
+NFR ID
+Requirement
+Target
+NFR-PF-001
+Patient registration form shall load
+< 1 second
+NFR-PF-002
+Doctor autocomplete suggestions shall appear after 2-char input
+< 300 ms
+NFR-PF-003
+PDF report generation from submitted results
+< 5 seconds
+NFR-PF-004
+WhatsApp/Email delivery initiation
+< 3 seconds
+NFR-PF-005
+Database query for patient search across 100,000 records
+< 2 seconds
+NFR-PF-006
+System shall support 10 concurrent users in LAN mode
+No degradation
+4.2 Security
+NFR-SC-001: All data at rest shall be encrypted using AES-256.
+NFR-SC-002: All data in transit (API calls, email) shall use TLS 1.2 or higher.
+NFR-SC-003: OAuth 2.0 shall be used for Gmail integration; API keys shall be stored in an encrypted config store.
+NFR-SC-004: Patient reports sent via WhatsApp shall not be stored in third-party servers beyond transient delivery use.
+NFR-SC-005: System shall comply with IT Act 2000 and DPDP Act 2023 for personal data handling.
+4.3 Usability
+NFR-US-001: The UI shall be designed for keyboard-first data entry; all primary actions achievable without mouse.
+NFR-US-002: Result entry workflow shall be completable in under 3 minutes for a standard CBC panel.
+NFR-US-003: All error messages shall be descriptive and actionable.
+NFR-US-004: The application shall support Hindi language interface (optional localization toggle).
+NFR-US-005: System shall provide contextual inline help/tooltips for complex fields.
+4.4 Reliability and Availability
+NFR-RA-001: System shall achieve 99.5% uptime in LAN deployment.
+NFR-RA-002: Automatic daily database backup shall be performed and stored locally and optionally on cloud.
+NFR-RA-003: System shall gracefully handle network failure — core workflows (registration, result entry) shall function offline.
+NFR-RA-004: Database shall support transaction rollback in case of crash during write operations.
+4.5 Maintainability
+NFR-MT-001: Codebase shall follow documented coding standards.
+NFR-MT-002: Test master catalog, reference ranges, and pricing shall be configurable by the admin without code changes.
+NFR-MT-003: Report templates shall be editable via a template editor without developer intervention.
+4.6 Scalability
+NFR-SL-001: Database design shall support migration from SQLite to PostgreSQL without data loss.
+NFR-SL-002: Application architecture shall support a future web-based multi-branch portal.
+5. External Interface Requirements
+5.1 User Interface
+The system shall provide a desktop GUI (Electron/web-based) with the following screens:
+Dashboard — Daily summary: registrations, pending reports, payments due.
+Patient Registration — Multi-step form with test selection inline.
+Result Entry Workbench — Tabular data entry per test.
+Report Preview & Delivery — Preview panel with WhatsApp/Email/Print action buttons.
+Doctor Registry — CRUD screen with search and autocomplete preview.
+Test Catalog Manager — Manage tests, packages, reference ranges.
+Billing Screen — Invoice creation, payment recording.
+Admin Panel — User management, system settings, audit logs.
+5.2 Software Interfaces
+Interface
+Technology / Protocol
+Purpose
+WhatsApp Business API
+HTTPS REST (Twilio / AiSensy / Meta Cloud API)
+Send PDF report to patient
+Gmail / Email
+SMTP over TLS / Gmail OAuth 2.0
+Send PDF report via email
+Operating System
+Windows 10/11 System APIs
+Date/Time, Printer, File System
+Database
+SQLite (local) / PostgreSQL (LAN or cloud)
+Data persistence
+PDF Engine
+pdfkit / Puppeteer / iText
+Report and invoice PDF generation
+Print Subsystem
+Windows Print API / CUPS (Linux)
+Direct printing
+5.3 Hardware Interfaces
+Compatible with standard A4 laser/inkjet printers via OS print driver.
+Compatible with 80mm thermal receipt printers via ESC/POS protocol for billing slips.
+Compatible with barcode scanners (USB HID) for sample tube label scanning.
+5.4 Communication Interfaces
+HTTPS (TLS 1.2+) for all external API calls.
+SMTP over TLS/SSL port 587 or 465 for email.
+LAN TCP/IP for multi-user database access.
+6. System Constraints
+WhatsApp report delivery requires an active approved WhatsApp Business API account; unofficial WhatsApp automation is not supported.
+The system does not support direct integration with analytical instruments in Phase 1 (manual result entry only).
+Bulk result import from analyzer (LIS/ASTM) is planned for Phase 2.
+The system is designed for single-branch use in Phase 1; multi-branch support is a Phase 2 feature.
+7. Key Use Case Workflows
+UC-01: Register Patient and Order Tests
+Step
+Actor
+Action
+1
+Receptionist
+Opens New Registration form; system auto-fetches current date/time.
+2
+Receptionist
+Enters patient name; system checks for duplicates and shows suggestions.
+3
+Receptionist
+Fills patient demographics (age, gender, contact, email).
+4
+Receptionist
+Types in doctor name field; system shows autocomplete from doctor registry.
+5
+Receptionist
+Selects tests or packages; system shows running total price.
+6
+Receptionist
+Confirms and saves; system generates UHID, Sample ID, and prints barcode label.
+7
+Receptionist
+Records payment; system generates invoice.
+UC-02: Enter Results and Generate Report
+Step
+Actor
+Action
+1
+Lab Technician
+Opens pending samples worklist; selects patient by Sample ID or UHID.
+2
+Lab Technician
+Opens result entry form; all test parameters listed with reference ranges.
+3
+Lab Technician
+Tabs through parameter fields entering values; abnormal values highlighted.
+4
+Lab Technician
+Saves results; system validates completeness.
+5
+Senior Tech / Path.
+Reviews result; approves report for release.
+6
+System
+Generates PDF report with all results, flags, and authorized signatory.
+UC-03: Deliver Report to Patient
+Step
+Actor
+Action
+1
+Receptionist / Tech
+Opens finalized report; clicks 'Send Report' button.
+2
+System
+Shows delivery options: WhatsApp, Gmail, Print.
+3a
+User (WhatsApp)
+Confirms mobile number; clicks Send. System posts via WhatsApp API.
+3b
+User (Gmail)
+Confirms email address; optionally adds CC for doctor; clicks Send.
+3c
+User (Print)
+Selects printer and copies; clicks Print.
+4
+System
+Logs delivery action with timestamp and status.
+8. Appendix
+Appendix A: Sample Test Catalog (Reference)
+Test Name
+Short Code
+Department
+Sample
+TAT
+Complete Blood Count
+CBC
+Haematology
+EDTA Blood
+2 hrs
+Liver Function Test
+LFT
+Biochemistry
+Serum
+4 hrs
+Kidney Function Test
+KFT
+Biochemistry
+Serum
+4 hrs
+Lipid Profile
+LIPID
+Biochemistry
+Serum (Fasting)
+4 hrs
+Thyroid Function Test
+TFT/TSH
+Biochemistry
+Serum
+6 hrs
+Blood Glucose (Fasting)
+FBS
+Biochemistry
+Fluoride Blood
+1 hr
+HbA1c
+HBA1C
+Biochemistry
+EDTA Blood
+4 hrs
+Urine Routine Examination
+URE
+Microbiology
+Urine (Midstream)
+2 hrs
+Widal Test
+WIDAL
+Serology
+Serum
+4 hrs
+Appendix B: Requirement Traceability Matrix (RTM)
+A full RTM mapping each functional requirement to its corresponding test case, design module, and development task shall be maintained in a separate project management tool (e.g., Jira, Trello).
+Appendix C: Revision History
+Version
+Date
+Author
+Changes
+1.0
+April 2025
+Project Team
+Initial version — complete SRS for Phase 1
+— End of Document —
+PathLab LIMS — Software Requirements Specification
+  |  Version 1.0  |  Confidential
+Page 
+ of 
+  |  PathLab LIMS SRS  |  © 2025

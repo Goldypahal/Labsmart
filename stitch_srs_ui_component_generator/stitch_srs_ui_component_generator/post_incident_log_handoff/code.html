@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Post-Incident Report | DiagConnect SOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "error": "#ba1a1a",
+                "surface-dim": "#cbdbf5",
+                "outline": "#6e7881",
+                "tertiary-fixed-dim": "#ffb95f",
+                "surface-container-lowest": "#ffffff",
+                "on-tertiary-container": "#4a2c00",
+                "on-tertiary": "#ffffff",
+                "surface-container": "#e5eeff",
+                "inverse-surface": "#213145",
+                "on-tertiary-fixed-variant": "#653e00",
+                "inverse-primary": "#89ceff",
+                "inverse-on-surface": "#eaf1ff",
+                "primary": "#006591",
+                "outline-variant": "#bec8d2",
+                "surface-tint": "#006591",
+                "secondary-fixed-dim": "#4edea3",
+                "secondary-fixed": "#6ffbbe",
+                "primary-fixed": "#c9e6ff",
+                "background": "#f8f9ff",
+                "surface-variant": "#d3e4fe",
+                "surface-bright": "#f8f9ff",
+                "on-tertiary-fixed": "#2a1700",
+                "surface-container-highest": "#d3e4fe",
+                "secondary-container": "#6cf8bb",
+                "on-background": "#0b1c30",
+                "on-primary-container": "#003751",
+                "on-secondary-container": "#00714d",
+                "surface": "#f8f9ff",
+                "surface-container-high": "#dce9ff",
+                "surface-container-low": "#eff4ff",
+                "on-primary": "#ffffff",
+                "tertiary-container": "#d88a00",
+                "on-error": "#ffffff",
+                "tertiary-fixed": "#ffddb8",
+                "primary-container": "#0ea5e9",
+                "on-primary-fixed": "#001e2f",
+                "on-secondary": "#ffffff",
+                "on-surface": "#0b1c30",
+                "on-surface-variant": "#3e4850",
+                "error-container": "#ffdad6",
+                "on-error-container": "#93000a",
+                "on-secondary-fixed": "#002113",
+                "tertiary": "#855300",
+                "primary-fixed-dim": "#89ceff",
+                "on-secondary-fixed-variant": "#005236",
+                "on-primary-fixed-variant": "#004c6e",
+                "secondary": "#006c49"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "margin-mobile": "16px",
+                "md": "16px",
+                "max-width": "1440px",
+                "base": "4px",
+                "xl": "32px",
+                "gutter": "24px",
+                "lg": "24px",
+                "xs": "4px",
+                "margin-desktop": "40px",
+                "sm": "8px"
+            },
+            "fontFamily": {
+                "headline-lg-mobile": ["Plus Jakarta Sans"],
+                "headline-md": ["Plus Jakarta Sans"],
+                "body-md": ["Inter"],
+                "label-md": ["Inter"],
+                "headline-sm": ["Plus Jakarta Sans"],
+                "headline-xl": ["Plus Jakarta Sans"],
+                "body-sm": ["Inter"],
+                "headline-lg": ["Plus Jakarta Sans"],
+                "body-lg": ["Inter"],
+                "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.6);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #bec8d2;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24">
+<!-- TopAppBar (From JSON Anchor) -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-on-surface border-b border-outline-variant dark:border-outline">
+<div class="flex justify-between items-center px-margin-mobile h-16 w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary font-headline-md text-headline-md">emergency</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">DiagConnect SOS</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional medical volunteer portrait, soft studio lighting, clinical environment, wearing a DiagConnect branded vest, looking calm and reassuring. The style is high-end corporate photography with clean lines and a cool blue and white color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8xKlP1nlyosK-vsDzJGDaNLAo7e0tj-wTLvZ5bwOMOQ2hk5wFocqoHrE2OPtk3eeW3Ay_NkyrHn75MoA36zz-Bja1OYynI7fNO8rmUWXw2KPDOFzPjwjf5P3J_HEPc6E5sOEN-y7qQz-c1pGZr-gUlfFDHjX25y1pEPOSV684DCGa0rhdQmYDzUhx4CbJ5qJJqdZxwX0p5JD5oSs7JruMXXQ-G-_JhLqov5JmvjWMrbVRX53bMnyJKnc0zn-4Onttg8i_Bdz9Rag"/>
+</div>
+</div>
+</header>
+<main class="pt-24 px-4 md:px-margin-desktop max-w-max-width mx-auto">
+<!-- Incident Status Header -->
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-error mr-2 animate-pulse"></span>
+                        Incident Active: #SOS-4921
+                    </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Elapsed: 14m 22s</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Post-Incident Report</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Log actions, prepare EMS handoff notes, and complete your sign-off once professional help arrives.</p>
+</div>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-xl font-label-md text-label-md flex items-center gap-2 shadow-lg hover:brightness-110 transition-all active:scale-95">
+<span class="material-symbols-outlined">check_circle</span>
+                Final Sign-Off
+            </button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- LEFT COLUMN: Action Logging & Handoff -->
+<div class="lg:col-span-8 space-y-6">
+<!-- Action Logger -->
+<div class="glass-card rounded-xl p-lg shadow-sm border-l-4 border-primary">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-sm text-headline-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">history</span>
+                            Action Log
+                        </h3>
+<button class="text-primary font-label-md text-label-md flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-base">add</span> Add Entry
+                        </button>
+</div>
+<div class="space-y-4 max-h-[400px] overflow-y-auto custom-scrollbar pr-2">
+<!-- Log Item 1 -->
+<div class="flex gap-4 items-start relative pb-4 before:content-[''] before:absolute before:left-[11px] before:top-8 before:w-[2px] before:h-full before:bg-outline-variant">
+<div class="z-10 bg-primary w-6 h-6 rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px] text-on-primary" style="font-variation-settings: 'FILL' 1;">timer</span>
+</div>
+<div class="flex-1 bg-surface-container-low p-4 rounded-lg">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-md text-label-md">Arrived at Location</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">14:28</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Volunteer identified patient and secured perimeter.</p>
+</div>
+</div>
+<!-- Log Item 2 -->
+<div class="flex gap-4 items-start relative pb-4 before:content-[''] before:absolute before:left-[11px] before:top-8 before:w-[2px] before:h-full before:bg-outline-variant">
+<div class="z-10 bg-error w-6 h-6 rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px] text-on-primary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<div class="flex-1 bg-error-container/30 p-4 rounded-lg border border-error/10">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-md text-label-md text-error">Started CPR</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">14:32</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Initiated chest compressions due to lack of detectable pulse.</p>
+</div>
+</div>
+<!-- Log Item 3 -->
+<div class="flex gap-4 items-start relative pb-4">
+<div class="z-10 bg-tertiary w-6 h-6 rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px] text-on-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div class="flex-1 bg-tertiary-fixed/20 p-4 rounded-lg">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-md text-label-md">AED Deployed</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">14:35</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">AED delivered 1 shock; patient regained spontaneous circulation.</p>
+</div>
+</div>
+</div>
+<div class="mt-6 flex gap-2">
+<input class="flex-1 rounded-lg border-outline-variant focus:ring-primary focus:border-primary font-body-sm text-body-sm py-2" placeholder="Quick log entry (e.g., 'Patient conscious at 14:40')" type="text"/>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-label-md text-label-md">Post</button>
+</div>
+</div>
+<!-- EMS Handoff Notes -->
+<div class="glass-card rounded-xl p-lg shadow-sm">
+<h3 class="font-headline-sm text-headline-sm flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">clinical_notes</span>
+                        EMS Handoff Report
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+<div class="space-y-2">
+<label class="font-label-md text-label-md">Primary Symptom</label>
+<div class="bg-surface-container p-3 rounded-lg border border-outline-variant font-body-sm text-body-sm">
+                                Sudden Cardiac Arrest
+                            </div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md">Known Allergies</label>
+<div class="bg-surface-container p-3 rounded-lg border border-outline-variant font-body-sm text-body-sm">
+                                Penicillin (Source: Medical Profile)
+                            </div>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md">Observer Notes for Paramedics</label>
+<textarea class="w-full rounded-lg border-outline-variant focus:ring-primary focus:border-primary font-body-sm text-body-sm" placeholder="Mention breathing patterns, conscious states, or any physical trauma observed..." rows="4"></textarea>
+<p class="text-right text-xs text-on-surface-variant">Character count: 0/500</p>
+</div>
+<div class="mt-4 p-4 bg-secondary-container/20 rounded-lg flex items-center gap-4">
+<div class="w-12 h-12 bg-secondary-container text-on-secondary-container rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">qr_code_2</span>
+</div>
+<div>
+<p class="font-label-md text-label-md">Professional Data Bridge</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Show this QR to arriving EMS for immediate patient history access.</p>
+</div>
+<button class="ml-auto text-primary font-label-md text-label-md">View Code</button>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Wellness & Support -->
+<div class="lg:col-span-4 space-y-6">
+<!-- Patient Snapshot -->
+<div class="bg-surface-container-high rounded-xl p-lg border border-outline-variant">
+<h3 class="font-label-md text-label-md text-primary uppercase tracking-wider mb-4">Patient Snapshot</h3>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-14 h-14 rounded-xl overflow-hidden bg-white p-1">
+<img class="w-full h-full object-cover rounded-lg" data-alt="A blurred medical identity photo icon, showing a generic placeholder for a patient, framed in a clean clinical UI style with soft blue background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjWuNgjijcK3lLjHm2j-22AfdbKLinDbct82vrFMI0pdm9v3QQsekR5HG5ok7jH7bRHSdcPH8KPC3BucW2Xasx3T7c5Yv0lf_lX-CJVmKZnZRHKCoeU-UvQqxVIYWJHOgsZAG5dwyqW00HtmqzPwG4QdR93lCFxojnW-kaXV95ik7BHZ40THULl6KrrwYtejSaG4aNpkdWKjJuRWZ3AY23KpNcVhNy3oVGkJfV43qEs1hBReMSsR4Iv5yUeqmhDhZevcRv1I_WPfg"/>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm">Robert Chen</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Age 52 • Male • Type O+</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 text-center">
+<div class="bg-white p-2 rounded-lg">
+<p class="font-label-sm text-label-sm text-on-surface-variant">HR (Avg)</p>
+<p class="font-headline-sm text-headline-sm text-error">112</p>
+</div>
+<div class="bg-white p-2 rounded-lg">
+<p class="font-label-sm text-label-sm text-on-surface-variant">SPO2</p>
+<p class="font-headline-sm text-headline-sm text-secondary">94%</p>
+</div>
+</div>
+</div>
+<!-- Responder Wellness Section -->
+<div class="glass-card rounded-xl overflow-hidden border-2 border-primary-container shadow-lg">
+<div class="h-32 bg-primary-container relative">
+
+<div class="absolute inset-0 p-lg flex flex-col justify-end">
+<h3 class="font-headline-sm text-headline-sm text-on-primary-container">Responder Wellness</h3>
+</div>
+</div>
+<div class="p-lg space-y-4">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Incidents can be stressful. We’re here to support you after the call ends.</p>
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-surface-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">self_care</span>
+<div>
+<p class="font-label-md text-label-md">Post-Trauma Decompression</p>
+<p class="text-xs text-on-surface-variant">5-minute breathing &amp; grounding guide</p>
+</div>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-surface-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">support_agent</span>
+<div>
+<p class="font-label-md text-label-md">Peer Support Network</p>
+<p class="text-xs text-on-surface-variant">Connect with a trained volunteer counselor</p>
+</div>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-surface-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">file_open</span>
+<div>
+<p class="font-label-md text-label-md">Reflection Journal</p>
+<p class="text-xs text-on-surface-variant">Log your feelings privately</p>
+</div>
+</a>
+<hr class="border-outline-variant"/>
+<div class="p-4 bg-error-container/10 border border-error/20 rounded-lg">
+<div class="flex items-center gap-2 mb-2 text-error">
+<span class="material-symbols-outlined text-sm">warning</span>
+<p class="font-label-md text-label-md">Need immediate help?</p>
+</div>
+<p class="text-xs text-on-surface-variant mb-3">If you are feeling overwhelmed, professional help is available 24/7.</p>
+<button class="w-full bg-error text-on-error py-2 rounded-lg font-label-sm text-label-sm">Call Wellness Hotline</button>
+</div>
+</div>
+</div>
+<!-- History Context -->
+<div class="p-lg rounded-xl border border-dashed border-outline-variant">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-2">Previous Interactions</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">This patient has had 2 previous SOS alerts in this zone (Park District). EMS responded in under 6 mins both times.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (From JSON Anchor) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-surface dark:bg-inverse-surface shadow-lg z-50">
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-4 py-1 scale-95 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emergency_home</span>
+<span class="font-label-sm text-label-sm-mobile">SOS</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-on-surface-variant transition-colors duration-200">
+<span class="material-symbols-outlined">location_on</span>
+<span class="font-label-sm text-label-sm-mobile">Tracking</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-on-surface-variant transition-colors duration-200">
+<span class="material-symbols-outlined">family_restroom</span>
+<span class="font-label-sm text-label-sm-mobile">Family</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:bg-surface-container-high dark:hover:bg-on-surface-variant transition-colors duration-200">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-label-sm text-label-sm-mobile">Protocols</span>
+</button>
+</nav>
+<!-- Success Feedback Overlay (Hidden by default) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-on-background/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" id="success-overlay">
+<div class="bg-white rounded-2xl p-xl max-w-sm w-full text-center shadow-2xl scale-90 transition-transform duration-300" id="success-card">
+<div class="w-20 h-20 bg-secondary-container text-on-secondary-container rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-[40px]">check_circle</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-2">Report Submitted</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Thank you for your service, Volunteer. Your handoff notes have been securely transferred to EMS.</p>
+<button class="w-full bg-primary text-on-primary py-3 rounded-xl font-label-md text-label-md" onclick="toggleOverlay(false)">Return to Dashboard</button>
+</div>
+</div>
+<script>
+        function toggleOverlay(show) {
+            const overlay = document.getElementById('success-overlay');
+            const card = document.getElementById('success-card');
+            if (show) {
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+                card.classList.remove('scale-90');
+                card.classList.add('scale-100');
+            } else {
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+                card.classList.add('scale-90');
+                card.classList.remove('scale-100');
+            }
+        }
+
+        // Attach event to Sign-Off button
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.innerText.includes('Sign-Off')) {
+                btn.onclick = () => toggleOverlay(true);
+            }
+        });
+
+        // Simple text area counter
+        const textarea = document.querySelector('textarea');
+        const counter = document.querySelector('.text-right.text-xs');
+        textarea.oninput = (e) => {
+            const count = e.target.value.length;
+            counter.innerText = `Character count: ${count}/500`;
+        };
+    </script>
+</body></html>

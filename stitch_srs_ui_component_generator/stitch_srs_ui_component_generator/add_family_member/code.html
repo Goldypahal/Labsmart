@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add Family Member | DiagConnect</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#c9e6ff",
+                        "inverse-surface": "#213145",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-primary-fixed": "#001e2f",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#4edea3",
+                        "outline-variant": "#bec8d2",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "outline": "#6e7881",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "primary": "#006591",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "on-secondary-container": "#00714d",
+                        "tertiary-container": "#d88a00",
+                        "on-tertiary-container": "#4a2c00",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#6cf8bb",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface": "#f8f9ff",
+                        "tertiary": "#855300",
+                        "inverse-primary": "#89ceff",
+                        "on-surface": "#0b1c30",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-primary-container": "#003751",
+                        "on-tertiary-fixed": "#2a1700",
+                        "surface-variant": "#d3e4fe",
+                        "on-secondary-fixed": "#002113",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "on-surface-variant": "#3e4850",
+                        "secondary": "#006c49",
+                        "surface-tint": "#006591",
+                        "on-background": "#0b1c30",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-dim": "#cbdbf5",
+                        "primary-fixed-dim": "#89ceff",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#dce9ff",
+                        "primary-container": "#0ea5e9",
+                        "on-secondary": "#ffffff",
+                        "background": "#f8f9ff",
+                        "surface-bright": "#f8f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "gutter": "24px",
+                        "xl": "32px",
+                        "margin-desktop": "40px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "max-width": "1440px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant transition-colors duration-200 ease-in-out">
+<div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-size: 28px;">family_restroom</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">Family Health</span>
+</div>
+</div>
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">
+                    AJ
+                </div>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto">
+<div class="mb-10 text-center md:text-left">
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Add a Family Member</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Expand your care circle. Managed profiles allow you to maintain records for dependents, while invitations allow adults to control their own data.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Left Column: Form -->
+<div class="md:col-span-7 space-y-xl">
+<!-- Personal Details Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md md:p-lg shadow-sm">
+<h2 class="font-headline-sm text-headline-sm mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">person</span>
+                        Member Details
+                    </h2>
+<div class="space-y-6">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2" for="fullname">Legal Full Name</label>
+<input class="w-full bg-surface border border-outline rounded-lg px-4 py-3 text-body-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" id="fullname" placeholder="e.g. Sarah Johnson" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Relationship</label>
+<div class="grid grid-cols-3 gap-3">
+<button class="rel-btn flex flex-col items-center justify-center p-4 border border-outline rounded-xl hover:bg-surface-container-low transition-all group" onclick="selectRel(this)">
+<span class="material-symbols-outlined text-on-surface-variant group-[.active]:text-primary mb-2">favorite</span>
+<span class="font-label-sm text-label-sm">Spouse</span>
+</button>
+<button class="rel-btn flex flex-col items-center justify-center p-4 border border-outline rounded-xl hover:bg-surface-container-low transition-all group" onclick="selectRel(this)">
+<span class="material-symbols-outlined text-on-surface-variant group-[.active]:text-primary mb-2">child_care</span>
+<span class="font-label-sm text-label-sm">Child</span>
+</button>
+<button class="rel-btn flex flex-col items-center justify-center p-4 border border-outline rounded-xl hover:bg-surface-container-low transition-all group" onclick="selectRel(this)">
+<span class="material-symbols-outlined text-on-surface-variant group-[.active]:text-primary mb-2">elderly</span>
+<span class="font-label-sm text-label-sm">Parent</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Connection Method -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md md:p-lg shadow-sm">
+<h2 class="font-headline-sm text-headline-sm mb-6">Connection Method</h2>
+<div class="space-y-4">
+<!-- Option 1: Invite -->
+<label class="relative flex items-start p-4 border border-outline rounded-xl cursor-pointer hover:bg-surface-container-low transition-all has-[:checked]:border-primary has-[:checked]:bg-primary-container/10">
+<input checked="" class="mt-1 w-5 h-5 text-primary focus:ring-primary border-outline" name="setup_type" type="radio" value="invite"/>
+<div class="ml-4">
+<span class="block font-label-md text-label-md text-on-surface">Invite via Phone Number</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant mt-1">Best for adults. They will manage their own account and can choose what to share with the family dashboard.</span>
+<div class="mt-4 setup-field" id="invite-field">
+<div class="flex gap-2">
+<div class="w-20 border border-outline rounded-lg px-3 py-2 bg-surface text-center font-body-md">+1</div>
+<input class="flex-1 bg-surface border border-outline rounded-lg px-4 py-2 text-body-md focus:ring-2 focus:ring-primary outline-none" placeholder="(555) 000-0000" type="tel"/>
+</div>
+</div>
+</div>
+</label>
+<!-- Option 2: Managed -->
+<label class="relative flex items-start p-4 border border-outline rounded-xl cursor-pointer hover:bg-surface-container-low transition-all has-[:checked]:border-primary has-[:checked]:bg-primary-container/10">
+<input class="mt-1 w-5 h-5 text-primary focus:ring-primary border-outline" name="setup_type" type="radio" value="managed"/>
+<div class="ml-4">
+<span class="block font-label-md text-label-md text-on-surface">Create Minor Profile (Managed)</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant mt-1">For dependents or children. You maintain full control over their diagnostic data and clinical history.</span>
+<div class="mt-4 hidden setup-field" id="managed-field">
+<div class="bg-secondary-container/20 border border-secondary p-3 rounded-lg flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">info</span>
+<span class="font-body-sm text-on-secondary-container">Managed profiles do not require a separate login.</span>
+</div>
+</div>
+</div>
+</label>
+</div>
+</section>
+</div>
+<!-- Right Column: Context/Info -->
+<div class="md:col-span-5 space-y-gutter">
+<div class="bg-surface-container-high border border-outline-variant rounded-xl p-6">
+<h3 class="font-headline-sm text-headline-sm mb-4">Privacy & Consent</h3>
+<div class="space-y-4">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-primary shrink-0">verified_user</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">All diagnostic data is encrypted end-to-end. Only authorized family members can view results.</p>
+</div>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-primary shrink-0">history_edu</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Invited adults must explicitly grant permission for you to view their specific lab results.</p>
+</div>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-primary shrink-0">lock_reset</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Permissions can be revoked at any time from the 'Settings' panel by the record owner.</p>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-outline-variant">
+<div class="flex items-start gap-3">
+<input class="mt-1 rounded text-primary focus:ring-primary" id="consent" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-on-surface italic" for="consent">I confirm I have the legal right or consent to invite this person and access their medical information where applicable.</label>
+</div>
+</div>
+</div>
+<!-- Visual Element -->
+<div class="relative overflow-hidden rounded-xl h-48 border border-outline-variant">
+<div class="w-full h-full bg-cover bg-center" data-alt="A clean, clinical 3D render of three stylized abstract human figures of varying heights representing a family unit, interconnected by glowing soft blue nodes against a sterile, bright light-mode laboratory background. The lighting is soft and professional, emphasizing trust, security, and medical precision in a modern digital health context." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSWe42As_EHifs5LRKZ9FwBYwWXMZkLtW41XMeTVYuAJG3tO2hgbszO_SIkp1uI4d_c88XSDMQDGUUdeP5UhLOMipvJymw0Ax4-8lHkdpIeMOg9-mEnV6hrjPkb_C0tJxWDi8MdELfr-cR46dH4euJ8zN8Z14uFiZJeGnQIqozH_Vr7OcL7x6nx_Oo6pi1vW_wtHxZe9OsofeL-J0wjDqAmTQhbqruYwhE4bspFg0Ac2DfsOgnKwIiKVXtr3QHZQrhIeLY5bePQkI')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-4">
+<span class="text-white font-label-md text-label-md">Building a healthier future together.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="mt-12 flex flex-col md:flex-row items-center justify-between gap-4 p-6 bg-surface-container-lowest border border-outline-variant rounded-2xl shadow-lg">
+<div class="text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-body-md">visibility</span>
+<span class="font-body-sm text-body-sm">Visible to: <strong class="text-on-surface">Family Admins only</strong></span>
+</div>
+<div class="flex gap-4 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-8 py-3 rounded-lg border border-primary text-primary font-label-md text-label-md hover:bg-primary-container/10 transition-colors">
+                    Cancel
+                </button>
+<button class="flex-1 md:flex-none px-10 py-3 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all">
+                    Send Invitation
+                </button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface border-t border-outline-variant">
+<div class="flex justify-around items-center h-20 px-4">
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm mt-1">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-sm text-label-sm mt-1">Timeline</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary bg-secondary-container/20 rounded-xl px-3 py-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-sm text-label-sm mt-1">Members</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm mt-1">Settings</span>
+</div>
+</div>
+</nav>
+<script>
+        // Radio logic for field visibility
+        const radioBtns = document.querySelectorAll('input[name="setup_type"]');
+        const inviteField = document.getElementById('invite-field');
+        const managedField = document.getElementById('managed-field');
+
+        radioBtns.forEach(btn => {
+            btn.addEventListener('change', () => {
+                if (btn.value === 'invite') {
+                    inviteField.classList.remove('hidden');
+                    managedField.classList.add('hidden');
+                } else {
+                    inviteField.classList.add('hidden');
+                    managedField.classList.remove('hidden');
+                }
+            });
+        });
+
+        // Relationship selection UI
+        function selectRel(btn) {
+            document.querySelectorAll('.rel-btn').forEach(b => {
+                b.classList.remove('active', 'border-primary', 'bg-primary-container/10');
+                b.querySelector('span:first-child').style.fontVariationSettings = "'FILL' 0";
+            });
+            btn.classList.add('active', 'border-primary', 'bg-primary-container/10');
+            btn.querySelector('span:first-child').style.fontVariationSettings = "'FILL' 1";
+        }
+    </script>
+</body></html>

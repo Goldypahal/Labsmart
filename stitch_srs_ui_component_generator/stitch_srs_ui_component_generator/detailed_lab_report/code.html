@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DiagConnect - Lab Report Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .tap-highlight-transparent {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ffddb8",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface": "#f8f9ff",
+                        "tertiary": "#855300",
+                        "secondary-container": "#6cf8bb",
+                        "outline": "#6e7881",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "surface-dim": "#cbdbf5",
+                        "on-primary-container": "#003751",
+                        "on-background": "#0b1c30",
+                        "surface-container": "#e5eeff",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#006591",
+                        "secondary": "#006c49",
+                        "background": "#f8f9ff",
+                        "primary": "#006591",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "inverse-on-surface": "#eaf1ff",
+                        "inverse-primary": "#89ceff",
+                        "on-secondary-container": "#00714d",
+                        "inverse-surface": "#213145",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#001e2f",
+                        "on-surface": "#0b1c30",
+                        "outline-variant": "#bec8d2",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#4a2c00",
+                        "secondary-fixed-dim": "#4edea3",
+                        "primary-fixed": "#c9e6ff",
+                        "tertiary-container": "#d88a00",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-surface-variant": "#3e4850",
+                        "surface-container-high": "#dce9ff",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#89ceff",
+                        "primary-container": "#0ea5e9",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-secondary-fixed": "#002113"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "margin-desktop": "40px",
+                        "max-width": "1440px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-24 md:pb-0">
+<!-- Top App Bar (Shared Component Strategy) -->
+<header class="w-full top-0 sticky bg-surface border-b border-outline-variant flex justify-between items-center px-4 md:px-margin-desktop h-16 w-full z-50">
+<div class="flex items-center gap-4">
+<button class="md:hidden p-2 hover:bg-surface-container-low transition-colors rounded-full active:scale-95 transition-transform" onclick="window.history.back()">
+<span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary font-bold">DiagConnect</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container-low transition-colors rounded-full active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional high-resolution headshot of a diverse male doctor in his 40s wearing a clean white clinical coat with a subtle silver stethoscope around his neck. The background is a soft-focus, bright medical office with cool blue and white tones, matching a clean clinical aesthetic. The lighting is bright and professional, conveying trust and expertise in a modern healthcare environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkm8aFDscl6Hsmn5-lLsBsnQ9NTjE0T7JvGvGwfTEIH0vTE6MDYEnWq72_JJJqEz45nwja-0qaHUde818LlF742sF1bqedVe5kddY6eUFW8jGPRXZ-StaTQzTRMqgLnyLzGdcQN8beutm9zGiOM8p1NT5n3EKK_j8rIVTygygxACsMZ6U6-EoyCpMoi4CfPuANfJYsjpw3S2FnJJNpf-GMMrOMAU7Co2Mu4CO_qgzwJMxggRuCt1vHXMYyZ7xJfH28JpwFoUspG3s"/>
+</div>
+</div>
+</header>
+<main class="max-w-max-width mx-auto px-4 py-8 md:px-margin-desktop">
+<!-- Report Header Section -->
+<section class="mb-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<nav class="flex items-center gap-2 mb-2 text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Reports</span>
+<span class="material-symbols-outlined text-base">chevron_right</span>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Details</span>
+</nav>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mb-2">Complete Blood Count (CBC)</h2>
+<div class="flex flex-wrap items-center gap-y-2 gap-x-6">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+<span class="font-body-md text-body-md">October 24, 2023</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">medical_services</span>
+<span class="font-body-md text-body-md">Central Diagnostic Lab</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">fingerprint</span>
+<span class="font-body-md text-body-md">Ref: #CBC-88219-X</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-lg border border-primary text-primary font-label-md text-label-md hover:bg-surface-container-low transition-colors active:scale-95 transition-transform">
+<span class="material-symbols-outlined">share</span>
+                        Share with Doctor
+                    </button>
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-md hover:brightness-110 transition-all active:scale-95 transition-transform">
+<span class="material-symbols-outlined">download</span>
+                        Download PDF
+                    </button>
+</div>
+</div>
+</section>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left: Results Table -->
+<div class="lg:col-span-8">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Test Parameters</h3>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full font-label-sm text-label-sm">
+                            Results Finalized
+                        </span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Parameter</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-center">Your Value</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-center">Reference Range</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Hemoglobin -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5">
+<div class="font-body-md text-body-md text-on-surface font-semibold">Hemoglobin</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Oxygen carrying protein</div>
+</td>
+<td class="px-6 py-5 text-center font-headline-sm text-headline-sm text-on-surface">14.2 <span class="text-label-sm font-normal text-on-surface-variant">g/dL</span></td>
+<td class="px-6 py-5 text-center font-body-md text-body-md text-on-surface-variant">13.5 - 17.5</td>
+<td class="px-6 py-5 text-right">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 rounded-full font-label-md text-label-md border border-green-200">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                                            Normal
+                                        </span>
+</td>
+</tr>
+<!-- RBC -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-5 border-l-4 border-error">
+<div class="font-body-md text-body-md text-on-surface font-semibold">RBC Count</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Red Blood Cells</div>
+</td>
+<td class="px-6 py-5 text-center font-headline-sm text-headline-sm text-error">5.9 <span class="text-label-sm font-normal text-on-surface-variant">m/μL</span></td>
+<td class="px-6 py-5 text-center font-body-md text-body-md text-on-surface-variant">4.5 - 5.5</td>
+<td class="px-6 py-5 text-right">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-error-container text-on-error-container rounded-full font-label-md text-label-md border border-error/20">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+                                            High
+                                        </span>
+</td>
+</tr>
+<!-- WBC -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-5">
+<div class="font-body-md text-body-md text-on-surface font-semibold">WBC Count</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">White Blood Cells</div>
+</td>
+<td class="px-6 py-5 text-center font-headline-sm text-headline-sm text-on-surface">7.2 <span class="text-label-sm font-normal text-on-surface-variant">k/μL</span></td>
+<td class="px-6 py-5 text-center font-body-md text-body-md text-on-surface-variant">4.0 - 11.0</td>
+<td class="px-6 py-5 text-right">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 rounded-full font-label-md text-label-md border border-green-200">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                                            Normal
+                                        </span>
+</td>
+</tr>
+<!-- Hematocrit -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-5">
+<div class="font-body-md text-body-md text-on-surface font-semibold">Hematocrit</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Volume % of RBCs</div>
+</td>
+<td class="px-6 py-5 text-center font-headline-sm text-headline-sm text-on-surface">42.8 <span class="text-label-sm font-normal text-on-surface-variant">%</span></td>
+<td class="px-6 py-5 text-center font-body-md text-body-md text-on-surface-variant">41.0 - 50.0</td>
+<td class="px-6 py-5 text-right">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 rounded-full font-label-md text-label-md border border-green-200">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                                            Normal
+                                        </span>
+</td>
+</tr>
+<!-- Platelets -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-5 border-l-4 border-amber-500">
+<div class="font-body-md text-body-md text-on-surface font-semibold">Platelets</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Clotting cells</div>
+</td>
+<td class="px-6 py-5 text-center font-headline-sm text-headline-sm text-amber-600">142 <span class="text-label-sm font-normal text-on-surface-variant">k/μL</span></td>
+<td class="px-6 py-5 text-center font-body-md text-body-md text-on-surface-variant">150 - 450</td>
+<td class="px-6 py-5 text-right">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-50 text-amber-700 rounded-full font-label-md text-label-md border border-amber-200">
+<span class="material-symbols-outlined text-[16px]">trending_down</span>
+                                            Low
+                                        </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right: Insights & Notes -->
+<aside class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Quick Summary Bento Box -->
+<div class="bg-primary text-on-primary rounded-xl p-6 shadow-lg overflow-hidden relative group">
+<div class="absolute -right-4 -top-4 opacity-10 transform group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px]">biotech</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm mb-4">Overall Status</h4>
+<div class="flex items-center gap-4 mb-6">
+<div class="bg-white/20 p-3 rounded-xl backdrop-blur-sm">
+<span class="material-symbols-outlined text-[32px]">warning</span>
+</div>
+<div>
+<p class="font-headline-md text-headline-md leading-none">Attention</p>
+<p class="font-body-sm text-body-sm opacity-80">2 markers out of range</p>
+</div>
+</div>
+<div class="space-y-3">
+<div class="bg-white/10 rounded-lg p-3 flex justify-between items-center">
+<span class="font-label-md text-label-md">RBC Count</span>
+<span class="font-bold text-error-container">Elevated</span>
+</div>
+<div class="bg-white/10 rounded-lg p-3 flex justify-between items-center">
+<span class="font-label-md text-label-md">Platelets</span>
+<span class="font-bold text-amber-200">Borderline Low</span>
+</div>
+</div>
+</div>
+<!-- Lab Doctor Notes -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">notes</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Doctor Notes</h4>
+</div>
+<div class="space-y-4">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            "The CBC reveals a slightly elevated Red Blood Cell count (Erythrocytosis) and borderline low platelets. While hemoglobin remains within normal limits, the increased RBC concentration may suggest mild dehydration or a compensatory response."
+                        </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            "I recommend maintaining optimal hydration and repeating the test in 4 weeks. If you experience unexpected fatigue or headaches, please schedule a consultation earlier."
+                        </p>
+<div class="pt-4 mt-4 border-t border-outline-variant">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A close-up portrait of a senior laboratory medical director, a woman with graying hair in a bun, wearing professional glasses and a white lab coat. She has a warm but serious expression. The background shows clinical lab equipment like microscopes and centrifuges blurred softly. The color palette is clean, sterile, and trustworthy, using cool whites and clinical blues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjgJXwdZVHDIf8Jj0EjbK5RVn-tvethg6y6A926sLRzEhBd1WIfq0RST41u2dkHzztGKSVv7rSq3Jpew4QVgQFkHa2Cp7o2jq8-lKRGY7s7Jg9rl3EcG382L7ZAy7pgtsF4mTDHP6g1bmxrlL3BYjwwo-RdbXkNQyG40V8ugB9G6nSYneZYAC71M0ouYiP7GmiyPrbq4HR2FK1Qtvk3L99QSBueQEFJZdSAZRtqu6IpSwqhNhOzu9AyJAZnduLs9bNnlHMKxd-lFw"/>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Dr. Elena Rodriguez</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Chief Pathologist, CDL</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Related Actions -->
+<div class="bg-surface-container-low rounded-xl p-4 border border-outline-variant space-y-2">
+<button class="w-full text-left px-4 py-3 hover:bg-surface-container-high transition-colors rounded-lg flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">history</span>
+<span class="font-label-md text-label-md text-on-surface">View CBC History</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<button class="w-full text-left px-4 py-3 hover:bg-surface-container-high transition-colors rounded-lg flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">book</span>
+<span class="font-label-md text-label-md text-on-surface">Understanding RBC Markers</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">open_in_new</span>
+</button>
+</div>
+</aside>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile Only - Shared Component) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface border-t border-outline-variant">
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1.5 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">biotech</span>
+<span class="font-label-sm text-label-sm">Results</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant py-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">show_chart</span>
+<span class="font-label-sm text-label-sm">Trends</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant py-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-sm text-label-sm">Reports</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant py-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</button>
+</nav>
+<script>
+        // Simple micro-interaction for rows
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('click', () => {
+                row.classList.add('bg-surface-container-high');
+                setTimeout(() => {
+                    row.classList.remove('bg-surface-container-high');
+                }, 200);
+            });
+        });
+    </script>
+</body></html>

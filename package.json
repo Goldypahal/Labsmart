@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "backend": "node backend/index.js",
+    "doctor": "npm --prefix doctor-dashboard run dev",
+    "lab": "npm --prefix lab-portal run dev",
+    "patient": "npm --prefix patient-portal run dev"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.2.1"
+  }
+}

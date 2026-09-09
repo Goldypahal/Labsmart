@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediLab — Doctor Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   CSS VARIABLES & RESET
+══════════════════════════════════════════ */
+:root {
+  --bg:        #070b14;
+  --surface:   #0d1424;
+  --surface2:  #131d30;
+  --surface3:  #192540;
+  --border:    #1e2f4a;
+  --border2:   #243552;
+
+  --teal:      #0dc9b1;
+  --teal-dim:  rgba(13,201,177,.12);
+  --blue:      #3b82f6;
+  --blue-dim:  rgba(59,130,246,.12);
+  --purple:    #8b5cf6;
+  --purple-dim:rgba(139,92,246,.12);
+  --amber:     #f59e0b;
+  --amber-dim: rgba(245,158,11,.12);
+  --rose:      #f43f5e;
+  --rose-dim:  rgba(244,63,94,.12);
+  --green:     #22c55e;
+  --green-dim: rgba(34,197,94,.12);
+
+  --text:      #e2eaf8;
+  --text2:     #8fa3c4;
+  --text3:     #4a6080;
+
+  --sidebar-w: 234px;
+  --topbar-h:  62px;
+  --radius:    12px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════════
+   SCROLLBAR
+══════════════════════════════════════════ */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+
+/* ══════════════════════════════════════════
+   SIDEBAR
+══════════════════════════════════════════ */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 200;
+  overflow: hidden;
+}
+
+.sidebar::before {
+  content: '';
+  position: absolute;
+  top: -80px; left: -60px;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, rgba(13,201,177,.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.sb-logo {
+  padding: 22px 20px 18px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.sb-logo-mark {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: 20px;
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sb-logo-mark span { font-size: 22px; }
+.sb-logo-sub {
+  font-size: 10.5px;
+  color: var(--text3);
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-top: 3px;
+  padding-left: 2px;
+}
+
+.sb-doctor {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
+}
+.sb-doc-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px; color: #fff;
+  flex-shrink: 0;
+  position: relative;
+}
+.sb-doc-avatar::after {
+  content: '';
+  width: 10px; height: 10px;
+  background: var(--green);
+  border-radius: 50%;
+  border: 2px solid var(--surface);
+  position: absolute;
+  bottom: 0; right: 0;
+}
+.sb-doc-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.sb-doc-spec { font-size: 11px; color: var(--teal); margin-top: 1px; }
+
+.sb-nav {
+  flex: 1;
+  padding: 10px 0;
+  overflow-y: auto;
+}
+.sb-section-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--text3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 12px 20px 5px;
+}
+.sb-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 20px;
+  cursor: pointer;
+  transition: all .2s;
+  font-size: 13.5px;
+  color: var(--text2);
+  border-left: 3px solid transparent;
+  position: relative;
+  user-select: none;
+}
+.sb-item:hover { color: var(--text); background: rgba(255,255,255,.025); }
+.sb-item.active {
+  color: var(--teal);
+  background: var(--teal-dim);
+  border-left-color: var(--teal);
+  font-weight: 500;
+}
+.sb-item .si { font-size: 16px; width: 22px; text-align: center; flex-shrink: 0; }
+.sb-badge {
+  margin-left: auto;
+  background: var(--rose);
+  color: #fff;
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 20px;
+  min-width: 17px;
+  text-align: center;
+}
+.sb-badge.amber { background: var(--amber); color: #000; }
+.sb-badge.teal  { background: var(--teal);  color: #000; }
+
+.sb-bottom {
+  border-top: 1px solid var(--border);
+  padding: 8px 0;
+  flex-shrink: 0;
+}
+.sb-theme-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 20px;
+  font-size: 13px;
+  color: var(--text3);
+}
+.toggle {
+  width: 34px; height: 19px;
+  background: var(--border2);
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  margin-left: auto;
+  transition: background .3s;
+  flex-shrink: 0;
+}
+.toggle.on { background: var(--teal); }
+.toggle::after {
+  content: '';
+  width: 13px; height: 13px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px; left: 3px;
+  transition: transform .3s;
+}
+.toggle.on::after { transform: translateX(15px); }
+
+/* ══════════════════════════════════════════
+   MAIN LAYOUT
+══════════════════════════════════════════ */
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.topbar {
+  height: var(--topbar-h);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-shrink: 0;
+}
+.topbar-left { display: flex; align-items: center; gap: 14px; }
+.topbar-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  font-weight: 700;
+}
+.topbar-breadcrumb { font-size: 12px; color: var(--text3); }
+
+.topbar-right { display: flex; align-items: center; gap: 10px; }
+.tb-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-family: 'Outfit', sans-serif;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+  transition: all .2s;
+}
+.tb-btn:hover { border-color: var(--teal); color: var(--teal); }
+.tb-btn.primary { background: var(--teal); color: #000; border-color: var(--teal); font-weight: 600; }
+.tb-btn.primary:hover { background: #0ab39e; }
+
+.content {
+  padding: 26px 28px;
+  flex: 1;
+}
+
+/* ══════════════════════════════════════════
+   SECTIONS
+══════════════════════════════════════════ */
+.section { display: none; animation: fadeUp .3s ease forwards; }
+.section.active { display: block; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════════
+   SHARED COMPONENTS
+══════════════════════════════════════════ */
+.sec-hdr {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+}
+.sec-sub { font-size: 13px; color: var(--text3); margin-top: 3px; }
+
+/* Grid helpers */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+.ga { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 14px; }
+
+/* Card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  transition: border-color .25s, transform .25s;
+}
+.card:hover { border-color: var(--border2); }
+.card.hoverable:hover { border-color: rgba(13,201,177,.35); transform: translateY(-2px); }
+
+/* Stat card */
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.stat-icon {
+  width: 46px; height: 46px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.stat-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+}
+.stat-delta { font-size: 11px; margin-top: 3px; }
+.stat-delta.up { color: var(--green); }
+.stat-delta.down { color: var(--rose); }
+.stat-label { font-size: 12px; color: var(--text3); margin-top: 1px; }
+
+/* Buttons */
+.btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all .2s;
+  display: inline-flex; align-items: center; gap: 7px;
+  white-space: nowrap;
+}
+.btn-teal { background: var(--teal); color: #000; font-weight: 600; }
+.btn-teal:hover { background: #0ab39e; }
+.btn-outline { background: transparent; border: 1px solid var(--border2); color: var(--text2); }
+.btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+.btn-rose { background: var(--rose-dim); border: 1px solid rgba(244,63,94,.3); color: var(--rose); }
+.btn-green { background: var(--green-dim); border: 1px solid rgba(34,197,94,.3); color: var(--green); }
+.btn-blue { background: var(--blue-dim); border: 1px solid rgba(59,130,246,.3); color: var(--blue); }
+.btn-sm { padding: 5px 11px; font-size: 12px; }
+.btn-xs { padding: 3px 9px; font-size: 11px; }
+
+/* Input */
+.inp {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 9px 13px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: 'Outfit', sans-serif;
+  outline: none;
+  transition: border .2s;
+  width: 100%;
+}
+.inp:focus { border-color: var(--teal); }
+.inp::placeholder { color: var(--text3); }
+select.inp option { background: var(--surface2); }
+
+/* Filter bar */
+.filter-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Chips */
+.chip {
+  padding: 5px 13px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-family: 'Outfit', sans-serif;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text3);
+  transition: all .2s;
+}
+.chip:hover { border-color: var(--teal); color: var(--teal); }
+.chip.active { background: var(--teal-dim); border-color: var(--teal); color: var(--teal); }
+
+/* Table */
+.tbl-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.tbl-wrap table { width: 100%; border-collapse: collapse; }
+.tbl-wrap thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text3);
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+}
+.tbl-wrap tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background .15s;
+}
+.tbl-wrap tbody tr:last-child { border-bottom: none; }
+.tbl-wrap tbody tr:hover { background: rgba(255,255,255,.018); }
+.tbl-wrap tbody td { padding: 13px 16px; font-size: 13.5px; }
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.badge::before { content:''; width:5px; height:5px; border-radius:50%; background:currentColor; }
+.b-green  { background:var(--green-dim);  color:var(--green); }
+.b-teal   { background:var(--teal-dim);   color:var(--teal); }
+.b-amber  { background:var(--amber-dim);  color:var(--amber); }
+.b-rose   { background:var(--rose-dim);   color:var(--rose); }
+.b-blue   { background:var(--blue-dim);   color:var(--blue); }
+.b-purple { background:var(--purple-dim); color:var(--purple); }
+
+/* Divider */
+.divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+/* Section header row inside cards */
+.card-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     SIDEBAR
+══════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-mark"><span>⚕️</span> MediLab</div>
+    <div class="sb-logo-sub">Doctor Portal</div>
+  </div>
+
+  <div class="sb-doctor">
+    <div class="sb-doc-avatar">DS</div>
+    <div>
+      <div class="sb-doc-name">Dr. Deepak Sharma</div>
+      <div class="sb-doc-spec">Internal Medicine</div>
+    </div>
+  </div>
+
+  <nav class="sb-nav">
+    <div class="sb-section-label">Overview</div>
+    <div class="sb-item" onclick="show('dashboard')"><span class="si">📊</span> Dashboard</div>
+
+    <div class="sb-section-label">Clinical</div>
+    <div class="sb-item active" onclick="show('patients')"><span class="si">👥</span> Patient Management</div>
+    <div class="sb-item" onclick="show('reports')"><span class="si">📋</span> My Reports<span class="sb-badge">4</span></div>
+    <div class="sb-item" onclick="show('ordering')"><span class="si">🧪</span> Test Ordering</div>
+    <div class="sb-item" onclick="show('notes')"><span class="si">📝</span> Clinical Notes</div>
+    <div class="sb-item" onclick="show('prescriptions')"><span class="si">💊</span> Prescriptions</div>
+
+    <div class="sb-section-label">Schedule</div>
+    <div class="sb-item" onclick="show('appointments')"><span class="si">📅</span> Appointments<span class="sb-badge amber">2</span></div>
+    <div class="sb-item" onclick="show('teleconsult')"><span class="si">📹</span> Teleconsultation</div>
+
+    <div class="sb-section-label">Communication</div>
+    <div class="sb-item" onclick="show('messaging')"><span class="si">💬</span> Messaging<span class="sb-badge">3</span></div>
+    <div class="sb-item" onclick="show('alerts')"><span class="si">🔔</span> Alerts<span class="sb-badge rose">5</span></div>
+
+    <div class="sb-section-label">Insights</div>
+    <div class="sb-item" onclick="show('analytics')"><span class="si">📈</span> Analytics</div>
+    <div class="sb-item" onclick="show('vault')"><span class="si">🗄️</span> Document Vault</div>
+
+    <div class="sb-section-label">Account</div>
+    <div class="sb-item" onclick="show('profile')"><span class="si">👤</span> My Profile</div>
+    <div class="sb-item" onclick="show('settings')"><span class="si">⚙️</span> Settings</div>
+  </nav>
+
+  <div class="sb-bottom">
+    <div class="sb-theme-row">
+      <span style="font-size:14px">🌙</span>
+      <span style="font-size:12.5px">Dark Mode</span>
+      <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+    </div>
+    <div class="sb-item" style="color:var(--rose)"><span class="si">🚪</span> Logout</div>
+  </div>
+</aside>
+
+<!-- ══════════════════════════════════════════
+     MAIN
+══════════════════════════════════════════ -->
+<main class="main">
+  <header class="topbar">
+    <div class="topbar-left">
+      <div>
+        <div class="topbar-title" id="page-title">Patient Management</div>
+        <div class="topbar-breadcrumb" id="page-crumb">Doctor Portal › Patient Management</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <button class="tb-btn">🔍 Quick Search</button>
+      <button class="tb-btn">🔔 <span style="color:var(--rose)">●</span> 5</button>
+      <button class="tb-btn primary" id="topbar-action" onclick="topAction()">+ Add Patient</button>
+    </div>
+  </header>
+
+  <div class="content">
+<!-- ════════════════════════════════════════
+     1. DASHBOARD
+════════════════════════════════════════ -->
+<section class="section" id="sec-dashboard">
+  <div class="sec-hdr">
+    <div><div class="sec-title">Good Morning, Dr. Sharma 👋</div><div class="sec-sub">Friday, 28 Feb 2025 · Here's your day at a glance</div></div>
+    <button class="btn btn-outline">📅 View Full Schedule</button>
+  </div>
+  <div class="g4" style="margin-bottom:20px">
+    <div class="card stat-card hoverable">
+      <div class="stat-icon" style="background:var(--teal-dim)">👥</div>
+      <div><div class="stat-val">142</div><div class="stat-label">Total Patients</div><div class="stat-delta up">↑ 8 this week</div></div>
+    </div>
+    <div class="card stat-card hoverable">
+      <div class="stat-icon" style="background:var(--blue-dim)">📋</div>
+      <div><div class="stat-val">28</div><div class="stat-label">Pending Reports</div><div class="stat-delta up">4 critical</div></div>
+    </div>
+    <div class="card stat-card hoverable">
+      <div class="stat-icon" style="background:var(--amber-dim)">📅</div>
+      <div><div class="stat-val">11</div><div class="stat-label">Today's Appts</div><div class="stat-delta">3 remaining</div></div>
+    </div>
+    <div class="card stat-card hoverable">
+      <div class="stat-icon" style="background:var(--green-dim)">🧪</div>
+      <div><div class="stat-val">64</div><div class="stat-label">Tests Ordered</div><div class="stat-delta up">↑ 12% vs last week</div></div>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">🚨 Critical Alerts</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="background:var(--rose-dim);border:1px solid rgba(244,63,94,.25);border-radius:10px;padding:12px;display:flex;gap:12px;align-items:center">
+          <span style="font-size:22px">⚠️</span>
+          <div><div style="font-size:13.5px;font-weight:600">Ravi Patel — Potassium 6.8 mEq/L</div><div style="font-size:12px;color:var(--text3);margin-top:2px">Critical High · CBC Report #8921 · 10 mins ago</div></div>
+          <button class="btn btn-rose btn-sm" style="margin-left:auto">View</button>
+        </div>
+        <div style="background:var(--amber-dim);border:1px solid rgba(245,158,11,.25);border-radius:10px;padding:12px;display:flex;gap:12px;align-items:center">
+          <span style="font-size:22px">⚡</span>
+          <div><div style="font-size:13.5px;font-weight:600">Sunita Devi — HbA1c 9.2%</div><div style="font-size:12px;color:var(--text3);margin-top:2px">High — Follow-up required · 1 hr ago</div></div>
+          <button class="btn btn-outline btn-sm" style="margin-left:auto">Review</button>
+        </div>
+        <div style="background:var(--rose-dim);border:1px solid rgba(244,63,94,.25);border-radius:10px;padding:12px;display:flex;gap:12px;align-items:center">
+          <span style="font-size:22px">💔</span>
+          <div><div style="font-size:13.5px;font-weight:600">Mohan Singh — INR 4.8</div><div style="font-size:12px;color:var(--text3);margin-top:2px">Critical High — Coagulation risk · 2 hrs ago</div></div>
+          <button class="btn btn-rose btn-sm" style="margin-left:auto">View</button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">📅 Today's Schedule</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:12px;padding:10px;background:var(--teal-dim);border-radius:8px;border:1px solid rgba(13,201,177,.2)">
+          <div style="text-align:center;min-width:46px"><div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700">9AM</div></div>
+          <div style="flex:1"><div style="font-size:13px;font-weight:600">Ravi Patel — Follow-up</div><div style="font-size:11px;color:var(--text3)">CBC + Lipid Results Review</div></div>
+          <span class="badge b-teal">Now</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px;background:var(--surface2);border-radius:8px;border:1px solid var(--border)">
+          <div style="text-align:center;min-width:46px"><div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700">10AM</div></div>
+          <div style="flex:1"><div style="font-size:13px;font-weight:600">Sunita Devi — Consultation</div><div style="font-size:11px;color:var(--text3)">Diabetes Management</div></div>
+          <span class="badge b-blue">Video</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px;background:var(--surface2);border-radius:8px;border:1px solid var(--border)">
+          <div style="text-align:center;min-width:46px"><div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700">11AM</div></div>
+          <div style="flex:1"><div style="font-size:13px;font-weight:600">Ajay Kumar — New Patient</div><div style="font-size:11px;color:var(--text3)">Initial Screening Panel</div></div>
+          <span class="badge b-green">Walk-in</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px;background:var(--surface2);border-radius:8px;border:1px solid var(--border)">
+          <div style="text-align:center;min-width:46px"><div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700">2PM</div></div>
+          <div style="flex:1"><div style="font-size:13px;font-weight:600">3 more appointments</div><div style="font-size:11px;color:var(--text3)">Afternoon slots</div></div>
+          <button class="btn btn-outline btn-xs">View All</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     2. PATIENT MANAGEMENT
+════════════════════════════════════════ -->
+<section class="section active" id="sec-patients">
+  <div class="sec-hdr">
+    <div><div class="sec-title">Patient Management</div><div class="sec-sub">142 patients under your care</div></div>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-outline">📥 Import</button>
+      <button class="btn btn-teal">+ Add Patient</button>
+    </div>
+  </div>
+
+  <div class="filter-row">
+    <input type="text" class="inp" placeholder="🔍  Search by name, ID, phone..." style="max-width:280px">
+    <select class="inp" style="width:auto">
+      <option>All Conditions</option><option>Diabetes</option><option>Thyroid</option><option>Hypertension</option><option>Cardiac</option>
+    </select>
+    <select class="inp" style="width:auto">
+      <option>All Age Groups</option><option>0–18</option><option>18–40</option><option>40–60</option><option>60+</option>
+    </select>
+    <select class="inp" style="width:auto">
+      <option>All Status</option><option>Active</option><option>Follow-up Due</option><option>Inactive</option>
+    </select>
+    <button class="btn btn-outline">↺ Reset</button>
+  </div>
+
+  <div class="g4" style="margin-bottom:20px">
+    <div class="card stat-card"><div class="stat-icon" style="background:var(--teal-dim)">👥</div><div><div class="stat-val">142</div><div class="stat-label">Total Patients</div></div></div>
+    <div class="card stat-card"><div class="stat-icon" style="background:var(--green-dim)">✅</div><div><div class="stat-val">98</div><div class="stat-label">Active</div></div></div>
+    <div class="card stat-card"><div class="stat-icon" style="background:var(--amber-dim)">🔄</div><div><div class="stat-val">31</div><div class="stat-label">Follow-up Due</div></div></div>
+    <div class="card stat-card"><div class="stat-icon" style="background:var(--rose-dim)">🚨</div><div><div class="stat-val">4</div><div class="stat-label">Critical Alerts</div></div></div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th>Patient</th><th>ID</th><th>Age/Gender</th><th>Condition</th><th>Last Visit</th><th>Last Test</th><th>Status</th><th>Actions</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td><div style="display:flex;align-items:center;gap:10px"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--blue));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0">RP</div><div><div style="font-weight:600">Ravi Patel</div><div style="font-size:11px;color:var(--text3)">+91 98765 43210</div></div></div></td>
+          <td style="color:var(--teal);font-weight:500">#PT-0041</td>
+          <td>45 / Male</td>
+          <td><span class="badge b-amber">Diabetes</span></td>
+          <td>28 Feb 2025</td>
+          <td>CBC, Lipid</td>
+          <td><span class="badge b-rose">Critical</span></td>
+          <td><div style="display:flex;gap:6px"><button class="btn btn-outline btn-xs">👁 View</button><button class="btn btn-teal btn-xs">+ Note</button></div></td>
+        </tr>
+        <tr>
+          <td><div style="display:flex;align-items:center;gap:10px"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--rose));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0">SD</div><div><div style="font-weight:600">Sunita Devi</div><div style="font-size:11px;color:var(--text3)">+91 87654 32109</div></div></div></td>
+          <td style="color:var(--teal);font-weight:500">#PT-0038</td>
+          <td>52 / Female</td>
+          <td><span class="badge b-amber">Diabetes</span></td>
+          <td>25 Feb 2025</td>
+          <td>HbA1c</td>
+          <td><span class="badge b-amber">Follow-up</span></td>
+          <td><div style="display:flex;gap:6px"><button class="btn btn-outline btn-xs">👁 View</button><button class="btn btn-teal btn-xs">+ Note</button></div></td>
+        </tr>
+        <tr>
+          <td><div style="display:flex;align-items:center;gap:10px"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--amber),#f97316);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#000;flex-shrink:0">MS</div><div><div style="font-weight:600">Mohan Singh</div><div style="font-size:11px;color:var(--text3)">+91 76543 21098</div></div></div></td>
+          <td style="color:var(--teal);font-weight:500">#PT-0033</td>
+          <td>61 / Male</td>
+          <td><span class="badge b-rose">Cardiac</span></td>
+          <td>27 Feb 2025</td>
+          <td>INR, PT</td>
+          <td><span class="badge b-rose">Critical</span></td>
+          <td><div style="display:flex;gap:6px"><button class="btn btn-outline btn-xs">👁 View</button><button class="btn btn-teal btn-xs">+ Note</button></div></td>
+        </tr>
+        <tr>
+          <td><div style="display:flex;align-items:center;gap:10px"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--green),#0891b2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#000;flex-shrink:0">AK</div><div><div style="font-weight:600">Ajay Kumar</div><div style="font-size:11px;color:var(--text3)">+91 65432 10987</div></div></div></td>
+          <td style="color:var(--teal);font-weight:500">#PT-0029</td>
+          <td>34 / Male</td>
+          <td><span class="badge b-teal">Thyroid</span></td>
+          <td>20 Feb 2025</td>
+          <td>TSH, T3, T4</td>
+          <td><span class="badge b-green">Active</span></td>
+          <td><div style="display:flex;gap:6px"><button class="btn btn-outline btn-xs">👁 View</button><button class="btn btn-teal btn-xs">+ Note</button></div></td>
+        </tr>
+        <tr>
+          <td><div style="display:flex;align-items:center;gap:10px"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#6366f1,var(--purple));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0">PK</div><div><div style="font-weight:600">Priya Kapoor</div><div style="font-size:11px;color:var(--text3)">+91 54321 09876</div></div></div></td>
+          <td style="color:var(--teal);font-weight:500">#PT-0021</td>
+          <td>29 / Female</td>
+          <td><span class="badge b-purple">Anemia</span></td>
+          <td>15 Feb 2025</td>
+          <td>CBC, Serum Iron</td>
+          <td><span class="badge b-blue">Stable</span></td>
+          <td><div style="display:flex;gap:6px"><button class="btn btn-outline btn-xs">👁 View</button><button class="btn btn-teal btn-xs">+ Note</button></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     3. MY REPORTS
+════════════════════════════════════════ -->
+<section class="section" id="sec-reports">
+  <div class="sec-hdr">
+    <div><div class="sec-title">My Reports</div><div class="sec-sub">Lab results for all your patients</div></div>
+    <button class="btn btn-teal">📤 Export Selected</button>
+  </div>
+  <div class="filter-row">
+    <input type="text" class="inp" placeholder="🔍  Search patient or test..." style="max-width:240px">
+    <input type="date" class="inp" value="2025-02-01" style="width:auto">
+    <span style="color:var(--text3);font-size:13px">→</span>
+    <input type="date" class="inp" value="2025-02-28" style="width:auto">
+    <select class="inp" style="width:auto"><option>All Status</option><option>Ready</option><option>Pending</option><option>Critical</option></select>
+    <button class="btn btn-teal">Search</button>
+  </div>
+  <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+    <button class="chip active">All Reports</button>
+    <button class="chip">🔴 Critical (4)</button>
+    <button class="chip">🟡 Abnormal (12)</button>
+    <button class="chip">🟢 Normal</button>
+    <button class="chip">⏳ Pending</button>
+    <button class="chip">✅ Reviewed</button>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Report ID</th><th>Patient</th><th>Test Name</th><th>Date</th><th>Result Status</th><th>Report Status</th><th>Actions</th></tr></thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--teal);font-weight:600">#RPT-8921</td>
+          <td>Ravi Patel <span style="font-size:11px;color:var(--text3)">#PT-0041</span></td>
+          <td><div style="font-weight:500">Serum Electrolytes</div><div style="font-size:11px;color:var(--text3)">Metabolic Panel</div></td>
+          <td>28 Feb 2025</td>
+          <td><span class="badge b-rose">🔴 Critical</span></td>
+          <td><span class="badge b-green">Ready</span></td>
+          <td><div style="display:flex;gap:6px"><button class="btn btn-rose btn-xs">⚠ Review Now</button><button class="btn btn-outline btn-xs">💬 Note</button></div></td>
+        </tr>
+        <tr>
+          <td style="color:var(--teal);font-weight:600">#RPT-8905</td>
+          <td>Sunita Devi <span style="font-size:11px;color:var(--text3)">#PT-0038</span></td>
+          <td><div style="font-weight:500">HbA1c</div><div style="font-size:11px;color:var(--text3)">Diabetes Panel</div></td>
+          <td>25 Feb 2025</td>
+          <td><span class="badge b-amber">🟡 Abnormal</span></td>
+          <td><span class="badge b-green">Ready</span></td>
+          <td><div style="display:flex;gap:6px"><button class="btn btn-outline btn-xs">👁 View</button><button class="btn btn-outline btn-xs">📊 Trend</button></div></td>
+        </tr>
+        <tr>
+          <td style="color:var(--teal);font-weight:600">#RPT-8888</td>
+          <td>Mohan Singh <span style="font-size:11px;color:var(--text3)">#PT-0033</span></td>
+          <td><div style="font-weight:500">INR / PT / aPTT</div><div style="font-size:11px;color:var(--text3)">Coagulation Panel</div></td>
+          <td>27 Feb 2025</td>
+          <td><span class="badge b-rose">🔴 Critical</span></td>
+          <td><span class="badge b-green">Ready</span></td>
+          <td><div style="display:flex;gap:6px"><button class="btn btn-rose btn-xs">⚠ Review Now</button><button class="btn btn-outline btn-xs">💬 Note</button></div></td>
+        </tr>
+        <tr>
+          <td style="color:var(--teal);font-weight:600">#RPT-8851</td>
+          <td>Ajay Kumar <span style="font-size:11px;color:var(--text3)">#PT-0029</span></td>
+          <td><div style="font-weight:500">Thyroid Profile</div><div style="font-size:11px;color:var(--text3)">TSH, T3, T4</div></td>
+          <td>20 Feb 2025</td>
+          <td><span class="badge b-green">🟢 Normal</span></td>
+          <td><span class="badge b-green">Ready</span></td>
+          <td><div style="display:flex;gap:6px"><button class="btn btn-outline btn-xs">👁 View</button><button class="btn btn-green btn-xs">✓ Mark Reviewed</button></div></td>
+        </tr>
+        <tr>
+          <td style="color:var(--teal);font-weight:600">#RPT-8830</td>
+          <td>Priya Kapoor <span style="font-size:11px;color:var(--text3)">#PT-0021</span></td>
+          <td><div style="font-weight:500">CBC + Serum Iron</div><div style="font-size:11px;color:var(--text3)">Hematology</div></td>
+          <td>15 Feb 2025</td>
+          <td><span class="badge b-amber">🟡 Abnormal</span></td>
+          <td><span class="badge b-blue">Processing</span></td>
+          <td><div style="display:flex;gap:6px"><button class="btn btn-outline btn-xs" disabled style="opacity:.5">👁 Pending</button></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     4. TEST ORDERING
+════════════════════════════════════════ -->
+<section class="section" id="sec-ordering">
+  <div class="sec-hdr">
+    <div><div class="sec-title">Test Ordering</div><div class="sec-sub">Refer and order diagnostic tests for patients</div></div>
+    <button class="btn btn-teal">+ New Order</button>
+  </div>
+  <div class="g2" style="margin-bottom:20px">
+    <div class="card">
+      <div class="card-title">Create New Test Order</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div>
+          <label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Select Patient *</label>
+          <select class="inp"><option>— Search patient —</option><option>Ravi Patel #PT-0041</option><option>Sunita Devi #PT-0038</option><option>Mohan Singh #PT-0033</option></select>
+        </div>
+        <div>
+          <label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Test / Panel *</label>
+          <input type="text" class="inp" placeholder="Search tests or use templates...">
+        </div>
+        <div class="g2">
+          <div>
+            <label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Urgency</label>
+            <select class="inp"><option>Routine</option><option>Urgent</option><option>STAT</option></select>
+          </div>
+          <div>
+            <label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Collection Mode</label>
+            <select class="inp"><option>Home Collection</option><option>Walk-in Lab</option><option>Sample Drop</option></select>
+          </div>
+        </div>
+        <div>
+          <label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Clinical Indication / Diagnosis</label>
+          <textarea class="inp" rows="2" placeholder="e.g. Suspected Type 2 Diabetes, follow-up monitoring..."></textarea>
+        </div>
+        <button class="btn btn-teal" style="width:100%;justify-content:center">🧪 Place Order</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">📦 My Test Templates</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border .2s" onmouseover="this.style.borderColor='var(--teal)'" onmouseout="this.style.borderColor='var(--border)'">
+          <span style="font-size:22px">🩸</span>
+          <div style="flex:1"><div style="font-size:13px;font-weight:600">Diabetes Monitoring Panel</div><div style="font-size:11px;color:var(--text3)">HbA1c, FBS, PPBS, Urine Microalbumin</div></div>
+          <button class="btn btn-teal btn-xs">Use</button>
+        </div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border .2s" onmouseover="this.style.borderColor='var(--teal)'" onmouseout="this.style.borderColor='var(--border)'">
+          <span style="font-size:22px">❤️</span>
+          <div style="flex:1"><div style="font-size:13px;font-weight:600">Cardiac Risk Panel</div><div style="font-size:11px;color:var(--text3)">Troponin, CK-MB, Lipid, ECG</div></div>
+          <button class="btn btn-teal btn-xs">Use</button>
+        </div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border .2s" onmouseover="this.style.borderColor='var(--teal)'" onmouseout="this.style.borderColor='var(--border)'">
+          <span style="font-size:22px">🦋</span>
+          <div style="flex:1"><div style="font-size:13px;font-weight:600">Thyroid Complete Profile</div><div style="font-size:11px;color:var(--text3)">TSH, Free T3, Free T4, Anti-TPO</div></div>
+          <button class="btn btn-teal btn-xs">Use</button>
+        </div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border .2s" onmouseover="this.style.borderColor='var(--teal)'" onmouseout="this.style.borderColor='var(--border)'">
+          <span style="font-size:22px">📦</span>
+          <div style="flex:1"><div style="font-size:13px;font-weight:600">Pre-Surgery Screening</div><div style="font-size:11px;color:var(--text3)">CBC, LFT, RFT, Coagulation, ECG</div></div>
+          <button class="btn btn-teal btn-xs">Use</button>
+        </div>
+        <button class="btn btn-outline" style="width:100%;justify-content:center;margin-top:4px">+ Create New Template</button>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Recent Orders</div>
+    <div class="tbl-wrap" style="border:none">
+      <table>
+        <thead><tr><th>Order ID</th><th>Patient</th><th>Tests</th><th>Urgency</th><th>Ordered</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--teal)">#ORD-441</td><td>Ravi Patel</td><td>Serum Electrolytes + CBC</td><td><span class="badge b-rose">STAT</span></td><td>Today 8:30AM</td><td><span class="badge b-green">Completed</span></td></tr>
+          <tr><td style="color:var(--teal)">#ORD-438</td><td>Sunita Devi</td><td>HbA1c + FBS + PPBS</td><td><span class="badge b-amber">Urgent</span></td><td>Yesterday</td><td><span class="badge b-green">Completed</span></td></tr>
+          <tr><td style="color:var(--teal)">#ORD-431</td><td>Priya Kapoor</td><td>CBC + Serum Iron + Ferritin</td><td><span class="badge b-teal">Routine</span></td><td>25 Feb</td><td><span class="badge b-blue">Processing</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     5. APPOINTMENTS
+════════════════════════════════════════ -->
+<section class="section" id="sec-appointments">
+  <div class="sec-hdr">
+    <div><div class="sec-title">Appointments</div><div class="sec-sub">Manage your schedule and patient visits</div></div>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-outline">📅 Week View</button>
+      <button class="btn btn-teal">+ New Appointment</button>
+    </div>
+  </div>
+  <div class="g2">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="card">
+        <div class="card-title">Today — Feb 28, 2025</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="background:var(--teal-dim);border:1px solid rgba(13,201,177,.3);border-radius:10px;padding:14px;display:flex;gap:14px;align-items:center">
+            <div style="text-align:center;min-width:54px;background:var(--surface2);border-radius:8px;padding:8px"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--teal)">9AM</div><div style="font-size:10px;color:var(--text3)">30 min</div></div>
+            <div style="flex:1"><div style="font-weight:600;font-size:14px">Ravi Patel</div><div style="font-size:12px;color:var(--text3);margin-top:2px">CBC + Electrolytes Review · 🏥 In-clinic</div></div>
+            <div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end">
+              <span class="badge b-teal">In Progress</span>
+              <div style="display:flex;gap:4px"><button class="btn btn-outline btn-xs">📝 Note</button><button class="btn btn-teal btn-xs">Start</button></div>
+            </div>
+          </div>
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px;display:flex;gap:14px;align-items:center">
+            <div style="text-align:center;min-width:54px;background:var(--surface);border-radius:8px;padding:8px"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700">10AM</div><div style="font-size:10px;color:var(--text3)">45 min</div></div>
+            <div style="flex:1"><div style="font-weight:600;font-size:14px">Sunita Devi</div><div style="font-size:12px;color:var(--text3);margin-top:2px">Diabetes Consultation · 📹 Teleconsult</div></div>
+            <div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end">
+              <span class="badge b-blue">Upcoming</span>
+              <div style="display:flex;gap:4px"><button class="btn btn-rose btn-xs">✗ Cancel</button><button class="btn btn-blue btn-xs">📹 Join</button></div>
+            </div>
+          </div>
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px;display:flex;gap:14px;align-items:center">
+            <div style="text-align:center;min-width:54px;background:var(--surface);border-radius:8px;padding:8px"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700">11AM</div><div style="font-size:10px;color:var(--text3)">30 min</div></div>
+            <div style="flex:1"><div style="font-weight:600;font-size:14px">Ajay Kumar</div><div style="font-size:12px;color:var(--text3);margin-top:2px">New Patient — Initial Screening · 🏥 Walk-in</div></div>
+            <div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end">
+              <span class="badge b-amber">Pending Confirm</span>
+              <div style="display:flex;gap:4px"><button class="btn btn-rose btn-xs">✗</button><button class="btn btn-green btn-xs">✓ Accept</button></div>
+            </div>
+          </div>
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px;display:flex;gap:14px;align-items:center;opacity:.6">
+            <div style="text-align:center;min-width:54px;background:var(--surface);border-radius:8px;padding:8px"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700">2PM</div><div style="font-size:10px;color:var(--text3)">30 min</div></div>
+            <div style="flex:1"><div style="font-weight:600;font-size:14px">Priya Kapoor</div><div style="font-size:12px;color:var(--text3);margin-top:2px">Follow-up — Iron Deficiency · 🏥 In-clinic</div></div>
+            <span class="badge b-blue">Confirmed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card">
+        <div class="card-title">This Week Summary</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)">
+            <span style="font-size:13px">Total Appointments</span>
+            <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:20px;color:var(--teal)">38</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)">
+            <span style="font-size:13px">Completed</span>
+            <span style="font-weight:600;color:var(--green)">27</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)">
+            <span style="font-size:13px">Upcoming</span>
+            <span style="font-weight:600;color:var(--blue)">8</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0">
+            <span style="font-size:13px">Cancelled / No-show</span>
+            <span style="font-weight:600;color:var(--rose)">3</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Available Slots — Today</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+          <div style="text-align:center;padding:8px;background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.2);border-radius:8px;font-size:12px;color:var(--rose)">9 AM<div style="font-size:10px">Booked</div></div>
+          <div style="text-align:center;padding:8px;background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.2);border-radius:8px;font-size:12px;color:var(--rose)">10 AM<div style="font-size:10px">Booked</div></div>
+          <div style="text-align:center;padding:8px;background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.2);border-radius:8px;font-size:12px;color:var(--rose)">11 AM<div style="font-size:10px">Booked</div></div>
+          <div style="text-align:center;padding:8px;background:var(--green-dim);border:1px solid rgba(34,197,94,.3);border-radius:8px;font-size:12px;color:var(--green);cursor:pointer">12 PM<div style="font-size:10px">Available</div></div>
+          <div style="text-align:center;padding:8px;background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.2);border-radius:8px;font-size:12px;color:var(--rose)">2 PM<div style="font-size:10px">Booked</div></div>
+          <div style="text-align:center;padding:8px;background:var(--green-dim);border:1px solid rgba(34,197,94,.3);border-radius:8px;font-size:12px;color:var(--green);cursor:pointer">3 PM<div style="font-size:10px">Available</div></div>
+          <div style="text-align:center;padding:8px;background:var(--green-dim);border:1px solid rgba(34,197,94,.3);border-radius:8px;font-size:12px;color:var(--green);cursor:pointer">4 PM<div style="font-size:10px">Available</div></div>
+          <div style="text-align:center;padding:8px;background:rgba(100,116,139,.08);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--text3)">5 PM<div style="font-size:10px">Blocked</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     6. MESSAGING
+════════════════════════════════════════ -->
+<section class="section" id="sec-messaging">
+  <div class="sec-hdr">
+    <div><div class="sec-title">Messaging</div><div class="sec-sub">Secure communication with patients, staff & doctors</div></div>
+    <button class="btn btn-teal">+ New Message</button>
+  </div>
+  <div style="display:grid;grid-template-columns:280px 1fr;gap:0;height:580px">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px 0 0 12px;display:flex;flex-direction:column;overflow:hidden">
+      <div style="padding:14px;border-bottom:1px solid var(--border)"><input type="text" class="inp" placeholder="🔍 Search..."></div>
+      <div style="display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border)">
+        <button class="chip active" style="font-size:11px">All</button>
+        <button class="chip" style="font-size:11px">Patients</button>
+        <button class="chip" style="font-size:11px">Doctors</button>
+        <button class="chip" style="font-size:11px">Staff</button>
+      </div>
+      <div style="flex:1;overflow-y:auto">
+        <div style="display:flex;align-items:center;gap:10px;padding:13px 14px;cursor:pointer;background:rgba(13,201,177,.07);border-bottom:1px solid rgba(30,47,74,.5)">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--blue));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#000;flex-shrink:0">RP</div>
+          <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600">Ravi Patel</div><div style="font-size:11px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">When should I get re-tested?</div></div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px"><div style="font-size:10px;color:var(--text3)">2m</div><div style="background:var(--rose);color:#fff;font-size:9px;font-weight:700;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center">2</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:13px 14px;cursor:pointer;border-bottom:1px solid rgba(30,47,74,.5)">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--rose));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0">SD</div>
+          <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600">Sunita Devi</div><div style="font-size:11px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Thank you doctor 🙏</div></div>
+          <div style="font-size:10px;color:var(--text3)">1h</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:13px 14px;cursor:pointer;border-bottom:1px solid rgba(30,47,74,.5)">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#6366f1,var(--blue));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0">DR</div>
+          <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600">Dr. Raghav (Cardio)</div><div style="font-size:11px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Referral for Mohan Singh...</div></div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px"><div style="font-size:10px;color:var(--text3)">3h</div><div style="background:var(--amber);color:#000;font-size:9px;font-weight:700;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center">1</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:13px 14px;cursor:pointer;border-bottom:1px solid rgba(30,47,74,.5)">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--green),#0891b2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#000;flex-shrink:0">L</div>
+          <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600">Lab Team</div><div style="font-size:11px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Urgent report #8921 ready</div></div>
+          <div style="font-size:10px;color:var(--text3)">10m</div>
+        </div>
+      </div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:none;border-radius:0 12px 12px 0;display:flex;flex-direction:column;overflow:hidden">
+      <div style="padding:14px 20px;border-bottom:1px solid var(--border);background:var(--surface2);display:flex;align-items:center;gap:12px">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--blue));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#000">RP</div>
+        <div><div style="font-weight:600;font-size:14px">Ravi Patel</div><div style="font-size:11px;color:var(--green)">● Online</div></div>
+        <div style="margin-left:auto;display:flex;gap:8px">
+          <button class="btn btn-outline btn-sm">📋 View Report</button>
+          <button class="btn btn-blue btn-sm">📞 Call</button>
+        </div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px">
+        <div style="align-self:flex-start;max-width:65%">
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px 12px 12px 3px;padding:11px 14px;font-size:13.5px;line-height:1.5">Doctor sahab, my potassium report has come. What does it mean?</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:4px">9:05 AM</div>
+        </div>
+        <div style="align-self:flex-end;max-width:65%">
+          <div style="background:linear-gradient(135deg,rgba(13,201,177,.2),rgba(59,130,246,.2));border:1px solid rgba(13,201,177,.3);border-radius:12px 12px 3px 12px;padding:11px 14px;font-size:13.5px;line-height:1.5">Ravi ji, your potassium is 6.8 mEq/L which is critically high. Please come to the clinic immediately or call 108 if you feel chest pain, weakness, or breathing difficulty.</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:4px;text-align:right">9:12 AM ✓✓</div>
+        </div>
+        <div style="align-self:flex-start;max-width:65%">
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px 12px 12px 3px;padding:11px 14px;font-size:13.5px">When should I get re-tested?</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:4px">9:48 AM</div>
+        </div>
+      </div>
+      <div style="padding:14px 16px;border-top:1px solid var(--border);display:flex;gap:10px;align-items:flex-end">
+        <textarea class="inp" rows="1" placeholder="Type message..." style="flex:1;resize:none"></textarea>
+        <button class="btn btn-outline btn-sm">📎</button>
+        <button class="btn btn-teal btn-sm">Send ↑</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     7. ALERTS
+════════════════════════════════════════ -->
+<section class="section" id="sec-alerts">
+  <div class="sec-hdr">
+    <div><div class="sec-title">Alerts & Notifications</div><div class="sec-sub">5 critical alerts require your attention</div></div>
+    <button class="btn btn-outline">✓ Mark All Read</button>
+  </div>
+  <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap">
+    <button class="chip active">All (9)</button>
+    <button class="chip">🔴 Critical (3)</button>
+    <button class="chip">🟡 Abnormal (2)</button>
+    <button class="chip">📅 Appointments (2)</button>
+    <button class="chip">💬 Messages (2)</button>
+    <button class="chip">🔔 System (0)</button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <div style="background:var(--surface);border:1px solid rgba(244,63,94,.3);border-left:4px solid var(--rose);border-radius:12px;padding:16px 20px;display:flex;align-items:flex-start;gap:14px">
+      <div style="width:42px;height:42px;background:var(--rose-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🚨</div>
+      <div style="flex:1">
+        <div style="font-weight:700;font-size:14px;color:var(--rose)">CRITICAL — Ravi Patel · Potassium 6.8 mEq/L</div>
+        <div style="font-size:13px;color:var(--text2);margin-top:4px;line-height:1.5">Serum potassium critically elevated. Normal range: 3.5–5.0 mEq/L. Patient may be at risk for cardiac arrhythmia. Immediate action required.</div>
+        <div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-rose btn-sm">📋 View Report</button><button class="btn btn-teal btn-sm">💬 Message Patient</button><button class="btn btn-outline btn-sm">📞 Call Now</button></div>
+      </div>
+      <div style="text-align:right;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">10 min ago</div><div style="width:8px;height:8px;background:var(--rose);border-radius:50%;margin:6px auto 0"></div></div>
+    </div>
+    <div style="background:var(--surface);border:1px solid rgba(244,63,94,.3);border-left:4px solid var(--rose);border-radius:12px;padding:16px 20px;display:flex;align-items:flex-start;gap:14px">
+      <div style="width:42px;height:42px;background:var(--rose-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">💔</div>
+      <div style="flex:1">
+        <div style="font-weight:700;font-size:14px;color:var(--rose)">CRITICAL — Mohan Singh · INR 4.8</div>
+        <div style="font-size:13px;color:var(--text2);margin-top:4px;line-height:1.5">INR critically elevated. Normal range: 0.9–1.1. Bleeding risk is high. Review anticoagulant therapy immediately.</div>
+        <div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-rose btn-sm">📋 View Report</button><button class="btn btn-outline btn-sm">🔄 Adjust Rx</button></div>
+      </div>
+      <div style="text-align:right;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">2 hr ago</div><div style="width:8px;height:8px;background:var(--rose);border-radius:50%;margin:6px auto 0"></div></div>
+    </div>
+    <div style="background:var(--surface);border:1px solid rgba(245,158,11,.25);border-left:4px solid var(--amber);border-radius:12px;padding:16px 20px;display:flex;align-items:flex-start;gap:14px">
+      <div style="width:42px;height:42px;background:var(--amber-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">⚠️</div>
+      <div style="flex:1">
+        <div style="font-weight:700;font-size:14px;color:var(--amber)">ABNORMAL — Sunita Devi · HbA1c 9.2%</div>
+        <div style="font-size:13px;color:var(--text2);margin-top:4px;line-height:1.5">HbA1c above target range (7.0%). Third consecutive rise in 6 months. Consider medication adjustment and dietary counselling.</div>
+        <div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-outline btn-sm">📊 View Trend</button><button class="btn btn-teal btn-sm">📅 Schedule Follow-up</button></div>
+      </div>
+      <div style="text-align:right;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">1 hr ago</div><div style="width:8px;height:8px;background:var(--amber);border-radius:50%;margin:6px auto 0"></div></div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:12px;padding:16px 20px;display:flex;align-items:flex-start;gap:14px">
+      <div style="width:42px;height:42px;background:var(--blue-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">📅</div>
+      <div style="flex:1">
+        <div style="font-weight:600;font-size:14px">Appointment Request — Ajay Kumar · 11:00 AM Today</div>
+        <div style="font-size:13px;color:var(--text2);margin-top:4px">New patient walk-in for initial screening. Thyroid concern. Awaiting your confirmation.</div>
+        <div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-rose btn-sm">✗ Reject</button><button class="btn btn-green btn-sm">✓ Accept</button></div>
+      </div>
+      <div style="text-align:right;flex-shrink:0"><div style="font-size:11px;color:var(--text3)">30 min ago</div><div style="width:8px;height:8px;background:var(--blue);border-radius:50%;margin:6px auto 0"></div></div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--teal);border-radius:12px;padding:16px 20px;display:flex;align-items:flex-start;gap:14px;opacity:.7">
+      <div style="width:42px;height:42px;background:var(--teal-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">✅</div>
+      <div style="flex:1">
+        <div style="font-weight:600;font-size:14px">Report Ready — Ajay Kumar · Thyroid Profile</div>
+        <div style="font-size:13px;color:var(--text2);margin-top:4px">TSH, T3, T4 results are within normal range. Report #RPT-8851 is ready for review.</div>
+        <div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-outline btn-sm">📋 View Report</button></div>
+      </div>
+      <div style="font-size:11px;color:var(--text3);flex-shrink:0">Yesterday</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     8. ANALYTICS
+════════════════════════════════════════ -->
+<section class="section" id="sec-analytics">
+  <div class="sec-hdr">
+    <div><div class="sec-title">Analytics & Insights</div><div class="sec-sub">Performance metrics for February 2025</div></div>
+    <div style="display:flex;gap:8px">
+      <select class="inp" style="width:auto"><option>February 2025</option><option>January 2025</option><option>Q4 2024</option></select>
+      <button class="btn btn-outline">📥 Export PDF</button>
+    </div>
+  </div>
+  <div class="g4" style="margin-bottom:20px">
+    <div class="card stat-card hoverable"><div class="stat-icon" style="background:var(--teal-dim)">👥</div><div><div class="stat-val">38</div><div class="stat-label">New Patients</div><div class="stat-delta up">↑ 18% vs Jan</div></div></div>
+    <div class="card stat-card hoverable"><div class="stat-icon" style="background:var(--blue-dim)">🧪</div><div><div class="stat-val">214</div><div class="stat-label">Tests Ordered</div><div class="stat-delta up">↑ 12% vs Jan</div></div></div>
+    <div class="card stat-card hoverable"><div class="stat-icon" style="background:var(--green-dim)">📅</div><div><div class="stat-val">162</div><div class="stat-label">Appointments</div><div class="stat-delta up">↑ 8% vs Jan</div></div></div>
+    <div class="card stat-card hoverable"><div class="stat-icon" style="background:var(--amber-dim)">💰</div><div><div class="stat-val">₹2.4L</div><div class="stat-label">Referral Revenue</div><div class="stat-delta up">↑ 22% vs Jan</div></div></div>
+  </div>
+  <div class="g2" style="margin-bottom:20px">
+    <div class="card">
+      <div class="card-title">Patient Condition Distribution</div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:4px">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span>🩸 Diabetes</span><span style="font-weight:600;color:var(--amber)">41% — 58 pts</span></div>
+          <div style="background:var(--border);border-radius:4px;height:8px"><div style="width:41%;background:var(--amber);border-radius:4px;height:100%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span>🦋 Thyroid</span><span style="font-weight:600;color:var(--teal)">26% — 37 pts</span></div>
+          <div style="background:var(--border);border-radius:4px;height:8px"><div style="width:26%;background:var(--teal);border-radius:4px;height:100%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span>❤️ Cardiac</span><span style="font-weight:600;color:var(--rose)">18% — 26 pts</span></div>
+          <div style="background:var(--border);border-radius:4px;height:8px"><div style="width:18%;background:var(--rose);border-radius:4px;height:100%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span>🧬 Anemia</span><span style="font-weight:600;color:var(--purple)">10% — 14 pts</span></div>
+          <div style="background:var(--border);border-radius:4px;height:8px"><div style="width:10%;background:var(--purple);border-radius:4px;height:100%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span>📋 Other</span><span style="font-weight:600;color:var(--text3)">5% — 7 pts</span></div>
+          <div style="background:var(--border);border-radius:4px;height:8px"><div style="width:5%;background:var(--border2);border-radius:4px;height:100%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Most Ordered Tests</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:12px;padding:10px;background:var(--surface2);border-radius:8px"><span style="font-size:16px">🩸</span><div style="flex:1"><div style="font-size:13px;font-weight:500">HbA1c</div></div><span style="font-family:'Playfair Display',serif;font-weight:700;color:var(--teal)">64</span></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px;background:var(--surface2);border-radius:8px"><span style="font-size:16px">🦠</span><div style="flex:1"><div style="font-size:13px;font-weight:500">CBC</div></div><span style="font-family:'Playfair Display',serif;font-weight:700;color:var(--teal)">52</span></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px;background:var(--surface2);border-radius:8px"><span style="font-size:16px">🦋</span><div style="flex:1"><div style="font-size:13px;font-weight:500">Thyroid Profile</div></div><span style="font-family:'Playfair Display',serif;font-weight:700;color:var(--teal)">38</span></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px;background:var(--surface2);border-radius:8px"><span style="font-size:16px">❤️</span><div style="flex:1"><div style="font-size:13px;font-weight:500">Lipid Profile</div></div><span style="font-family:'Playfair Display',serif;font-weight:700;color:var(--teal)">31</span></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px;background:var(--surface2);border-radius:8px"><span style="font-size:16px">🧪</span><div style="flex:1"><div style="font-size:13px;font-weight:500">LFT / RFT</div></div><span style="font-family:'Playfair Display',serif;font-weight:700;color:var(--teal)">29</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     9. DOCUMENT VAULT
+════════════════════════════════════════ -->
+<section class="section" id="sec-vault">
+  <div class="sec-hdr">
+    <div><div class="sec-title">Document Vault</div><div class="sec-sub">Securely store and manage patient documents</div></div>
+    <div style="display:flex;gap:8px"><button class="btn btn-outline">📁 New Folder</button><button class="btn btn-teal">⬆ Upload Document</button></div>
+  </div>
+  <div class="filter-row">
+    <input type="text" class="inp" placeholder="🔍  Search documents..." style="max-width:280px">
+    <select class="inp" style="width:auto"><option>All Types</option><option>Reports</option><option>Prescriptions</option><option>Imaging</option><option>Discharge</option><option>Consent</option></select>
+    <select class="inp" style="width:auto"><option>All Patients</option><option>Ravi Patel</option><option>Sunita Devi</option></select>
+  </div>
+  <div class="g4" style="margin-bottom:20px">
+    <div class="card stat-card"><div class="stat-icon" style="background:var(--teal-dim)">📁</div><div><div class="stat-val">312</div><div class="stat-label">Total Files</div></div></div>
+    <div class="card stat-card"><div class="stat-icon" style="background:var(--blue-dim)">📋</div><div><div class="stat-val">148</div><div class="stat-label">Lab Reports</div></div></div>
+    <div class="card stat-card"><div class="stat-icon" style="background:var(--purple-dim)">💊</div><div><div class="stat-val">94</div><div class="stat-label">Prescriptions</div></div></div>
+    <div class="card stat-card"><div class="stat-icon" style="background:var(--amber-dim)">🖼</div><div><div class="stat-val">70</div><div class="stat-label">Imaging/Others</div></div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+    <div class="card hoverable" style="cursor:pointer;text-align:center">
+      <div style="font-size:40px;margin-bottom:10px">📋</div>
+      <div style="font-weight:600;font-size:13.5px">RPT-8921_Patel.pdf</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:4px">Serum Electrolytes · 28 Feb</div>
+      <div style="margin-top:10px;display:flex;gap:6px;justify-content:center"><button class="btn btn-outline btn-xs">👁</button><button class="btn btn-outline btn-xs">⬇</button><button class="btn btn-outline btn-xs">↗</button></div>
+    </div>
+    <div class="card hoverable" style="cursor:pointer;text-align:center">
+      <div style="font-size:40px;margin-bottom:10px">💊</div>
+      <div style="font-weight:600;font-size:13.5px">Rx_Devi_HbA1c.pdf</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:4px">Prescription · 25 Feb</div>
+      <div style="margin-top:10px;display:flex;gap:6px;justify-content:center"><button class="btn btn-outline btn-xs">👁</button><button class="btn btn-outline btn-xs">⬇</button><button class="btn btn-outline btn-xs">↗</button></div>
+    </div>
+    <div class="card hoverable" style="cursor:pointer;text-align:center">
+      <div style="font-size:40px;margin-bottom:10px">🖼</div>
+      <div style="font-weight:600;font-size:13.5px">ECG_Singh_Feb25.pdf</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:4px">Imaging · 22 Feb</div>
+      <div style="margin-top:10px;display:flex;gap:6px;justify-content:center"><button class="btn btn-outline btn-xs">👁</button><button class="btn btn-outline btn-xs">⬇</button><button class="btn btn-outline btn-xs">↗</button></div>
+    </div>
+    <div class="card hoverable" style="cursor:pointer;text-align:center">
+      <div style="font-size:40px;margin-bottom:10px">📝</div>
+      <div style="font-weight:600;font-size:13.5px">Consent_Kumar_New.pdf</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:4px">Consent Form · 20 Feb</div>
+      <div style="margin-top:10px;display:flex;gap:6px;justify-content:center"><button class="btn btn-outline btn-xs">👁</button><button class="btn btn-outline btn-xs">⬇</button><button class="btn btn-outline btn-xs">↗</button></div>
+    </div>
+    <div class="card hoverable" style="cursor:pointer;text-align:center">
+      <div style="font-size:40px;margin-bottom:10px">📋</div>
+      <div style="font-weight:600;font-size:13.5px">CBC_Kapoor_Feb15.pdf</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:4px">Lab Report · 15 Feb</div>
+      <div style="margin-top:10px;display:flex;gap:6px;justify-content:center"><button class="btn btn-outline btn-xs">👁</button><button class="btn btn-outline btn-xs">⬇</button><button class="btn btn-outline btn-xs">↗</button></div>
+    </div>
+    <div class="card" style="border-style:dashed;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;min-height:140px;transition:border-color .2s" onmouseover="this.style.borderColor='var(--teal)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:32px;color:var(--text3)">+</div>
+      <div style="font-size:12.5px;color:var(--text3);margin-top:6px">Upload New Document</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     10. CLINICAL NOTES
+════════════════════════════════════════ -->
+<section class="section" id="sec-notes">
+  <div class="sec-hdr">
+    <div><div class="sec-title">Clinical Notes</div><div class="sec-sub">SOAP notes and patient visit documentation</div></div>
+    <button class="btn btn-teal">+ New Note</button>
+  </div>
+  <div class="g2">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="card" style="border-left:3px solid var(--rose)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--blue));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#000">RP</div>
+            <div><div style="font-weight:600;font-size:13.5px">Ravi Patel</div><div style="font-size:11px;color:var(--text3)">28 Feb 2025 · 9:15 AM</div></div>
+          </div>
+          <span class="badge b-rose">Follow-up Needed</span>
+        </div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:10px"><span style="font-weight:600;color:var(--text)">S:</span> Patient complains of muscle weakness, fatigue. On dialysis 3x/week.<br><span style="font-weight:600;color:var(--text)">O:</span> K+ 6.8 mEq/L (critical), BP 148/92<br><span style="font-weight:600;color:var(--text)">A:</span> Hyperkalemia — likely dietary non-compliance<br><span style="font-weight:600;color:var(--text)">P:</span> Restrict potassium intake. Kayexalate 15g BD. Recheck in 48h.</div>
+        <div style="display:flex;gap:8px"><button class="btn btn-outline btn-xs">✏ Edit</button><button class="btn btn-teal btn-xs">↗ Share with Patient</button></div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--amber)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--rose));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">SD</div>
+            <div><div style="font-weight:600;font-size:13.5px">Sunita Devi</div><div style="font-size:11px;color:var(--text3)">25 Feb 2025 · 11:30 AM</div></div>
+          </div>
+          <span class="badge b-amber">Chronic — Diabetes</span>
+        </div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:10px"><span style="font-weight:600;color:var(--text)">S:</span> Patient reports increased thirst, polyuria. Inconsistent medication.<br><span style="font-weight:600;color:var(--text)">O:</span> HbA1c 9.2%, FBS 210 mg/dL, weight +3kg<br><span style="font-weight:600;color:var(--text)">A:</span> Poorly controlled T2DM — consider Rx intensification<br><span style="font-weight:600;color:var(--text)">P:</span> Increase Metformin to 1000mg BD. Dietary counselling. 1-month follow-up.</div>
+        <div style="display:flex;gap:8px"><button class="btn btn-outline btn-xs">✏ Edit</button><button class="btn btn-teal btn-xs">↗ Share</button></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Write New Clinical Note</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div><label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Patient *</label><select class="inp"><option>Select patient...</option><option>Ravi Patel #PT-0041</option><option>Sunita Devi #PT-0038</option></select></div>
+        <div><label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Subjective — Patient complaints</label><textarea class="inp" rows="2" placeholder="Chief complaint, history of present illness..."></textarea></div>
+        <div><label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Objective — Examination findings</label><textarea class="inp" rows="2" placeholder="Vitals, physical exam, test results..."></textarea></div>
+        <div><label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Assessment — Diagnosis</label><textarea class="inp" rows="2" placeholder="Clinical impression, differential diagnosis..."></textarea></div>
+        <div><label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Plan — Treatment</label><textarea class="inp" rows="2" placeholder="Medications, tests, follow-up instructions..."></textarea></div>
+        <div style="display:flex;gap:8px">
+          <select class="inp" style="flex:1"><option>🔒 Private (Only You)</option><option>🔓 Share with Patient</option></select>
+          <button class="btn btn-teal" style="white-space:nowrap">💾 Save Note</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     11. TELECONSULTATION
+════════════════════════════════════════ -->
+<section class="section" id="sec-teleconsult">
+  <div class="sec-hdr">
+    <div><div class="sec-title">Teleconsultation</div><div class="sec-sub">Video & audio consultations with patients</div></div>
+    <button class="btn btn-teal">📹 Start Instant Call</button>
+  </div>
+  <div class="g2" style="margin-bottom:20px">
+    <div class="card" style="border:1px solid rgba(13,201,177,.3);background:linear-gradient(135deg,rgba(13,201,177,.04),rgba(59,130,246,.04))">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+        <div class="card-title" style="margin-bottom:0">Next Scheduled Call</div>
+        <span class="badge b-blue">In 52 minutes</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+        <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--rose));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px">SD</div>
+        <div>
+          <div style="font-weight:700;font-size:16px">Sunita Devi</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:2px">Diabetes Consultation · 10:00 AM</div>
+          <div style="font-size:12px;color:var(--text3)">📋 HbA1c results to discuss</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-teal" style="flex:1;justify-content:center">📹 Join Video Call</button>
+        <button class="btn btn-outline" style="flex:1;justify-content:center">📋 Pre-call Notes</button>
+      </div>
+    </div>
+    <div class="g2" style="grid-template-columns:1fr 1fr">
+      <div class="card stat-card"><div class="stat-icon" style="background:var(--teal-dim)">📹</div><div><div class="stat-val">24</div><div class="stat-label">Calls This Month</div></div></div>
+      <div class="card stat-card"><div class="stat-icon" style="background:var(--green-dim)">⏱</div><div><div class="stat-val">38m</div><div class="stat-label">Avg Duration</div></div></div>
+      <div class="card stat-card"><div class="stat-icon" style="background:var(--amber-dim)">⭐</div><div><div class="stat-val">4.8</div><div class="stat-label">Patient Rating</div></div></div>
+      <div class="card stat-card"><div class="stat-icon" style="background:var(--blue-dim)">👥</div><div><div class="stat-val">3</div><div class="stat-label">In Waiting Room</div></div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Waiting Room</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;gap:14px;padding:12px;background:var(--surface2);border-radius:10px;border:1px solid var(--border)">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--blue));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#000">RP</div>
+        <div style="flex:1"><div style="font-weight:600">Ravi Patel</div><div style="font-size:12px;color:var(--text3)">Waiting 8 min · CBC result query</div></div>
+        <span class="badge b-rose">8 min wait</span>
+        <button class="btn btn-teal btn-sm">Admit</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:12px;background:var(--surface2);border-radius:10px;border:1px solid var(--border)">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--amber),#f97316);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#000">MS</div>
+        <div style="flex:1"><div style="font-weight:600">Mohan Singh</div><div style="font-size:12px;color:var(--text3)">Waiting 3 min · INR medication query</div></div>
+        <span class="badge b-amber">3 min wait</span>
+        <button class="btn btn-outline btn-sm">Admit</button>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="card-title">Recent Consultations</div>
+    <div class="tbl-wrap" style="border:none">
+      <table>
+        <thead><tr><th>Patient</th><th>Date & Time</th><th>Duration</th><th>Topic</th><th>Follow-up</th><th>Recording</th></tr></thead>
+        <tbody>
+          <tr><td>Sunita Devi</td><td>25 Feb · 11AM</td><td>42 min</td><td>Diabetes management</td><td><span class="badge b-amber">Scheduled</span></td><td><button class="btn btn-outline btn-xs">▶ Play</button></td></tr>
+          <tr><td>Ajay Kumar</td><td>22 Feb · 3PM</td><td>28 min</td><td>Thyroid results review</td><td><span class="badge b-green">Completed</span></td><td><button class="btn btn-outline btn-xs">▶ Play</button></td></tr>
+          <tr><td>Priya Kapoor</td><td>18 Feb · 10AM</td><td>35 min</td><td>Iron deficiency treatment</td><td><span class="badge b-teal">In Progress</span></td><td><button class="btn btn-outline btn-xs">▶ Play</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     12. PRESCRIPTIONS
+════════════════════════════════════════ -->
+<section class="section" id="sec-prescriptions">
+  <div class="sec-hdr">
+    <div><div class="sec-title">Prescriptions</div><div class="sec-sub">Create and manage digital prescriptions</div></div>
+    <button class="btn btn-teal">+ New Prescription</button>
+  </div>
+  <div class="g2" style="margin-bottom:20px">
+    <div class="card">
+      <div class="card-title">Create Prescription</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="g2">
+          <div><label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Patient *</label><select class="inp"><option>Select patient...</option><option>Ravi Patel</option><option>Sunita Devi</option></select></div>
+          <div><label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Diagnosis *</label><input type="text" class="inp" placeholder="e.g. Type 2 Diabetes"></div>
+        </div>
+        <div>
+          <label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Medications</label>
+          <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;gap:8px">
+              <input type="text" class="inp" placeholder="Medicine name" style="flex:2">
+              <input type="text" class="inp" placeholder="Dose" style="flex:1">
+              <input type="text" class="inp" placeholder="Frequency" style="flex:1">
+            </div>
+            <button class="btn btn-outline btn-sm" style="align-self:flex-start">+ Add Medicine</button>
+          </div>
+        </div>
+        <div><label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Lab Tests to Order (optional)</label><input type="text" class="inp" placeholder="e.g. HbA1c after 3 months"></div>
+        <div><label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Doctor's Instructions</label><textarea class="inp" rows="2" placeholder="Diet, lifestyle, follow-up advice..."></textarea></div>
+        <div style="display:flex;gap:8px"><button class="btn btn-outline" style="flex:1;justify-content:center">👁 Preview</button><button class="btn btn-teal" style="flex:1;justify-content:center">✍ Sign & Send</button></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Recent Prescriptions</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;align-items:center;gap:12px">
+          <div style="font-size:26px">💊</div>
+          <div style="flex:1">
+            <div style="font-weight:600;font-size:13.5px">Ravi Patel</div>
+            <div style="font-size:11.5px;color:var(--text3);margin-top:2px">Kayexalate + Spironolactone · 28 Feb</div>
+          </div>
+          <div style="display:flex;gap:5px"><button class="btn btn-outline btn-xs">⬇ PDF</button><button class="btn btn-teal btn-xs">↗ Send</button></div>
+        </div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;align-items:center;gap:12px">
+          <div style="font-size:26px">💊</div>
+          <div style="flex:1">
+            <div style="font-weight:600;font-size:13.5px">Sunita Devi</div>
+            <div style="font-size:11.5px;color:var(--text3);margin-top:2px">Metformin 1000mg + Glipizide · 25 Feb</div>
+          </div>
+          <div style="display:flex;gap:5px"><button class="btn btn-outline btn-xs">⬇ PDF</button><button class="btn btn-teal btn-xs">↗ Send</button></div>
+        </div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;align-items:center;gap:12px">
+          <div style="font-size:26px">💊</div>
+          <div style="flex:1">
+            <div style="font-weight:600;font-size:13.5px">Priya Kapoor</div>
+            <div style="font-size:11.5px;color:var(--text3);margin-top:2px">Ferrous Sulfate + Folic Acid · 15 Feb</div>
+          </div>
+          <div style="display:flex;gap:5px"><button class="btn btn-outline btn-xs">⬇ PDF</button><button class="btn btn-teal btn-xs">↗ Send</button></div>
+        </div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:13px;display:flex;align-items:center;gap:12px">
+          <div style="font-size:26px">💊</div>
+          <div style="flex:1">
+            <div style="font-weight:600;font-size:13.5px">Mohan Singh</div>
+            <div style="font-size:11.5px;color:var(--text3);margin-top:2px">Warfarin — dose adjusted · 22 Feb</div>
+          </div>
+          <div style="display:flex;gap:5px"><button class="btn btn-outline btn-xs">⬇ PDF</button><button class="btn btn-teal btn-xs">↗ Send</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     13. MY PROFILE
+════════════════════════════════════════ -->
+<section class="section" id="sec-profile">
+  <div class="sec-hdr">
+    <div><div class="sec-title">My Profile</div><div class="sec-sub">Manage your credentials and preferences</div></div>
+    <button class="btn btn-teal">✍ Edit Profile</button>
+  </div>
+  <div class="g2">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card" style="text-align:center;padding:28px 20px">
+        <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--blue));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:28px;margin:0 auto 14px">DS</div>
+        <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700">Dr. Deepak Sharma</div>
+        <div style="color:var(--teal);font-size:13px;margin-top:4px">Internal Medicine · MBBS, MD</div>
+        <div style="color:var(--text3);font-size:12px;margin-top:2px">Reg. No: MCI-2008-DL-44821</div>
+        <div style="margin-top:12px;display:flex;gap:8px;justify-content:center">
+          <div style="background:var(--green-dim);border:1px solid rgba(34,197,94,.3);color:var(--green);font-size:11px;padding:4px 10px;border-radius:20px;display:flex;align-items:center;gap:5px"><span style="width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block"></span> Online</div>
+          <button class="btn btn-outline btn-sm">Change Availability</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Contact & Clinic Info</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">Email</span><span>deepak.sharma@medilab.in</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">Phone</span><span>+91 98765 00001</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">Clinic</span><span>MediLab Sector 17, Chandigarh</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">Working Hours</span><span>Mon–Sat, 9AM–6PM</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:var(--text3)">Languages</span><span>English, Hindi, Punjabi</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card">
+        <div class="card-title">Qualifications & Specialization</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="background:var(--surface2);border-radius:8px;padding:12px;border:1px solid var(--border)"><div style="font-weight:600;font-size:13px">MBBS</div><div style="font-size:12px;color:var(--text3)">AIIMS New Delhi · 2004</div></div>
+          <div style="background:var(--surface2);border-radius:8px;padding:12px;border:1px solid var(--border)"><div style="font-weight:600;font-size:13px">MD — Internal Medicine</div><div style="font-size:12px;color:var(--text3)">PGI Chandigarh · 2008</div></div>
+          <div style="background:var(--surface2);border-radius:8px;padding:12px;border:1px solid var(--border)"><div style="font-weight:600;font-size:13px">Fellowship — Diabetology</div><div style="font-size:12px;color:var(--text3)">RSSDI Certified · 2011</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Quick Stats</div>
+        <div class="g2">
+          <div style="text-align:center;padding:14px;background:var(--surface2);border-radius:8px"><div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--teal)">142</div><div style="font-size:11px;color:var(--text3)">Patients</div></div>
+          <div style="text-align:center;padding:14px;background:var(--surface2);border-radius:8px"><div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--teal)">17</div><div style="font-size:11px;color:var(--text3)">Yrs Experience</div></div>
+          <div style="text-align:center;padding:14px;background:var(--surface2);border-radius:8px"><div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--teal)">4.9</div><div style="font-size:11px;color:var(--text3)">Rating ⭐</div></div>
+          <div style="text-align:center;padding:14px;background:var(--surface2);border-radius:8px"><div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--teal)">214</div><div style="font-size:11px;color:var(--text3)">Tests/Month</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     14. SETTINGS
+════════════════════════════════════════ -->
+<section class="section" id="sec-settings">
+  <div class="sec-hdr">
+    <div><div class="sec-title">Settings</div><div class="sec-sub">Customize your portal experience</div></div>
+    <button class="btn btn-teal">💾 Save Changes</button>
+  </div>
+  <div class="g2">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card">
+        <div class="card-title">🎨 Appearance</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px">Dark Mode</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px">Compact View</span><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
+          <div><label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Language</label><select class="inp"><option>English</option><option>Hindi</option><option>Punjabi</option></select></div>
+          <div><label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Accent Color</label>
+            <div style="display:flex;gap:8px">
+              <div style="width:28px;height:28px;border-radius:50%;background:var(--teal);cursor:pointer;border:2px solid #fff"></div>
+              <div style="width:28px;height:28px;border-radius:50%;background:var(--blue);cursor:pointer"></div>
+              <div style="width:28px;height:28px;border-radius:50%;background:var(--purple);cursor:pointer"></div>
+              <div style="width:28px;height:28px;border-radius:50%;background:var(--rose);cursor:pointer"></div>
+              <div style="width:28px;height:28px;border-radius:50%;background:var(--amber);cursor:pointer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🔔 Notification Preferences</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px">Critical Value Alerts</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px">Report Ready Notifications</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px">Appointment Reminders</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px">New Messages</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px">SMS Notifications</span><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px">Email Digest</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card">
+        <div class="card-title">🔐 Security</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px">Two-Factor Authentication</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px">Login Alerts</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+          <hr class="divider">
+          <button class="btn btn-outline" style="width:100%;justify-content:center">🔑 Change Password</button>
+          <button class="btn btn-outline" style="width:100%;justify-content:center">📱 Manage Devices</button>
+          <button class="btn btn-outline" style="width:100%;justify-content:center">📋 View Audit Log</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">⚙️ Clinical Preferences</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div><label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Default Collection Mode</label><select class="inp"><option>Home Collection</option><option>Walk-in</option></select></div>
+          <div><label style="font-size:12px;color:var(--text3);display:block;margin-bottom:5px">Report View</label><select class="inp"><option>Detailed View</option><option>Compact View</option></select></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px">Auto-flag Critical Values</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px">Show Trend Graphs on Reports</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </div><!-- /content -->
+</main>
+
+<style>
+.sb-badge.rose { background: var(--rose); }
+</style>
+
+<script>
+const pageData = {
+  dashboard:     { title: 'Dashboard',           crumb: 'Doctor Portal › Dashboard',              action: '+ Quick Order',     fn: "show('ordering')" },
+  patients:      { title: 'Patient Management',  crumb: 'Doctor Portal › Patient Management',     action: '+ Add Patient',     fn: '' },
+  reports:       { title: 'My Reports',          crumb: 'Doctor Portal › My Reports',             action: '📤 Export',         fn: '' },
+  ordering:      { title: 'Test Ordering',       crumb: 'Doctor Portal › Test Ordering',          action: '+ New Order',       fn: '' },
+  appointments:  { title: 'Appointments',        crumb: 'Doctor Portal › Appointments',           action: '+ New Appointment', fn: '' },
+  messaging:     { title: 'Messaging',           crumb: 'Doctor Portal › Messaging',              action: '+ New Message',     fn: '' },
+  alerts:        { title: 'Alerts',              crumb: 'Doctor Portal › Alerts',                 action: '✓ Mark All Read',   fn: '' },
+  analytics:     { title: 'Analytics',           crumb: 'Doctor Portal › Analytics',              action: '📥 Export PDF',     fn: '' },
+  vault:         { title: 'Document Vault',      crumb: 'Doctor Portal › Document Vault',         action: '⬆ Upload Doc',      fn: '' },
+  notes:         { title: 'Clinical Notes',      crumb: 'Doctor Portal › Clinical Notes',         action: '+ New Note',        fn: '' },
+  teleconsult:   { title: 'Teleconsultation',    crumb: 'Doctor Portal › Teleconsultation',       action: '📹 Start Call',     fn: '' },
+  prescriptions: { title: 'Prescriptions',       crumb: 'Doctor Portal › Prescriptions',          action: '+ New Prescription',fn: '' },
+  profile:       { title: 'My Profile',          crumb: 'Doctor Portal › My Profile',             action: '✍ Edit Profile',    fn: '' },
+  settings:      { title: 'Settings',            crumb: 'Doctor Portal › Settings',               action: '💾 Save Changes',   fn: '' },
+};
+
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(n => n.classList.remove('active'));
+
+  document.getElementById('sec-' + id).classList.add('active');
+
+  const d = pageData[id];
+  document.getElementById('page-title').textContent = d.title;
+  document.getElementById('page-crumb').textContent = d.crumb;
+  document.getElementById('topbar-action').textContent = d.action;
+
+  // highlight nav
+  document.querySelectorAll('.sb-item').forEach(item => {
+    const txt = item.textContent.trim().toLowerCase();
+    if (txt.includes(d.title.split(' ')[0].toLowerCase()) ||
+        (id === 'notes' && txt.includes('clinical')) ||
+        (id === 'ordering' && txt.includes('test')) ||
+        (id === 'vault' && txt.includes('vault')) ||
+        (id === 'teleconsult' && txt.includes('tele'))) {
+      item.classList.add('active');
+    }
+  });
+}
+
+function topAction() {
+  const title = document.getElementById('page-title').textContent;
+  if (title === 'Dashboard') show('ordering');
+}
+
+// chip toggles
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', function() {
+    const parent = this.parentElement;
+    parent.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

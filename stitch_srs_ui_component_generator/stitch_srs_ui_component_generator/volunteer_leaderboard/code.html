@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Volunteer Leaderboard | DiagConnect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "surface-tint": "#006591",
+                    "secondary-fixed": "#6ffbbe",
+                    "error-container": "#ffdad6",
+                    "surface": "#f8f9ff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#89ceff",
+                    "inverse-surface": "#213145",
+                    "on-primary-container": "#003751",
+                    "surface-bright": "#f8f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "tertiary": "#855300",
+                    "on-secondary-container": "#00714d",
+                    "secondary-container": "#6cf8bb",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "on-secondary": "#ffffff",
+                    "background": "#f8f9ff",
+                    "surface-container-low": "#eff4ff",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#3e4850",
+                    "on-secondary-fixed": "#002113",
+                    "on-primary": "#ffffff",
+                    "outline": "#6e7881",
+                    "outline-variant": "#bec8d2",
+                    "on-primary-fixed": "#001e2f",
+                    "inverse-primary": "#89ceff",
+                    "tertiary-fixed": "#ffddb8",
+                    "tertiary-container": "#d88a00",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-variant": "#d3e4fe",
+                    "on-surface": "#0b1c30",
+                    "primary": "#006591",
+                    "on-tertiary-container": "#4a2c00",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#dce9ff",
+                    "secondary": "#006c49",
+                    "secondary-fixed-dim": "#4edea3",
+                    "primary-fixed": "#c9e6ff",
+                    "primary-container": "#0ea5e9",
+                    "on-background": "#0b1c30",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-dim": "#cbdbf5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "max-width": "1440px",
+                    "xs": "4px",
+                    "margin-desktop": "40px",
+                    "xl": "32px",
+                    "md": "16px",
+                    "base": "4px",
+                    "margin-mobile": "16px",
+                    "sm": "8px",
+                    "gutter": "24px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"],
+                    "headline-xl": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.6);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen pb-[100px]">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 transition-colors duration-200">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly medical volunteer in a clean, modern clinic setting. The lighting is soft and natural, emphasizing a clinical yet approachable atmosphere. The volunteer wears a subtle blue identification badge with a medical logo, set against a bright, airy background of soft white and pale blue tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpQBBlbw3zjx8hrhdfnHrxtvw4GBuB_D3ULpLOlxpYB-QXyLvnpH8xVi1Al75STx-PX0Edqsk1XTeYs4PzEjTErOiywqquzLKr0osltrF02J7_IFjRSPE1gmkgmRWc9ez5Sc239jsbHqbGZF8PdoErgBOTACdq6A1n7LL95e4YmEJJrOtX7cpVa-tbqNZrGtSVJ4p2FuECcOacYb6q0BKWqyNNl5DZlIGEvqLQvoFGS7ADruK6kQceK-RPqa9oCpnOdAhjXqL9HSc"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Volunteer Leaderboard</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-primary hover:bg-surface-container-low transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<main class="max-w-md mx-auto px-margin-mobile pt-6 space-y-6">
+<!-- Filter Toggle -->
+<div class="p-1 bg-surface-container rounded-full flex gap-1">
+<button class="flex-1 py-2 px-4 rounded-full font-label-md text-label-md bg-white text-primary shadow-sm transition-all duration-200" id="toggle-global">Global</button>
+<button class="flex-1 py-2 px-4 rounded-full font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-all duration-200" id="toggle-neighborhood">Neighborhood</button>
+</div>
+<!-- Neighborhood Focus Card -->
+<div class="glass-card rounded-xl p-5 border border-outline-variant relative overflow-hidden shadow-sm">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-primary"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Your Neighborhood</h2>
+<p class="font-headline-sm text-headline-sm text-on-surface">Downtown Sector 4</p>
+</div>
+<span class="material-symbols-outlined text-primary">location_on</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest p-3 rounded-lg border border-outline-variant">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Total Responders</p>
+<p class="font-headline-sm text-headline-sm text-primary">124</p>
+</div>
+<div class="bg-surface-container-lowest p-3 rounded-lg border border-outline-variant">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Avg. Response</p>
+<p class="font-headline-sm text-headline-sm text-primary">4.2m</p>
+</div>
+</div>
+</div>
+<!-- Top 3 Podium Section -->
+<div class="pt-4 flex items-end justify-center gap-2 pb-8">
+<!-- Rank 2 -->
+<div class="flex flex-col items-center gap-2 flex-1">
+<div class="relative">
+<div class="w-16 h-16 rounded-full border-4 border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A focused portrait of a medical responder in their late 20s. They are standing in a clean, high-tech diagnostic environment with glowing blue data panels in the background. The aesthetic is professional, minimalist, and clinical, featuring a cool-toned color palette of white, slate, and vibrant blue." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK5ixW7DTZyeqnAEUfHhvgcwFB1U9yuADaKkR5aJ2QEPCyLdHM0qWkYbw2ZPPNI8B4EAqkD9btahc4mM3Jv-FTef_PQatVcWRz4mbO1pRlK_reAIhikxP2WSeb5N3_z92Ki_ow-8MyfgunUosNxte6MyBQFI6qCYwgyB63pphtYC81w5DrhzDclP7T__FE_wnPn8yHZmnu_M6ZzHNLrIlBd3yOZYG54_I8W67UN2OLHmPAIkZYKrq0gjmVUlOA7A8Iv5O9NCJ9gzE"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-outline-variant text-white rounded-full w-6 h-6 flex items-center justify-center font-bold text-xs">2</div>
+</div>
+<div class="text-center">
+<p class="font-label-md text-label-md truncate w-24">Marcus Chen</p>
+<p class="font-label-sm text-label-sm text-primary">4,850 XP</p>
+</div>
+<div class="h-16 w-full bg-surface-container-high rounded-t-lg"></div>
+</div>
+<!-- Rank 1 -->
+<div class="flex flex-col items-center gap-2 flex-1 -mb-4">
+<div class="relative">
+<div class="w-20 h-20 rounded-full border-4 border-primary overflow-hidden shadow-md">
+<img class="w-full h-full object-cover" data-alt="A portrait of a senior healthcare volunteer with a warm, confident smile. The background is a blurred modern hospital atrium with natural light streaming through large windows. The overall mood is one of clinical excellence and high trust, using a palette of bright whites and medical blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkf5NPUVSqQQ5chOkxHqD5l1rSRzFf-cwiWRsEei7P1rXzhD8Fk2QD8OvYt0Svxu0UPfxkAfaqNjFq7MAnO4JR-45WxmwDF0n6K6OfDPgyD5roCQtXa76BhGaYDr3DrLdS86sV5UexXUQJKSt_6mPJZBCBEQph3tQ8dITx7rXiGhHK1-0c41TMos-GBKlFsaj5562wl0CF_7RcWEd4G5nmGun2Lvy78DcU_xv5NblkQz8yx4MLtwv_Z2WzRPpfNbvmwVptaS1vKTo"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+</div>
+<div class="text-center">
+<p class="font-label-md text-label-md font-bold truncate w-28">Dr. Sarah Vance</p>
+<p class="font-label-sm text-label-sm text-primary font-bold">5,210 XP</p>
+</div>
+<div class="h-24 w-full bg-primary-container rounded-t-lg shadow-inner"></div>
+</div>
+<!-- Rank 3 -->
+<div class="flex flex-col items-center gap-2 flex-1">
+<div class="relative">
+<div class="w-16 h-16 rounded-full border-4 border-tertiary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A young medical student volunteer wearing a white lab coat over a blue scrub shirt. They are holding a digital diagnostic tablet, appearing ready for action. The setting is a minimalist, brightly lit medical research lab with a professional corporate aesthetic of whites, grays, and deep blues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK1VPbU5zPtpTmPMXtViAc9mdWPEZMn-Wq66mCS8DgbJ8_qgeYFneS_IsVEaoDFmLZGltsAyUssL_i0gOZ3efSaw-XgISe_OagUlKjw4V6Cpyjk6njxqZs2k_SAgOPSnvvjeBvwUqxRKYGiVTaQqtWc_l_Nyk_KLY286b-jMWed0605aan9-l_8diwZintnQlWPeS0ZoAIcOM1_M7LApB_qqhkX9FPcRXZ_WxzE5xowGkhia1yeTi3C9RpE8cUFJd8WmEzcVgMQNE"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-tertiary-container text-white rounded-full w-6 h-6 flex items-center justify-center font-bold text-xs">3</div>
+</div>
+<div class="text-center">
+<p class="font-label-md text-label-md truncate w-24">James Miller</p>
+<p class="font-label-sm text-label-sm text-primary">4,620 XP</p>
+</div>
+<div class="h-12 w-full bg-surface-container rounded-t-lg"></div>
+</div>
+</div>
+<!-- Rankings List -->
+<div class="space-y-3 pb-4">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase px-1">Other Responders</h3>
+<!-- Rank 4 -->
+<div class="flex items-center gap-4 bg-white p-3 rounded-xl border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="font-label-md text-label-md text-on-surface-variant w-4">4</span>
+<div class="w-10 h-10 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A close-up portrait of a female paramedic in uniform, radiating competence and calm. The lighting is crisp and even, suitable for a clinical profile. The background suggests an ambulance interior, blurred softly. Colors include navy blue, crisp white, and soft light blues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ71omFWSzqFIkKEJQ3zHJGyuHmcn9HT_ZWL-qtuVhxxIsF_M_f8FS1Pygi0IfISejP6V3sdSf21rYsjGYtAjecgEsM_lCGjFFe0BiDoeHAO0I06dYEglVou5vPMatGqzxk_UalYWqBcRnSyV8yAilMwcmJ8C45zap8oSkelRC57Mn7UVYej_F_Bp8EMY5tmDUyYk-5ThUot0zk2cGuXSQ_KWHO7NZ2nhuS69puoQ0hV2JSL4bMmHI7oO9aFMRibWN8JfmXGMyWZY"/>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md">Anita Raj</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Sector 2 • 4,100 XP</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+<!-- Rank 5 (Current User) -->
+<div class="flex items-center gap-4 bg-primary/5 p-3 rounded-xl border-2 border-primary transition-colors shadow-sm ring-4 ring-primary/5">
+<span class="font-label-md text-label-md text-primary font-bold w-4">5</span>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly medical volunteer in a clean, modern clinic setting. The lighting is soft and natural, emphasizing a clinical yet approachable atmosphere. The volunteer wears a subtle blue identification badge with a medical logo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpYPqRXDNi560Hq4J_2tJN0jIRvY6f0vz8R5ACToHfeoyniMubFvW6Ki8N0pdBCiQEsJhHdhSCEEdQdKIBrwL6SC6pAoQvbzrCsHQEhYHNSMTNEMG14NC3F_ia_w_i-qfwvPKoF9fKrbBthRXpR1MbYpMeDYtPnVweIslTrar6QYPMslTTpHzUCrTKU9m6AczNY9uLodo2T4x6AaBtfWtrgtg6O4tkuSPZ3rV9c3hzIav24sS3t1nt7by_JfSXy9-ZSX54_8_CAww"/>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md font-bold">You (Alex Riviera)</p>
+<p class="font-label-sm text-label-sm text-primary">Sector 4 • 3,890 XP</p>
+</div>
+<div class="px-2 py-1 bg-primary text-white rounded text-[10px] font-bold uppercase tracking-tighter">Rising</div>
+</div>
+<!-- Rank 6 -->
+<div class="flex items-center gap-4 bg-white p-3 rounded-xl border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="font-label-md text-label-md text-on-surface-variant w-4">6</span>
+<div class="w-10 h-10 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A middle-aged man in medical professional attire, looking directly at the camera with a calm and trustworthy expression. The background is a clean, modern medical office with minimal distractions. The lighting is high-key and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQYAQHpi-6oXsinNe7pqiSPe6Iu2keKqtd_MtOj0ZF2VPxkS2jsvCmYxrtMm96bDGdRIUUbm52HZoihylRBpoh_qIU7nyiTZ6qiSeHXgiswWwK73VOzkr6pVJtMLkGSHOkmjNyABT1y6ACaqPe-65eRgqY0R3qLpwp8SONRz2SjpMtaQH56Rdppfs6-rsLs1k4eIO5ybPqoNwpBgoQ3xflqGpFaY0Efe6kV-DBtD9VmzzJriwdj_1QglKNyrhAsHT4ZHvFM5qmsDk"/>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md">Kevin Zhao</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Sector 4 • 3,750 XP</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+<!-- Rank 7 -->
+<div class="flex items-center gap-4 bg-white p-3 rounded-xl border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="font-label-md text-label-md text-on-surface-variant w-4">7</span>
+<div class="w-10 h-10 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a compassionate female healthcare worker with glasses. She is set against a clean, clinical background featuring soft geometric patterns in white and pale blue. The lighting is bright and airy, communicating transparency and care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDITy8Vh4XxUu7BAVkpgL2pubZbKJRKhmdI8bl_YJqiakQg8iMfmcDRF_hDJQcRyRVcx7_1sbwiAzumGNo4vET7HADNCGJfFj875DjuMUPmfVD5PsCrc6WKd5cXRhP9olgc6TDSJ0_CzxruaBLMnkd4wFJTbkdZXLHZktKTieBGge27FPM71v1cxGdErD0I-RuIacYVMrjVxeIP0EyqzR2gLn3R3f3wczRxXwg5dB_HY0hfklZ28NK_R8HLO3rcE7eHp85gmyX3Ts"/>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md">Elena Rodriguez</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Sector 1 • 3,420 XP</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface pb-safe h-[80px] border-t border-outline-variant shadow-md">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-transform active:scale-90 duration-200 px-4 py-1">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-sm text-label-sm">Learn</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-transform active:scale-90 duration-200 px-4 py-1">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-label-sm text-label-sm">Certify</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-transform active:scale-90 duration-200 px-4 py-1">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="font-label-sm text-label-sm">Badges</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 transition-transform active:scale-90 duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+<span class="font-label-sm text-label-sm">Rank</span>
+</button>
+</nav>
+<script>
+        const globalBtn = document.getElementById('toggle-global');
+        const neighborBtn = document.getElementById('toggle-neighborhood');
+
+        globalBtn.addEventListener('click', () => {
+            globalBtn.classList.add('bg-white', 'text-primary', 'shadow-sm');
+            globalBtn.classList.remove('text-on-surface-variant');
+            neighborBtn.classList.remove('bg-white', 'text-primary', 'shadow-sm');
+            neighborBtn.classList.add('text-on-surface-variant');
+        });
+
+        neighborBtn.addEventListener('click', () => {
+            neighborBtn.classList.add('bg-white', 'text-primary', 'shadow-sm');
+            neighborBtn.classList.remove('text-on-surface-variant');
+            globalBtn.classList.remove('bg-white', 'text-primary', 'shadow-sm');
+            globalBtn.classList.add('text-on-surface-variant');
+        });
+
+        // Simple row micro-interaction
+        document.querySelectorAll('.rank-row').forEach(row => {
+            row.addEventListener('click', () => {
+                row.classList.add('scale-95');
+                setTimeout(() => row.classList.remove('scale-95'), 150);
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Family Dashboard | DiagConnect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "primary-fixed": "#c9e6ff",
+                "inverse-surface": "#213145",
+                "error-container": "#ffdad6",
+                "surface-container-low": "#eff4ff",
+                "on-secondary-fixed-variant": "#005236",
+                "on-primary-fixed": "#001e2f",
+                "error": "#ba1a1a",
+                "secondary-fixed-dim": "#4edea3",
+                "outline-variant": "#bec8d2",
+                "on-tertiary": "#ffffff",
+                "on-tertiary-fixed-variant": "#653e00",
+                "outline": "#6e7881",
+                "tertiary-fixed-dim": "#ffb95f",
+                "primary": "#006591",
+                "on-primary-fixed-variant": "#004c6e",
+                "on-secondary-container": "#00714d",
+                "tertiary-container": "#d88a00",
+                "on-tertiary-container": "#4a2c00",
+                "tertiary-fixed": "#ffddb8",
+                "on-primary": "#ffffff",
+                "secondary-container": "#6cf8bb",
+                "surface-container-highest": "#d3e4fe",
+                "surface": "#f8f9ff",
+                "tertiary": "#855300",
+                "inverse-primary": "#89ceff",
+                "on-surface": "#0b1c30",
+                "secondary-fixed": "#6ffbbe",
+                "on-primary-container": "#003751",
+                "on-tertiary-fixed": "#2a1700",
+                "surface-variant": "#d3e4fe",
+                "on-secondary-fixed": "#002113",
+                "on-error": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "surface-container": "#e5eeff",
+                "on-surface-variant": "#3e4850",
+                "secondary": "#006c49",
+                "surface-tint": "#006591",
+                "on-background": "#0b1c30",
+                "inverse-on-surface": "#eaf1ff",
+                "surface-dim": "#cbdbf5",
+                "primary-fixed-dim": "#89ceff",
+                "on-error-container": "#93000a",
+                "surface-container-high": "#dce9ff",
+                "primary-container": "#0ea5e9",
+                "on-secondary": "#ffffff",
+                "background": "#f8f9ff",
+                "surface-bright": "#f8f9ff"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "md": "16px",
+                "gutter": "24px",
+                "xl": "32px",
+                "margin-desktop": "40px",
+                "lg": "24px",
+                "base": "4px",
+                "xs": "4px",
+                "sm": "8px",
+                "max-width": "1440px",
+                "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                "headline-lg-mobile": ["Plus Jakarta Sans"],
+                "body-lg": ["Inter"],
+                "label-sm": ["Inter"],
+                "label-md": ["Inter"],
+                "headline-sm": ["Plus Jakarta Sans"],
+                "headline-lg": ["Plus Jakarta Sans"],
+                "headline-md": ["Plus Jakarta Sans"],
+                "headline-xl": ["Plus Jakarta Sans"],
+                "body-sm": ["Inter"],
+                "body-md": ["Inter"]
+            },
+            "fontSize": {
+                "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #f8fafc; /* Design System Level 0 Background */
+            color: #0b1c30;
+            -webkit-font-smoothing: antialiased;
+        }
+        .clinical-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .clinical-card:hover {
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            transform: translateY(-2px);
+        }
+        .status-chip {
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[28px]" data-icon="family_restroom">family_restroom</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Family Health</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border-2 border-primary/10">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a friendly medical administrator or health account holder. The lighting is soft and warm against a clean, light blue background, matching a modern corporate and clinical medical aesthetic. High resolution, high contrast, minimalist professional photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOBQnzssRTxP-pUaXoz5r0DzE2z70Ez-9SrUroYxcd9vzayBow-p3kIprnXqYAtpaALHvjF61x6dLty7kjz2Y6EbZZtVdn8p6KatoVxAfca_tksxDMh2byZCSUBjqTPmbAS5QiQDHXzJ5jlo5Iso4J2JWKpO80uYpWg6nYxGNAbggEXjW-yJwr1CoQSsmS-Jf8WQe2AtheTUraGXiNmhd2fy6iikN9uSlKBmheIZ67tLQs01FWCY9XH8VL9qXFQJwaJc3E5Zw6gGo"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="pt-24 pb-32 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto">
+<!-- Welcome Section -->
+<section class="mb-8">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-1">Family Dashboard</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Centralized health management for your 4 linked members.</p>
+</div>
+<button class="hidden md:flex items-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-xl font-label-md transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+                    Add Member
+                </button>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Family Members List (Col-span 2) -->
+<div class="lg:col-span-2 space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="group">group</span>
+                        Linked Members
+                    </h3>
+<a class="text-primary font-label-md flex items-center gap-1 hover:underline" href="#">View All <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span></a>
+</div>
+<!-- Bento-ish Grid for Members -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Spouse Card -->
+<div class="clinical-card p-5 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary-fixed"></div>
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a healthy adult woman with a kind smile, positioned in a bright, modern setting with soft daylight. The image has a clean, clinical yet warm tone, representing a professional healthcare app user profile. Subtle cool blue and white color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5pcs2F-M17TTRSOtjYqm8a7_loJ8UJLbQecvkLe4O3oulKWBlp3war_5lYXC_t29ZAYAl_pgb06_q7drXfhRwCIyNrh11RKmi9uN9D25GoxWFxm5ymsF48fvKXRlapk3WM2hFKuFEScKBer3Lz4r0LUJPZU6kYfzp-suUyL2WM0x4DWS89E4tv33ceBh_u-uSQTshTm_MexIhfBVfV_dx-IU7_tOArGJ5QwdMq-2nDoGIA_8XHuGGxLMZoHYm_j0xOy7UZRmxVBU"/>
+</div>
+<div>
+<h4 class="font-label-md text-on-surface">Sarah Johnson</h4>
+<span class="text-xs text-on-surface-variant uppercase tracking-wider font-semibold">Spouse</span>
+</div>
+</div>
+<div class="status-chip bg-secondary-container/20 text-on-secondary-container">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Normal
+                            </div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Latest Report</span>
+<span class="font-medium">Lipid Profile</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Date</span>
+<span class="font-medium">Oct 12, 2023</span>
+</div>
+<button class="w-full mt-2 py-2 text-primary bg-primary-fixed/30 rounded-lg font-label-sm hover:bg-primary-fixed/50 transition-colors">View Details</button>
+</div>
+</div>
+<!-- Son Card -->
+<div class="clinical-card p-5 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary-container"></div>
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young boy smiling cheerfully, lit by bright, natural sunlight. The image is captured with professional clarity, maintaining a clean medical application aesthetic. Soft white and light blue background tones suggest a safe, professional clinical environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKQr_iYhC-fJoKW4kZ7KUkoVCwOuRhuyEvHGUyTIwEaAX4JxiWmX3TB_yU1pWDpWzaHD8ie_YVXCPbTkcTK7E85M-MxfKuboN7n6M8YrTp2LE78v4aVaqr2Zctt8CvqzGE--aUiqLemgz_cgxwN7OBxMEs6sYKeOMFWyJcaBWos830Dtaa-P-_nePi5mB_ocwkceLkzJfuHaouESgj1f8PwqJG_dcU1qLiKE_aVOLQO9tjnqi827R5Mr-mRgBjdL0eXOSzBb_PZVQ"/>
+</div>
+<div>
+<h4 class="font-label-md text-on-surface">Leo Johnson</h4>
+<span class="text-xs text-on-surface-variant uppercase tracking-wider font-semibold">Son</span>
+</div>
+</div>
+<div class="status-chip bg-primary-container/20 text-on-primary-container">
+<span class="material-symbols-outlined text-[14px]" data-icon="pending">pending</span>
+                                Pending
+                            </div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Active Test</span>
+<span class="font-medium">Allergy Panel</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Sample Collected</span>
+<span class="font-medium">2 hours ago</span>
+</div>
+<div class="w-full bg-outline-variant/30 h-1.5 rounded-full overflow-hidden mt-2">
+<div class="bg-primary-container h-full w-[65%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Daughter Card -->
+<div class="clinical-card p-5 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-tertiary-container"></div>
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young girl with a happy expression, set against a bright and airy medical clinic background. The photo is high-quality, professional, and focuses on a healthy, active child. Colors are crisp and clean with a dominant palette of white and soft blues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn3xTs8Y0_7afSCKXP-YmaXiGZtBAWFofI1YE9eMemLDf8IYSw2AKFWj5gdhfvsu9RMhMSQlkjFA8a_RGIfjb_125kjEx-LlZyOBoDGiq5EEynPeWdZtdIzHD-Ck_p9roiaZmdX2pT-3vHDWSQYqz5wDqvExQFMyFNbQC-y-uDt-vKCSkktXFBphHIHKixpwejV04Man0NfGmGjWEL3TJbx5ObxFNyi7CYJawaJpyDWywoB5MdehsWI4t_QRpmsk1DJN2jCxI8JhM"/>
+</div>
+<div>
+<h4 class="font-label-md text-on-surface">Mia Johnson</h4>
+<span class="text-xs text-on-surface-variant uppercase tracking-wider font-semibold">Daughter</span>
+</div>
+</div>
+<div class="status-chip bg-tertiary-container/10 text-on-tertiary-container">
+<span class="material-symbols-outlined text-[14px]" data-icon="update">update</span>
+                                Upcoming
+                            </div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Next Action</span>
+<span class="font-medium">Pediatric Check</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">In</span>
+<span class="font-medium">3 Days</span>
+</div>
+<button class="w-full mt-2 py-2 text-tertiary bg-tertiary-fixed/30 rounded-lg font-label-sm hover:bg-tertiary-fixed/50 transition-colors">Prepare</button>
+</div>
+</div>
+<!-- Add New Card (Simplified for Grid balance) -->
+<button class="border-2 border-dashed border-outline-variant rounded-xl p-5 flex flex-col items-center justify-center gap-3 text-on-surface-variant hover:bg-surface-container hover:border-primary transition-all group">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-fixed">
+<span class="material-symbols-outlined text-primary" data-icon="add">add</span>
+</div>
+<span class="font-label-md">Add New Member</span>
+</button>
+</div>
+</div>
+<!-- Health Calendar Preview (Col-span 1) -->
+<div class="space-y-6">
+<h3 class="font-headline-sm text-headline-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_month">calendar_month</span>
+                    Family Calendar
+                </h3>
+<div class="clinical-card p-6">
+<!-- Mini Calendar Header -->
+<div class="flex items-center justify-between mb-6">
+<span class="font-label-md">October 2023</span>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center"><span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span></button>
+<button class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center"><span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span></button>
+</div>
+</div>
+<!-- Upcoming List -->
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="flex-shrink-0 flex flex-col items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary">
+<span class="text-[10px] font-bold uppercase">Oct</span>
+<span class="text-xl font-bold leading-none">18</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md leading-tight">Vaccination: Flu Shot</p>
+<p class="text-xs text-on-surface-variant">Mia Johnson • City Health Center</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex-shrink-0 flex flex-col items-center justify-center w-12 h-12 rounded-lg bg-secondary-container/20 text-on-secondary-container">
+<span class="text-[10px] font-bold uppercase">Oct</span>
+<span class="text-xl font-bold leading-none">21</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md leading-tight">Annual Physical Exam</p>
+<p class="text-xs text-on-surface-variant">Leo Johnson • Dr. Aris Clinic</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex-shrink-0 flex flex-col items-center justify-center w-12 h-12 rounded-lg bg-tertiary-container/10 text-on-tertiary-container">
+<span class="text-[10px] font-bold uppercase">Oct</span>
+<span class="text-xl font-bold leading-none">25</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md leading-tight">Dentist Appointment</p>
+<p class="text-xs text-on-surface-variant">Sarah Johnson • Dental Hub</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 border border-primary text-primary py-3 rounded-xl font-label-md hover:bg-primary-fixed/10 transition-colors">
+                        View Full Schedule
+                    </button>
+</div>
+<!-- Insights/Tips -->
+<div class="bg-primary-container p-5 rounded-xl text-on-primary-container relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="lightbulb">lightbulb</span>
+<span class="font-label-md">Health Tip</span>
+</div>
+<p class="text-sm font-medium leading-relaxed">Flu season is approaching. Schedule shots for the whole family this month.</p>
+</div>
+<!-- Decorative element -->
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[100px]" data-icon="medical_services">medical_services</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB for Mobile (as requested 'Prominent Add Member action button') -->
+<button class="md:hidden fixed bottom-24 right-6 w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-xl flex items-center justify-center z-40 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[28px]" data-icon="person_add">person_add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface border-t border-outline-variant h-20 px-4 md:hidden flex justify-around items-center">
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm mt-1">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-sm text-label-sm mt-1">Timeline</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary bg-secondary-container/20 rounded-xl px-3 py-1">
+<span class="material-symbols-outlined" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-sm text-label-sm mt-1">Members</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm mt-1">Settings</span>
+</div>
+</nav>
+<!-- Floating Atmosphere Script -->
+<script>
+        // Subtle micro-interaction for cards
+        document.querySelectorAll('.clinical-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const icon = card.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    icon.style.transition = 'transform 0.3s ease';
+                    icon.style.transform = 'scale(1.1)';
+                }
+            });
+            card.addEventListener('mouseleave', () => {
+                const icon = card.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    icon.style.transform = 'scale(1)';
+                }
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Task Details | DiagConnect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#6cf8bb",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed-variant": "#005236",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-secondary-fixed": "#002113",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#006591",
+                    "secondary-fixed-dim": "#4edea3",
+                    "primary": "#006591",
+                    "surface": "#f8f9ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-primary-container": "#003751",
+                    "surface-bright": "#f8f9ff",
+                    "primary-fixed-dim": "#89ceff",
+                    "tertiary": "#855300",
+                    "primary-container": "#0ea5e9",
+                    "surface-variant": "#d3e4fe",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-dim": "#cbdbf5",
+                    "primary-fixed": "#c9e6ff",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#d88a00",
+                    "secondary": "#006c49",
+                    "outline-variant": "#bec8d2",
+                    "on-surface": "#0b1c30",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-tertiary-container": "#4a2c00",
+                    "tertiary-fixed": "#ffddb8",
+                    "surface-container-highest": "#d3e4fe",
+                    "inverse-surface": "#213145",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#eff4ff",
+                    "surface-container": "#e5eeff",
+                    "on-surface-variant": "#3e4850",
+                    "on-tertiary-fixed": "#2a1700",
+                    "background": "#f8f9ff",
+                    "on-secondary-container": "#00714d",
+                    "on-primary": "#ffffff",
+                    "on-background": "#0b1c30",
+                    "outline": "#6e7881",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#89ceff",
+                    "surface-container-high": "#dce9ff",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#001e2f",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "margin-mobile": "16px",
+                    "lg": "24px",
+                    "margin-desktop": "40px",
+                    "max-width": "1440px",
+                    "gutter": "24px",
+                    "base": "4px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"],
+                    "headline-xl": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .signature-pad {
+            background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        body {
+            background-color: #f8fafc;
+            color: #0b1c30;
+        }
+        /* Custom scrollbar for better clinical feel */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-on-background w-full top-0 sticky z-50 border-b border-outline-variant dark:border-outline flex justify-between items-center px-margin-mobile py-sm w-full">
+<div class="flex items-center gap-md">
+<button class="p-xs text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low dark:hover:bg-surface-variant rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim tracking-tight">DiagConnect</h1>
+</div>
+<div class="flex items-center gap-sm">
+<div class="hidden md:flex gap-md mr-md">
+<span class="font-label-md text-primary dark:text-primary-fixed-dim font-bold transition-colors duration-200 cursor-pointer">Tasks</span>
+<span class="font-label-md text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 cursor-pointer">Map</span>
+<span class="font-label-md text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-colors duration-200 cursor-pointer">Profile</span>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional phlebotomist headshot, soft clinical lighting, wearing a clean light blue medical uniform, neutral studio background, high resolution corporate photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdH_CvqnmKTTihQQiO5AqZOCr7OSpZmgBNyNeMU0ISC9r76gK8CfAmuEvJqnCkoxuTXZdx4JA8ZeNDJwRMiSurOChPgiddWZy2CrpZR1_LXuzrcaXJmflMMK7Y1SCX7AxCpEpRwkUSmf65t_nj2lbAGamVzaYfKtWJfRAV1Ro8EGsY0B1OQV8fOxJ2gmhMovOoVBTIfK775vW_RBioDTVEyRspJqUIxtu3aNBaqNpC_e1VJdKBBCfxkZPoSh2bm8g50m1Eawm2tDU"/>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-lg">
+<!-- Context Header & Back Action -->
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-lg gap-md">
+<div class="flex items-center gap-sm">
+<button class="p-xs hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+</button>
+<nav class="flex text-on-surface-variant font-label-md">
+<span>Tasks</span>
+<span class="mx-xs">/</span>
+<span class="text-on-surface">Home Collection #HC-8821</span>
+</nav>
+</div>
+<div class="flex gap-sm">
+<span class="bg-secondary-container text-on-secondary-container px-md py-xs rounded-full font-label-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                    In Progress
+                </span>
+</div>
+</div>
+<!-- Main Layout: Bento Style -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Column: Patient & Info (Left) -->
+<div class="md:col-span-4 space-y-gutter">
+<!-- Patient Card -->
+<section class="bg-white rounded-xl border border-outline-variant p-lg shadow-sm">
+<div class="flex items-start gap-md mb-md">
+<div class="w-16 h-16 rounded-full bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[32px]">person</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Eleanor Vance</h2>
+<p class="text-on-surface-variant font-body-sm">Patient ID: PX-55201</p>
+</div>
+</div>
+<div class="space-y-sm pt-md border-t border-outline-variant">
+<div class="flex justify-between">
+<span class="text-on-surface-variant font-label-md">Age / Sex</span>
+<span class="text-on-surface font-body-sm">64 / Female</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant font-label-md">Contact</span>
+<span class="text-on-surface font-body-sm">+1 (555) 012-3456</span>
+</div>
+<div class="flex justify-between items-start">
+<span class="text-on-surface-variant font-label-md shrink-0">Address</span>
+<span class="text-on-surface font-body-sm text-right">128 Oakwood Ave, Apt 4B<br/>Springfield, IL 62704</span>
+</div>
+</div>
+<button class="w-full mt-lg py-sm px-md border border-primary text-primary font-label-md rounded-lg hover:bg-surface-container-low transition-colors flex justify-center items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">directions</span>
+                        Navigate to Location
+                    </button>
+</section>
+<!-- Medical History / Notes -->
+<section class="bg-white rounded-xl border border-outline-variant p-lg shadow-sm">
+<h3 class="font-label-md text-on-surface mb-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px] text-tertiary">warning</span>
+                        Collection Notes
+                    </h3>
+<div class="bg-surface-container-low p-md rounded-lg border-l-4 border-tertiary">
+<p class="text-on-surface-variant font-body-sm leading-relaxed">
+                            Patient has a history of difficult vein access in the left arm. Please prioritize right antecubital fossa. Requires fasting state (last meal &gt;10h).
+                        </p>
+</div>
+</section>
+</div>
+<!-- Column: Checklist & Actions (Right) -->
+<div class="md:col-span-8 space-y-gutter">
+<!-- Sample Checklist Card -->
+<section class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<h3 class="font-headline-sm text-headline-sm">Sample Collection Checklist</h3>
+<button class="bg-primary text-white px-md py-sm rounded-lg font-label-md flex items-center gap-xs shadow-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">barcode_scanner</span>
+                            Scan Barcode
+                        </button>
+</div>
+<div class="p-md space-y-sm">
+<!-- Test Item -->
+<div class="flex items-center p-md border border-outline-variant rounded-xl hover:border-primary-container transition-colors group cursor-pointer">
+<div class="mr-md flex-shrink-0">
+<input class="w-6 h-6 rounded border-outline-variant text-primary focus:ring-primary-container transition-all" type="checkbox"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-label-md text-on-surface">CBC (Complete Blood Count)</h4>
+<p class="text-on-surface-variant font-body-sm">Lavender Top (EDTA) • 3mL</p>
+</div>
+<div class="hidden sm:flex items-center gap-xs text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">info</span>
+<span class="font-label-sm">Procedure</span>
+</div>
+</div>
+<!-- Test Item -->
+<div class="flex items-center p-md border border-outline-variant rounded-xl hover:border-primary-container transition-colors group cursor-pointer bg-surface-container-low border-dashed">
+<div class="mr-md flex-shrink-0">
+<input checked="" class="w-6 h-6 rounded border-outline-variant text-primary focus:ring-primary-container transition-all" type="checkbox"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-label-md text-on-surface line-through opacity-60">Glucose Fasting</h4>
+<p class="text-on-surface-variant font-body-sm">Grey Top (Sodium Fluoride) • 2mL</p>
+</div>
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="font-label-sm">Scanned</span>
+</div>
+</div>
+<!-- Test Item -->
+<div class="flex items-center p-md border border-outline-variant rounded-xl hover:border-primary-container transition-colors group cursor-pointer">
+<div class="mr-md flex-shrink-0">
+<input class="w-6 h-6 rounded border-outline-variant text-primary focus:ring-primary-container transition-all" type="checkbox"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-label-md text-on-surface">Lipid Profile</h4>
+<p class="text-on-surface-variant font-body-sm">Gold Top (SST) • 5mL</p>
+</div>
+<div class="hidden sm:flex items-center gap-xs text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">info</span>
+<span class="font-label-sm">Procedure</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Consent & Signature Section -->
+<section class="bg-white rounded-xl border border-outline-variant p-lg shadow-sm">
+<h3 class="font-headline-sm text-headline-sm mb-md">Patient Consent</h3>
+<p class="text-on-surface-variant font-body-sm mb-lg leading-relaxed">
+                        I hereby authorize DiagConnect and its representatives to perform the medical diagnostic tests listed above. I confirm that I have followed the required preparation (fasting) and understand the procedure.
+                    </p>
+<div class="relative">
+<div class="flex justify-between items-end mb-xs">
+<label class="font-label-md text-on-surface">Patient Signature</label>
+<button class="text-primary font-label-sm hover:underline" onclick="clearSignature()">Clear</button>
+</div>
+<div class="signature-pad w-full h-40 border-2 border-dashed border-outline-variant rounded-xl bg-surface-container-low flex flex-col items-center justify-center cursor-crosshair group relative overflow-hidden">
+<span class="text-on-surface-variant font-label-md flex flex-col items-center gap-xs group-hover:opacity-60 transition-opacity" id="sig-placeholder">
+<span class="material-symbols-outlined text-[32px]">draw</span>
+                                Sign here with stylus or finger
+                            </span>
+<canvas class="absolute inset-0 w-full h-full cursor-crosshair" id="signature-canvas"></canvas>
+</div>
+</div>
+<div class="mt-lg flex flex-col sm:flex-row gap-md">
+<div class="flex-grow">
+<label class="block font-label-md text-on-surface mb-xs">Signed At</label>
+<input class="w-full bg-surface-container-low border-outline-variant rounded-lg font-body-sm px-md py-sm text-on-surface-variant" disabled="" type="text" value="Oct 24, 2023 • 09:14 AM"/>
+</div>
+<button class="w-full sm:w-auto self-end bg-primary text-white font-label-md px-xl py-md rounded-xl shadow-lg hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-all active:scale-[0.98]">
+                            Complete Collection
+                        </button>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface dark:bg-on-background flex justify-around items-center pt-xs pb-sm px-margin-mobile border-t border-outline-variant z-50 shadow-md">
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-sm text-label-sm">Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-sm text-label-sm">Map</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple Signature Pad Logic
+        const canvas = document.getElementById('signature-canvas');
+        const ctx = canvas.getContext('2d');
+        const placeholder = document.getElementById('sig-placeholder');
+        let drawing = false;
+
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+            ctx.strokeStyle = "#006591";
+            ctx.lineWidth = 2;
+            ctx.lineJoin = "round";
+            ctx.lineCap = "round";
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function startDrawing(e) {
+            drawing = true;
+            placeholder.classList.add('opacity-0');
+            draw(e);
+        }
+
+        function stopDrawing() {
+            drawing = false;
+            ctx.beginPath();
+        }
+
+        function draw(e) {
+            if (!drawing) return;
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left;
+            const y = (e.clientY || e.touches[0].clientY) - rect.top;
+
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        window.addEventListener('mouseup', stopDrawing);
+
+        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); startDrawing(e.touches[0]); });
+        canvas.addEventListener('touchmove', (e) => { e.preventDefault(); draw(e.touches[0]); });
+        canvas.addEventListener('touchend', stopDrawing);
+
+        function clearSignature() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            placeholder.classList.remove('opacity-0');
+        }
+
+        // Add visual feedback to checkboxes
+        const checkBoxes = document.querySelectorAll('input[type="checkbox"]');
+        checkBoxes.forEach(box => {
+            box.addEventListener('change', (e) => {
+                const parent = e.target.closest('.flex.items-center.p-md');
+                if(e.target.checked) {
+                    parent.classList.add('bg-surface-container-low', 'opacity-80');
+                } else {
+                    parent.classList.remove('bg-surface-container-low', 'opacity-80');
+                }
+            });
+        });
+    </script>
+</body></html>

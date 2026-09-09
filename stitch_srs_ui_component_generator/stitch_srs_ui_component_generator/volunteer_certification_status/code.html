@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Responder Portal | DiagConnect SOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "surface-dim": "#cbdbf5",
+                    "outline": "#6e7881",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#4a2c00",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#e5eeff",
+                    "inverse-surface": "#213145",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "inverse-primary": "#89ceff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "primary": "#006591",
+                    "outline-variant": "#bec8d2",
+                    "surface-tint": "#006591",
+                    "secondary-fixed-dim": "#4edea3",
+                    "secondary-fixed": "#6ffbbe",
+                    "primary-fixed": "#c9e6ff",
+                    "background": "#f8f9ff",
+                    "surface-variant": "#d3e4fe",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "surface-container-highest": "#d3e4fe",
+                    "secondary-container": "#6cf8bb",
+                    "on-background": "#0b1c30",
+                    "on-primary-container": "#003751",
+                    "on-secondary-container": "#00714d",
+                    "surface": "#f8f9ff",
+                    "surface-container-high": "#dce9ff",
+                    "surface-container-low": "#eff4ff",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#d88a00",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#ffddb8",
+                    "primary-container": "#0ea5e9",
+                    "on-primary-fixed": "#001e2f",
+                    "on-secondary": "#ffffff",
+                    "on-surface": "#0b1c30",
+                    "on-surface-variant": "#3e4850",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#002113",
+                    "tertiary": "#855300",
+                    "primary-fixed-dim": "#89ceff",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "secondary": "#006c49"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "md": "16px",
+                    "max-width": "1440px",
+                    "base": "4px",
+                    "xl": "32px",
+                    "gutter": "24px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "margin-desktop": "40px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "headline-xl": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .status-pill {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .toggle-dot {
+            transition: transform 0.2s ease-in-out;
+        }
+        input:checked ~ .toggle-dot {
+            transform: translateX(100%);
+        }
+        input:checked ~ .toggle-bg {
+            background-color: #006c49;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid #e2e8f0;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-mobile h-16 w-full max-w-max-width mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="emergency">emergency</span>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">DiagConnect SOS</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="hidden md:block font-label-md text-label-md text-on-surface-variant">Volunteer Portal</span>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="person">person</span>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-margin-mobile max-w-max-width mx-auto">
+<!-- Welcome Section -->
+<section class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Welcome Back, Alex</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Status: <span class="font-bold text-error" id="status-text">Inactive</span></p>
+</div>
+<!-- Active Duty Toggle Card -->
+<div class="glass-card p-lg rounded-xl flex items-center justify-between gap-6 shadow-sm min-w-[280px]">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md">Active Duty Mode</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Ready for dispatch</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer" for="duty-toggle">
+<input class="sr-only peer" id="duty-toggle" onchange="toggleStatus()" type="checkbox"/>
+<div class="toggle-bg w-14 h-8 bg-outline-variant rounded-full peer-focus:ring-4 peer-focus:ring-primary/20 transition-colors"></div>
+<div class="toggle-dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full shadow-sm border border-outline-variant"></div>
+</label>
+</div>
+</section>
+<!-- Main Bento Content -->
+<div class="bento-grid">
+<!-- Verification Badge Card -->
+<div class="col-span-12 md:col-span-4 glass-card rounded-xl p-lg flex flex-col items-center text-center border-l-4 border-l-primary">
+<div class="relative mb-4">
+<div class="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary !text-[48px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="absolute -bottom-2 right-0 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-sm text-label-sm shadow-sm">
+                        Tier 1
+                    </div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Certified Responder</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 mb-4">You are verified to respond to high-priority cardiovascular emergencies within 5km.</p>
+<div class="w-full h-px bg-outline-variant mb-4"></div>
+<div class="flex flex-col gap-2 w-full">
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-on-surface-variant">ID Number:</span>
+<span class="text-on-surface">DC-8842-AX</span>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Member Since:</span>
+<span class="text-on-surface">Jan 2023</span>
+</div>
+</div>
+</div>
+<!-- Credentials Card -->
+<div class="col-span-12 md:col-span-8 glass-card rounded-xl p-lg">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Professional Credentials</h3>
+<button class="text-primary font-label-md text-label-md flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[18px]" data-icon="upload">upload</span>
+                        Update Docs
+                    </button>
+</div>
+<div class="space-y-4">
+<!-- Credential Item -->
+<div class="p-md bg-surface-container rounded-lg flex items-center gap-4 border border-outline-variant/30">
+<div class="w-12 h-12 bg-white rounded flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary" data-icon="cardiology">cardiology</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-label-md text-label-md">CPR / BLS Certification</h4>
+<p class="text-body-sm text-body-sm text-on-surface-variant">American Heart Association</p>
+</div>
+<div class="text-right">
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container rounded text-[10px] font-bold uppercase tracking-wider">Active</span>
+<p class="text-body-sm text-body-sm text-on-surface-variant mt-1">Exp: 10/2025</p>
+</div>
+</div>
+<!-- Credential Item -->
+<div class="p-md bg-surface-container rounded-lg flex items-center gap-4 border border-outline-variant/30">
+<div class="w-12 h-12 bg-white rounded flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary" data-icon="medical_services">medical_services</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-label-md text-label-md">First Aid Certification</h4>
+<p class="text-body-sm text-body-sm text-on-surface-variant">Red Cross International</p>
+</div>
+<div class="text-right">
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container rounded text-[10px] font-bold uppercase tracking-wider">Active</span>
+<p class="text-body-sm text-body-sm text-on-surface-variant mt-1">Exp: 04/2026</p>
+</div>
+</div>
+<!-- Credential Item (Expiring) -->
+<div class="p-md bg-error-container/20 rounded-lg flex items-center gap-4 border border-error/20">
+<div class="w-12 h-12 bg-white rounded flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-error" data-icon="warning">warning</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-label-md text-label-md">ALS Training</h4>
+<p class="text-body-sm text-body-sm text-on-surface-variant">Advanced Life Support</p>
+</div>
+<div class="text-right">
+<span class="px-2 py-1 bg-error-container text-on-error-container rounded text-[10px] font-bold uppercase tracking-wider">Expiring Soon</span>
+<p class="text-body-sm text-body-sm text-error mt-1">Exp: 30 Days</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Ready to Respond Checklist -->
+<div class="col-span-12 md:col-span-7 glass-card rounded-xl p-lg">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-4">Ready to Respond Checklist</h3>
+<div class="space-y-3">
+<label class="flex items-start gap-3 p-3 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group">
+<input class="mt-1 w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<div>
+<span class="font-label-md text-label-md group-hover:text-primary transition-colors">Mobile Device Charged</span>
+<p class="text-body-sm text-body-sm text-on-surface-variant">Ensure minimum 80% battery for reliable tracking.</p>
+</div>
+</label>
+<label class="flex items-start gap-3 p-3 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group">
+<input class="mt-1 w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<div>
+<span class="font-label-md text-label-md group-hover:text-primary transition-colors">Emergency Kit Inspected</span>
+<p class="text-body-sm text-body-sm text-on-surface-variant">Gloves, masks, and basic AED prep kit are present.</p>
+</div>
+</label>
+<label class="flex items-start gap-3 p-3 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group">
+<input class="mt-1 w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<div>
+<span class="font-label-md text-label-md group-hover:text-primary transition-colors">Location Services ON</span>
+<p class="text-body-sm text-body-sm text-on-surface-variant">Required for dispatch to nearby incidents.</p>
+</div>
+</label>
+<label class="flex items-start gap-3 p-3 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer group">
+<input class="mt-1 w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<div>
+<span class="font-label-md text-label-md group-hover:text-primary transition-colors">Protocols Reviewed</span>
+<p class="text-body-sm text-body-sm text-on-surface-variant">Up-to-date with latest DiagConnect emergency guidelines.</p>
+</div>
+</label>
+</div>
+</div>
+<!-- Response Map/Area -->
+<div class="col-span-12 md:col-span-5 relative h-64 md:h-auto rounded-xl overflow-hidden shadow-sm border border-outline-variant">
+<div class="absolute inset-0 bg-surface-container-highest">
+<!-- Map Placeholder -->
+<div class="w-full h-full bg-cover bg-center opacity-60 grayscale-[40%]" data-alt="A clean, professional digital map UI in a light mode aesthetic, showing a specific metropolitan neighborhood with subtle blue and green highlights. Minimalistic iconography indicates medical facilities and safe zones. Soft morning lighting feel." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC49EEwDnpNQy25inxdCnqw7w1qL0i0KzcHt4cn1t5p8VwqiFv8ORVQOCxAo_PbjEYXCgDU7-U3tGsKv2LwQ-togmy6Na5F4m-Dq2BbFPvK2RGhj4jks55qoVwMz_1JM8QFfGvX8rZitosRwvNo7vdX-s2Lfav0JPcJqHfPrO4x4GO-V-NT0wP2No4QP-h7YBAvbfVeX-1NqSIL3nBeDq9XPg3uJb51X1Z1S0hDVLNTeHWSfwbJhZdJfNEamB2nloCr0oIJz2fiZjA')"></div>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4 text-white">
+<p class="font-label-md text-label-md">Current Response Zone</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-secondary-fixed" data-icon="location_on">location_on</span>
+<span class="font-headline-sm text-headline-sm">Downtown Sector 4</span>
+</div>
+</div>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-label-sm font-bold text-primary shadow-lg">
+                    5 Active Responders
+                </div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-surface shadow-lg z-50 rounded-t-xl md:max-w-max-width md:left-1/2 md:-translate-x-1/2">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 transition-transform duration-150 scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="emergency_home" style="font-variation-settings: 'FILL' 1;">emergency_home</span>
+<span class="font-label-sm text-label-sm">SOS</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span class="font-label-sm text-label-sm">Tracking</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="family_restroom">family_restroom</span>
+<span class="font-label-sm text-label-sm">Family</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-high rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span class="font-label-sm text-label-sm">Protocols</span>
+</a>
+</nav>
+<script>
+        function toggleStatus() {
+            const toggle = document.getElementById('duty-toggle');
+            const statusText = document.getElementById('status-text');
+            
+            if (toggle.checked) {
+                statusText.innerText = 'Active Duty';
+                statusText.className = 'font-bold text-secondary';
+                // Trigger a ripple effect or subtle notification sound simulation logic could go here
+            } else {
+                statusText.innerText = 'Inactive';
+                statusText.className = 'font-bold text-error';
+            }
+        }
+    </script>
+</body></html>

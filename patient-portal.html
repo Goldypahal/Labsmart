@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LabCare — Patient Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface2: #1a2235;
+  --border: #1e2d45;
+  --accent: #00d4ff;
+  --accent2: #7c3aed;
+  --accent3: #10b981;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --text: #e2e8f0;
+  --muted: #64748b;
+  --sidebar-w: 240px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── SIDEBAR ─── */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  z-index: 100;
+  transition: transform .3s;
+}
+
+.sidebar-logo {
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-logo .logo-mark {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+}
+.sidebar-logo .logo-sub {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.sidebar-user {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.user-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent2), var(--accent));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.user-name { font-size: 13px; font-weight: 500; }
+.user-id { font-size: 11px; color: var(--muted); }
+
+.sidebar-nav {
+  flex: 1;
+  padding: 12px 0;
+  overflow-y: auto;
+}
+.nav-section-label {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 12px 20px 6px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all .2s;
+  font-size: 13.5px;
+  font-weight: 400;
+  color: var(--muted);
+  position: relative;
+  border-left: 3px solid transparent;
+}
+.nav-item:hover { color: var(--text); background: rgba(255,255,255,.03); }
+.nav-item.active {
+  color: var(--accent);
+  background: rgba(0,212,255,.06);
+  border-left-color: var(--accent);
+  font-weight: 500;
+}
+.nav-item .icon { font-size: 16px; width: 20px; text-align: center; }
+.nav-badge {
+  margin-left: auto;
+  background: var(--danger);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 20px;
+  min-width: 18px;
+  text-align: center;
+}
+
+.sidebar-bottom {
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+}
+
+/* Theme toggle */
+.theme-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.toggle {
+  width: 36px; height: 20px;
+  background: var(--border);
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: background .3s;
+  margin-left: auto;
+}
+.toggle.on { background: var(--accent); }
+.toggle::after {
+  content: '';
+  width: 14px; height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px; left: 3px;
+  transition: transform .3s;
+}
+.toggle.on::after { transform: translateX(16px); }
+
+/* ─── MAIN ─── */
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top bar */
+.topbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 28px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky; top: 0; z-index: 50;
+}
+.topbar-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+}
+.topbar-actions { display: flex; align-items: center; gap: 12px; }
+.topbar-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+  transition: all .2s;
+}
+.topbar-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ─── CONTENT ─── */
+.content { padding: 28px; flex: 1; }
+.section { display: none; animation: fadeUp .35s ease; }
+.section.active { display: block; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Section header */
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+}
+.section-sub { color: var(--muted); font-size: 13px; margin-top: 3px; }
+
+/* Cards grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  transition: all .25s;
+}
+.card:hover { border-color: rgba(0,212,255,.3); transform: translateY(-2px); }
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.stat-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.stat-icon.blue { background: rgba(0,212,255,.12); }
+.stat-icon.purple { background: rgba(124,58,237,.12); }
+.stat-icon.green { background: rgba(16,185,129,.12); }
+.stat-icon.amber { background: rgba(245,158,11,.12); }
+.stat-val { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 700; }
+.stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* Filters bar */
+.filters-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.filter-input {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: border .2s;
+}
+.filter-input:focus { border-color: var(--accent); }
+.filter-input::placeholder { color: var(--muted); }
+select.filter-input option { background: var(--surface); }
+
+.btn {
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all .2s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.btn-primary { background: var(--accent); color: #000; }
+.btn-primary:hover { background: #00b8e0; }
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 12px; font-size: 12px; }
+.btn-danger { background: rgba(239,68,68,.1); color: var(--danger); border: 1px solid rgba(239,68,68,.3); }
+
+/* Quick date chips */
+.date-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  transition: all .2s;
+}
+.chip:hover, .chip.active { background: rgba(0,212,255,.1); border-color: var(--accent); color: var(--accent); }
+
+/* Table */
+.table-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+table { width: 100%; border-collapse: collapse; }
+thead th {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+}
+tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background .2s;
+}
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: rgba(255,255,255,.02); }
+tbody td { padding: 14px 16px; font-size: 13.5px; }
+
+/* Status badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+.badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.badge-ready { background: rgba(16,185,129,.12); color: var(--accent3); }
+.badge-pending { background: rgba(245,158,11,.12); color: var(--warn); }
+.badge-processing { background: rgba(0,212,255,.12); color: var(--accent); }
+.badge-cancelled { background: rgba(239,68,68,.1); color: var(--danger); }
+
+/* ─── MAP SECTION ─── */
+.map-layout { display: grid; grid-template-columns: 1fr 340px; gap: 20px; }
+.map-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  min-height: 500px;
+}
+.map-mock {
+  width: 100%; height: 100%;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(0,212,255,.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 60%, rgba(124,58,237,.04) 0%, transparent 60%),
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(30,45,69,.4) 39px, rgba(30,45,69,.4) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(30,45,69,.4) 39px, rgba(30,45,69,.4) 40px);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 500px;
+  position: relative;
+}
+
+/* Animated route */
+.route-line {
+  position: absolute;
+  top: 50%; left: 20%;
+  width: 60%; height: 2px;
+  background: linear-gradient(90deg, var(--accent3), var(--accent));
+  border-radius: 2px;
+}
+.route-dot {
+  position: absolute;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  top: 50%; transform: translateY(-50%);
+  animation: moveDot 4s ease-in-out infinite alternate;
+}
+.route-dot.agent {
+  background: var(--accent);
+  box-shadow: 0 0 0 6px rgba(0,212,255,.2);
+  left: 20%;
+}
+.route-dot.dest {
+  background: var(--danger);
+  box-shadow: 0 0 0 6px rgba(239,68,68,.2);
+  right: 20%;
+}
+@keyframes moveDot { from { left: 20%; } to { left: 75%; } }
+
+.map-pin {
+  position: absolute;
+  font-size: 28px;
+  transform: translate(-50%, -100%);
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.5));
+  animation: bounce 2s ease-in-out infinite;
+}
+@keyframes bounce { 0%,100% { transform: translate(-50%,-100%); } 50% { transform: translate(-50%,-110%); } }
+.map-pin.home { top: 55%; left: 80%; }
+.map-pin.lab { top: 45%; left: 15%; }
+
+/* Pulse rings */
+.pulse-ring {
+  position: absolute;
+  border-radius: 50%;
+  animation: pulseRing 2s ease-out infinite;
+}
+.pulse-ring.blue {
+  width: 60px; height: 60px;
+  border: 2px solid rgba(0,212,255,.5);
+  top: calc(50% - 30px); left: calc(20% - 30px);
+}
+@keyframes pulseRing { 0% { transform: scale(1); opacity: .6; } 100% { transform: scale(2); opacity: 0; } }
+
+/* Agent info panel */
+.agent-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.agent-header { display: flex; align-items: center; gap: 14px; }
+.agent-avatar {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent3), #0891b2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  border: 3px solid var(--accent3);
+  flex-shrink: 0;
+}
+.agent-status-ring {
+  width: 12px; height: 12px;
+  background: var(--accent3);
+  border-radius: 50%;
+  border: 2px solid var(--surface);
+  position: absolute;
+  bottom: 0; right: 0;
+  animation: pulseGreen 1.5s ease-in-out infinite;
+}
+@keyframes pulseGreen { 0%,100% { box-shadow: 0 0 0 0 rgba(16,185,129,.4); } 50% { box-shadow: 0 0 0 6px rgba(16,185,129,0); } }
+
+.eta-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+}
+.eta-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--accent);
+}
+.eta-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+.progress-steps { display: flex; flex-direction: column; gap: 0; }
+.progress-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  position: relative;
+}
+.step-icon {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.step-icon.done { background: var(--accent3); color: #000; }
+.step-icon.active { background: var(--accent); color: #000; animation: pulse 1.5s ease-in-out infinite; }
+.step-icon.pending { background: var(--border); color: var(--muted); }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(0,212,255,.4); } 50% { box-shadow: 0 0 0 8px rgba(0,212,255,0); } }
+
+.step-connector {
+  position: absolute;
+  left: 13px;
+  top: 38px;
+  width: 2px;
+  height: calc(100% - 18px);
+  background: var(--border);
+}
+.step-connector.done { background: var(--accent3); }
+.step-text { flex: 1; padding-top: 4px; }
+.step-title { font-size: 13px; font-weight: 500; }
+.step-time { font-size: 11px; color: var(--muted); margin-top: 1px; }
+.step-time.active { color: var(--accent); }
+
+.agent-actions { display: flex; gap: 8px; }
+
+/* ─── BOOK A TEST ─── */
+.test-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.category-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all .25s;
+}
+.category-card:hover, .category-card.selected {
+  border-color: var(--accent);
+  background: rgba(0,212,255,.06);
+}
+.category-icon { font-size: 28px; margin-bottom: 8px; }
+.category-name { font-size: 12px; font-weight: 500; }
+.category-count { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+.tests-list { display: flex; flex-direction: column; gap: 10px; }
+.test-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.test-item:hover { border-color: rgba(0,212,255,.4); }
+.test-item.selected { border-color: var(--accent); background: rgba(0,212,255,.05); }
+.test-info { flex: 1; }
+.test-name { font-size: 14px; font-weight: 500; }
+.test-meta { font-size: 12px; color: var(--muted); margin-top: 3px; }
+.test-price { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; color: var(--accent3); }
+.test-old-price { font-size: 11px; color: var(--muted); text-decoration: line-through; }
+.test-checkbox {
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  border: 2px solid var(--border);
+  background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s;
+  flex-shrink: 0;
+}
+.test-item.selected .test-checkbox {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+}
+
+.booking-summary {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* ─── APPOINTMENTS ─── */
+.appointments-grid { display: grid; grid-template-columns: 1fr 300px; gap: 20px; }
+
+.mini-calendar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+}
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.cal-month {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+}
+.cal-nav {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+}
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.cal-day-label {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 1px;
+  padding: 6px 0;
+}
+.cal-day {
+  text-align: center;
+  font-size: 12.5px;
+  padding: 7px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all .2s;
+  position: relative;
+}
+.cal-day:hover { background: var(--surface2); }
+.cal-day.today { background: rgba(0,212,255,.15); color: var(--accent); font-weight: 600; }
+.cal-day.selected { background: var(--accent); color: #000; font-weight: 700; }
+.cal-day.has-apt::after {
+  content: '';
+  width: 4px; height: 4px;
+  background: var(--accent3);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 2px; left: 50%; transform: translateX(-50%);
+}
+.cal-day.other-month { color: var(--muted); }
+
+.time-slots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 16px;
+}
+.time-slot {
+  text-align: center;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all .2s;
+  background: var(--surface2);
+  color: var(--text);
+}
+.time-slot:hover, .time-slot.selected { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,.08); }
+.time-slot.booked { color: var(--muted); background: var(--surface); cursor: not-allowed; opacity: .5; }
+
+.appointments-list { display: flex; flex-direction: column; gap: 12px; }
+.apt-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all .2s;
+}
+.apt-card:hover { border-color: rgba(0,212,255,.3); }
+.apt-date-badge {
+  background: var(--surface2);
+  border-radius: 10px;
+  padding: 10px 14px;
+  text-align: center;
+  flex-shrink: 0;
+  min-width: 56px;
+}
+.apt-date-day { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; }
+.apt-date-mon { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+/* ─── CHAT ─── */
+.chat-layout { display: grid; grid-template-columns: 280px 1fr; gap: 0; height: 600px; }
+.chat-sidebar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px 0 0 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.chat-search {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.chat-contacts { flex: 1; overflow-y: auto; }
+.chat-contact {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: background .2s;
+  border-bottom: 1px solid rgba(30,45,69,.5);
+}
+.chat-contact:hover { background: var(--surface2); }
+.chat-contact.active { background: rgba(0,212,255,.07); }
+.contact-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.contact-name { font-size: 13px; font-weight: 500; }
+.contact-preview { font-size: 11.5px; color: var(--muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; }
+.contact-time { font-size: 11px; color: var(--muted); margin-left: auto; align-self: flex-start; }
+.contact-unread {
+  background: var(--accent);
+  color: #000;
+  font-size: 10px;
+  font-weight: 700;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-left: auto;
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
+.chat-main {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: none;
+  border-radius: 0 14px 14px 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.chat-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface2);
+}
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.msg {
+  max-width: 65%;
+  display: flex;
+  flex-direction: column;
+}
+.msg.them { align-self: flex-start; }
+.msg.me { align-self: flex-end; }
+.msg-bubble {
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.msg.them .msg-bubble {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 4px;
+}
+.msg.me .msg-bubble {
+  background: linear-gradient(135deg, var(--accent2), #6d28d9);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+.msg-time { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.msg.me .msg-time { text-align: right; }
+
+.chat-bot-msg .msg-bubble {
+  background: rgba(0,212,255,.08);
+  border: 1px solid rgba(0,212,255,.2);
+}
+
+.chat-input-area {
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+.chat-input {
+  flex: 1;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  resize: none;
+  max-height: 100px;
+  transition: border .2s;
+}
+.chat-input:focus { border-color: var(--accent); }
+
+/* ─── NOTIFICATIONS ─── */
+.notif-filters { display: flex; gap: 8px; margin-bottom: 20px; }
+.notif-list { display: flex; flex-direction: column; gap: 10px; }
+.notif-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: all .2s;
+  cursor: pointer;
+  position: relative;
+}
+.notif-item:hover { border-color: rgba(0,212,255,.25); }
+.notif-item.unread { border-left: 3px solid var(--accent); background: rgba(0,212,255,.03); }
+.notif-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.notif-text { flex: 1; }
+.notif-title { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+.notif-body { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+.notif-time { font-size: 11px; color: var(--muted); margin-left: auto; white-space: nowrap; }
+.notif-unread-dot {
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: absolute;
+  top: 16px; right: 16px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <span class="logo-mark">⚗️ LabCare</span>
+    <span class="logo-sub">Patient Portal</span>
+  </div>
+
+  <div class="sidebar-user">
+    <div class="user-avatar">RK</div>
+    <div>
+      <div class="user-name">Rajiv Kumar</div>
+      <div class="user-id">PT-2024-00182</div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Main</div>
+    <div class="nav-item" onclick="showSection('dashboard')">
+      <span class="icon">📊</span> Dashboard
+    </div>
+    <div class="nav-item active" onclick="showSection('reports')">
+      <span class="icon">📋</span> My Reports
+    </div>
+    <div class="nav-item" onclick="showSection('map')">
+      <span class="icon">🗺️</span> Live Collection Map
+    </div>
+    <div class="nav-item" onclick="showSection('book')">
+      <span class="icon">🧪</span> Book a Test
+    </div>
+    <div class="nav-item" onclick="showSection('appointments')">
+      <span class="icon">📅</span> Appointments
+      <span class="nav-badge">2</span>
+    </div>
+
+    <div class="nav-section-label">Support</div>
+    <div class="nav-item" onclick="showSection('chat')">
+      <span class="icon">💬</span> Chat & Support
+      <span class="nav-badge">3</span>
+    </div>
+    <div class="nav-item" onclick="showSection('notifications')">
+      <span class="icon">🔔</span> Notifications
+      <span class="nav-badge">5</span>
+    </div>
+
+    <div class="nav-section-label">Account</div>
+    <div class="nav-item" onclick="showSection('profile')">
+      <span class="icon">👤</span> Profile
+    </div>
+    <div class="nav-item" onclick="showSection('history')">
+      <span class="icon">🕘</span> Test History
+    </div>
+    <div class="nav-item" onclick="showSection('settings')">
+      <span class="icon">⚙️</span> Settings
+    </div>
+  </nav>
+
+  <div class="sidebar-bottom">
+    <div class="theme-row">
+      <span style="font-size:14px">🌙</span>
+      <span style="font-size:13px">Dark Mode</span>
+      <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+    </div>
+    <div class="nav-item" style="color:#ef4444">
+      <span class="icon">🚪</span> Logout
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <header class="topbar">
+    <div class="topbar-title" id="page-title">My Reports</div>
+    <div class="topbar-actions">
+      <button class="topbar-btn">📥 Export All</button>
+      <button class="topbar-btn">🔔 <span style="color:var(--danger)">●</span></button>
+      <div class="user-avatar" style="width:34px;height:34px;font-size:12px;cursor:pointer">RK</div>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- ─── REPORTS ─── -->
+    <section class="section active" id="sec-reports">
+      <div class="section-header">
+        <div>
+          <div class="section-title">My Reports</div>
+          <div class="section-sub">View, download and share all your lab reports</div>
+        </div>
+        <button class="btn btn-primary">📤 Share Report</button>
+      </div>
+
+      <!-- Stats -->
+      <div class="cards-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px">
+        <div class="card stat-card">
+          <div class="stat-icon blue">📋</div>
+          <div><div class="stat-val">24</div><div class="stat-label">Total Reports</div></div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-icon green">✅</div>
+          <div><div class="stat-val">21</div><div class="stat-label">Ready</div></div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-icon amber">⏳</div>
+          <div><div class="stat-val">2</div><div class="stat-label">Pending</div></div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-icon purple">🔬</div>
+          <div><div class="stat-val">1</div><div class="stat-label">Processing</div></div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters-bar">
+        <input type="text" class="filter-input" placeholder="🔍  Search by test name..." style="flex:1;min-width:200px">
+        <input type="date" class="filter-input" value="2024-01-01">
+        <span style="color:var(--muted);font-size:13px">to</span>
+        <input type="date" class="filter-input" value="2025-02-28">
+        <select class="filter-input">
+          <option>All Status</option>
+          <option>Ready</option>
+          <option>Pending</option>
+          <option>Processing</option>
+        </select>
+        <select class="filter-input">
+          <option>All Tests</option>
+          <option>CBC</option>
+          <option>Lipid Panel</option>
+          <option>Thyroid</option>
+        </select>
+        <button class="btn btn-primary">🔍 Search</button>
+        <button class="btn btn-outline">↺ Reset</button>
+      </div>
+
+      <div class="date-chips" style="margin-bottom:16px">
+        <button class="chip active">Today</button>
+        <button class="chip">Last 7 Days</button>
+        <button class="chip">Last Month</button>
+        <button class="chip">Last 3 Months</button>
+        <button class="chip">Last Year</button>
+        <button class="chip">Custom Range</button>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Report ID</th>
+              <th>Test Name</th>
+              <th>Collection Date</th>
+              <th>Ready Date</th>
+              <th>Doctor</th>
+              <th>Status</th>
+              <th>Amount</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color:var(--accent);font-weight:500">#RPT-8821</td>
+              <td><div style="font-weight:500">Complete Blood Count (CBC)</div><div style="font-size:11px;color:var(--muted)">Hematology Panel</div></td>
+              <td>28 Feb 2025</td>
+              <td>28 Feb 2025</td>
+              <td>Dr. Mehra</td>
+              <td><span class="badge badge-ready">Ready</span></td>
+              <td style="color:var(--accent3);font-weight:600">₹450</td>
+              <td><button class="btn btn-outline btn-sm">⬇ Download</button></td>
+            </tr>
+            <tr>
+              <td style="color:var(--accent);font-weight:500">#RPT-8790</td>
+              <td><div style="font-weight:500">Lipid Profile</div><div style="font-size:11px;color:var(--muted)">Cardiovascular Panel</div></td>
+              <td>25 Feb 2025</td>
+              <td>26 Feb 2025</td>
+              <td>Dr. Sharma</td>
+              <td><span class="badge badge-ready">Ready</span></td>
+              <td style="color:var(--accent3);font-weight:600">₹680</td>
+              <td><button class="btn btn-outline btn-sm">⬇ Download</button></td>
+            </tr>
+            <tr>
+              <td style="color:var(--accent);font-weight:500">#RPT-8755</td>
+              <td><div style="font-weight:500">Thyroid Function (TSH, T3, T4)</div><div style="font-size:11px;color:var(--muted)">Endocrine Panel</div></td>
+              <td>20 Feb 2025</td>
+              <td>—</td>
+              <td>Dr. Kapoor</td>
+              <td><span class="badge badge-processing">Processing</span></td>
+              <td style="color:var(--accent3);font-weight:600">₹850</td>
+              <td><button class="btn btn-outline btn-sm" style="opacity:.5" disabled>⬇ Download</button></td>
+            </tr>
+            <tr>
+              <td style="color:var(--accent);font-weight:500">#RPT-8710</td>
+              <td><div style="font-weight:500">HbA1c (Diabetes)</div><div style="font-size:11px;color:var(--muted)">Glucose Panel</div></td>
+              <td>15 Feb 2025</td>
+              <td>—</td>
+              <td>Dr. Gupta</td>
+              <td><span class="badge badge-pending">Pending</span></td>
+              <td style="color:var(--accent3);font-weight:600">₹520</td>
+              <td><button class="btn btn-outline btn-sm" style="opacity:.5" disabled>⬇ Download</button></td>
+            </tr>
+            <tr>
+              <td style="color:var(--accent);font-weight:500">#RPT-8650</td>
+              <td><div style="font-weight:500">Urine Routine Analysis</div><div style="font-size:11px;color:var(--muted)">Urinalysis</div></td>
+              <td>10 Feb 2025</td>
+              <td>11 Feb 2025</td>
+              <td>Dr. Mehra</td>
+              <td><span class="badge badge-ready">Ready</span></td>
+              <td style="color:var(--accent3);font-weight:600">₹200</td>
+              <td><button class="btn btn-outline btn-sm">⬇ Download</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ─── LIVE MAP ─── -->
+    <section class="section" id="sec-map">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Live Collection Map</div>
+          <div class="section-sub">Track your sample collection agent in real-time</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);padding:8px 14px;border-radius:20px">
+          <div style="width:8px;height:8px;background:var(--accent3);border-radius:50%;animation:pulseGreen 1.5s ease-in-out infinite"></div>
+          <span style="font-size:13px;color:var(--accent3);font-weight:500">Agent En Route</span>
+        </div>
+      </div>
+
+      <div class="map-layout">
+        <div class="map-container">
+          <div class="map-mock">
+            <div class="route-line"></div>
+            <div class="pulse-ring blue"></div>
+            <div class="route-dot agent"></div>
+            <div class="route-dot dest"></div>
+            <div class="map-pin lab" title="Lab">🏥</div>
+            <div class="map-pin home" title="Your Location">📍</div>
+            <div style="position:absolute;bottom:16px;left:16px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:12px;color:var(--muted)">
+              🗺️ Live Map — Google Maps integration ready
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div class="agent-panel">
+            <div class="agent-header">
+              <div style="position:relative">
+                <div class="agent-avatar">👨</div>
+                <div class="agent-status-ring"></div>
+              </div>
+              <div style="flex:1">
+                <div style="font-weight:600;font-size:15px">Suresh Yadav</div>
+                <div style="font-size:12px;color:var(--muted)">Collection Agent · ⭐ 4.9</div>
+              </div>
+            </div>
+
+            <div class="eta-card">
+              <div class="eta-val">8 min</div>
+              <div class="eta-label">Estimated Arrival Time</div>
+              <div style="margin-top:8px;font-size:12px;color:var(--muted)">📍 2.3 km away</div>
+            </div>
+
+            <div class="progress-steps">
+              <div class="progress-step">
+                <div class="step-connector done"></div>
+                <div class="step-icon done">✓</div>
+                <div class="step-text">
+                  <div class="step-title">Order Confirmed</div>
+                  <div class="step-time">9:00 AM</div>
+                </div>
+              </div>
+              <div class="progress-step">
+                <div class="step-connector done"></div>
+                <div class="step-icon done">✓</div>
+                <div class="step-text">
+                  <div class="step-title">Agent Assigned</div>
+                  <div class="step-time">9:15 AM</div>
+                </div>
+              </div>
+              <div class="progress-step">
+                <div class="step-connector"></div>
+                <div class="step-icon active">🏃</div>
+                <div class="step-text">
+                  <div class="step-title">On the Way</div>
+                  <div class="step-time active">● Live now</div>
+                </div>
+              </div>
+              <div class="progress-step">
+                <div class="step-connector"></div>
+                <div class="step-icon pending">📍</div>
+                <div class="step-text">
+                  <div class="step-title">Arrived at Location</div>
+                  <div class="step-time">Pending</div>
+                </div>
+              </div>
+              <div class="progress-step">
+                <div class="step-icon pending">🧪</div>
+                <div class="step-text">
+                  <div class="step-title">Sample Collected</div>
+                  <div class="step-time">Pending</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="agent-actions">
+              <button class="btn btn-primary" style="flex:1">📞 Call Agent</button>
+              <button class="btn btn-outline" style="flex:1">💬 Message</button>
+            </div>
+          </div>
+
+          <div class="card" style="padding:16px">
+            <div style="font-size:12px;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;font-weight:600">Collection Details</div>
+            <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">Test</span><span style="font-weight:500">CBC + Lipid Panel</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">Booking ID</span><span style="color:var(--accent)">#BK-44219</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">Fasting</span><span style="color:var(--warn)">⚠ Required</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">Time Slot</span><span>10:00–10:30 AM</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── BOOK A TEST ─── -->
+    <section class="section" id="sec-book">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Book a Test</div>
+          <div class="section-sub">Choose from 500+ diagnostic tests and health packages</div>
+        </div>
+        <button class="btn btn-primary">🛒 View Cart (0)</button>
+      </div>
+
+      <div class="filters-bar">
+        <input type="text" class="filter-input" placeholder="🔍  Search tests, packages..." style="flex:1">
+        <input type="date" class="filter-input">
+        <select class="filter-input">
+          <option>Home Collection</option>
+          <option>Walk-in Lab</option>
+        </select>
+        <button class="btn btn-primary">Search</button>
+      </div>
+
+      <div style="font-size:13px;color:var(--muted);margin-bottom:14px">Browse by Category</div>
+      <div class="test-categories">
+        <div class="category-card selected">
+          <div class="category-icon">🩸</div>
+          <div class="category-name">Blood Tests</div>
+          <div class="category-count">128 tests</div>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">🦠</div>
+          <div class="category-name">Microbiology</div>
+          <div class="category-count">64 tests</div>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">🧬</div>
+          <div class="category-name">Genetics</div>
+          <div class="category-count">32 tests</div>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">🫀</div>
+          <div class="category-name">Cardiology</div>
+          <div class="category-count">45 tests</div>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">🧪</div>
+          <div class="category-name">Hormones</div>
+          <div class="category-count">56 tests</div>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">💊</div>
+          <div class="category-name">Diabetes</div>
+          <div class="category-count">18 tests</div>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">🫁</div>
+          <div class="category-name">Respiratory</div>
+          <div class="category-count">22 tests</div>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">📦</div>
+          <div class="category-name">Health Pkgs</div>
+          <div class="category-count">15 pkgs</div>
+        </div>
+      </div>
+
+      <div style="font-size:13px;color:var(--muted);margin-bottom:12px">Popular Blood Tests</div>
+      <div class="tests-list">
+        <div class="test-item selected" onclick="this.classList.toggle('selected')">
+          <div style="font-size:24px">🩸</div>
+          <div class="test-info">
+            <div class="test-name">Complete Blood Count (CBC)</div>
+            <div class="test-meta">⏱ Results in 4-6 hrs &nbsp;·&nbsp; 🏠 Home collection available &nbsp;·&nbsp; ⚠ Fasting not required</div>
+          </div>
+          <div style="text-align:right">
+            <div class="test-price">₹450</div>
+            <div class="test-old-price">₹600</div>
+            <div style="font-size:10px;color:var(--accent3)">25% OFF</div>
+          </div>
+          <div class="test-checkbox">✓</div>
+        </div>
+        <div class="test-item" onclick="this.classList.toggle('selected')">
+          <div style="font-size:24px">❤️</div>
+          <div class="test-info">
+            <div class="test-name">Lipid Profile (Cholesterol)</div>
+            <div class="test-meta">⏱ Results in 6-8 hrs &nbsp;·&nbsp; 🏠 Home collection available &nbsp;·&nbsp; ⚠ Fasting required (12hr)</div>
+          </div>
+          <div style="text-align:right">
+            <div class="test-price">₹680</div>
+            <div class="test-old-price">₹900</div>
+            <div style="font-size:10px;color:var(--accent3)">24% OFF</div>
+          </div>
+          <div class="test-checkbox"></div>
+        </div>
+        <div class="test-item" onclick="this.classList.toggle('selected')">
+          <div style="font-size:24px">🦋</div>
+          <div class="test-info">
+            <div class="test-name">Thyroid Profile (TSH, T3, T4)</div>
+            <div class="test-meta">⏱ Results in 12-24 hrs &nbsp;·&nbsp; 🏠 Home collection available &nbsp;·&nbsp; ✅ Fasting not required</div>
+          </div>
+          <div style="text-align:right">
+            <div class="test-price">₹850</div>
+            <div class="test-old-price">₹1100</div>
+            <div style="font-size:10px;color:var(--accent3)">23% OFF</div>
+          </div>
+          <div class="test-checkbox"></div>
+        </div>
+        <div class="test-item" onclick="this.classList.toggle('selected')">
+          <div style="font-size:24px">🩺</div>
+          <div class="test-info">
+            <div class="test-name">HbA1c (Blood Sugar 3-month avg)</div>
+            <div class="test-meta">⏱ Results in 6-8 hrs &nbsp;·&nbsp; 🏠 Home collection available &nbsp;·&nbsp; ✅ Fasting not required</div>
+          </div>
+          <div style="text-align:right">
+            <div class="test-price">₹520</div>
+            <div class="test-old-price">₹700</div>
+            <div style="font-size:10px;color:var(--accent3)">26% OFF</div>
+          </div>
+          <div class="test-checkbox"></div>
+        </div>
+      </div>
+
+      <div class="booking-summary">
+        <div style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:14px">Order Summary</div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px"><span style="color:var(--muted)">CBC</span><span>₹450</span></div>
+        <div style="border-top:1px solid var(--border);margin:12px 0"></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:16px"><span style="font-weight:600">Total</span><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;color:var(--accent3)">₹450</span></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px">🧪 Confirm & Book Collection</button>
+      </div>
+    </section>
+
+    <!-- ─── APPOINTMENTS ─── -->
+    <section class="section" id="sec-appointments">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Appointments</div>
+          <div class="section-sub">Schedule and manage your lab visits</div>
+        </div>
+        <button class="btn btn-primary">+ New Appointment</button>
+      </div>
+
+      <div class="appointments-grid">
+        <div>
+          <div style="font-size:13px;color:var(--muted);margin-bottom:12px;font-weight:500">Upcoming Appointments</div>
+          <div class="appointments-list">
+            <div class="apt-card">
+              <div class="apt-date-badge">
+                <div class="apt-date-day">05</div>
+                <div class="apt-date-mon">Mar</div>
+              </div>
+              <div style="flex:1">
+                <div style="font-weight:500;font-size:14px">CBC + Lipid Panel</div>
+                <div style="font-size:12px;color:var(--muted);margin-top:3px">🕐 10:00–10:30 AM &nbsp;·&nbsp; 🏠 Home Collection</div>
+                <div style="font-size:12px;color:var(--muted);margin-top:2px">👤 Agent: Suresh Yadav</div>
+              </div>
+              <span class="badge badge-processing">Confirmed</span>
+            </div>
+            <div class="apt-card">
+              <div class="apt-date-badge">
+                <div class="apt-date-day">12</div>
+                <div class="apt-date-mon">Mar</div>
+              </div>
+              <div style="flex:1">
+                <div style="font-weight:500;font-size:14px">Thyroid Function Test</div>
+                <div style="font-size:12px;color:var(--muted);margin-top:3px">🕐 8:00–8:30 AM &nbsp;·&nbsp; 🏥 Walk-in</div>
+                <div style="font-size:12px;color:var(--muted);margin-top:2px">📍 LabCare Sector 17 Branch</div>
+              </div>
+              <span class="badge badge-pending">Pending</span>
+            </div>
+            <div class="apt-card" style="opacity:.6">
+              <div class="apt-date-badge">
+                <div class="apt-date-day">18</div>
+                <div class="apt-date-mon">Feb</div>
+              </div>
+              <div style="flex:1">
+                <div style="font-weight:500;font-size:14px">Urine Analysis</div>
+                <div style="font-size:12px;color:var(--muted);margin-top:3px">🕐 9:00 AM &nbsp;·&nbsp; 🏠 Home Collection</div>
+              </div>
+              <span class="badge badge-ready">Completed</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div class="mini-calendar">
+            <div class="cal-header">
+              <button class="cal-nav">‹</button>
+              <div class="cal-month">March 2025</div>
+              <button class="cal-nav">›</button>
+            </div>
+            <div class="cal-grid">
+              <div class="cal-day-label">Su</div><div class="cal-day-label">Mo</div><div class="cal-day-label">Tu</div><div class="cal-day-label">We</div><div class="cal-day-label">Th</div><div class="cal-day-label">Fr</div><div class="cal-day-label">Sa</div>
+              <div class="cal-day other-month">23</div><div class="cal-day other-month">24</div><div class="cal-day other-month">25</div><div class="cal-day other-month">26</div><div class="cal-day other-month">27</div><div class="cal-day other-month">28</div><div class="cal-day">1</div>
+              <div class="cal-day">2</div><div class="cal-day">3</div><div class="cal-day">4</div><div class="cal-day has-apt">5</div><div class="cal-day">6</div><div class="cal-day">7</div><div class="cal-day">8</div>
+              <div class="cal-day">9</div><div class="cal-day">10</div><div class="cal-day">11</div><div class="cal-day has-apt">12</div><div class="cal-day">13</div><div class="cal-day">14</div><div class="cal-day">15</div>
+              <div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day">18</div><div class="cal-day">19</div><div class="cal-day">20</div><div class="cal-day">21</div><div class="cal-day">22</div>
+              <div class="cal-day">23</div><div class="cal-day">24</div><div class="cal-day">25</div><div class="cal-day today">26</div><div class="cal-day">27</div><div class="cal-day selected">28</div><div class="cal-day">29</div>
+              <div class="cal-day">30</div><div class="cal-day">31</div>
+            </div>
+            <div style="font-size:12px;color:var(--muted);margin-top:16px;margin-bottom:8px">Available Time Slots — Feb 28</div>
+            <div class="time-slots">
+              <button class="time-slot booked">7:00 AM</button>
+              <button class="time-slot">8:00 AM</button>
+              <button class="time-slot selected">9:00 AM</button>
+              <button class="time-slot">10:00 AM</button>
+              <button class="time-slot booked">11:00 AM</button>
+              <button class="time-slot">12:00 PM</button>
+              <button class="time-slot">2:00 PM</button>
+              <button class="time-slot">3:00 PM</button>
+              <button class="time-slot booked">4:00 PM</button>
+            </div>
+            <button class="btn btn-primary" style="width:100%;margin-top:14px;justify-content:center">Book This Slot</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CHAT ─── -->
+    <section class="section" id="sec-chat">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Chat & Support</div>
+          <div class="section-sub">Talk to our support team, collection agent, or AI assistant</div>
+        </div>
+      </div>
+
+      <div class="chat-layout">
+        <div class="chat-sidebar">
+          <div class="chat-search">
+            <input type="text" class="filter-input" placeholder="🔍  Search conversations..." style="width:100%">
+          </div>
+          <div class="chat-contacts">
+            <div class="chat-contact active">
+              <div class="contact-avatar" style="background:linear-gradient(135deg,var(--accent),#0891b2);color:#000">🤖</div>
+              <div style="flex:1;min-width:0">
+                <div class="contact-name">LabCare AI Assistant</div>
+                <div class="contact-preview">How can I help you today?</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+                <div class="contact-time">Now</div>
+                <div class="contact-unread">1</div>
+              </div>
+            </div>
+            <div class="chat-contact">
+              <div class="contact-avatar" style="background:linear-gradient(135deg,#10b981,#0891b2)">S</div>
+              <div style="flex:1;min-width:0">
+                <div class="contact-name">Suresh (Agent)</div>
+                <div class="contact-preview">I am 5 mins away now</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+                <div class="contact-time">9:42</div>
+                <div class="contact-unread">2</div>
+              </div>
+            </div>
+            <div class="chat-contact">
+              <div class="contact-avatar" style="background:linear-gradient(135deg,var(--accent2),#9333ea)">S</div>
+              <div style="flex:1;min-width:0">
+                <div class="contact-name">Support Team</div>
+                <div class="contact-preview">Your issue has been resolved</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+                <div class="contact-time">Yesterday</div>
+              </div>
+            </div>
+            <div class="chat-contact">
+              <div class="contact-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444);color:#000">D</div>
+              <div style="flex:1;min-width:0">
+                <div class="contact-name">Dr. Mehra</div>
+                <div class="contact-preview">Please fast for 12 hours...</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+                <div class="contact-time">Mon</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-main">
+          <div class="chat-header">
+            <div class="contact-avatar" style="background:linear-gradient(135deg,var(--accent),#0891b2);color:#000;width:36px;height:36px;font-size:16px">🤖</div>
+            <div>
+              <div style="font-weight:600;font-size:14px">LabCare AI Assistant</div>
+              <div style="font-size:11px;color:var(--accent3)">● Online — typically replies instantly</div>
+            </div>
+          </div>
+
+          <div class="chat-messages">
+            <div class="msg them chat-bot-msg">
+              <div class="msg-bubble">👋 Hello Rajiv! I'm your LabCare AI assistant. I can help you with report queries, booking tests, tracking your agent, or understanding your results. How can I assist you today?</div>
+              <div class="msg-time">9:00 AM</div>
+            </div>
+            <div class="msg me">
+              <div class="msg-bubble">My CBC report is ready, can you tell me what the values mean?</div>
+              <div class="msg-time">9:05 AM</div>
+            </div>
+            <div class="msg them chat-bot-msg">
+              <div class="msg-bubble">Sure! I can see your CBC report #RPT-8821 from Feb 28. Your Hemoglobin is 13.2 g/dL (normal range: 13.5–17.5) — slightly below normal. I'd recommend discussing this with Dr. Mehra. Would you like me to summarize all values?</div>
+              <div class="msg-time">9:05 AM</div>
+            </div>
+            <div class="msg me">
+              <div class="msg-bubble">Yes please summarize all values</div>
+              <div class="msg-time">9:06 AM</div>
+            </div>
+            <div class="msg them chat-bot-msg">
+              <div class="msg-bubble">
+                📊 <strong>CBC Summary — #RPT-8821</strong><br><br>
+                🟡 Hemoglobin: 13.2 g/dL (low)<br>
+                ✅ WBC: 7,200 /µL (normal)<br>
+                ✅ Platelets: 2.1 lakh /µL (normal)<br>
+                ✅ RBC: 4.5 million/µL (normal)<br><br>
+                Recommend iron-rich diet. Consult Dr. Mehra for follow-up.
+              </div>
+              <div class="msg-time">9:06 AM</div>
+            </div>
+          </div>
+
+          <div class="chat-input-area">
+            <textarea class="chat-input" rows="1" placeholder="Type your message..."></textarea>
+            <button class="btn btn-outline" title="Attach file">📎</button>
+            <button class="btn btn-primary">Send ↑</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── NOTIFICATIONS ─── -->
+    <section class="section" id="sec-notifications">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Notifications</div>
+          <div class="section-sub">5 unread notifications</div>
+        </div>
+        <button class="btn btn-outline">✓ Mark All Read</button>
+      </div>
+
+      <div class="notif-filters">
+        <button class="chip active">All</button>
+        <button class="chip">Reports</button>
+        <button class="chip">Appointments</button>
+        <button class="chip">Agent</button>
+        <button class="chip">Offers</button>
+        <button class="chip">System</button>
+      </div>
+
+      <div class="notif-list">
+        <div class="notif-item unread">
+          <div class="notif-icon" style="background:rgba(16,185,129,.12)">✅</div>
+          <div class="notif-text">
+            <div class="notif-title">Report Ready — CBC #RPT-8821</div>
+            <div class="notif-body">Your Complete Blood Count report is now ready. Click to view and download your results.</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
+            <div class="notif-time">2 min ago</div>
+            <button class="btn btn-outline btn-sm">View Report</button>
+          </div>
+          <div class="notif-unread-dot"></div>
+        </div>
+
+        <div class="notif-item unread">
+          <div class="notif-icon" style="background:rgba(0,212,255,.12)">🏃</div>
+          <div class="notif-text">
+            <div class="notif-title">Agent Suresh is on the way!</div>
+            <div class="notif-body">Your collection agent is 2.3 km away and will arrive in approximately 8 minutes.</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
+            <div class="notif-time">15 min ago</div>
+            <button class="btn btn-outline btn-sm">Track Live</button>
+          </div>
+          <div class="notif-unread-dot"></div>
+        </div>
+
+        <div class="notif-item unread">
+          <div class="notif-icon" style="background:rgba(245,158,11,.12)">⚠️</div>
+          <div class="notif-text">
+            <div class="notif-title">Abnormal Value Alert — HbA1c</div>
+            <div class="notif-body">Your HbA1c level (7.8%) is above the normal range. Dr. Gupta has been notified. Please schedule a follow-up.</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
+            <div class="notif-time">1 hr ago</div>
+            <button class="btn btn-danger btn-sm">View Details</button>
+          </div>
+          <div class="notif-unread-dot"></div>
+        </div>
+
+        <div class="notif-item unread">
+          <div class="notif-icon" style="background:rgba(124,58,237,.12)">📅</div>
+          <div class="notif-text">
+            <div class="notif-title">Appointment Reminder — Tomorrow 10:00 AM</div>
+            <div class="notif-body">CBC + Lipid Panel home collection scheduled for March 5. Remember to fast for 12 hours before collection.</div>
+          </div>
+          <div class="notif-time">3 hrs ago</div>
+          <div class="notif-unread-dot"></div>
+        </div>
+
+        <div class="notif-item unread">
+          <div class="notif-icon" style="background:rgba(16,185,129,.12)">🎁</div>
+          <div class="notif-text">
+            <div class="notif-title">Special Offer: Full Body Checkup at 40% OFF</div>
+            <div class="notif-body">This weekend only — comprehensive health package including 50+ tests. Use code HEALTH40.</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
+            <div class="notif-time">Yesterday</div>
+            <button class="btn btn-primary btn-sm">View Offer</button>
+          </div>
+          <div class="notif-unread-dot"></div>
+        </div>
+
+        <div class="notif-item">
+          <div class="notif-icon" style="background:rgba(100,116,139,.1)">🔑</div>
+          <div class="notif-text">
+            <div class="notif-title">Login from new device detected</div>
+            <div class="notif-body">A new login was detected from Chrome on Windows. If this wasn't you, please secure your account.</div>
+          </div>
+          <div class="notif-time">2 days ago</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Placeholder sections -->
+    <section class="section" id="sec-dashboard">
+      <div class="section-title" style="font-family:'Syne',sans-serif;font-weight:700;font-size:24px;margin-bottom:8px">Dashboard</div>
+      <div style="color:var(--muted)">Overview coming soon...</div>
+    </section>
+    <section class="section" id="sec-profile">
+      <div class="section-title" style="font-family:'Syne',sans-serif;font-weight:700;font-size:24px;margin-bottom:8px">Profile</div>
+      <div style="color:var(--muted)">Profile settings coming soon...</div>
+    </section>
+    <section class="section" id="sec-history">
+      <div class="section-title" style="font-family:'Syne',sans-serif;font-weight:700;font-size:24px;margin-bottom:8px">Test History</div>
+      <div style="color:var(--muted)">Full test history timeline coming soon...</div>
+    </section>
+    <section class="section" id="sec-settings">
+      <div class="section-title" style="font-family:'Syne',sans-serif;font-weight:700;font-size:24px;margin-bottom:8px">Settings</div>
+      <div style="color:var(--muted)">Settings panel coming soon...</div>
+    </section>
+
+  </div>
+</main>
+
+<script>
+const titles = {
+  dashboard: 'Dashboard',
+  reports: 'My Reports',
+  map: 'Live Collection Map',
+  book: 'Book a Test',
+  appointments: 'Appointments',
+  chat: 'Chat & Support',
+  notifications: 'Notifications',
+  profile: 'Profile',
+  history: 'Test History',
+  settings: 'Settings',
+};
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.textContent.trim().toLowerCase().includes(titles[id].split(' ')[0].toLowerCase())) {
+      n.classList.add('active');
+    }
+  });
+  document.getElementById('page-title').textContent = titles[id];
+}
+
+// Date chips interaction
+document.querySelectorAll('.date-chips .chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.date-chips .chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+  });
+});
+
+// Test category selection
+document.querySelectorAll('.category-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.category-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+  });
+});
+
+// Time slot selection
+document.querySelectorAll('.time-slot:not(.booked)').forEach(slot => {
+  slot.addEventListener('click', () => {
+    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+    slot.classList.add('selected');
+  });
+});
+
+// Notif chips
+document.querySelectorAll('.notif-filters .chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.notif-filters .chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+  });
+});
+
+// Chat send
+document.querySelector('.chat-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); }
+});
+
+// Cal days
+document.querySelectorAll('.cal-day:not(.other-month)').forEach(day => {
+  day.addEventListener('click', () => {
+    document.querySelectorAll('.cal-day').forEach(d => d.classList.remove('selected'));
+    day.classList.add('selected');
+  });
+});
+</script>
+</body>
+</html>

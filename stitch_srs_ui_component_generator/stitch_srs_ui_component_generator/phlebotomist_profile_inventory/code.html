@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DiagConnect - Phlebotomist Profile & Inventory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 768px) {
+      .bento-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "secondary-container": "#6cf8bb",
+                  "on-error": "#ffffff",
+                  "on-secondary-fixed-variant": "#005236",
+                  "secondary-fixed": "#6ffbbe",
+                  "on-secondary-fixed": "#002113",
+                  "error-container": "#ffdad6",
+                  "surface-tint": "#006591",
+                  "secondary-fixed-dim": "#4edea3",
+                  "primary": "#006591",
+                  "surface": "#f8f9ff",
+                  "inverse-on-surface": "#eaf1ff",
+                  "on-primary-container": "#003751",
+                  "surface-bright": "#f8f9ff",
+                  "primary-fixed-dim": "#89ceff",
+                  "tertiary": "#855300",
+                  "primary-container": "#0ea5e9",
+                  "surface-variant": "#d3e4fe",
+                  "tertiary-fixed-dim": "#ffb95f",
+                  "surface-dim": "#cbdbf5",
+                  "primary-fixed": "#c9e6ff",
+                  "on-primary-fixed-variant": "#004c6e",
+                  "on-error-container": "#93000a",
+                  "tertiary-container": "#d88a00",
+                  "secondary": "#006c49",
+                  "outline-variant": "#bec8d2",
+                  "on-surface": "#0b1c30",
+                  "on-tertiary-fixed-variant": "#653e00",
+                  "on-tertiary-container": "#4a2c00",
+                  "tertiary-fixed": "#ffddb8",
+                  "surface-container-highest": "#d3e4fe",
+                  "inverse-surface": "#213145",
+                  "surface-container-lowest": "#ffffff",
+                  "surface-container-low": "#eff4ff",
+                  "surface-container": "#e5eeff",
+                  "on-surface-variant": "#3e4850",
+                  "on-tertiary-fixed": "#2a1700",
+                  "background": "#f8f9ff",
+                  "on-secondary-container": "#00714d",
+                  "on-primary": "#ffffff",
+                  "on-background": "#0b1c30",
+                  "outline": "#6e7881",
+                  "on-tertiary": "#ffffff",
+                  "inverse-primary": "#89ceff",
+                  "surface-container-high": "#dce9ff",
+                  "error": "#ba1a1a",
+                  "on-primary-fixed": "#001e2f",
+                  "on-secondary": "#ffffff"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "xl": "32px",
+                  "md": "16px",
+                  "xs": "4px",
+                  "margin-mobile": "16px",
+                  "lg": "24px",
+                  "margin-desktop": "40px",
+                  "max-width": "1440px",
+                  "gutter": "24px",
+                  "base": "4px",
+                  "sm": "8px"
+          },
+          "fontFamily": {
+                  "headline-lg-mobile": ["Plus Jakarta Sans"],
+                  "body-lg": ["Inter"],
+                  "label-sm": ["Inter"],
+                  "body-md": ["Inter"],
+                  "headline-md": ["Plus Jakarta Sans"],
+                  "headline-lg": ["Plus Jakarta Sans"],
+                  "body-sm": ["Inter"],
+                  "headline-sm": ["Plus Jakarta Sans"],
+                  "label-md": ["Inter"],
+                  "headline-xl": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+                  "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                  "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                  "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                  "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                  "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                  "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                  "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                  "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                  "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                  "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline flex justify-between items-center px-margin-mobile md:px-margin-desktop py-sm">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim cursor-pointer">menu</span>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim tracking-tight">DiagConnect</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden md:flex gap-lg items-center px-lg">
+<a class="text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low transition-colors duration-200 py-1 px-3 rounded-lg" href="#">Tasks</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low transition-colors duration-200 py-1 px-3 rounded-lg" href="#">Map</a>
+<a class="text-primary dark:text-primary-fixed-dim font-bold py-1 px-3 rounded-lg" href="#">Profile</a>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary/20">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a female phlebotomist in a clean, modern medical clinic setting. She is smiling confidently, wearing a crisp navy blue scrub top with a subtle DiagConnect logo. The lighting is soft and high-key, emphasizing a clinical precision aesthetic with a warm, approachable atmosphere. The background shows blurred medical equipment in a bright, minimalist facility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuZ5xr42-cYnG4B8Pn51EgVdM3NjdKNlM5YbLoYj_GbkDYApZtDabGvtix9_z8TABwzfMoM3PUliQasE-3iwsveVN0r-j0QeCU7Eo53S6AK4tno18wR0XMZB_U3Py_Pe6wlsNErcA5ue_7sXKrVJUR8joUQXfZZk515z-KdGa-qdaPtXby0w_MxPTGDzhvcqpis3pzXpXHRRjnLztTSrrCbgcIlkxCEkH7HE5cR3qS3GNb0HNznuO7WNPVfaaFymOX9TDTJGAjtSI"/>
+</div>
+</div>
+</header>
+<main class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop py-xl pb-32">
+<!-- Profile Header Section -->
+<section class="mb-xl flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tight">Elena Rodriguez</h2>
+<p class="text-on-surface-variant font-body-md">Senior Phlebotomist • ID: DC-9842</p>
+</div>
+<div class="flex gap-sm">
+<button class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label-md transition-transform active:scale-95">Edit Profile</button>
+<button class="border border-outline text-primary px-lg py-sm rounded-lg font-label-md transition-transform active:scale-95 bg-surface">Log Out</button>
+</div>
+</section>
+<!-- Bento Grid for Stats & Info -->
+<div class="bento-grid">
+<!-- Performance Stats Card -->
+<div class="col-span-12 md:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-lg">Today's Performance</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-lg">
+<div class="flex flex-col gap-xs">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-wider">Collections</span>
+<div class="flex items-center gap-xs">
+<span class="font-headline-md text-primary">14</span>
+<span class="text-secondary text-label-sm font-bold">+2 vs avg</span>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-wider">Distance</span>
+<div class="flex items-center gap-xs">
+<span class="font-headline-md text-primary">28.4</span>
+<span class="text-on-surface-variant text-label-sm">km</span>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-wider">Efficiency</span>
+<div class="flex items-center gap-xs">
+<span class="font-headline-md text-primary">98%</span>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-wider">On-Time Rate</span>
+<div class="flex items-center gap-xs">
+<span class="font-headline-md text-secondary">100%</span>
+</div>
+</div>
+</div>
+<!-- Activity Chart Placeholder -->
+<div class="mt-xl h-32 w-full bg-surface-container rounded-lg relative overflow-hidden flex items-end px-md gap-sm">
+<div class="w-full bg-primary-container/30 h-1/2 rounded-t-sm"></div>
+<div class="w-full bg-primary-container/30 h-3/4 rounded-t-sm"></div>
+<div class="w-full bg-primary h-5/6 rounded-t-sm"></div>
+<div class="w-full bg-primary-container/30 h-1/3 rounded-t-sm"></div>
+<div class="w-full bg-primary-container/30 h-2/3 rounded-t-sm"></div>
+<div class="w-full bg-primary h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-container/30 h-1/2 rounded-t-sm"></div>
+</div>
+</div>
+<!-- Quick Action / Status -->
+<div class="col-span-12 md:col-span-4 bg-primary text-on-primary rounded-xl p-lg flex flex-col justify-between overflow-hidden relative">
+<div class="relative z-10">
+<h3 class="font-headline-sm text-headline-sm mb-xs">Duty Status</h3>
+<div class="flex items-center gap-sm">
+<span class="w-3 h-3 bg-secondary-container rounded-full animate-pulse"></span>
+<span class="font-label-md">On-Duty • South Sector</span>
+</div>
+</div>
+<div class="relative z-10 mt-xl">
+<p class="font-body-sm opacity-90 mb-md">Next collection in 12 mins at Magnolia Residences.</p>
+<button class="w-full bg-surface text-primary py-sm rounded-lg font-label-md flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">navigation</span>
+            Start Navigation
+          </button>
+</div>
+<!-- Decorative Background Element -->
+<div class="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+</div>
+<!-- Equipment Checklist Section -->
+<div class="col-span-12 md:col-span-12 bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-lg gap-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Daily Equipment Checklist</h3>
+<p class="text-on-surface-variant font-body-sm">Ensure your mobile kit is fully stocked before departure.</p>
+</div>
+<button class="text-primary font-label-md flex items-center gap-xs hover:underline">
+<span class="material-symbols-outlined text-[18px]">history</span>
+            Inventory Logs
+          </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Column 1: Tubes & needles -->
+<div class="flex flex-col gap-md">
+<h4 class="font-label-md text-on-surface border-b border-outline-variant pb-xs">Containers & Sharps</h4>
+<div class="space-y-sm" id="checklist-group-1">
+<label class="flex items-center justify-between p-md bg-surface-container-low rounded-lg cursor-pointer hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-md">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-on-surface">Vacutainer Tubes (Assorted)</span>
+</div>
+<span class="text-on-surface-variant font-label-sm bg-surface-container-highest px-2 py-1 rounded">24/30</span>
+</label>
+<label class="flex items-center justify-between p-md bg-surface-container-low rounded-lg cursor-pointer hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-md">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-on-surface">Butterfly Needles (21G)</span>
+</div>
+<span class="text-on-surface-variant font-label-sm bg-surface-container-highest px-2 py-1 rounded">12/15</span>
+</label>
+</div>
+</div>
+<!-- Column 2: Sanitization -->
+<div class="flex flex-col gap-md">
+<h4 class="font-label-md text-on-surface border-b border-outline-variant pb-xs">Sanitization</h4>
+<div class="space-y-sm" id="checklist-group-2">
+<label class="flex items-center justify-between p-md bg-surface-container-low rounded-lg cursor-pointer hover:bg-surface-container transition-colors group border-l-4 border-error">
+<div class="flex items-center gap-md">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-on-surface">Alcohol Prep Swabs</span>
+</div>
+<span class="text-error font-label-sm bg-error-container px-2 py-1 rounded">Low Stock</span>
+</label>
+<label class="flex items-center justify-between p-md bg-surface-container-low rounded-lg cursor-pointer hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-md">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-on-surface">Disposable Gloves (M)</span>
+</div>
+<span class="text-on-surface-variant font-label-sm bg-surface-container-highest px-2 py-1 rounded">2 Pairs</span>
+</label>
+</div>
+</div>
+<!-- Column 3: Logistics -->
+<div class="flex flex-col gap-md">
+<h4 class="font-label-md text-on-surface border-b border-outline-variant pb-xs">Logistics & Bio</h4>
+<div class="space-y-sm" id="checklist-group-3">
+<label class="flex items-center justify-between p-md bg-surface-container-low rounded-lg cursor-pointer hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-md">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-on-surface">Biohazard Disposal Bags</span>
+</div>
+<span class="text-on-surface-variant font-label-sm bg-surface-container-highest px-2 py-1 rounded">Full Roll</span>
+</label>
+<label class="flex items-center justify-between p-md bg-surface-container-low rounded-lg cursor-pointer hover:bg-surface-container transition-colors group border-l-4 border-tertiary-container">
+<div class="flex items-center gap-md">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-on-surface">Cooler Temperature (4°C)</span>
+</div>
+<span class="text-tertiary font-label-sm bg-tertiary-container/20 px-2 py-1 rounded">Optimal</span>
+</label>
+</div>
+</div>
+</div>
+<div class="mt-xl flex justify-end">
+<button class="bg-primary text-on-primary px-xl py-md rounded-lg font-label-md flex items-center gap-sm">
+<span class="material-symbols-outlined">check_circle</span>
+            Submit Daily Stock Confirmation
+          </button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center pt-xs pb-sm px-margin-mobile bg-surface dark:bg-on-background border-t border-outline-variant dark:border-outline shadow-md z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-sm text-label-sm mt-1">Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-sm text-label-sm mt-1">Map</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</a>
+</nav>
+<script>
+    // Micro-interactions for checklist
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const parent = this.closest('label');
+        if (this.checked) {
+          parent.classList.add('opacity-70');
+        } else {
+          parent.classList.remove('opacity-70');
+        }
+      });
+    });
+
+    // Dark mode toggle simulation or logic could go here
+  </script>
+</body></html>
