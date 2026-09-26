@@ -1,8 +1,24 @@
+import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import Login from './pages/Login';
 import Layout from './layouts/Layout';
-import SrsFrame from './components/SrsFrame';
+
+// Native React Pages
+import Dashboard from './pages/Dashboard';
+import Patients from './pages/Patients';
+import Emr from './pages/Emr';
+import Reports from './pages/Reports';
+import OrderTest from './pages/OrderTest';
+import Prescriptions from './pages/Prescriptions';
+import Appointments from './pages/Appointments';
+import Teleconsult from './pages/Teleconsult';
+import Notes from './pages/Notes';
+import Messaging from './pages/Messaging';
+import Alerts from './pages/Alerts';
+import Analytics from './pages/Analytics';
+import Profile from './pages/Profile';
+import Settings from './pages/Settings';
 
 function ProtectedLayout() {
   const token = localStorage.getItem('token');
@@ -19,22 +35,22 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route element={<ProtectedLayout />}>
-            <Route path="/" element={<SrsFrame folder="diagconnect_doctor_dashboard" title="Doctor Dashboard" />} />
-            <Route path="/patients" element={<SrsFrame folder="diagconnect_patient_directory" title="Patient Directory" />} />
-            <Route path="/patients/:id" element={<SrsFrame folder="diagconnect_patient_health_record" title="Patient Health Record" />} />
-            <Route path="/reports" element={<SrsFrame folder="detailed_lab_report" title="Detailed Lab Reports" />} />
-            <Route path="/reports/:id" element={<SrsFrame folder="detailed_lab_report" title="Lab Report Details" />} />
-            <Route path="/order" element={<SrsFrame folder="add_new_prescription" title="New Diagnostic Order" />} />
-            <Route path="/appointments" element={<SrsFrame folder="diagconnect_book_appointment" title="Doctor Appointments" />} />
-            <Route path="/chat" element={<SrsFrame folder="diagconnect_consultation_chat" title="Clinical Consultation Chat" />} />
-            <Route path="/notifications" element={<SrsFrame folder="diagconnect_patient_notification_center" title="Patient Alerts & Notifications" />} />
-            <Route path="/analytics" element={<SrsFrame folder="detailed_health_trends" title="Analytics & Health Trends" />} />
-            <Route path="/emr" element={<SrsFrame folder="diagconnect_patient_health_record" title="Document Vault & EMR" />} />
-            <Route path="/notes" element={<SrsFrame folder="diagconnect_prescription_update" title="Clinical Notes & Updates" />} />
-            <Route path="/teleconsult" element={<SrsFrame folder="diagconnect_telemedicine_call" title="Telemedicine Consultation" />} />
-            <Route path="/prescriptions" element={<SrsFrame folder="diagconnect_prescription_update" title="Prescriptions Update" />} />
-            <Route path="/profile" element={<SrsFrame folder="diagconnect_patient_health_record" title="Doctor Profile" />} />
-            <Route path="/settings" element={<SrsFrame folder="diagconnect_network_configuration" title="Network & System Settings" />} />
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/patients" element={<Patients />} />
+            <Route path="/patients/:id" element={<Emr />} />
+            <Route path="/reports" element={<Reports />} />
+            <Route path="/reports/:id" element={<Reports />} />
+            <Route path="/order" element={<OrderTest />} />
+            <Route path="/prescriptions" element={<Prescriptions />} />
+            <Route path="/appointments" element={<Appointments />} />
+            <Route path="/teleconsult" element={<Teleconsult />} />
+            <Route path="/notes" element={<Notes />} />
+            <Route path="/chat" element={<Messaging />} />
+            <Route path="/notifications" element={<Alerts />} />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/emr" element={<Emr />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/settings" element={<Settings />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

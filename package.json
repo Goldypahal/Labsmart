@@ -1,9 +1,17 @@
 {
+  "name": "labsmart-workspace",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "backend": "node backend/index.js",
+    "backend": "node backend/dist/server.js",
+    "backend:dev": "npm --prefix backend run dev",
     "doctor": "npm --prefix doctor-dashboard run dev",
     "lab": "npm --prefix lab-portal run dev",
-    "patient": "npm --prefix patient-portal run dev"
+    "patient": "npm --prefix patient-portal run dev",
+    "test": "node --test tests/zero-fake-data.test.js",
+    "audit:fake-data": "node scripts/audit-zero-fake-data.js",
+    "build:all": "npm --prefix doctor-dashboard run build && npm --prefix lab-portal run build && npm --prefix patient-portal run build",
+    "lint:all": "npm --prefix doctor-dashboard run lint && npm --prefix lab-portal run lint && npm --prefix patient-portal run lint"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.27",
