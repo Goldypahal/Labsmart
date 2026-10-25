@@ -8,8 +8,8 @@ import { clinicalApi } from '../services/api';
 
 export default function Profile() {
   const user = clinicalApi.getCurrentUser();
-  const [name, setName] = useState(user.name || 'Dr. Smith');
-  const [email] = useState(user.email || 'doctor@diagconnect.com');
+  const [name, setName] = useState(user?.name || '');
+  const [email] = useState(user?.email || '');
   const [specialty, setSpecialty] = useState('Internal Medicine & Clinical Diagnostics');
   const [regNumber, setRegNumber] = useState('MCI-KMC-2014-98421');
   const [phone, setPhone] = useState('+91 98450 11223');

@@ -122,9 +122,9 @@ export default function Layout() {
               </div>
               <div className="truncate">
                 <p className="text-xs font-semibold text-slate-900 dark:text-white truncate">
-                  {user.name}
+                  {user?.name ?? 'Signed out'}
                 </p>
-                <p className="text-[10px] text-slate-500 truncate">{user.email}</p>
+                <p className="text-[10px] text-slate-500 truncate">{user?.email ?? ''}</p>
               </div>
             </div>
             <button

@@ -49,27 +49,6 @@ const DEMO_FIXTURES = {
 };
 
 export const clinicalApi = {
-  // Ensure Authenticated Clinician Session
-  ensureAuth: async () => {
-    let token = localStorage.getItem('token');
-    if (token) return token;
-    try {
-      const res = await axios.post(`${API_BASE_URL}/auth/login`, {
-        email: 'doctor@diagconnect.com',
-        password: 'password123',
-      });
-      if (res.data?.token) {
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('currentUser', JSON.stringify(res.data.user));
-        return res.data.token;
-      }
-    } catch {
-      // Backend offline or non-standard credentials
-    }
-    return null;
-  },
-
-  // Health check
   checkHealth: async () => {
     try {
       const res = await apiClient.get('/health');
@@ -97,17 +76,14 @@ export const clinicalApi = {
   getCurrentUser: () => {
     try {
       const user = localStorage.getItem('currentUser');
-      return user
-        ? JSON.parse(user)
-        : { id: 1, name: 'Dr. Smith', role: 'DOCTOR', email: 'doctor@diagconnect.com' };
+      return user ? JSON.parse(user) : null;
     } catch {
-      return { id: 1, name: 'Dr. Smith', role: 'DOCTOR', email: 'doctor@diagconnect.com' };
+      return null;
     }
   },
 
   // Patients (Authoritative: strictly from backend /api/patients)
   getPatients: async () => {
-    await clinicalApi.ensureAuth();
     try {
       const res = await apiClient.get('/patients');
       return Array.isArray(res.data) ? res.data : [];
@@ -126,7 +102,6 @@ export const clinicalApi = {
 
   // Test Ordering & Prescriptions (Backend /api/prescriptions)
   createDiagnosticOrder: async (payload) => {
-    await clinicalApi.ensureAuth();
     const { patientId, tests } = payload;
     const res = await apiClient.post('/prescriptions', {
       patientId: Number(patientId),
@@ -136,7 +111,6 @@ export const clinicalApi = {
   },
 
   getPrescriptions: async () => {
-    await clinicalApi.ensureAuth();
     try {
       const res = await apiClient.get('/prescriptions');
       return Array.isArray(res.data) ? res.data : [];
@@ -149,14 +123,12 @@ export const clinicalApi = {
   },
 
   updatePrescription: async (id, tests) => {
-    await clinicalApi.ensureAuth();
     const res = await apiClient.patch(`/prescriptions/${id}`, { tests });
     return res.data;
   },
 
   // Reports & Test Orders (Backend /api/orders)
   getReports: async () => {
-    await clinicalApi.ensureAuth();
     try {
       const res = await apiClient.get('/orders');
       return Array.isArray(res.data) ? res.data : [];

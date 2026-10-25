@@ -5,8 +5,8 @@ import { Microscope, LogIn } from 'lucide-react';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
 
 export default function Login({ onLogin }) {
-    const [email, setEmail] = useState('lab@diagconnect.com');
-    const [password, setPassword] = useState('password123');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
     const handleLogin = async (e) => {

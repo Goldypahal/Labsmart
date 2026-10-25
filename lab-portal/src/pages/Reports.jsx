@@ -191,11 +191,11 @@ export default function Reports() {
                   <span className="text-slate-500">Report Generated on {new Date().toLocaleString()}</span>
                 </div>
                 <div className="text-right">
-                  <div className="font-script text-lg text-teal-700 dark:text-teal-400 italic font-semibold">
-                    Dr. Sarah Pathologist
-                  </div>
-                  <span className="font-bold text-slate-800 dark:text-slate-200 block">Dr. Sarah Pathologist, MD</span>
-                  <span className="text-slate-400 text-[10px]">Head, Department of Laboratory Medicine (Reg #55421)</span>
+                  {/* Signatory comes from the authorizing doctor's record (FR-051); never a hardcoded name. */}
+                  <span className="font-bold text-slate-800 dark:text-slate-200 block">
+                    {selectedSample.verifiedBy || 'Not yet authorized'}
+                  </span>
+                  <span className="text-slate-400 text-[10px]">Authorized signatory</span>
                 </div>
               </div>
             </div>
