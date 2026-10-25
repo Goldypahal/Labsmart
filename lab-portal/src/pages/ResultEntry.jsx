@@ -26,6 +26,7 @@ export default function ResultEntry() {
   const [technicianNotes, setTechnicianNotes] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
+  const [saveError, setSaveError] = useState('');
 
   const catalog = labApi.getTestCatalog();
 
@@ -90,20 +91,29 @@ export default function ResultEntry() {
     setIsSaving(true);
     try {
       const formattedResults = currentPanel.parameters.map((p) => {
-        const val = values[p.name] !== undefined ? values[p.name] : (p.min + (p.max - p.min) / 2).toFixed(1);
-        const flag = getFlag(p, val) || 'NORMAL';
+        // Never invent a value: a parameter the technician did not enter stays empty (M0 safety fix).
+        const val = values[p.name] !== undefined && values[p.name] !== '' ? values[p.name] : null;
+        const flag = val === null ? null : getFlag(p, val) || 'NORMAL';
         return {
           parameter: p.name,
-          value: parseFloat(val) || val,
+          value: val === null ? null : Number.isNaN(parseFloat(val)) ? val : parseFloat(val),
           unit: p.unit,
           refRange: `${p.min} - ${p.max}`,
           status: flag,
         };
       });
 
+      const missing = formattedResults.filter((r) => r.value === null).map((r) => r.parameter);
+      if (missing.length > 0) {
+        throw new Error(`Enter a value for: ${missing.join(', ')}`);
+      }
+      setSaveError('');
       await labApi.saveTestResults(currentSample.id, formattedResults, technicianNotes);
       setSaveSuccess(true);
       setTimeout(() => setSaveSuccess(false), 3000);
+    } catch (err) {
+      setSaveSuccess(false);
+      setSaveError(err.message || 'Results could not be saved.');
     } finally {
       setIsSaving(false);
     }
@@ -137,6 +147,12 @@ export default function ResultEntry() {
           </div>
         }
       />
+
+      {saveError && (
+        <div role="alert" className="p-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-200 rounded-xl text-xs">
+          {saveError}
+        </div>
+      )}
 
       {saveSuccess && (
         <div className="p-3 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-200 rounded-xl text-xs flex items-center gap-2 animate-fade-in">

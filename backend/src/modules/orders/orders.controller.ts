@@ -52,9 +52,8 @@ export const ordersController = {
 
     if (req.user?.roles?.includes('PATIENT') && !req.user?.roles?.includes('DOCTOR') && !req.user?.roles?.includes('LAB_ADMIN')) {
       const patient = await prisma.patient.findUnique({ where: { userId: req.user.id } });
-      if (patient) {
-        whereClause.patientId = patient.id;
-      }
+      // A patient account with no linked patient record sees nothing (previously it saw every order).
+      whereClause.patientId = patient ? patient.id : '__none__';
     }
 
     const orders = await prisma.labOrder.findMany({
@@ -118,7 +117,12 @@ export const ordersController = {
       },
     });
 
-    if (!order) {
+    const isPatientOnly =
+      req.user?.roles?.includes('PATIENT') &&
+      !req.user?.roles?.some((r) => ['DOCTOR', 'LAB_ADMIN', 'LAB_SUPERVISOR', 'LAB_TECHNICIAN', 'RECEPTIONIST', 'SUPER_ADMIN'].includes(r));
+
+    // Interim ownership check (full scoping in T-017): patients only see their own orders.
+    if (!order || (isPatientOnly && order.patient?.userId !== req.user?.id)) {
       res.status(404).json({ success: false, error: { message: 'Lab order not found' } });
       return;
     }
@@ -133,6 +137,19 @@ export const ordersController = {
     const order = await prisma.labOrder.findUnique({ where: { id } });
     if (!order) {
       res.status(404).json({ success: false, error: { message: 'Order not found' } });
+      return;
+    }
+
+    // Authorization and release must go through the pathologist workflow (T-039/T-040),
+    // never through this generic endpoint (M0 safety fix).
+    if (targetStatus === OrderStatus.VERIFIED || targetStatus === OrderStatus.RELEASED) {
+      res.status(403).json({
+        success: false,
+        error: {
+          code: 'RELEASE_DISABLED',
+          message: 'Report authorization and release are disabled until the pathologist workflow is available.',
+        },
+      });
       return;
     }
 
@@ -171,71 +188,5 @@ export const ordersController = {
     });
 
     res.json({ success: true, data: updated });
-  },
-
-  uploadReport: async (req: Request, res: Response): Promise<void> => {
-    const id = String(req.params.id);
-    const { reportUrl } = req.body;
-
-    const order = await prisma.labOrder.findFirst({
-      where: {
-        OR: [{ id }, { orderNumber: id }],
-      },
-      include: { prescription: true },
-    });
-
-    if (!order) {
-      res.status(404).json({ success: false, error: { message: 'Order not found' } });
-      return;
-    }
-
-    const reportNumber = `REP-2026-${Math.floor(1000 + Math.random() * 9000)}`;
-
-    const updatedOrder = await prisma.$transaction(async (tx) => {
-      const o = await tx.labOrder.update({
-        where: { id: order.id },
-        data: {
-          status: OrderStatus.RELEASED,
-          updatedAt: new Date(),
-        },
-      });
-
-      await tx.reportDocument.create({
-        data: {
-          reportNumber,
-          orderId: order.id,
-          storageKey: reportUrl || `s3://reports/${reportNumber}.pdf`,
-          checksumSha256: 'SHA256-SIMULATED-CHECKSUM',
-          fileSizeBytes: 1048576,
-          releasedById: req.user?.id || 'SYSTEM',
-        },
-      });
-
-      if (order.prescriptionId) {
-        await tx.prescription.update({
-          where: { id: order.prescriptionId },
-          data: { status: 'COMPLETED', updatedAt: new Date() },
-        });
-      }
-
-      await tx.orderStatusHistory.create({
-        data: {
-          orderId: order.id,
-          status: OrderStatus.RELEASED,
-          changedById: req.user?.id || 'SYSTEM',
-          reason: 'Official diagnostic report uploaded and released to clinician and patient.',
-        },
-      });
-
-      return o;
-    });
-
-    res.json({
-      success: true,
-      id: updatedOrder.id,
-      status: 'UPLOADED',
-      reportUrl,
-      updatedAt: updatedOrder.updatedAt.toISOString(),
-    });
   },
 };

@@ -22,6 +22,7 @@ export default function Verification() {
   const [selectedSample, setSelectedSample] = useState(null);
   const [showConfirm, setShowConfirm] = useState(false);
   const [isAuthorizing, setIsAuthorizing] = useState(false);
+  const [authError, setAuthError] = useState('');
 
   useEffect(() => {
     loadSamples();
@@ -39,11 +40,15 @@ export default function Verification() {
     if (!selectedSample) return;
     setIsAuthorizing(true);
     try {
-      await labApi.verifyAndReleaseReport(selectedSample.id, 'Dr. Sarah Pathologist (MD, Reg #55421)');
+      setAuthError('');
+      await labApi.verifyAndReleaseReport(selectedSample.id);
       setShowConfirm(false);
       await loadSamples();
       const updated = await labApi.getSampleById(selectedSample.id);
       setSelectedSample(updated);
+    } catch (err) {
+      setShowConfirm(false);
+      setAuthError(err.message || 'Authorization failed. Nothing was released.');
     } finally {
       setIsAuthorizing(false);
     }
@@ -56,6 +61,12 @@ export default function Verification() {
         subtitle="Mandatory second-review sign-off for critical and released medical diagnostic reports."
         breadcrumbs={[{ label: 'LIMS Dashboard', href: '/dashboard' }, { label: 'Verification' }]}
       />
+
+      {authError && (
+        <div role="alert" className="p-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-200 rounded-xl text-xs">
+          {authError}
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column: Specimen Verification List (4 Cols) */}

@@ -42,26 +42,6 @@ let localInvoices = [];
 let localQualityLogs = [];
 
 export const labApi = {
-  // Ensure Authenticated Lab Admin Session
-  ensureAuth: async () => {
-    let token = localStorage.getItem('token');
-    if (token) return token;
-    try {
-      const res = await axios.post(`${API_BASE_URL}/auth/login`, {
-        email: 'lab@diagconnect.com',
-        password: 'password123',
-      });
-      if (res.data?.token) {
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('currentUser', JSON.stringify(res.data.user));
-        return res.data.token;
-      }
-    } catch {
-      // Backend offline or non-standard credentials
-    }
-    return null;
-  },
-
   // Auth
   login: async (email, password) => {
     const res = await apiClient.post('/auth/login', { email, password });
@@ -80,17 +60,14 @@ export const labApi = {
   getCurrentUser: () => {
     try {
       const user = localStorage.getItem('currentUser');
-      return user
-        ? JSON.parse(user)
-        : { id: 2, name: 'City Central Lab Admin', role: 'LAB_ADMIN', email: 'lab@diagconnect.com' };
+      return user ? JSON.parse(user) : null;
     } catch {
-      return { id: 2, name: 'City Central Lab Admin', role: 'LAB_ADMIN', email: 'lab@diagconnect.com' };
+      return null;
     }
   },
 
   // Backend orders (Authoritative from /api/orders)
   getOrders: async () => {
-    await labApi.ensureAuth();
     try {
       const res = await apiClient.get('/orders');
       return Array.isArray(res.data) ? res.data : [];
@@ -100,13 +77,6 @@ export const labApi = {
       }
       throw new Error(err.response?.data?.message || 'Unable to connect to laboratory orders API');
     }
-  },
-
-  // Upload verified report URL to backend order
-  uploadReport: async (orderId, reportUrl) => {
-    await labApi.ensureAuth();
-    const res = await apiClient.patch(`/orders/${orderId}/upload-report`, { reportUrl });
-    return res.data;
   },
 
   // Accession & Samples mapped from authentic backend orders
@@ -154,33 +124,19 @@ export const labApi = {
     };
   },
 
-  updateSampleResults: async (sampleId, results, pathologistNotes = '') => {
-    return {
-      id: sampleId,
-      results,
-      pathologistNotes,
-      status: 'AWAITING_REVIEW',
-      updatedAt: new Date().toISOString(),
-    };
+  updateSampleResults: async () => {
+    throw new Error('Saving results is not available yet in this version. Nothing was saved.');
   },
 
-  verifyAndReleaseReport: async (sampleId, doctorName = 'Dr. Sarah Pathologist') => {
-    // If it's a numeric ID or SMP-#, trigger upload-report on backend
-    const numericId = Number(String(sampleId).replace(/\D/g, '')) || 1;
-    const reportUrl = `https://labsmart.hospital/reports/REP-${Date.now()}.pdf`;
-    try {
-      await labApi.uploadReport(numericId, reportUrl);
-    } catch {
-      // Offline fallback
-    }
-    return {
-      id: sampleId,
-      status: 'VERIFIED',
-      lifecycle: 'RELEASED',
-      verifiedBy: doctorName,
-      verifiedAt: new Date().toISOString(),
-      reportUrl,
-    };
+  // Result saving and report release are not connected to the backend yet.
+  // They fail loudly instead of pretending to succeed (M0 safety fix).
+  // Real implementations: result entry (T-037), authorization (T-039), PDF reports (T-040).
+  saveTestResults: async () => {
+    throw new Error('Saving results is not available yet in this version. Nothing was saved.');
+  },
+
+  verifyAndReleaseReport: async () => {
+    throw new Error('Report authorization and release are not available yet in this version. Nothing was released.');
   },
 
   // Test reference parameters
