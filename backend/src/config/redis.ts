@@ -6,6 +6,9 @@ let redisClient: any = null;
 let isRedisAvailable = false;
 
 try {
+  if (!ENV.REDIS_URL) {
+    throw new Error('REDIS_URL not set');
+  }
   redisClient = new RedisConstructor(ENV.REDIS_URL, {
     maxRetriesPerRequest: 1,
     retryStrategy: (times: number) => {
