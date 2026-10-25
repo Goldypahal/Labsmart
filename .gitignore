@@ -48,3 +48,9 @@ secrets.json
 Thumbs.db
 .idea/
 .vscode/
+
+# Vite temp files and local logs
+*.timestamp-*.mjs
+lint-output.txt
+lint_results.txt
+dev_log.txt
